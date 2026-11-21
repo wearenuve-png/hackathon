@@ -52,8 +52,8 @@ automáticas** (con sus claves de respuestas); la app no las abre por su cuenta.
   copias en `data/output/carga_auto/`; los originales no se tocan. Ejemplo: `data/demo/` (de Mateo).
 - **Restablecer**: deja el programa **en blanco**: borra lo que guardó (decisiones aprobadas, manifiestos de huellas,
   copias de trabajo, carga elegida y estado de la pantalla) y no muestra ninguna cifra, gráfica ni tabla hasta que
-  elijas «Usar datos base», «Usar datos con errores (demostración)» o «Cargar presupuestos». **No** borra presupuestos,
-  datos de ejemplo del repositorio ni evidencias exportadas.
+  cargues una carpeta con «Cargar presupuestos». **No** borra tus presupuestos, los archivos de prueba del repositorio
+  ni evidencias exportadas.
 
 ## Asistente FinaCore (prototipo, opcional)
 
