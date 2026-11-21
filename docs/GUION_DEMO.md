@@ -15,17 +15,16 @@ las mismas cifras y exporta la evidencia a `data/output/`).
 | 4 | 1:50 – 2:30 | Consolidado de octubre vs. suma ingenua | Pestaña **Resultados y balance** |
 | 5 | 2:30 – 3:00 | Discrepancia intercompañía | Período **2026-11**, **Alertas y exclusiones** |
 | 6 | 3:00 – 3:30 | Clic hasta archivo, hoja y fila | Pestaña **Trazabilidad** |
-| 7 | 3:30 – 4:10 | ROIC, ROCE y EVA | Pestaña de indicadores (ver nota) |
-| 8 | 4:10 – 4:40 | Una variación explicada | **PENDIENTE** (ver nota) |
+| 7 | 3:30 – 4:10 | ROIC, ROCE y EVA | Pestaña **Indicadores** |
+| 8 | 4:10 – 4:40 | Una variación explicada | Pestaña **Variaciones** (2026-11 vs. 2026-10) |
 | — | 4:40 – 5:00 | Cierre y hoja de ruta | — |
 
-> **Nota paso 7:** la pestaña existe como `nexus/ui/tab_indicadores.py` (`render(consolidado, periodo)`), pero
-> **no está conectada en `app.py`** (su dueño debe agregarla). Mientras no lo esté, mostrar este paso con
-> `scripts/demo_respaldo.py` (paso 7) y decirlo tal cual.
+> **Nota paso 7:** la pestaña *Indicadores* (`nexus/ui/tab_indicadores.py`) ya está conectada en `app.py`. Plan B:
+> `scripts/demo_respaldo.py` (paso 7).
 >
-> **Nota paso 8:** `nexus/variance.py` es todavía un esqueleto. **Paso pendiente**: no se muestra en vivo. Si el
-> explicador se integra antes de la demo, mostrar la comparación 2026-10 vs. 2026-11 con registros concretos;
-> si no, pasarlo a la hoja de ruta (ver más abajo).
+> **Nota paso 8:** el explicador (`nexus/variance.py`, pestaña *Variaciones*) está construido. Con plantillas, sin
+> IA, descompone la variación en causas que suman exacto el total y muestra «Sin explicar» cuando los datos no
+> prueban la causa. Plan B: paso 8 de `scripts/demo_respaldo.py`.
 
 ### 1. El problema (0:20)
 **Decir:** «Un grupo con seis empresas, tres monedas y seis formatos de archivo distintos consolida hoy a mano:
@@ -66,8 +65,10 @@ El balance cuadra.»
 **Mostrar:** período 2026-11, tabla de intercompañía.
 **Decir:** «Distribuidora Central dice haber vendido 20,000 dólares a Ferrex México; México dice haber
 comprado 18,000. NEXUS no elimina a ciegas: abre una discrepancia de **2,000 dólares** para revisión y marca
-el período como provisional. Aparecen dos filas porque la discrepancia afecta tanto la operación (la venta)
-como el saldo (cuenta por cobrar y por pagar).»
+el período como provisional. Es una sola diferencia: afecta tanto la operación (la venta) como el saldo (cuenta por
+cobrar y por pagar), y no se elimina ninguna de las dos.»
+*(La interfaz y el script de respaldo muestran la discrepancia una sola vez, con una nota de que afecta la operación
+y el saldo.)*
 **Cifras:** 20,000 vs 18,000 = 2,000 USD, referencia DC-IC-2611-MX.
 
 ### 6. De una cifra a su registro: Ingresos por ventas (cuenta 4000) (0:30)
@@ -90,21 +91,43 @@ datos sintéticos, octubre da ROIC de 11.16% del mes, ROCE de 13.00% y EVA de 30
 *Nota al pie (solo si preguntan):* la interfaz y el script también pueden mostrar cifras anualizadas, pero **no
 son representativas por ser datos sintéticos**; no se presentan en la demo.
 
-### 8. Una variación explicada (0:30) — PENDIENTE
-No construido. Si no se integra, decir en este punto: «La comparación entre períodos con explicación basada en
-registros concretos es lo siguiente en nuestra hoja de ruta.» No improvisar una explicación.
+### 8. Una variación explicada (0:30)
+**Mostrar:** período **2026-11**, pestaña *Variaciones*: la frase de la utilidad neta y su tabla de causas.
+**Decir:** «La utilidad neta baja 80,315 dólares entre octubre y noviembre. No es un número suelto: el motor lo
+descompone en causas que suman exacto. Operación, menos 55,815; ajustes y registros bloqueados, más 17,000; mes
+faltante de una empresa (Ferrex Importaciones no entregó noviembre), menos 69,000. Y queda una parte **sin
+explicar**, más 27,500 dólares: es la planilla de Distribuidora Central, que llegó con la moneda “Q”, bloqueada y sin
+valor en dólares. NEXUS no adivina: lo dice. Todo es calculado con plantillas, sin IA, y cada línea se abre hasta
+archivo, hoja y fila. Está marcado **PROVISIONAL** porque hay datos sin resolver.»
+**Cifras:** −80,315 (−22.4%): operación −55,815; ajustes y bloqueados +17,000; mes faltante −69,000; sin explicar
++27,500 (EMP002, cuenta 6000, moneda «Q»).
 
 ### Cierre (0:20)
 «Resumen: seis formatos, un consolidado en dólares, ninguna cifra sin origen, y todo lo dudoso queda visible y
 marcado provisional en lugar de esconderse. Corre dentro del servidor, sin internet, y los datos de hoy son
 sintéticos. Lo que sigue es la hoja de ruta.»
 
+## Extras opcionales de la interfaz (si sobra tiempo)
+- **Pestaña Hallazgos**: una ficha por hallazgo con *qué pasó, dónde (archivo, hoja, fila), por qué importa (USD y
+  utilidad), causa probable y acción humana*, con contador por tipo y ordenada por impacto. Buen complemento del
+  paso 3: abrir la ficha de la depreciación (signo invertido) y la de la moneda «Q» (*probable alias de GTQ, pero
+  requiere aprobación humana; NEXUS no la convierte sola*).
+- **Ficha de balance descuadrado**: lista causas candidatas en orden (registro igual al desbalance, importe × 2,
+  duplicado, registros fuera de balance, diferencia de tasa) o «causa no identificada». **Con los datos sintéticos el
+  balance cuadra, así que esta ficha no aparece en la demo**; se verifica en `tests/test_diagnostico.py`. Decirlo así
+  si preguntan, y presentarlo como diagnóstico por coincidencias numéricas, no como certeza.
+- **Nivel de confianza del período** (arriba): registros limpios vs. bloqueados o pendientes y por qué es PROVISIONAL.
+- **Descargar paquete de auditoría**: zip con el consolidado, ajustes, alertas, discrepancias, perfiles y hashes SHA-256.
+- **Simulador**: mueve la tasa de MXN o GTQ entre −10 % y +10 % y ve el efecto en el consolidado y los indicadores,
+  con la etiqueta **SIMULACIÓN** (no modifica datos ni archivos).
+- **Ayuda**: glosario, preguntas frecuentes y lo que NEXUS no puede detectar (sin chatbot).
+- La matriz de errores y sus limitaciones están en `docs/VERIFICACION.md`.
+
 ## Versión corta (3 minutos)
 Pasos 1 (0:15), 2 (0:30), 3 (0:40), 4 (0:35), 5 (0:20), 6 (0:30), cierre (0:10). Omitir 7 y 8.
 
 ## Hoja de ruta (lo que NO está construido)
 Decirlo como plan, sin fechas ni promesas:
-- **Explicador de variaciones** con plantillas a partir de los cálculos del motor (en desarrollo, no integrado).
 - **Clasificador local de anomalías**, sin chatbot ni nube: se entrenaría con ejemplos etiquetados generados con
   semillas distintas y se mediría con una semilla no usada al entrenar, comparado contra «solo reglas». **No existe
   todavía; no hay ningún modelo entrenado.**
@@ -125,6 +148,9 @@ Decirlo como plan, sin fechas ni promesas:
 | ¿Qué tan confiables son ROIC, ROCE y EVA? | Las fórmulas son estándar y se calculan con las cifras consolidadas, pero WACC, impuesto y definición de capital son supuestos nuestros, visibles y editables. Son mensuales; no son una valoración. |
 | ¿Cómo manejan los duplicados? | Mismo ID de factura: se excluye automáticamente con un ajuste registrado y reversible. Sin ID (mismo importe, fecha y contraparte): solo se marca, y una persona decide. |
 | ¿Es seguro? ¿Dónde corre? | Dentro del servidor de la empresa, sin internet. Lee los archivos en solo lectura, registra su SHA-256 y no los modifica; hay pruebas que bloquean la red y verifican que los hashes no cambian. No tiene inicio de sesión ni control de accesos todavía. |
+| ¿Qué hace NEXUS si el balance no cuadra? | Alerta y una ficha con causas **candidatas** en orden (un registro igual a la diferencia, un importe × 2 por signo invertido, un duplicado, registros fuera del balance o una diferencia de tasa) o «causa no identificada» con los registros más cercanos. Son coincidencias numéricas, no pruebas, y se calculan por empresa y período. Con los datos de la demo el balance cuadra; se probó con casos armados a mano. |
+| ¿Y si una tasa de cambio se escribe mal? | Si cambia más de un umbral (15 %, configurable) frente al mes anterior se marca como sospechosa, con su impacto en USD, y se pide confirmación; no se bloquea ni se corrige. No se detecta la primera tasa de una moneda (sin historial) ni un cambio menor al umbral. |
+| ¿Y si me reenvían el mismo archivo? | Dentro de una carga se advierte por hash idéntico o ID repetido. Entre ejecuciones, solo si se activa el historial (`--historial`); la interfaz no lo activa por defecto. Solo advierte: no excluye nada. |
 | ¿Por qué no usaron un chatbot? | Porque un número que nadie puede auditar no sirve. Los cálculos son código determinista; no hay IA que calcule ni altere importes. |
 
 ## Qué NO decir

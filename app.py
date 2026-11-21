@@ -1,13 +1,11 @@
 """NEXUS - interfaz Streamlit.
 
 La interfaz NO calcula cifras del consolidado: solo ordena y muestra lo que devuelve el motor
-(nexus.pipeline.run). Las pestanas de Indicadores y Variaciones viven en archivos aparte
-(nexus/ui/tab_indicadores.py y nexus/ui/tab_variaciones.py, cada uno con render(consolidado, periodo))
-y se cargan de forma opcional: si todavia no existen, la pestana muestra "Proximamente".
+(nexus.pipeline.run). Las secciones se eligen en el menu desplegable de la barra lateral (key "nav");
+Hallazgos, Indicadores, Variaciones, Simulador y Ayuda viven en nexus/ui/ y las mantiene su autor.
 
 Ejecutar:  streamlit run app.py
 """
-import importlib
 import sys
 from collections import defaultdict
 from decimal import ROUND_HALF_UP, Decimal
@@ -24,6 +22,8 @@ from nexus.audit import verify_hashes
 from nexus.consolidation import trace
 from nexus.pipeline import run
 from nexus.schemas import BLOCK, BLOCKED, EXCLUDED_DUPLICATE, INFO, PENDING_MAPPING, WARN
+from nexus.ui import extras, tab_ayuda, tab_hallazgos, tab_indicadores, tab_simulador, tab_variaciones
+from nexus.variance import view
 
 ROOT = Path(__file__).resolve().parent
 st.set_page_config(page_title="NEXUS | Consolidación", layout="wide", initial_sidebar_state="expanded")
@@ -44,6 +44,8 @@ st.markdown("""<style>
 .nx-crew{font-size:.75rem;color:var(--muted);margin-top:.8rem}
 .nx-title{font-family:var(--display);font-weight:900;font-size:2.15rem;color:var(--ink);letter-spacing:-.035em;
  line-height:1.05;margin:0}
+.nx-section{font-size:1.25rem;font-weight:700;color:var(--ink);margin:.2rem 0 .8rem;padding-bottom:.45rem;
+ border-bottom:2px solid var(--brand);display:inline-block}
 .nx-lede{color:var(--muted);font-size:.95rem;margin:.4rem 0 .9rem}
 .nx-wrap{container-type:inline-size}
 .nx-strip{display:grid;grid-template-columns:repeat(var(--cols),minmax(0,1fr));gap:1px;background:var(--line);
@@ -68,8 +70,6 @@ st.markdown("""<style>
 .nx-state{font-size:.82rem;font-weight:700}
 .nx-state.green{color:var(--green)}.nx-state.amber{color:var(--amber)}.nx-state.red{color:var(--red)}
 .nx-ok{color:var(--green);font-size:.85rem}
-.nx-soon{border:1px dashed var(--line);border-radius:6px;padding:24px;color:var(--muted);background:var(--panel)}
-.nx-soon b{color:var(--ink)}
 .st-key-nx_badge [data-testid="stAlertContainer"]{padding:.45rem .8rem}
 .st-key-nx_badge p{white-space:nowrap;font-weight:600;letter-spacing:.03em;font-size:.88rem}
 section[data-testid="stSidebar"] [data-testid="stAlertContainer"]{padding:.5rem .75rem}
@@ -79,6 +79,8 @@ section[data-testid="stSidebar"] [data-testid="stAlertContainer"]{padding:.5rem 
 MONTHS = ["enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre",
           "noviembre", "diciembre"]
 KIND = {"real": "cifras reales", "presupuesto": "presupuesto"}
+SECTIONS = ["Resumen", "Estados financieros", "Alertas y errores", "Hallazgos", "Intercompañía",
+            "Trazabilidad", "Indicadores", "Variaciones", "Simulador", "Perfiles e integridad", "Ayuda"]
 SEV_LABEL = {BLOCK: "Bloquea el cierre", WARN: "Revisar", INFO: "Nota"}
 SEV_ORDER = {BLOCK: 0, WARN: 1, INFO: 2}
 STATUS_LABEL = {BLOCKED: "Bloqueado", PENDING_MAPPING: "Cuenta sin confirmar", EXCLUDED_DUPLICATE: "Duplicado excluido"}
@@ -126,37 +128,10 @@ def load(data_dir: str, profiles_dir: str, version: int):
     return run(data_dir, profiles_dir=profiles_dir or None)
 
 
-def optional_render(module: str):
-    """(render, error). render=None y error=None: el modulo aun no existe -> 'Proximamente'."""
-    full = f"nexus.ui.{module}"
-    try:
-        mod = importlib.import_module(full)
-    except ModuleNotFoundError as e:
-        if e.name == full:
-            return None, None
-        return None, f"No se pudo cargar {full}: {e}"
-    except Exception as e:  # noqa: BLE001 - un error en otra pestana no tumba la app
-        return None, f"No se pudo cargar {full}: {e}"
-    fn = getattr(mod, "render", None)
-    return (fn, None) if callable(fn) else (None, f"{full} no define render(consolidado, periodo)")
-
-
-def optional_tab(module: str, title: str, what: str, res, period: str) -> None:
-    fn, err = optional_render(module)
-    if err:
-        st.error(err)
-    elif fn is None:
-        html(f'<div class="nx-soon"><b>Próximamente.</b> Aquí vas a ver {escape(what)}</div>')
-    else:
-        try:
-            fn(res, period)
-        except Exception as e:  # noqa: BLE001
-            st.error(f"La pestaña {title} falló: {e}")
-
-
 # ------------------------------------------------------------------ barra lateral
 with st.sidebar:
     html('<div class="nx-word">NEXUS</div><div class="nx-word-sub">Muchas empresas.<br>Un solo número.</div>')
+    section = st.selectbox("Sección", SECTIONS, key="nav")
     period_box = st.container()
     status_box = st.container()
     with st.expander("Configuración de la fuente"):
@@ -190,6 +165,8 @@ with status_box:
                  f"Vuelve a ejecutar el motor.")
     st.caption(("Datos de prueba (sintéticos). " if synthetic else "") +
                f"Ejecución {res.run_id}, reglas {cfg.rules_version}. Sin subida manual y sin internet.")
+with st.sidebar:
+    extras.render_descarga(res, period, data_dir)
 st.sidebar.markdown('<div class="nx-crew">Hecho por Cuz Cuz Crew</div>', unsafe_allow_html=True)
 
 pr = res.periods[period]
@@ -199,6 +176,9 @@ adjs_by_id = {a.adjustment_id: a for a in res.adjustments}
 ms = [x for x in res.matches if x.period == period]
 ic_ok = [x for x in ms if x.status == "RECONCILED"]
 ic_open = [x for x in ms if x.status != "RECONCILED"]
+ic_groups = {}
+for x in ic_open:
+    ic_groups.setdefault((x.seller_id, x.buyer_id, x.reference), []).append(x)
 unresolved = [e for e in pr.excluded if e.status in (BLOCKED, PENDING_MAPPING)]
 dups = [e for e in pr.excluded if e.status == EXCLUDED_DUPLICATE]
 findings = sorted([f for f in res.findings if f.period in (None, period)],
@@ -229,18 +209,16 @@ figures([
      ("No entran al consolidado hasta corregirse." if unresolved else "Todo lo cargado es válido.")
      + (f" Aparte, {pl(len(dups), 'duplicado se excluyó', 'duplicados se excluyeron')} con ajuste." if dups else ""),
      "red" if unresolved else ""),
-    ("Diferencias entre empresas", len(ic_open),
-     f"{pl(len(ic_open), 'operación no cuadra', 'operaciones no cuadran')} y no se eliminan; "
+    ("Diferencias entre empresas", len(ic_groups),
+     f"{pl(len(ic_groups), 'operación no cuadra', 'operaciones no cuadran')} y no se eliminan; "
      f"{len(ic_ok)} sí cuadran." if ic_open else f"Las {len(ic_ok)} operaciones entre empresas cuadran.",
      "amber" if ic_open else ""),
 ])
 
-(tab_sum, tab_fin, tab_alert, tab_ic, tab_trace, tab_ind, tab_var, tab_prof) = st.tabs(
-    ["Resumen", "Estados financieros", "Alertas y errores", "Intercompañía", "Trazabilidad", "Indicadores",
-     "Variaciones", "Perfiles e integridad"])
+html(f'<div class="nx-section">{escape(section)}</div>')
 
 # ------------------------------------------------------------------ Resumen
-with tab_sum:
+if section == "Resumen":
     left, right = st.columns([3, 2], gap="large")
     with left:
         heading("Ingresos por empresa (USD)")
@@ -292,7 +270,7 @@ with tab_sum:
             n_warn = sum(1 for f in f_c if f.severity == WARN)
             n_out = sum(1 for e in unresolved if e.company_id == cid)
             n_dup = sum(1 for e in dups if e.company_id == cid)
-            n_ic = sum(1 for x in ic_open if cid in (x.seller_id, x.buyer_id))
+            n_ic = sum(1 for k in ic_groups if cid in (k[0], k[1]))
             red, amber = [], []
             if rep is not None and rep.status == "REVIEW":
                 red.append("el archivo no coincide con su perfil")
@@ -345,9 +323,12 @@ with tab_sum:
                                 f"{f.message}{tip}")
         else:
             st.caption("No hay nada urgente en este período.")
+    st.write("")
+    heading("Nivel de confianza")
+    extras.render_confianza(res, period)
 
 # ------------------------------------------------------------------ Estados financieros
-with tab_fin:
+if section == "Estados financieros":
     er, bg = st.columns([3, 2], gap="large")
     with er:
         heading("Estado de resultados (USD)")
@@ -376,7 +357,7 @@ with tab_fin:
                      width="stretch", hide_index=True)
 
 # ------------------------------------------------------------------ Alertas y errores
-with tab_alert:
+if section == "Alertas y errores":
     by_sev = defaultdict(int)
     for f in findings:
         by_sev[f.severity] += 1
@@ -417,20 +398,25 @@ with tab_alert:
         st.caption("Ningún registro bloqueado o pendiente afecta la utilidad en este período.")
 
 # ------------------------------------------------------------------ Intercompañía
-with tab_ic:
+if section == "Intercompañía":
     figures([
         ("Operaciones que cuadran", len(ic_ok), "Se eliminan para no contar dos veces la misma venta.", ""),
-        ("Operaciones que no cuadran", len(ic_open), "Quedan abiertas: no se elimina nada hasta conciliar.",
+        ("Operaciones que no cuadran", len(ic_groups), "Quedan abiertas: no se elimina nada hasta conciliar.",
          "amber" if ic_open else ""),
         ("Tolerancia (USD)", m(cfg.ic_tolerance_usd), "Diferencia máxima para dar una operación por conciliada.", ""),
     ])
     heading("Operaciones que no cuadran")
     if ic_open:
-        st.dataframe(pd.DataFrame([{"Vendedor": x.seller_id, "Comprador": x.buyer_id, "Referencia": x.reference,
-                                    "Tipo": "Operación" if x.statement == "ER" else "Saldo",
-                                    "USD vendedor": m(x.seller_usd), "USD comprador": m(x.buyer_usd),
-                                    "Diferencia": m(x.difference_usd), "Estado": x.status} for x in ic_open]),
+        st.dataframe(pd.DataFrame([{"Vendedor": k[0], "Comprador": k[1], "Referencia": k[2],
+                                    "Afecta": " y ".join("operacion (venta)" if y.statement == "ER"
+                                                         else "saldo (CxC y CxP)"
+                                                         for y in sorted(v, key=lambda y: y.statement != "ER")),
+                                    "USD vendedor": m(v[0].seller_usd), "USD comprador": m(v[0].buyer_usd),
+                                    "Diferencia": m(v[0].difference_usd), "Estado": v[0].status}
+                                   for k, v in ic_groups.items()]),
                      width="stretch", hide_index=True)
+        st.caption("Cada discrepancia se muestra una sola vez: la misma diferencia afecta la operación (la "
+                   "venta) y el saldo (cuenta por cobrar y por pagar). No se elimina ninguna de las dos.")
     else:
         st.success("Todas las operaciones entre empresas de este período cuadran.")
     with st.expander(f"Ver las {len(ic_ok)} operaciones eliminadas"):
@@ -440,14 +426,14 @@ with tab_ic:
                      width="stretch", hide_index=True)
 
 # ------------------------------------------------------------------ Trazabilidad
-with tab_trace:
+if section == "Trazabilidad":
     st.markdown("Elige una cifra del consolidado y mira de qué filas de qué archivos sale.")
     groups = {"Ingresos": "ingreso", "Costo de ventas": "costo", "Gastos operativos": "gasto_operativo",
               "Gastos financieros": "gasto_financiero", "Impuestos": "impuesto", "Activo": "activo",
               "Pasivo": "pasivo", "Patrimonio": "patrimonio"}
     options = {f"{lbl} (total)": [c for c, a in cfg.catalog.items() if a.cls == cls] for lbl, cls in groups.items()}
     options.update({f"{c} - {cfg.catalog[c].name}": [c] for c in pr.lines})
-    choice = st.selectbox("Cifra", list(options))
+    choice = st.selectbox("Cifra", list(options), key="traza_cifra")
     traces = [trace(period, c, res) for c in options[choice]]
     tr_gross = sum((t["gross_usd"] for t in traces), Decimal(0))
     tr_final = sum((t["amount_usd"] for t in traces), Decimal(0))
@@ -473,15 +459,22 @@ with tab_trace:
     else:
         st.caption("Esta cifra no tiene ajustes.")
 
-# ------------------------------------------------------------------ Indicadores y Variaciones (pestanas de otros)
-with tab_ind:
-    optional_tab("tab_indicadores", "Indicadores", "ROIC, ROCE y EVA calculados desde el consolidado.", res, period)
-with tab_var:
-    optional_tab("tab_variaciones", "Variaciones", "qué cambió frente al período anterior, dónde y por qué.",
-                 res, period)
+# ------------------------------------------------------------------ secciones de otros integrantes
+if section == "Hallazgos":
+    tab_hallazgos.render(res, period)
+if section == "Indicadores":
+    tab_indicadores.render(res, period)
+if section == "Variaciones":
+    _ps = sorted(res.periods)
+    _i = _ps.index(period)
+    tab_variaciones.render(view(res, period), view(res, _ps[_i - 1]) if _i > 0 else None)
+if section == "Simulador":
+    tab_simulador.render(res, period, data_dir, profiles_dir)
+if section == "Ayuda":
+    tab_ayuda.render()
 
 # ------------------------------------------------------------------ Perfiles e integridad
-with tab_prof:
+if section == "Perfiles e integridad":
     heading("Cómo se lee el archivo de cada empresa")
     prof_rows = []
     for cid, c in cfg.companies.items():

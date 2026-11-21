@@ -21,8 +21,10 @@ def main():
     ap.add_argument("datos", nargs="?", default="data/synthetic")
     ap.add_argument("--periodo", action="append")
     ap.add_argument("--salida", default="data/output")
+    ap.add_argument("--historial", action="store_true",
+                    help="advertir si un archivo o ID ya fue cargado en una ejecucion anterior guardada en --salida")
     a = ap.parse_args()
-    r = run(a.datos)
+    r = run(a.datos, history_dir=a.salida if a.historial else None)
     for p, pr in r.periods.items():
         if a.periodo and p not in a.periodo:
             continue

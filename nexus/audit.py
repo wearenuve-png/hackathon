@@ -71,3 +71,74 @@ def write_run(run, output_dir, source_dir=None) -> str:
             w.writerow([getattr(r, c) if not isinstance(getattr(r, c), list) else "; ".join(getattr(r, c))
                         for c in cols])
     return str(d)
+
+
+# ------------------------------------------------------------------ paquete de auditoria (zip)
+def _q2(d):
+    from decimal import ROUND_HALF_UP
+    return "" if d is None else str(Decimal(d).quantize(Decimal("0.01"), rounding=ROUND_HALF_UP))
+
+
+def build_audit_package(run, source_dir=None) -> bytes:
+    """Zip en memoria con todo lo necesario para auditar una ejecucion: consolidado y resumen por periodo, ajustes,
+    alertas, discrepancias, perfiles, hashes SHA-256, run.json y records.csv. No escribe en la carpeta fuente."""
+    import dataclasses
+    import io
+    import tempfile
+    import zipfile
+
+    def csv_bytes(header, rows):
+        buf = io.StringIO()
+        w = csv.writer(buf, lineterminator="\n")
+        w.writerow(header)
+        w.writerows(rows)
+        return buf.getvalue().encode("utf-8")
+
+    cfg = run.config
+    files = {}
+    files["consolidado.csv"] = csv_bytes(
+        ["periodo", "estado_periodo", "cuenta", "nombre", "antes_de_eliminar_usd", "consolidado_usd"],
+        [[p, "PROVISIONAL" if pr.provisional else "DEFINITIVO", c, cfg.catalog[c].name, _q2(ln.gross_usd),
+          _q2(ln.amount_usd)] for p, pr in sorted(run.periods.items()) for c, ln in pr.lines.items()])
+    keys = ["ingresos", "costo_ventas", "gastos_operativos", "ebit", "gastos_financieros", "impuestos",
+            "utilidad_neta", "activo_total", "pasivo_total", "patrimonio"]
+    files["resumen.csv"] = csv_bytes(
+        ["periodo", "estado_periodo", "concepto", "suma_ingenua_usd", "consolidado_usd"],
+        [[p, "PROVISIONAL" if pr.provisional else "DEFINITIVO", k, _q2(pr.naive_summary[k]), _q2(pr.summary[k])]
+         for p, pr in sorted(run.periods.items()) for k in keys])
+    files["ajustes.csv"] = csv_bytes(
+        ["ajuste", "tipo", "periodo", "cuenta", "usd", "registros", "regla", "motivo", "reversible", "aprobado_por"],
+        [[a.adjustment_id, a.kind, a.period, a.account_code, _q2(a.amount_usd), "; ".join(a.record_ids), a.rule,
+          a.reason, a.reversible, a.approved_by] for a in run.adjustments])
+    files["alertas.csv"] = csv_bytes(
+        ["severidad", "regla", "empresa", "periodo", "mensaje", "encontrado", "esperado", "sugerencia", "impacto"],
+        [[f.severity, f.rule_id, f.company_id, f.period, f.message, f.found, f.expected, f.suggestion, f.impact]
+         for f in run.findings])
+    files["discrepancias.csv"] = csv_bytes(
+        ["periodo", "estado", "vendedor", "comprador", "referencia", "tipo", "usd_vendedor", "usd_comprador",
+         "diferencia_usd"],
+        [[m.period, m.status, m.seller_id, m.buyer_id, m.reference, "operacion" if m.statement == "ER" else "saldo",
+          _q2(m.seller_usd), _q2(m.buyer_usd), _q2(m.difference_usd)]
+         for m in run.matches if m.status != "RECONCILED"])
+    files["hashes_sha256.csv"] = csv_bytes(["archivo", "sha256"], sorted(run.input_hashes.items()))
+    for cid, p in cfg.profiles.items():
+        files[f"perfiles/{cid}.json"] = json.dumps(dataclasses.asdict(p), indent=2, ensure_ascii=False).encode("utf-8")
+    files["LEEME.txt"] = (
+        f"Paquete de auditoria NEXUS\nEjecucion: {run.run_id}\nReglas: {run.config.rules_version}\n"
+        f"Fuente: carpeta del servidor, solo lectura: {source_dir}\nSin conexion a internet.\n"
+        "DATOS SINTETICOS si se trata del grupo de demostracion.\n\n"
+        "consolidado.csv / resumen.csv: cifras en USD por periodo (con su estado PROVISIONAL o DEFINITIVO)\n"
+        "ajustes.csv: eliminaciones intercompania y duplicados excluidos (reversibles)\n"
+        "alertas.csv: hallazgos del validador; discrepancias.csv: lo que NO se elimino\n"
+        "perfiles/: perfiles de integracion (version y quien los aprobo)\n"
+        "hashes_sha256.csv: huella de cada archivo leido\nrun.json y records.csv: evidencia completa por registro\n"
+    ).encode("utf-8")
+    with tempfile.TemporaryDirectory() as tmp:
+        d = Path(write_run(run, tmp, source_dir))
+        files["run.json"] = (d / "run.json").read_bytes()
+        files["records.csv"] = (d / "records.csv").read_bytes()
+    buf = io.BytesIO()
+    with zipfile.ZipFile(buf, "w", zipfile.ZIP_DEFLATED) as z:
+        for name, data in files.items():
+            z.writestr(name, data)
+    return buf.getvalue()

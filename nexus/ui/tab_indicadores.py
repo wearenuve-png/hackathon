@@ -63,9 +63,11 @@ def render(consolidado, periodo: str, params: Optional[IndicatorParams] = None) 
 
     ppy = params.periods_per_year
     c1, c2, c3 = st.columns(3)
-    c1.metric("ROIC (periodo)", _p(r.roic), f"anualizado {_p(r.roic_annualized)}", delta_color="off")
-    c2.metric("ROCE (periodo)", _p(r.roce), f"anualizado {_p(r.roce_annualized)}", delta_color="off")
-    c3.metric("EVA (periodo, USD)", _m(r.eva))
+    c1.metric("ROIC (mensual)", _p(r.roic))
+    c2.metric("ROCE (mensual)", _p(r.roce))
+    c3.metric("EVA (mensual, USD)", _m(r.eva))
+    st.caption(f"(*) Anualizados serian ROIC {_p(r.roic_annualized)} y ROCE {_p(r.roce_annualized)}; no son "
+               f"representativos por ser datos sinteticos.")
 
     st.markdown("**Formula y calculo con las entradas usadas**")
     w = params.wacc / ppy if ppy in (1, 2, 4, 12) else None

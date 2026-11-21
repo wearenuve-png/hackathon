@@ -1,0 +1,4 @@
+{
+  "_nota": "Parametros del validador. Son SUPUESTOS del equipo y se pueden cambiar sin tocar el codigo.",
+  "umbral_cambio_tasa": "0.15"
+}

@@ -1,0 +1,5 @@
+{
+  "_nota": "Umbral de materialidad del explicador de variaciones. Es un SUPUESTO del equipo y se puede cambiar sin tocar el codigo. Una variacion es material si supera AMBOS: el porcentaje y el monto absoluto.",
+  "min_pct": "0.05",
+  "min_abs_usd": "10000"
+}
