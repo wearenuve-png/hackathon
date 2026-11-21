@@ -1,0 +1,31 @@
+# Tema de NEXUS: la misma linea grafica del pitch (carbon, naranja NEXUS y blanco hueso).
+# Sin fuentes externas: la app corre sin internet. Contrastes revisados (WCAG AA).
+[theme]
+base = "dark"
+primaryColor = "#F05A28"          # naranja NEXUS: marca, pestana activa, eliminaciones en el grafico
+backgroundColor = "#181716"       # carbon
+secondaryBackgroundColor = "#23211F"
+textColor = "#F3F1ED"             # blanco hueso
+linkColor = "#F05A28"
+borderColor = "#3B3835"
+dataframeBorderColor = "#3B3835"
+dataframeHeaderBackgroundColor = "#23211F"
+showSidebarBorder = true
+baseRadius = "6px"
+font = "'Segoe UI', 'Helvetica Neue', Arial, sans-serif"
+# Estados: distintos del naranja de marca (separacion revisada tambien para daltonismo)
+redColor = "#FF5C93"
+greenColor = "#3DD68C"
+yellowColor = "#F7C948"
+orangeColor = "#F05A28"
+chartCategoricalColors = ["#D9D3CB", "#F05A28"]
+
+[theme.sidebar]
+backgroundColor = "#121110"
+secondaryBackgroundColor = "#23211F"
+
+[client]
+toolbarMode = "minimal"
+
+[browser]
+gatherUsageStats = false

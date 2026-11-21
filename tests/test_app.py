@@ -32,9 +32,9 @@ def at():
     return a
 
 
-def test_arranca_sin_errores_y_con_las_cuatro_pantallas(at):
-    assert [t.label for t in at.tabs] == ["Resultados y balance", "Alertas y exclusiones", "Trazabilidad",
-                                          "Perfiles por empresa"]
+def test_arranca_sin_errores_y_con_las_pestanas_del_rediseno(at):
+    assert [t.label for t in at.tabs] == ["Resumen", "Estados financieros", "Alertas y errores", "Intercompañía",
+                                          "Trazabilidad", "Indicadores", "Variaciones", "Perfiles e integridad"]
     assert list(at.sidebar.radio[0].options) == ["2026-10 (real)", "2026-11 (real)", "2026-12 (presupuesto)"]
 
 
