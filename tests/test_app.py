@@ -122,17 +122,21 @@ def test_muestra_la_fuente_y_la_integridad_de_los_archivos(at):
     assert not at.sidebar.get("file_uploader")                                   # sin subida manual
 
 
-def test_modo_claro_cambia_el_tema_y_vuelve_al_oscuro(at):
+def test_boton_luna_sol_cambia_el_tema_y_vuelve_al_oscuro(at):
     from streamlit import config as st_config
     try:
-        at.sidebar.toggle(key="modo_claro").set_value(True).run()
+        boton = at.sidebar.button(key="tema")
+        assert boton.icon == ":material/dark_mode:"                                  # luna en modo oscuro
+        boton.click().run()
         assert not at.exception, at.exception
         assert st_config.get_option("theme.base") == "light"
         assert st_config.get_option("theme.textColor") == "#141312"                # letras negras en claro
-        at.sidebar.toggle(key="modo_claro").set_value(False).run()
+        assert at.sidebar.button(key="tema").icon == ":material/light_mode:"        # sol en modo claro
+        at.sidebar.button(key="tema").click().run()
         assert not at.exception, at.exception
         assert st_config.get_option("theme.base") == "dark"
         assert st_config.get_option("theme.textColor") == "#F5F3EF"                # letras blancas en oscuro
+        assert not at.sidebar.toggle                                                 # ya no hay interruptor
     finally:
         st_config.set_option("theme.base", "dark")
 

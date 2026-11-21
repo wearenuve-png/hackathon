@@ -2,7 +2,7 @@
 
 La interfaz NO calcula cifras del consolidado: solo ordena y muestra lo que devuelve el motor
 (nexus.pipeline.run). Las secciones se eligen en el menu horizontal de arriba (key "nav") y el modo
-claro/oscuro en la barra lateral (key "modo_claro").
+claro/oscuro con el boton de luna/sol de la barra lateral (key "tema").
 Hallazgos, Indicadores, Variaciones, Simulador y Ayuda viven en nexus/ui/ y las mantiene su autor.
 
 Ejecutar:  streamlit run app.py
@@ -95,6 +95,9 @@ CSS = """
 .nx-ok{color:var(--ink);font-size:.85rem}
 [data-testid="stAlertContainer"] [data-testid="stMarkdownContainer"] *{color:var(--ink)!important}
 .st-key-nx_badge [data-testid="stAlertContainer"]{padding:.45rem .8rem}
+.st-key-tema button{color:var(--ink)!important;background:transparent!important;border:0!important;padding:4px}
+.st-key-tema button:hover,.st-key-tema button:focus{color:var(--ink)!important;opacity:.7}
+.st-key-tema button span{font-size:1.6rem!important;color:var(--ink)!important}
 .st-key-nx_badge p{white-space:nowrap;font-weight:600;letter-spacing:.03em;font-size:.88rem}
 section[data-testid="stSidebar"] [data-testid="stAlertContainer"]{padding:.5rem .75rem}
 .st-key-nav{margin-bottom:.6rem}
@@ -166,10 +169,23 @@ def load(data_dir: str, profiles_dir: str, version: int):
 
 
 # ------------------------------------------------------------------ barra lateral
+if "modo_claro" not in st.session_state:
+    st.session_state.modo_claro = False
+
+
+def _cambiar_tema():
+    st.session_state.modo_claro = not st.session_state.modo_claro
+
+
 with st.sidebar:
-    html('<div class="nx-word">NEXUS</div><div class="nx-word-sub">Muchas empresas.<br>Un solo número.</div>')
-    modo_claro = st.toggle("Modo claro", key="modo_claro")
-MODE = "light" if modo_claro else "dark"
+    _logo, _tema = st.columns([4, 1], vertical_alignment="center")
+    _logo.markdown('<div class="nx-word">NEXUS</div>', unsafe_allow_html=True)
+    _claro = st.session_state.modo_claro                  # luna en oscuro, sol en claro; solo blanco y negro
+    _tema.button("", key="tema", type="tertiary", on_click=_cambiar_tema,
+                 icon=":material/light_mode:" if _claro else ":material/dark_mode:",
+                 help="Cambiar a modo oscuro" if _claro else "Cambiar a modo claro")
+    html('<div class="nx-word-sub">Muchas empresas.<br>Un solo número.</div>')
+MODE = "light" if st.session_state.modo_claro else "dark"
 if st_config.get_option("theme.base") != MODE:          # aplica el tema elegido y vuelve a dibujar
     for _k, _v in THEMES[MODE].items():
         st_config.set_option(_k, _v)
