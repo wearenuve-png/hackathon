@@ -33,7 +33,7 @@ def write_run(run, output_dir) -> str:
                         "excluded": pr.excluded, "excluded_usd_by_status": pr.excluded_usd_by_status,
                         "missing_companies": pr.missing_companies}
                     for p, pr in run.periods.items()},
-        "matches": run.matches, "adjustments": run.adjustments, "findings": run.findings,
+        "load_reports": run.load_reports, "matches": run.matches, "adjustments": run.adjustments, "findings": run.findings,
     }, default=_default, indent=2, ensure_ascii=False), encoding="utf-8")
     with open(d / "records.csv", "w", encoding="utf-8", newline="") as f:
         w = csv.writer(f)
