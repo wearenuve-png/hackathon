@@ -192,3 +192,21 @@ def test_archivos_subidos_desde_el_navegador_se_guardan_y_se_leen(tmp_path):
 
 def test_el_panel_de_carga_ofrece_subir_archivos(nuevo):
     assert len(nuevo.get("file_uploader")) == 1
+
+
+def test_modo_publico_solo_acepta_carpetas_del_proyecto(monkeypatch, tmp_path):
+    a, b = reparto(tmp_path)
+    monkeypatch.setenv("FINACORE_PUBLICO", "1")
+    fuera = CA.preparar([str(a), str(b)], tmp_path / "t")
+    assert not fuera["ok"] and "modo público" in " ".join(fuera["problemas"])           # una carpeta cualquiera de la maquina
+    assert not CA.preparar(["/etc"])["ok"] and not CA.preparar(["../"])["ok"] and not CA.preparar(["/Users"])["ok"]
+    assert CA.preparar(["data/demo"])["ok"] and CA.preparar([str(DEMO)])["ok"]          # carpetas del proyecto (relativa y absoluta)
+    assert CA.elegir_carpeta() is None                                                  # sin dialogos del sistema
+    d = CA.guardar_subidas([(f.name, f.read_bytes()) for f in DEMO.iterdir() if f.name != "LEEME_DEMO.md"],
+                           CA.carpeta_trabajo())
+    assert CA.preparar([str(d)])["ok"]                                                  # lo subido por el navegador si
+
+
+def test_sin_modo_publico_las_rutas_relativas_tambien_funcionan(monkeypatch):
+    monkeypatch.delenv("FINACORE_PUBLICO", raising=False)
+    assert CA.preparar(["data/demo_ampliado"])["ok"] and CA.elegir_carpeta.__doc__

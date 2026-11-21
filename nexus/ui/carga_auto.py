@@ -32,6 +32,12 @@ def _sha(p: Path) -> str:
     return h.hexdigest()
 
 
+def modo_publico() -> bool:
+    """FINACORE_PUBLICO=1: la app esta expuesta a internet. Solo se aceptan carpetas del proyecto (data/...) o archivos
+    subidos; no se puede apuntar a carpetas arbitrarias de la maquina que sirve la app."""
+    return os.environ.get("FINACORE_PUBLICO", "") not in ("", "0")
+
+
 def preparar(carpetas: List[str], base: Optional[Path] = None) -> dict:
     """{'ok', 'dir', 'origen', 'copiado', 'usados', 'sin_usar', 'problemas'}. Nunca lanza una excepcion tecnica."""
     out = {"ok": False, "dir": None, "origen": [], "copiado": False, "usados": [], "sin_usar": [], "problemas": [],
@@ -42,7 +48,12 @@ def preparar(carpetas: List[str], base: Optional[Path] = None) -> dict:
         if not c:
             continue
         p = Path(c).expanduser()
-        if not p.is_dir():
+        if not p.is_absolute():
+            p = ROOT / p                              # rutas relativas (data/demo) se leen desde la raiz del proyecto
+        if modo_publico() and not _dentro(p, ROOT / "data") and not _dentro(p, carpeta_trabajo()):
+            out["problemas"].append("En el modo público solo se pueden usar las carpetas del proyecto (por ejemplo "
+                                    "data/demo) o subir los archivos desde tu computadora.")
+        elif not p.is_dir():
             out["problemas"].append(f"La carpeta no existe o no se puede abrir: {c}")
         elif p.resolve() not in rutas:
             rutas.append(p.resolve())
@@ -114,6 +125,14 @@ def preparar(carpetas: List[str], base: Optional[Path] = None) -> dict:
 MAX_SUBIDA_MB = 60
 
 
+def _dentro(p: Path, raiz: Path) -> bool:
+    try:
+        p.resolve().relative_to(raiz.resolve())
+        return True
+    except ValueError:
+        return False
+
+
 def guardar_subidas(archivos, base: Optional[Path] = None) -> Optional[Path]:
     """Guarda en una carpeta de trabajo los archivos que la persona subio desde el navegador (lista de (nombre, bytes)).
     Sirve cuando la app corre en un servidor y la persona no tiene una carpeta en esa maquina. Devuelve la carpeta,
@@ -136,7 +155,7 @@ def guardar_subidas(archivos, base: Optional[Path] = None) -> Optional[Path]:
 
 def elegir_carpeta() -> Optional[str]:
     """Selector de carpeta del sistema (macOS). None si se cancela o no esta disponible: se puede escribir la ruta."""
-    if sys.platform != "darwin":
+    if sys.platform != "darwin" or modo_publico():
         return None
     try:
         r = subprocess.run(["osascript", "-e", 'POSIX path of (choose folder with prompt "Carpeta con los presupuestos")'],

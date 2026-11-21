@@ -269,7 +269,10 @@ if st.session_state.get("carga_abierta", not _carga):
         st.file_uploader("O sube los archivos desde tu computadora (presupuestos y configuración, todos juntos)",
                          accept_multiple_files=True, type=["xlsx", "csv", "json"], key="carga_archivos")
         _b1, _b2, _ = st.columns([1.3, 1.3, 3])
-        _b1.button("Elegir carpeta…", key="carga_elegir", on_click=_elegir_carpeta)
+        if not carga_auto.modo_publico():
+            _b1.button("Elegir carpeta…", key="carga_elegir", on_click=_elegir_carpeta)
+        else:
+            st.caption("Modo público: usa las carpetas del proyecto (data/demo, data/demo_ampliado) o sube los archivos.")
         _b2.button("Leer presupuestos", key="carga_leer", type="primary", on_click=_leer_carpetas)
         for _p in st.session_state.get("carga_problemas", []):
             st.warning(_p)

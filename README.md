@@ -72,6 +72,13 @@ En ambos casos la app corre en un servidor: no ve las carpetas de tu computadora
 **subir los archivos** (presupuestos y las 5 tablas de configuración, todos juntos) o escribir la ruta de una carpeta del
 repositorio: `data/demo` o `data/demo_ampliado`. El selector «Elegir carpeta…» solo existe en macOS local.
 
+## Compartir con un enlace (Cloudflare Tunnel)
+
+`./publicar.sh` arranca la app en **modo público** (`FINACORE_PUBLICO=1`) y abre un túnel de Cloudflare con un enlace
+`https://….trycloudflare.com`; el enlace funciona mientras el script siga abierto. Requiere `cloudflared`
+(`brew install cloudflared`). En modo público la app **no** acepta carpetas arbitrarias de la computadora: solo las del
+proyecto (`data/demo`, `data/demo_ampliado`) o archivos subidos desde el navegador. Úsalo solo con datos sintéticos.
+
 ## Cargar tus propios presupuestos y Restablecer
 
 - **Cargar presupuestos** (arriba, junto a Restablecer): escribe o elige una o varias carpetas (una por línea; en macOS
