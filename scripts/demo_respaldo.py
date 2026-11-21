@@ -14,6 +14,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 from nexus import audit, variance  # noqa: E402
+from nexus.variance import CAUSE_NAMES, SIN, sfmt  # noqa: E402
 from nexus.consolidation import trace  # noqa: E402
 from nexus.metrics import compute_indicators  # noqa: E402
 from nexus.pipeline import run  # noqa: E402
@@ -100,14 +101,18 @@ def run_demo(datos, perfiles, salida, out=print) -> dict:
     k["eliminaciones_conciliadas"] = sum(1 for x in res.matches if x.period == PERIODO and x.status == "RECONCILED")
 
     paso(5, "La discrepancia intercompania que NO se elimina", out)
-    out("Aparecen dos filas porque la discrepancia afecta tanto la operacion (la venta) como el saldo (cuenta por "
-        "cobrar y por pagar).")
     k["discrepancias"] = []
+    unidas = {}
     for x in [x for x in res.matches if x.status == "DISCREPANCY"]:
-        out(f"  {x.period} {x.seller_id} -> {x.buyer_id} ref {x.reference} ({'saldo' if x.statement == 'BG' else 'operacion'}): "
-            f"{x.seller_id} {m(x.seller_usd)} vs {x.buyer_id} {m(x.buyer_usd)} USD = diferencia {m(x.difference_usd)} "
-            f"USD. No se elimina; se abre para revision.")
         k["discrepancias"].append({"reference": x.reference, "period": x.period, "difference": x.difference_usd})
+        unidas.setdefault((x.period, x.seller_id, x.buyer_id, x.reference), []).append(x)
+    for (per, vend, comp, ref), xs in unidas.items():
+        x = xs[0]
+        afecta = " y ".join("la operacion (la venta)" if y.statement == "ER" else
+                            "el saldo (cuenta por cobrar y por pagar)" for y in sorted(xs, key=lambda y: y.statement != "ER"))
+        out(f"  {per} {vend} -> {comp} ref {ref}: {vend} {m(x.seller_usd)} vs {comp} {m(x.buyer_usd)} USD = "
+            f"diferencia {m(x.difference_usd)} USD. No se elimina; se abre para revision.")
+        out(f"  Se muestra una sola vez: la misma diferencia afecta {afecta}.")
 
     paso(6, "De una cifra a su registro original: Ingresos por ventas (cuenta 4000) -> archivo, hoja y fila", out)
     t = trace(PERIODO, "4000", res)
@@ -143,20 +148,29 @@ def run_demo(datos, perfiles, salida, out=print) -> dict:
         f"no son representativos por ser datos sinteticos.")
     k["ind"] = {"nopat": ind.nopat, "roic": ind.roic, "roce": ind.roce, "eva": ind.eva}
 
-    paso(8, "Una variacion explicada con registros concretos", out)
-    try:
-        variance.compare(None, None, None)
-        pendiente = False
-    except NotImplementedError:
-        pendiente = True
-    except Exception:  # noqa: BLE001 - el explicador existe pero no se invoca con None
-        pendiente = False
-    if pendiente:
-        out("PENDIENTE: el explicador de variaciones (nexus/variance.py) aun no esta integrado. Se presenta como "
-            "hoja de ruta.")
-    else:
-        out("El explicador esta disponible: usalo desde la interfaz (comparar 2026-10 con 2026-11).")
-    k["explicador_pendiente"] = pendiente
+    paso(8, "Una variacion explicada con registros concretos (2026-10 -> 2026-11)", out)
+    rep = variance.compare(variance.view(res, PERIODO), variance.view(res, "2026-11"))
+    tot = rep.total
+    out(tot.phrase)
+    out(f"\n  {'Causa':<62}{'USD':>14}")
+    for kk, x in tot.causes.items():
+        if x != 0 or kk == SIN:
+            out(f"  {CAUSE_NAMES[kk]:<62}{sfmt(x):>14}")
+    out(f"  {'TOTAL (suma de causas + sin explicar)':<62}{sfmt(tot.causes_sum):>14}")
+    out(f"  Etiquetas: {', '.join(tot.tags)}. Convencion: {rep.convention}")
+    sin_cell = next((v for v in rep.cells.values() if v.causes[SIN] != 0), None)
+    if sin_cell:
+        out(f"\nLo que los datos NO prueban: {sin_cell.label}: sin explicar {sfmt(sin_cell.causes[SIN])} USD "
+            f"en la cuenta (como es un gasto, pesa {sfmt(tot.causes[SIN])} en la utilidad neta)")
+        for n in sin_cell.notes:
+            out(f"  - {n}")
+        cid, code = sin_cell.key.split("|")
+        t = next(t for t in rep.by_account[code].trace if t.company_id == cid and t.status == "BLOCKED")
+        out(f"  Trazabilidad: {t.file}, hoja {t.sheet or '-'}, fila {t.row}: {t.local:,.2f} {t.currency}, "
+            f"{t.status} - {t.rule}")
+    k["variacion"] = {"total": tot.total, "causas": dict(tot.causes), "causas_suma": tot.causes_sum,
+                      "sin_explicar_celdas": [v.key for v in rep.cells.values() if v.causes[SIN] != 0]}
+    k["explicador_pendiente"] = False
 
     ruta = audit.write_run(res, salida, source_dir=datos)
     out(f"\nEvidencia exportada en: {ruta}  (run.json, records.csv)")

@@ -29,6 +29,7 @@ Las pruebas deben terminar en verde. La app se abre en `http://localhost:8501` y
 | `feat/ui` | Interfaz | `app.py` (su dueño es el único que lo edita) |
 | `feat/explicador` | Explicador de variaciones con plantillas | `nexus/variance.py` |
 | `feat/indicadores` | ROIC, ROCE y EVA | `nexus/metrics.py`, `nexus/ui/tab_indicadores.py` |
+| `feat/completar` | Matriz de errores, explicador de variaciones, simulador, paquete de auditoría y ayuda | `docs/VERIFICACION.md`, `nexus/variance.py`, `nexus/simulator.py`, `nexus/ui/` |
 
 Si una rama aún no existe, créala desde `main`: `git checkout -b feat/ui`.
 `nexus/schemas.py` y `data/synthetic/generate.py` son compartidos: se editan **solo avisando al equipo**.

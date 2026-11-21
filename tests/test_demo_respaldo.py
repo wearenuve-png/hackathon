@@ -103,18 +103,16 @@ def test_estado_de_carga_y_hashes(demo):
     assert k["archivos_ok"] == 6 + len(config_csv) + len(list(PROFILES.glob("*.json")))   # empresas + tablas + perfiles
 
 
-def test_el_paso_8_refleja_si_el_explicador_existe(demo):
-    from nexus import variance
+def test_el_paso_8_explica_la_variacion_y_suma_exacto(demo):
     k, txt, _ = demo
-    try:
-        variance.compare(None, None, None)
-        stub = False
-    except NotImplementedError:
-        stub = True
-    except Exception:  # noqa: BLE001
-        stub = False
-    assert k["explicador_pendiente"] is stub
-    assert ("PENDIENTE" in txt) is stub
+    v = k["variacion"]
+    a, b = KEY["consolidado_esperado_usd"]["2026-10"]["resumen"], KEY["consolidado_esperado_usd"]["2026-11"]["resumen"]
+    assert q2(v["total"]) == D(b["utilidad_neta"]) - D(a["utilidad_neta"]) == D("-80315.00")
+    assert v["causas_suma"] == v["total"]                                       # las causas suman EXACTO
+    assert k["explicador_pendiente"] is False and "PENDIENTE" not in txt.split("PASO 8:")[1]
+    p8 = txt.split("PASO 8:")[1]
+    assert "-80,315.00" in p8 and "Sin explicar" in p8 and "'Q'" in p8 and "distribuidora_central_gt.csv" in p8
+    assert v["sin_explicar_celdas"] == ["EMP002|6000"]
 
 
 def test_el_script_corre_solo_en_menos_de_un_minuto_y_exporta_evidencia(tmp_path):
@@ -158,8 +156,10 @@ def test_paso_6_aclara_por_que_difiere_del_total_de_ingresos(demo):
 def test_paso_5_explica_por_que_hay_dos_filas(demo):
     _, txt, _ = demo
     p5 = txt.split("PASO 5:")[1].split("PASO 6:")[0]
-    assert "dos filas" in p5 and "operacion (la venta)" in p5 and "saldo (cuenta por cobrar y por pagar)" in p5
-    assert sum(1 for ln in p5.splitlines() if "DC-IC-2611-MX" in ln) == len(KEY["discrepancias_esperadas"]) == 2
+    assert "una sola vez" in p5 and "operacion (la venta)" in p5 and "saldo (cuenta por cobrar y por pagar)" in p5
+    assert "dos filas" not in p5
+    assert sum(1 for ln in p5.splitlines() if "DC-IC-2611-MX" in ln) == 1                    # la discrepancia, una sola vez
+    assert len(KEY["discrepancias_esperadas"]) == 2                                          # son 2 coincidencias en la clave
 
 
 def test_el_guion_refleja_los_ajustes():
@@ -171,4 +171,4 @@ def test_el_guion_refleja_los_ajustes():
     paso6 = g.split("### 6.")[1].split("### 7.")[0]
     assert "Ingresos por ventas (cuenta 4000)" in paso6 and "1,985,000" in paso6 and "4100" in paso6
     paso5 = g.split("### 5.")[1].split("### 6.")[0]
-    assert "dos filas" in paso5 and "cuenta por cobrar y por pagar" in paso5
+    assert "una sola diferencia" in paso5 and "cuenta por\ncobrar y por pagar" in paso5

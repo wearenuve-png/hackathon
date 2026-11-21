@@ -9,6 +9,7 @@ from decimal import Decimal
 from statistics import median
 from typing import List, Tuple
 
+from .consolidation import UTILITY_SIGN
 from .currency import known_currencies, to_usd
 from .schemas import (BLOCK, BLOCKED, EXCLUDED_DUPLICATE, FLAG_ATYPICAL, FLAG_POSSIBLE_DUPLICATE, INFO, OK,
                       PENDING_MAPPING, TOTAL, WARN, Adjustment, Finding, GroupConfig, Record)
@@ -70,10 +71,30 @@ def inverted_signs(records: List[Record], cfg: GroupConfig):
     return findings
 
 
+def out_of_period(records: List[Record], cfg: GroupConfig):
+    """Fecha valida pero fuera del calendario del grupo (periodos.csv): se bloquea, nunca se reubica."""
+    if not cfg.periods:
+        return []
+    out = []
+    for r in records:
+        if r.status != TOTAL and r.period and r.period not in cfg.periods:
+            reason = f"Periodo {r.period} fuera del calendario del grupo ({', '.join(sorted(cfg.periods))})"
+            if r.status == OK:
+                r.block(BLOCKED, reason)
+            else:
+                r.status_reasons.insert(0, reason)          # el motivo del calendario va primero
+            out.append(Finding(_fid("F-FEC", len(out) + 1), "FEC-01", BLOCK,
+                               f"Registro de {r.company_id} con periodo {r.period}, fuera del calendario del grupo",
+                               [r.record_id], r.period, r.company_id, r.period, ", ".join(sorted(cfg.periods)),
+                               "Corregir la fecha en el archivo de origen o ampliar el calendario"))
+    return out
+
+
 def apply_record_rules(records: List[Record], cfg: GroupConfig) -> Tuple[List[Adjustment], List[Finding]]:
+    f0 = out_of_period(records, cfg)
     adj, f1 = confirmed_duplicates(records, cfg)
     f2 = inverted_signs(records, cfg)
-    return adj, f1 + f2
+    return adj, f0 + f1 + f2
 
 
 def reverse_adjustment(adj: Adjustment, records: List[Record]) -> None:
@@ -186,10 +207,15 @@ def atypical_amounts(records, cfg):
                     break
         if hypothesis:
             x, rate, fit = hypothesis
+            sign = UTILITY_SIGN.get(cfg.catalog[code].cls)
+            efecto = (f"Efecto en utilidad si fuera {x}: {sign * (fit - usd):+,.2f} USD." if sign
+                      else "La cuenta es de balance: no afecta la utilidad.")
             impact = (f"Si fuera {x}: {_m(orig)} x {rate.rate} = {_m(fit)} USD, frente a {_m(usd)} USD "
-                      f"en el consolidado (diferencia {_m(usd - fit)} USD). Cifra NO modificada.")
-            msg = (f"Posible moneda local marcada como {dom} en {cid}, {rs[0].account_local} ({p}): "
-                   f"{_m(usd)} USD es {ratio:.1f} veces su nivel habitual ({_m(ref)} USD) y {x} lo explica.")
+                      f"en el consolidado (diferencia {_m(usd - fit)} USD). Cifra NO modificada. "
+                      f"Como {x}: {_m(fit)} USD | como {dom}: {_m(usd)} USD. {efecto}")
+            msg = (f"Posible error de moneda en {cid}, {rs[0].account_local} ({p}): el importe esta marcado como "
+                   f"{dom}; {_m(usd)} USD es {ratio:.1f} veces su nivel habitual ({_m(ref)} USD) y {x} lo "
+                   f"explica. No se corrige automaticamente.")
             sev, sug = WARN, f"Confirmar con la empresa si el importe esta en {x}"
         elif ratio > ATYPICAL_RATIO or ratio < 1 / ATYPICAL_RATIO:
             impact = f"Variacion de {_m(usd - ref)} USD frente a su nivel habitual. Cifra NO modificada."
@@ -240,9 +266,56 @@ def unresolved_records(records, cfg):
     return out
 
 
+def unbalanced(records, cfg):
+    """Activo != Pasivo + Patrimonio por empresa y periodo (en USD), si la empresa reporto las tres clases."""
+    g = defaultdict(lambda: defaultdict(Decimal))
+    ids = defaultdict(list)
+    for r in records:
+        if r.status == OK and r.amount_usd is not None and r.account_code:
+            cls = cfg.catalog[r.account_code].cls
+            if cls in ("activo", "pasivo", "patrimonio"):
+                g[(r.company_id, r.period)][cls] += r.amount_usd
+                ids[(r.company_id, r.period)].append(r.record_id)
+    out = []
+    for (cid, p), c in sorted(g.items()):
+        if set(c) != {"activo", "pasivo", "patrimonio"}:
+            continue
+        diff = c["activo"] - c["pasivo"] - c["patrimonio"]
+        if abs(diff) > TOTAL_TOLERANCE:
+            out.append(Finding(_f(len(out) + 1, "F-BAL"), "BAL-01", WARN,
+                               f"Balance descuadrado en {cid} ({p}): activo {_m(c['activo'])} USD, pasivo + patrimonio "
+                               f"{_m(c['pasivo'] + c['patrimonio'])} USD, diferencia {_m(diff)} USD.",
+                               ids[(cid, p)], p, cid, _m(c["activo"]), _m(c["pasivo"] + c["patrimonio"]),
+                               "Revisar las partidas del balance de la empresa"))
+    return out
+
+
+def cross_file_duplicates(records, cfg):
+    """Mismo ID de transaccion (y mismo importe) en archivos de empresas DISTINTAS, sin que sea una operacion
+    intercompania (sin contraparte): posible doble registro. Solo advierte."""
+    g = defaultdict(list)
+    for r in records:
+        if r.status == OK and r.transaction_id and not r.counterparty_id and r.amount_usd is not None:
+            g[(r.transaction_id, r.period, r.account_code, r.amount_usd)].append(r)
+    out = []
+    for (tx, p, code, usd), rs in sorted(g.items(), key=lambda kv: kv[0][0]):
+        if len({r.company_id for r in rs}) < 2:
+            continue
+        for r in rs:
+            if FLAG_POSSIBLE_DUPLICATE not in r.flags:
+                r.flags.append(FLAG_POSSIBLE_DUPLICATE)
+        out.append(Finding(_f(len(out) + 1, "F-XDUP"), "DUP-03", WARN,
+                           f"El ID {tx} aparece en archivos de empresas distintas ({', '.join(sorted({r.company_id for r in rs}))}) "
+                           f"con el mismo importe ({_m(usd)} USD) y sin ser una operacion intercompania. Ambos siguen "
+                           f"en el consolidado hasta confirmar.", [r.record_id for r in rs], p, rs[0].company_id,
+                           f"{len(rs)} archivos", "1 archivo", "Confirmar con las empresas cual es el registro valido"))
+    return out
+
+
 def validate(records: List[Record], cfg: GroupConfig) -> List[Finding]:
-    return (totals(records, cfg) + possible_duplicates(records, cfg) + atypical_amounts(records, cfg)
-            + missing_months(records, cfg) + unresolved_records(records, cfg))
+    return (totals(records, cfg) + possible_duplicates(records, cfg) + cross_file_duplicates(records, cfg)
+            + atypical_amounts(records, cfg) + missing_months(records, cfg) + unbalanced(records, cfg)
+            + unresolved_records(records, cfg))
 
 
 def validate_indicator_inputs(params, ebit, invested_capital, capital_employed, period=None):

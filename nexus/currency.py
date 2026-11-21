@@ -54,6 +54,9 @@ def convert(records: List[Record], cfg: GroupConfig) -> List[Record]:
         if rate is None:
             r.block(BLOCKED, f"Sin tasa para {r.currency} en {r.period}")
             continue
+        if rate.rate <= 0:
+            r.block(BLOCKED, f"Tasa invalida ({rate.rate}) para {r.currency} en {r.period}: debe ser mayor que cero")
+            continue
         r.fx_rate, r.fx_orientation = rate.rate, rate.orientation
         r.amount_usd = to_usd(r.amount_original, rate)
     return records

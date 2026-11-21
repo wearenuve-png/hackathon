@@ -15,6 +15,7 @@ import streamlit as st
 from nexus.audit import verify_hashes
 from nexus.consolidation import trace
 from nexus.pipeline import run
+from nexus.ui import extras
 
 ROOT = Path(__file__).resolve().parent
 st.set_page_config(page_title="NEXUS - Consolidacion", layout="wide")
@@ -77,9 +78,11 @@ if pr.provisional:
                        "recalculan.")
 else:
     st.metric("Utilidad neta", m(pr.summary["utilidad_neta"]))
+extras.render_header(res, period, data_dir, profiles_dir)
 
-tab_res, tab_alert, tab_trace, tab_prof = st.tabs(
-    ["Resultados y balance", "Alertas y exclusiones", "Trazabilidad", "Perfiles por empresa"])
+tab_res, tab_alert, tab_trace, tab_prof, tab_ind, tab_var, tab_sim, tab_help = st.tabs(
+    ["Resultados y balance", "Alertas y exclusiones", "Trazabilidad", "Perfiles por empresa", "Indicadores",
+     "Variaciones", "Simulador", "Ayuda"])
 _dirs = [d for d in (data_dir, profiles_dir) if d]
 _ver = verify_hashes(res.input_hashes, _dirs)
 
@@ -236,3 +239,4 @@ with tab_prof:
             st.caption(f"Signo: {p.sign_convention} | moneda: {p.currency_mode}"
                        f"{' (' + p.currency_key + ')' if p.currency_key else ''} | hojas: "
                        f"{', '.join(p.sheets) or '-'} | hash {p.profile_hash[:12]}...")
+extras.render_extra_tabs(res, period, data_dir, profiles_dir, tab_ind, tab_var, tab_sim, tab_help)

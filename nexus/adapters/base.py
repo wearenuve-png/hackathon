@@ -79,7 +79,26 @@ class SourceAdapter(ABC):
                             and norm(h) not in declared})
             if extra:
                 notes.append("Columnas no declaradas en el perfil (se ignoran): " + ", ".join(extra))
-        return self.normalize(tables, path, company_id, cfg, profile), notes
+        records = self.normalize(tables, path, company_id, cfg, profile)
+        if profile is not None:
+            known = {c for (_p, c) in cfg.rates} | {cfg.base_currency}
+            self.check_currency(records, profile, known)
+        return records, notes
+
+    @staticmethod
+    def check_currency(records: List[Record], profile: CompanyProfile, known=None, share: float = 0.9) -> None:
+        """Si (casi) todo el archivo declara una moneda y no es la del perfil, la carga va a revision: no se
+        procesa ni se corrige. Un registro suelto con otra moneda NO bloquea el archivo: lo atiende el
+        validador fila por fila."""
+        declared = [r.currency for r in records if r.currency and r.currency_source in ("COLUMN", "FILE")]
+        if not declared:
+            return
+        top = max(set(declared), key=declared.count)
+        if known is not None and top not in known:
+            return                         # codigo desconocido: lo bloquea el validador fila por fila
+        if top != profile.functional_currency and declared.count(top) / len(declared) >= share:
+            raise ProfileMismatch([f"El archivo declara {top} pero el perfil de la empresa dice "
+                                   f"{profile.functional_currency}: no se procesa hasta confirmar la moneda"])
 
     def check_profile(self, tables: List[Table], profile: CompanyProfile) -> None:
         reasons = []
