@@ -5,6 +5,35 @@ Hackatón Open2 Build & Pitch, track Accounting. Brief completo en [CLAUDE.md](C
 > Estado: motor (`nexus/`) con ingesta por perfiles y adaptadores, conversión, intercompañía, consolidación con
 > trazabilidad y validador. 75 pruebas. Pantalla de avance en Streamlit.
 
+## Para quien clona este repositorio
+
+Requisito: Python 3.9 o superior y Git.
+
+```bash
+git clone https://github.com/wearenuve-png/hackathon.git
+cd hackathon
+python3 -m venv .venv
+.venv/bin/pip install -r requirements.txt
+.venv/bin/python -m pytest -q
+.venv/bin/streamlit run app.py
+```
+
+Las pruebas deben terminar en verde. La app se abre en `http://localhost:8501` y lee los archivos de
+`data/synthetic/` (datos SINTÉTICOS) en solo lectura. `.venv/`, `__pycache__/` y `data/output/` no se versionan.
+
+### Ramas y responsables
+
+| Rama | Qué es | Archivos propios |
+|---|---|---|
+| `main` | Línea estable: solo entra lo que pasa todas las pruebas | — |
+| `feat/ui` | Interfaz | `app.py` (su dueño es el único que lo edita) |
+| `feat/explicador` | Explicador de variaciones con plantillas | `nexus/variance.py` |
+| `feat/indicadores` | ROIC, ROCE y EVA | `nexus/metrics.py`, `nexus/ui/tab_indicadores.py` |
+
+Si una rama aún no existe, créala desde `main`: `git checkout -b feat/ui`.
+`nexus/schemas.py` y `data/synthetic/generate.py` son compartidos: se editan **solo avisando al equipo**.
+Regla de trabajo: cada persona toca solo sus archivos, en su rama, y no se cambian las firmas existentes.
+
 ## Cómo correrlo
 
 ```bash
