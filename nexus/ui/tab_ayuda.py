@@ -1,4 +1,4 @@
-"""Pestana Ayuda: glosario y preguntas frecuentes ESTATICAS. No hay chatbot ni IA."""
+"""Pestana Ayuda: glosario y preguntas frecuentes ESTATICAS (contenido fijo)."""
 import streamlit as st
 
 from ..limitaciones import LIMITACIONES
@@ -61,7 +61,8 @@ FAQ = [
      "Su carga queda en REVISION con el motivo (por ejemplo, falta un encabezado) y no se procesa nada en silencio. "
      "Se corrige actualizando y aprobando su perfil."),
     ("¿Los numeros los calcula una IA?",
-     "No. Todo es calculo determinista con Decimal. No hay chatbot ni IA en NEXUS."),
+     "No. Todo es calculo determinista con Decimal. La pestaña Asistente (prototipo, opcional, apagada por defecto) "
+     "es un modelo de lenguaje que solo explica resultados ya calculados: no calcula, no corrige y no aprueba."),
     ("¿Se modifican mis archivos?",
      "No. Se leen en solo lectura; el SHA-256 de cada archivo se registra al leer y se vuelve a comprobar."),
 ]
@@ -69,7 +70,7 @@ FAQ = [
 
 def render() -> None:
     st.subheader("Ayuda")
-    st.caption("Glosario y preguntas frecuentes. Contenido fijo: no hay chatbot.")
+    st.caption("Glosario y preguntas frecuentes. Contenido fijo (el Asistente es otra pestaña).")
     st.markdown("### Glosario")
     for termino, texto in GLOSARIO:
         with st.expander(termino):

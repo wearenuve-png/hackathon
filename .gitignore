@@ -5,3 +5,9 @@ __pycache__/
 data/output/
 auditoria.jsonl
 .DS_Store
+# llaves y secretos (el Asistente usa ANTHROPIC_API_KEY desde el entorno; nunca se versiona)
+.env
+.env.*
+*.env
+*.key
+secrets/

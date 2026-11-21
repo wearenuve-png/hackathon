@@ -11,7 +11,7 @@ from conftest import DATA, KEY, ROOT
 APP = str(ROOT / "app.py")
 PERIODOS = sorted(KEY["consolidado_esperado_usd"])
 PESTANAS = ["Resumen", "Estados financieros", "Alertas y errores", "Intercompañía", "Trazabilidad", "Indicadores",
-            "Variaciones", "Simulador", "Perfiles e integridad", "Ayuda"]
+            "Variaciones", "Simulador", "Perfiles e integridad", "Ayuda", "Asistente"]
 FALLA = ("falló", "No se pudo", "no define render", "Traceback", "Exception", "Próximamente")
 
 

@@ -1,0 +1,7 @@
+{
+  "_nota": "Asistente NEXUS (prototipo, OPCIONAL). Apagado por defecto: solo se activa si existe la variable de entorno ANTHROPIC_API_KEY (la llave NUNCA va en el repositorio ni en este archivo). El modelo se puede cambiar aqui.",
+  "modelo": "claude-haiku-5-5",
+  "max_tokens": 900,
+  "timeout_s": 30,
+  "max_mensajes_historial": 20
+}

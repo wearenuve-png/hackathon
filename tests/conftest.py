@@ -15,6 +15,12 @@ def _registro_de_aprobaciones_aislado(tmp_path_factory, monkeypatch):
     monkeypatch.setenv("NEXUS_APROBACIONES", str(tmp_path_factory.mktemp("aprob") / "aprobaciones.jsonl"))
 
 
+@pytest.fixture(autouse=True)
+def _sin_llave_del_asistente(monkeypatch):
+    """El Asistente esta apagado por defecto: ninguna prueba hereda una llave real del entorno."""
+    monkeypatch.delenv("ANTHROPIC_API_KEY", raising=False)
+
+
 @pytest.fixture(scope="session")
 def key():
     return KEY

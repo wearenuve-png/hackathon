@@ -36,7 +36,7 @@ def test_arranca_sin_errores_y_con_las_pestanas_del_rediseno(at):
     # las 8 pestanas del rediseno de feat/ui + Simulador y Ayuda (Hallazgos vive dentro de "Alertas y errores")
     assert [t.label for t in at.tabs] == ["Resumen", "Estados financieros", "Alertas y errores", "Intercompañía",
                                           "Trazabilidad", "Indicadores", "Variaciones", "Simulador",
-                                          "Perfiles e integridad", "Ayuda"]
+                                          "Perfiles e integridad", "Ayuda", "Asistente"]
     assert list(at.sidebar.radio[0].options) == ["2026-10 (real)", "2026-11 (real)", "2026-12 (presupuesto)"]
 
 

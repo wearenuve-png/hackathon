@@ -182,7 +182,7 @@ sintéticos. Lo que sigue es la hoja de ruta.»
 - **Descargar paquete de auditoría**: zip con el consolidado, ajustes, alertas, discrepancias, perfiles y hashes SHA-256.
 - **Simulador**: mueve la tasa de MXN o GTQ entre −10 % y +10 % y ve el efecto en el consolidado y los indicadores,
   con la etiqueta **SIMULACIÓN** (no modifica datos ni archivos).
-- **Ayuda**: glosario, preguntas frecuentes y lo que NEXUS no puede detectar (sin chatbot).
+- **Ayuda**: glosario, preguntas frecuentes y lo que NEXUS no puede detectar (contenido fijo).
 - La matriz de errores y sus limitaciones están en `docs/VERIFICACION.md`.
 
 ## Versión corta (3 minutos)
@@ -190,7 +190,7 @@ Pasos 1 (0:15), 2 (0:30), 3 (0:40), 4 (0:35), 5 (0:20), 6 (0:30), cierre (0:10).
 
 ## Hoja de ruta (lo que NO está construido)
 Decirlo como plan, sin fechas ni promesas:
-- **Clasificador local de anomalías**, sin chatbot ni nube: se entrenaría con ejemplos etiquetados generados con
+- **Clasificador local de anomalías**, sin nube: se entrenaría con ejemplos etiquetados generados con
   semillas distintas y se mediría con una semilla no usada al entrenar, comparado contra «solo reglas». **No existe
   todavía; no hay ningún modelo entrenado.**
 - **Ingesta automática**: carpeta vigilada por empresa y modo lote para histórico; proponer el perfil de una empresa
@@ -213,7 +213,7 @@ Decirlo como plan, sin fechas ni promesas:
 | ¿Qué hace NEXUS si el balance no cuadra? | Alerta y una ficha con causas **candidatas** en orden (un registro igual a la diferencia, un importe × 2 por signo invertido, un duplicado, registros fuera del balance o una diferencia de tasa) o «causa no identificada» con los registros más cercanos. Son coincidencias numéricas, no pruebas, y se calculan por empresa y período. Con los datos de la demo el balance cuadra; se probó con casos armados a mano. |
 | ¿Y si una tasa de cambio se escribe mal? | Si cambia más de un umbral (15 %, configurable) frente al mes anterior se marca como sospechosa, con su impacto en USD, y se pide confirmación; no se bloquea ni se corrige. No se detecta la primera tasa de una moneda (sin historial) ni un cambio menor al umbral. |
 | ¿Y si me reenvían el mismo archivo? | Dentro de una carga se advierte por hash idéntico o ID repetido. Entre ejecuciones, solo si se activa el historial (`--historial`); la interfaz no lo activa por defecto. Solo advierte: no excluye nada. |
-| ¿Por qué no usaron un chatbot? | Porque un número que nadie puede auditar no sirve. Los cálculos son código determinista; no hay IA que calcule ni altere importes. |
+| ¿Por qué no usaron un chatbot? | Porque un número que nadie puede auditar no sirve. Los cálculos son código determinista y ninguna IA calcula ni altera importes. Existe un **Asistente (prototipo)** opcional y apagado por defecto: es un modelo de lenguaje que solo explica resultados ya calculados, con la etiqueta visible y sin ver archivos ni filas crudas. Sin llave funciona en modo local con plantillas. |
 
 ## Qué NO decir
 - «Usa IA» o «aprende de cada empresa»: no está construido.

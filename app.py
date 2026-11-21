@@ -293,9 +293,9 @@ figures([
      "amber" if ic_open_g else ""),
 ])
 
-(tab_sum, tab_fin, tab_alert, tab_ic, tab_trace, tab_ind, tab_var, tab_sim, tab_prof, tab_help) = st.tabs(
+(tab_sum, tab_fin, tab_alert, tab_ic, tab_trace, tab_ind, tab_var, tab_sim, tab_prof, tab_help, tab_asist) = st.tabs(
     ["Resumen", "Estados financieros", "Alertas y errores", "Intercompañía", "Trazabilidad", "Indicadores",
-     "Variaciones", "Simulador", "Perfiles e integridad", "Ayuda"])
+     "Variaciones", "Simulador", "Perfiles e integridad", "Ayuda", "Asistente"])
 
 # ------------------------------------------------------------------ Resumen
 props_abiertas = correcciones.proponer(res)
@@ -610,3 +610,8 @@ with tab_prof:
 # ------------------------------------------------------------------ Ayuda
 with tab_help:
     tab_ayuda.render()
+
+# ------------------------------------------------------------------ Asistente (prototipo, opcional)
+with tab_asist:
+    from asistente import tab as tab_asistente
+    tab_asistente.render(res, period, escenario, demo, props_abiertas)

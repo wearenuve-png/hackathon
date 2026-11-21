@@ -50,6 +50,21 @@ ambos se leen en solo lectura. En «Alertas y errores» cada hallazgo con correc
 **Rechazar** y **Deshacer**. Aprobar **no modifica ningún archivo**: la decisión (quién, cuándo, valor y motivo) queda en
 `data/output/aprobaciones.jsonl` y el consolidado se recalcula en memoria.
 
+## Asistente NEXUS (prototipo, opcional)
+
+Pestaña **Asistente**: un modelo de lenguaje que explica resultados **ya calculados** de la pantalla (no calcula, no corrige,
+no aprueba). Está **apagado por defecto**: sin `ANTHROPIC_API_KEY` funciona en *modo local* con 6 preguntas sugeridas
+respondidas con plantillas, sin red. Para el modo conectado:
+
+```bash
+.venv/bin/pip install -r requirements-asistente.txt
+export ANTHROPIC_API_KEY=...        # solo en tu entorno; nunca en el repositorio (.env está en .gitignore)
+```
+
+El modelo se cambia en `config/asistente.json` (por defecto `claude-haiku-5-5`). Solo recibe un resumen calculado del
+escenario y período actuales (cifras, fichas, variaciones, confianza, huellas de archivos), nunca archivos ni filas
+crudas. Código en `asistente/`, fuera de `nexus/` (el motor no importa librerías de red).
+
 ## Cómo correrlo
 
 ```bash
