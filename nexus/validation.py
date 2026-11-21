@@ -243,3 +243,10 @@ def unresolved_records(records, cfg):
 def validate(records: List[Record], cfg: GroupConfig) -> List[Finding]:
     return (totals(records, cfg) + possible_duplicates(records, cfg) + atypical_amounts(records, cfg)
             + missing_months(records, cfg) + unresolved_records(records, cfg))
+
+
+def validate_indicator_inputs(params, ebit, invested_capital, capital_employed, period=None):
+    """Comprueba las entradas de ROIC/ROCE/EVA (capital positivo, tasas razonables). Un error de entrada
+    bloquea el indicador: no pasa inadvertido. La logica vive en metrics.validate_inputs."""
+    from .metrics import validate_inputs
+    return validate_inputs(params, ebit, invested_capital, capital_employed, period)
