@@ -1,6 +1,6 @@
 """Prueba real de la interfaz Streamlit (streamlit.testing.v1.AppTest, sin navegador).
 La app solo muestra lo que devuelve el motor: se comprueba contra tests/fixtures/answer_key.json.
-Las secciones se eligen en el menu desplegable de la barra lateral (key "nav")."""
+Las secciones se eligen en el menu horizontal de arriba (key "nav")."""
 from decimal import ROUND_HALF_UP, Decimal
 from pathlib import Path
 
@@ -10,7 +10,7 @@ from streamlit.testing.v1 import AppTest
 from conftest import KEY
 
 APP = str(Path(__file__).resolve().parent.parent / "app.py")
-SECCIONES = ["Resumen", "Estados financieros", "Alertas y errores", "Hallazgos", "Intercompañía", "Trazabilidad",
+SECCIONES = ["Inicio", "Estados financieros", "Alertas y errores", "Hallazgos", "Intercompañía", "Trazabilidad",
              "Indicadores", "Variaciones", "Simulador", "Perfiles e integridad", "Ayuda"]
 
 
@@ -29,7 +29,7 @@ def text_of(at):
 
 
 def ir(at, seccion):
-    at.selectbox(key="nav").set_value(seccion).run()
+    at.radio(key="nav").set_value(seccion).run()
     assert not at.exception, at.exception
     return at
 
@@ -41,10 +41,11 @@ def at():
     return a
 
 
-def test_arranca_sin_errores_con_el_menu_lateral(at):
-    assert list(at.selectbox(key="nav").options) == SECCIONES
-    assert at.selectbox(key="nav").value == "Resumen"
-    assert len(at.tabs) == 0                                                     # ya no hay pestanas
+def test_arranca_sin_errores_con_el_menu_horizontal(at):
+    nav = at.radio(key="nav")
+    assert nav.value == "Inicio"
+    assert len(nav.options) == len(SECCIONES) and nav.options[0] == ":material/home: Inicio"   # icono de inicio
+    assert len(at.tabs) == 0 and not at.sidebar.selectbox                         # sin pestanas ni desplegable
     assert list(at.sidebar.radio[0].options) == ["2026-10 (real)", "2026-11 (real)", "2026-12 (presupuesto)"]
 
 
@@ -67,7 +68,7 @@ def test_cada_periodo_muestra_la_cifra_de_la_clave_y_la_etiqueta(at, periodo):
 
 
 def test_octubre_muestra_rango_de_impacto_y_exclusiones(at):
-    assert "Rango posible de utilidad neta" in text_of(at)                       # Resumen
+    assert "Rango posible de utilidad neta" in text_of(at)                       # Inicio
     full = text_of(ir(at, "Alertas y errores"))
     assert "BLOCKED" in full and "PENDING_MAPPING" in full and "EXCLUDED_DUPLICATE" in full
 
@@ -119,3 +120,30 @@ def test_muestra_la_fuente_y_la_integridad_de_los_archivos(at):
     assert len(integ) >= 6 + 5 and set(integ["Estado"]) == {"OK"}               # empresas + tablas + perfiles
     assert all(len(h) == 64 for h in integ["SHA-256 registrado"])
     assert not at.sidebar.get("file_uploader")                                   # sin subida manual
+
+
+def test_modo_claro_cambia_el_tema_y_vuelve_al_oscuro(at):
+    from streamlit import config as st_config
+    try:
+        at.sidebar.toggle(key="modo_claro").set_value(True).run()
+        assert not at.exception, at.exception
+        assert st_config.get_option("theme.base") == "light"
+        assert st_config.get_option("theme.textColor") == "#141312"                # letras negras en claro
+        at.sidebar.toggle(key="modo_claro").set_value(False).run()
+        assert not at.exception, at.exception
+        assert st_config.get_option("theme.base") == "dark"
+        assert st_config.get_option("theme.textColor") == "#F5F3EF"                # letras blancas en oscuro
+    finally:
+        st_config.set_option("theme.base", "dark")
+
+
+def test_colores_por_empresa_un_tono_distinto_aunque_sean_del_mismo_pais():
+    from types import SimpleNamespace as E
+    from nexus.ui.colores import COUNTRY_COLORS, company_colors
+    emp = {"A": E(country="Guatemala"), "B": E(country="Guatemala"), "C": E(country="México"),
+           "D": E(country="El Salvador"), "E": E(country="México"), "F": E(country="Panama"), "G": E(country="Chile")}
+    for modo in ("dark", "light"):
+        c = company_colors(emp, modo)
+        assert len(set(c.values())) == len(emp)                                      # todas distintas
+        assert {c["C"], c["E"]} == set(COUNTRY_COLORS[modo]["mexico"])               # Mexico: dos verdes
+        assert c["D"] in COUNTRY_COLORS[modo]["el salvador"]                          # El Salvador: azul

@@ -216,8 +216,8 @@ def test_app_muestra_confianza_y_descarga(app):
 
 
 def _ir(app, seccion):
-    """Las secciones se eligen en el menu desplegable de la barra lateral."""
-    app.selectbox(key="nav").set_value(seccion).run()
+    """Las secciones se eligen en el menu horizontal de arriba."""
+    app.radio(key="nav").set_value(seccion).run()
     assert not app.exception, app.exception
     return app
 

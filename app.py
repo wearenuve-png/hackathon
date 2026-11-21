@@ -1,7 +1,8 @@
 """NEXUS - interfaz Streamlit.
 
 La interfaz NO calcula cifras del consolidado: solo ordena y muestra lo que devuelve el motor
-(nexus.pipeline.run). Las secciones se eligen en el menu desplegable de la barra lateral (key "nav");
+(nexus.pipeline.run). Las secciones se eligen en el menu horizontal de arriba (key "nav") y el modo
+claro/oscuro en la barra lateral (key "modo_claro").
 Hallazgos, Indicadores, Variaciones, Simulador y Ayuda viven en nexus/ui/ y las mantiene su autor.
 
 Ejecutar:  streamlit run app.py
@@ -17,25 +18,45 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import altair as alt  # ya viene con streamlit (no es una dependencia nueva)
 import pandas as pd
 import streamlit as st
+from streamlit import config as st_config
 
 from nexus.audit import verify_hashes
 from nexus.consolidation import trace
 from nexus.pipeline import run
 from nexus.schemas import BLOCK, BLOCKED, EXCLUDED_DUPLICATE, INFO, PENDING_MAPPING, WARN
+from nexus.ui.colores import company_colors
 from nexus.ui import extras, tab_ayuda, tab_hallazgos, tab_indicadores, tab_simulador, tab_variaciones
 from nexus.variance import view
 
 ROOT = Path(__file__).resolve().parent
 st.set_page_config(page_title="NEXUS | Consolidación", layout="wide", initial_sidebar_state="expanded")
 
-# ------------------------------------------------------------------ estilo (sin fuentes externas: corre sin red)
-# Linea grafica del pitch: carbon, naranja NEXUS y blanco hueso. Los colores de estado (lista / revisar /
-# bloqueada) se eligieron para no confundirse con el naranja de marca, tambien con daltonismo.
-st.markdown("""<style>
-:root{--bg:#181716;--panel:#23211F;--line:#3B3835;--ink:#F3F1ED;--muted:#A8A29B;--brand:#F05A28;
---red:#FF5C93;--amber:#F7C948;--green:#3DD68C;
---display:"Inter Display","Inter Tight","Segoe UI Black","Arial Black","Helvetica Neue",Arial,sans-serif;}
-.block-container{padding-top:1.6rem;max-width:1380px}
+# ------------------------------------------------------------------ temas (sin fuentes externas: corre sin red)
+# Linea grafica del pitch: carbon, naranja NEXUS y blanco hueso; en modo claro, papel y tinta negra.
+# El texto es blanco en oscuro y negro en claro: el color queda para puntos de estado, marca y graficos.
+# Streamlit no cambia de tema desde el codigo: se ajustan sus opciones y se vuelve a dibujar la pagina.
+THEMES = {
+    "dark": {"theme.base": "dark", "theme.primaryColor": "#F05A28", "theme.backgroundColor": "#181716",
+             "theme.secondaryBackgroundColor": "#23211F", "theme.textColor": "#F5F3EF", "theme.linkColor": "#F05A28",
+             "theme.borderColor": "#3B3835", "theme.dataframeBorderColor": "#3B3835",
+             "theme.dataframeHeaderBackgroundColor": "#23211F", "theme.redColor": "#FF5C93",
+             "theme.greenColor": "#3DD68C", "theme.yellowColor": "#F7C948", "theme.orangeColor": "#F05A28",
+             "theme.sidebar.backgroundColor": "#121110", "theme.sidebar.secondaryBackgroundColor": "#23211F"},
+    "light": {"theme.base": "light", "theme.primaryColor": "#D9480F", "theme.backgroundColor": "#F6F5F2",
+              "theme.secondaryBackgroundColor": "#ECE9E4", "theme.textColor": "#141312", "theme.linkColor": "#C2410C",
+              "theme.borderColor": "#DAD5CD", "theme.dataframeBorderColor": "#DAD5CD",
+              "theme.dataframeHeaderBackgroundColor": "#ECE9E4", "theme.redColor": "#D61F5B",
+              "theme.greenColor": "#13894A", "theme.yellowColor": "#C98A00", "theme.orangeColor": "#D9480F",
+              "theme.sidebar.backgroundColor": "#FFFFFF", "theme.sidebar.secondaryBackgroundColor": "#F1EEE9"},
+}
+TOKENS = {
+    "dark": {"bg": "#181716", "panel": "#23211F", "line": "#3B3835", "ink": "#F5F3EF", "muted": "#CFCAC3",
+             "brand": "#F05A28", "red": "#FF5C93", "amber": "#F7C948", "green": "#3DD68C"},
+    "light": {"bg": "#F6F5F2", "panel": "#FFFFFF", "line": "#DAD5CD", "ink": "#141312", "muted": "#45413D",
+              "brand": "#D9480F", "red": "#D61F5B", "amber": "#C98A00", "green": "#13894A"},
+}
+CSS = """
+.block-container{padding-top:1.4rem;padding-left:2.2rem;padding-right:2.2rem;max-width:1420px}
 [data-testid="stAppDeployButton"],.stDeployButton{display:none}
 .nx-word{font-family:var(--display);font-weight:900;font-size:2.7rem;color:var(--brand);letter-spacing:-.055em;
  line-height:.95;margin:.1rem 0 .35rem}
@@ -56,7 +77,10 @@ st.markdown("""<style>
 .nx-fig-l{font-size:.82rem;color:var(--muted)}
 .nx-fig-v{font-size:1.5rem;font-weight:700;color:var(--ink);font-variant-numeric:tabular-nums;
  margin:2px 0 3px;overflow-wrap:anywhere}
-.nx-fig-v.red{color:var(--red)} .nx-fig-v.amber{color:var(--amber)}
+.nx-fig-v.red::before,.nx-fig-v.amber::before,.nx-ok::before{content:"";display:inline-block;width:10px;height:10px;
+ border-radius:50%;margin-right:8px;vertical-align:middle}
+.nx-fig-v.red::before{background:var(--red)} .nx-fig-v.amber::before{background:var(--amber)}
+.nx-ok::before{background:var(--green);width:8px;height:8px}
 .nx-fig-n{font-size:.8rem;color:var(--muted);line-height:1.4}
 .nx-h{font-size:1rem;font-weight:700;color:var(--ink);margin:.2rem 0 .5rem}
 .nx-list{background:var(--panel);border:1px solid var(--line);border-radius:6px}
@@ -67,20 +91,34 @@ st.markdown("""<style>
 .nx-dot.green{background:var(--green)}.nx-dot.amber{background:var(--amber)}.nx-dot.red{background:var(--red)}
 .nx-row-t{font-weight:600;color:var(--ink);font-size:.92rem}
 .nx-row-s{color:var(--muted);font-size:.8rem;line-height:1.35}
-.nx-state{font-size:.82rem;font-weight:700}
-.nx-state.green{color:var(--green)}.nx-state.amber{color:var(--amber)}.nx-state.red{color:var(--red)}
-.nx-ok{color:var(--green);font-size:.85rem}
+.nx-state{font-size:.82rem;font-weight:700;color:var(--ink)}
+.nx-ok{color:var(--ink);font-size:.85rem}
+[data-testid="stAlertContainer"] [data-testid="stMarkdownContainer"] *{color:var(--ink)!important}
 .st-key-nx_badge [data-testid="stAlertContainer"]{padding:.45rem .8rem}
 .st-key-nx_badge p{white-space:nowrap;font-weight:600;letter-spacing:.03em;font-size:.88rem}
 section[data-testid="stSidebar"] [data-testid="stAlertContainer"]{padding:.5rem .75rem}
-.stTabs [data-baseweb="tab-list"]{gap:4px;border-bottom:1px solid var(--line)}
-</style>""", unsafe_allow_html=True)
+.st-key-nav{margin-bottom:.6rem}
+.st-key-nav [role="radiogroup"]{gap:0;flex-wrap:wrap;border-bottom:1px solid var(--line)}
+.st-key-nav label[data-baseweb="radio"]{margin:0;padding:8px 6px 9px;border-bottom:3px solid transparent;
+ border-radius:6px 6px 0 0;cursor:pointer}
+.st-key-nav label[data-baseweb="radio"]>div:first-child{display:none}
+.st-key-nav label[data-baseweb="radio"]:hover{background:var(--panel)}
+.st-key-nav label[data-baseweb="radio"]:has(input:checked){border-bottom-color:var(--brand);background:var(--panel)}
+.st-key-nav label[data-baseweb="radio"] p{font-weight:600;color:var(--ink);font-size:.86rem;white-space:nowrap}
+"""
 
 MONTHS = ["enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre",
           "noviembre", "diciembre"]
 KIND = {"real": "cifras reales", "presupuesto": "presupuesto"}
-SECTIONS = ["Resumen", "Estados financieros", "Alertas y errores", "Hallazgos", "Intercompañía",
+SECTIONS = ["Inicio", "Estados financieros", "Alertas y errores", "Hallazgos", "Intercompañía",
             "Trazabilidad", "Indicadores", "Variaciones", "Simulador", "Perfiles e integridad", "Ayuda"]
+NAV_LABEL = {"Inicio": ":material/home: Inicio", "Estados financieros": ":material/account_balance: Estados",
+             "Alertas y errores": ":material/warning: Alertas", "Hallazgos": ":material/search: Hallazgos",
+             "Intercompañía": ":material/sync_alt: Intercompañía", "Trazabilidad": ":material/account_tree: Trazabilidad",
+             "Indicadores": ":material/monitoring: Indicadores", "Variaciones": ":material/query_stats: Variaciones",
+             "Simulador": ":material/tune: Simulador", "Perfiles e integridad": ":material/verified_user: Integridad",
+             "Ayuda": ":material/help: Ayuda"}
+SECTION_TITLE = {"Inicio": "Resumen del mes"}
 SEV_LABEL = {BLOCK: "Bloquea el cierre", WARN: "Revisar", INFO: "Nota"}
 SEV_ORDER = {BLOCK: 0, WARN: 1, INFO: 2}
 STATUS_LABEL = {BLOCKED: "Bloqueado", PENDING_MAPPING: "Cuenta sin confirmar", EXCLUDED_DUPLICATE: "Duplicado excluido"}
@@ -131,7 +169,18 @@ def load(data_dir: str, profiles_dir: str, version: int):
 # ------------------------------------------------------------------ barra lateral
 with st.sidebar:
     html('<div class="nx-word">NEXUS</div><div class="nx-word-sub">Muchas empresas.<br>Un solo número.</div>')
-    section = st.selectbox("Sección", SECTIONS, key="nav")
+    modo_claro = st.toggle("Modo claro", key="modo_claro")
+MODE = "light" if modo_claro else "dark"
+if st_config.get_option("theme.base") != MODE:          # aplica el tema elegido y vuelve a dibujar
+    for _k, _v in THEMES[MODE].items():
+        st_config.set_option(_k, _v)
+    st.rerun()
+_t = TOKENS[MODE]
+html("<style>:root{" + "".join(f"--{k}:{v};" for k, v in _t.items())
+     + '--display:"Inter Display","Inter Tight","Segoe UI Black","Arial Black","Helvetica Neue",Arial,sans-serif;}'
+     + CSS + "</style>")
+
+with st.sidebar:
     period_box = st.container()
     status_box = st.container()
     with st.expander("Configuración de la fuente"):
@@ -186,7 +235,9 @@ findings = sorted([f for f in res.findings if f.period in (None, period)],
 currencies = sorted({c.currency for c in cfg.companies.values()})
 cur_txt = ", ".join(currencies[:-1]) + f" y {currencies[-1]}" if len(currencies) > 1 else "".join(currencies)
 
-# ------------------------------------------------------------------ encabezado
+# ------------------------------------------------------------------ menu horizontal + encabezado
+section = st.radio("Sección", SECTIONS, key="nav", horizontal=True, label_visibility="collapsed",
+                   format_func=lambda x: NAV_LABEL.get(x, x), width="stretch")
 head, badge_col = st.columns([5, 1.1], vertical_alignment="center")
 with head:
     html(f'<div class="nx-title">Consolidado de {escape(month(period))}</div>'
@@ -215,10 +266,10 @@ figures([
      "amber" if ic_open else ""),
 ])
 
-html(f'<div class="nx-section">{escape(section)}</div>')
+html(f'<div class="nx-section">{escape(SECTION_TITLE.get(section, section))}</div>')
 
-# ------------------------------------------------------------------ Resumen
-if section == "Resumen":
+# ------------------------------------------------------------------ Inicio (resumen del mes)
+if section == "Inicio":
     left, right = st.columns([3, 2], gap="large")
     with left:
         heading("Ingresos por empresa (USD)")
@@ -232,28 +283,34 @@ if section == "Resumen":
                 for rid in a.record_ids:
                     elim[recs_by_id[rid].company_id] += a.amount_usd
         # float solo para dibujar; las cifras auditables siguen en Decimal en las tablas
+        colors = company_colors(cfg.companies, MODE)
+        names = [cfg.companies[cid].name for cid in cfg.companies]
         parts = [("Queda en el consolidado", lambda cid: gross[cid] + elim[cid]),
-                 ("Venta a otra empresa del grupo (se elimina)", lambda cid: -elim[cid])]
-        chart = pd.DataFrame([{"Empresa": cfg.companies[cid].name, "ID": cid, "Parte": lbl, "orden": i,
-                               "USD": float(fn(cid)), "Importe": f"{m(fn(cid))} USD",
+                 ("Venta entre empresas del grupo (se elimina)", lambda cid: -elim[cid])]
+        chart = pd.DataFrame([{"Empresa": cfg.companies[cid].name, "ID": cid, "Pais": cfg.companies[cid].country,
+                               "Parte": lbl, "orden": i, "USD": float(fn(cid)), "Importe": f"{m(fn(cid))} USD",
                                "Reportado": f"{m(gross[cid])} USD"}
                               for cid in cfg.companies for i, (lbl, fn) in enumerate(parts)])
         if gross:
             # 2 px del color de fondo entre segmentos y extremos redondeados (guia de graficos del equipo)
-            bars = alt.Chart(chart).mark_bar(stroke="#181716", strokeWidth=2, cornerRadiusEnd=4).encode(
+            bars = alt.Chart(chart).mark_bar(stroke=_t["bg"], strokeWidth=2, cornerRadiusEnd=4).encode(
                 y=alt.Y("Empresa:N", title=None, sort=None, axis=alt.Axis(labelLimit=220, labelFontSize=12)),
                 x=alt.X("USD:Q", title=None, stack="zero", axis=alt.Axis(format=",.0f", grid=True, tickCount=5)),
-                color=alt.Color("Parte:N", title=None, legend=alt.Legend(orient="bottom", direction="horizontal",
-                                                                         labelLimit=400, columns=1),
-                                scale=alt.Scale(domain=[p[0] for p in parts], range=["#D9D3CB", "#F05A28"])),
+                color=alt.Color("Empresa:N", legend=None,
+                                scale=alt.Scale(domain=names, range=[colors[cid] for cid in cfg.companies])),
+                opacity=alt.Opacity("Parte:N", title=None,
+                                    scale=alt.Scale(domain=[p[0] for p in parts], range=[1.0, 0.35]),
+                                    legend=alt.Legend(orient="bottom", direction="horizontal", labelLimit=420,
+                                                      columns=1)),
                 order=alt.Order("orden:Q"),
-                tooltip=[alt.Tooltip("Empresa:N"), alt.Tooltip("ID:N"), alt.Tooltip("Parte:N"),
-                         alt.Tooltip("Importe:N"), alt.Tooltip("Reportado:N", title="Reportado por la empresa")],
+                tooltip=[alt.Tooltip("Empresa:N"), alt.Tooltip("ID:N"), alt.Tooltip("Pais:N", title="País"),
+                         alt.Tooltip("Parte:N"), alt.Tooltip("Importe:N"),
+                         alt.Tooltip("Reportado:N", title="Reportado por la empresa")],
             ).properties(height=44 * len(cfg.companies) + 40)
             st.altair_chart(bars, use_container_width=True)
             ok_tot = (sum(gross.values(), Decimal(0)) == n["ingresos"]
                       and sum(gross.values(), Decimal(0)) + sum(elim.values(), Decimal(0)) == s["ingresos"])
-            st.caption("Cada barra es lo que reportó la empresa. La parte naranja es lo que le vendió a otra empresa "
+            st.caption("Cada empresa tiene su color (un tono por país). La parte clara de cada barra es lo que le vendió a otra empresa "
                        "del grupo: se resta para no contar la misma venta dos veces. "
                        + ("Los totales cuadran con el estado de resultados." if ok_tot else
                           "Ojo: este desglose no cuadra con el estado de resultados."))
