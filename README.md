@@ -2,7 +2,24 @@
 
 Hackatón Open2 Build & Pitch, track Accounting. Brief completo en [CLAUDE.md](CLAUDE.md).
 
-> Estado: dataset sintético y clave de respuestas listos. El motor (`nexus/`) aún no está programado.
+> Estado: motor (`nexus/`) con ingesta por perfiles y adaptadores, conversión, intercompañía, consolidación con
+> trazabilidad y validador. 75 pruebas. Pantalla de avance en Streamlit.
+
+## Cómo correrlo
+
+```bash
+.venv/bin/python -m pytest -q                              # pruebas (leen tests/fixtures/answer_key.json)
+.venv/bin/python scripts/build_profiles.py --approved-by "Nombre"   # genera/versiona profiles/EMPxxx.json
+.venv/bin/python scripts/run_pipeline.py --periodo 2026-10          # motor sin interfaz, exporta evidencia
+.venv/bin/streamlit run app.py                                      # pantalla de avance
+```
+
+## Arquitectura multiempresa
+
+Adaptadores (`nexus/adapters/`: Excel, CSV, JSON; `extract` + `normalize`) + perfiles por empresa
+(`profiles/`) + modelo canónico (`nexus/schemas.py`). Lo particular de cada empresa vive en su perfil; si una
+fuente no coincide con su perfil, la carga queda en REVISIÓN y no se procesa en silencio. Débito/crédito se
+normaliza a un solo importe con el signo natural de la cuenta.
 
 ## Convenciones (no se improvisan)
 
