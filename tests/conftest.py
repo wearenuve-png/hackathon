@@ -51,3 +51,12 @@ def built_profiles(cfg, tmp_path):
         save_profile(build_profile(c, tables, names[c.company_id], types[p.suffix.lower()],
                                    approved_by="Tester"), tmp_path)
     return tmp_path
+
+
+@pytest.fixture()
+def data_copy(tmp_path):
+    """Copia editable del dataset sintetico (los tests nunca tocan data/synthetic)."""
+    import shutil
+    d = tmp_path / "data"
+    shutil.copytree(DATA, d, ignore=shutil.ignore_patterns("generate.py", "README_SINTETICO.md"))
+    return d
