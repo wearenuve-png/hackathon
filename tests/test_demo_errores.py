@@ -293,6 +293,12 @@ def app():
     return at
 
 
+def ir(at, seccion):
+    at.radio(key="nav").set_value(seccion).run()
+    assert not at.exception, (seccion, at.exception)
+    return at
+
+
 def a_demo(at):
     at.radio(key="escenario").set_value("Datos con errores (demostración)").run()
     assert not at.exception, at.exception
@@ -345,6 +351,7 @@ def test_resumen_de_la_carga_y_explicar_todo_en_simple_en_la_interfaz(app):
 
 def test_la_ficha_responde_que_paso_donde_valor_leido_por_que_importa_que_hizo_que_propone_y_que_decide(app):
     a_demo(app)
+    ir(app, "Hallazgos")
     tx = " ".join(m.value for m in app.markdown)
     for frag in ("**Valor leído.** `1O,000`", "**Qué hizo NEXUS.**", "**Qué propone.**", "**Qué debe decidir una persona.**",
                  "**Por qué importa.**", "**Causa probable.**", "APLICADA AUTOMÁTICAMENTE"):
@@ -356,6 +363,7 @@ def test_la_ficha_responde_que_paso_donde_valor_leido_por_que_importa_que_hizo_q
 def test_aprobar_necesita_un_nombre_y_el_registro_lo_guarda(app, monkeypatch):
     import os
     a_demo(app)
+    ir(app, "Hallazgos")
     k = "aprobar_SIGNO|EMP004|ferrex_el_salvador.xlsx|Income Statement|36"
     assert app.button(key=k).disabled                                          # sin nombre no se puede aprobar
     assert any("Escribe tu nombre" in c.value for c in app.caption)
@@ -375,13 +383,16 @@ def test_aprobar_necesita_un_nombre_y_el_registro_lo_guarda(app, monkeypatch):
     assert len(resuelto) == 1
     assert hashes(DEMO, DATA, ROOT / "profiles") == antes                      # el archivo fuente NUNCA se modifica
     # el hallazgo ya no esta pendiente y el consolidado se recalculo (gasto +4,000 USD en octubre)
+    ir(app, "Estados financieros")
     gastos = next(t for t in [d.value for d in app.dataframe] if "Suma de empresas" in t.columns and
                   "(-) Gastos operativos" in set(t["Concepto"]))
     assert gastos[gastos["Concepto"] == "(-) Gastos operativos"].iloc[0]["Consolidado"] == "358,825.00"
     # deshacer
+    ir(app, "Hallazgos")
     app.button(key="deshacer_SIGNO|EMP004|ferrex_el_salvador.xlsx|Income Statement|36").click().run()
     assert CO.leer(log)[-1]["evento"] == "DESHACER" and metrica(app, "Resueltos") == "0"
     assert metrica(app, "Pendientes de tu decisión") == "5" and CO.aprobaciones(log, ev0["escenario"]) == []
+    ir(app, "Estados financieros")
     gastos = next(t for t in [d.value for d in app.dataframe] if "Suma de empresas" in t.columns and
                   "(-) Gastos operativos" in set(t["Concepto"]))
     assert gastos[gastos["Concepto"] == "(-) Gastos operativos"].iloc[0]["Consolidado"] == "354,825.00"
@@ -391,6 +402,7 @@ def test_aprobar_necesita_un_nombre_y_el_registro_lo_guarda(app, monkeypatch):
 def test_rechazar_deja_el_hallazgo_abierto_y_se_puede_deshacer(app):
     import os
     a_demo(app)
+    ir(app, "Hallazgos")
     app.text_input(key="aprobador").set_value("Ana Prueba").run()
     k = "IMPORTE|EMP005|transportes_ferrex_mx.csv||55"
     app.button(key=f"rechazar_{k}").click().run()
@@ -404,6 +416,7 @@ def test_rechazar_deja_el_hallazgo_abierto_y_se_puede_deshacer(app):
 def test_el_asiento_omitido_pide_elegir_la_cuenta_y_cuadra_el_balance(app):
     import os
     a_demo(app)
+    ir(app, "Hallazgos")
     app.sidebar.radio[0].set_value("2026-12").run()
     app.text_input(key="aprobador").set_value("Ana Prueba").run()
     k = "ASIENTO|EMP006|2026-12"
@@ -414,12 +427,14 @@ def test_el_asiento_omitido_pide_elegir_la_cuenta_y_cuadra_el_balance(app):
     assert not app.exception, app.exception
     e = CO.leer(Path(os.environ["NEXUS_APROBACIONES"]))[-1]
     assert (e["kind"], e["cuenta"], e["valor_propuesto"]) == ("ASIENTO", "1000", "8000")
+    ir(app, "Estados financieros")
     assert any("Activo - (Pasivo + Patrimonio) = 0.00 USD" in s.value for s in app.success)
 
 
 def test_los_originales_no_cambian_al_usar_la_interfaz_con_decisiones(app):
     antes = hashes(DEMO, DATA, ROOT / "profiles")
     a_demo(app)
+    ir(app, "Hallazgos")
     app.text_input(key="aprobador").set_value("Ana Prueba").run()
     for k in ("aprobar_SIGNO|EMP004|ferrex_el_salvador.xlsx|Income Statement|36",
               "aprobar_IMPORTE|EMP002|distribuidora_central_gt.csv||7", "aprobar_MONEDA_ARCHIVO|EMP001"):

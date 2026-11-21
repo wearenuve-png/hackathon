@@ -136,16 +136,19 @@ def test_el_historial_se_envia_y_el_sistema_trae_las_reglas(ctx):
     assert "CONTEXTO DE LA PANTALLA" in sistema
 
 
-def _app(demo=False):
+def _app(seccion="Asistente"):
     at = AppTest.from_file(str(ROOT / "app.py"), default_timeout=120)
     at.run()
+    if seccion:
+        at.radio(key="nav").set_value(seccion).run()
+    assert not at.exception, at.exception
     return at
 
 
 def test_app_en_modo_local_muestra_6_botones_y_responde_sin_falla():
     at = _app()
     assert not at.exception
-    assert [t.label for t in at.tabs][-1] == "Asistente"
+    assert at.radio(key="nav").value == "Asistente" and any(o.endswith("Asistente") for o in at.radio(key="nav").options)
     botones = [b for b in at.button if b.key and b.key.startswith("asist_local_")]
     assert len(botones) == 6
     assert len(at.chat_input) == 0
@@ -178,7 +181,13 @@ def test_app_conectada_responde_y_guarda_historial(monkeypatch):
     assert [x["content"] for x in m.llamadas[1][1]][:2] == ["¿Cuál es la utilidad?", "Respuesta de prueba (Estados financieros)."]
 
 
-def test_ninguna_pestana_muestra_falló():
-    at = _app()
-    textos = [x.value for x in list(at.markdown) + list(at.warning) + list(at.error) + list(at.info)]
-    assert not any("falló" in t.lower() for t in textos)
+SECCIONES = ["Inicio", "Estados financieros", "Alertas y errores", "Hallazgos", "Intercompañía", "Trazabilidad",
+             "Indicadores", "Variaciones", "Simulador", "Perfiles e integridad", "Ayuda", "Asistente"]
+
+
+def test_ninguna_seccion_muestra_falló():
+    at = _app(None)
+    for sec in SECCIONES:
+        at.radio(key="nav").set_value(sec).run()
+        textos = [x.value for x in list(at.markdown) + list(at.warning) + list(at.error) + list(at.info)]
+        assert not at.exception and not any("falló" in t.lower() for t in textos), sec

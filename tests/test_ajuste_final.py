@@ -68,6 +68,7 @@ def test_el_boton_restablecer_vuelve_a_datos_base_y_vacia_el_registro(app):
     log = Path(os.environ["NEXUS_APROBACIONES"])
     assert any(b.key == "restablecer_btn" and b.label == "Restablecer demostración" for b in app.button)
     app.radio(key="escenario").set_value(DEMO_ESC).run()
+    app.radio(key="nav").set_value("Hallazgos").run()
     app.text_input(key="aprobador").set_value("Ana Prueba").run()
     antes = hashes()
     app.button(key="aprobar_SIGNO|EMP004|ferrex_el_salvador.xlsx|Income Statement|36").click().run()
@@ -137,6 +138,7 @@ def test_solo_las_estimaciones_llevan_la_etiqueta(props):
 
 def test_la_ficha_muestra_estimacion_para_el_monto_en_blanco_y_para_la_tasa(app):
     app.radio(key="escenario").set_value(DEMO_ESC).run()
+    app.radio(key="nav").set_value("Hallazgos").run()
     adv = [w.value for w in app.warning]
     assert adv.count(FRASE + ".") == 1                                                # octubre: el monto en blanco
     app.sidebar.radio[0].set_value("2026-12").run()

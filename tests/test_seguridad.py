@@ -173,6 +173,12 @@ def app():
     return at
 
 
+def ir(at, seccion):
+    at.radio(key="nav").set_value(seccion).run()
+    assert not at.exception, (seccion, at.exception)
+    return at
+
+
 def todo(at):
     return " ".join(x.value for x in list(at.markdown) + list(at.success) + list(at.error) + list(at.info) +
                     list(at.warning) + list(at.caption))
@@ -180,7 +186,7 @@ def todo(at):
 
 def test_panel_en_la_app_sin_cambios_y_los_fuente_no_se_tocan(app):
     antes = hashes_fuente()
-    assert not app.exception
+    ir(app, "Perfiles e integridad")
     t = todo(app)
     assert "Seguridad e integridad" in t and "Qué protege / Qué NO protege" in t
     assert "Bitácora íntegra" in t and "Primera ejecución" in t
@@ -191,6 +197,7 @@ def test_panel_en_la_app_sin_cambios_y_los_fuente_no_se_tocan(app):
 
 
 def test_panel_avisa_con_archivo_y_los_dos_hashes_y_la_bitacora_alterada(app):
+    ir(app, "Perfiles e integridad")
     app.run()                                                                                       # manifiesto guardado
     mp = S.manifiesto_path(ROOT / "data" / "synthetic")
     m = json.loads(mp.read_text())
@@ -215,6 +222,7 @@ def test_panel_avisa_con_archivo_y_los_dos_hashes_y_la_bitacora_alterada(app):
 
 def test_faq_es_un_mini_chat_de_burbujas_predefinidas(app):
     from nexus.ui.tab_ayuda import FAQ
+    ir(app, "Ayuda")
     t = todo(app)
     assert "Preguntas frecuentes · respuestas predefinidas" in t
     assert len(app.chat_input) == 0 and len(app.chat_message) == 0

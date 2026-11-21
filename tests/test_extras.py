@@ -215,17 +215,25 @@ def test_app_muestra_confianza_y_descarga(app):
     assert len(app.get("download_button")) == 1
 
 
+def _ir(app, seccion):
+    """Las secciones se eligen en el menu horizontal de arriba."""
+    app.radio(key="nav").set_value(seccion).run()
+    assert not app.exception, app.exception
+    return app
+
+
 def test_app_conecta_indicadores_variaciones_simulador_y_ayuda(app):
     app.sidebar.radio[0].set_value("2026-11").run()
     assert not app.exception
-    texto = " ".join(m.value for m in app.markdown)
+    texto = " ".join(m.value for m in _ir(app, "Variaciones").markdown)
     assert "La utilidad neta consolidada baja 80,315.00 USD" in texto                  # Variaciones
-    assert any(m.label == "ROIC (mensual)" for m in app.metric)                         # Indicadores
-    assert any("SIMULACIÓN" in e.value for e in app.error)                              # Simulador
-    assert any(e.label == "PROVISIONAL" for e in app.expander)                          # Ayuda
+    assert any(m.label == "ROIC (mensual)" for m in _ir(app, "Indicadores").metric)     # Indicadores
+    assert any("SIMULACIÓN" in e.value for e in _ir(app, "Simulador").error)            # Simulador
+    assert any(e.label == "PROVISIONAL" for e in _ir(app, "Ayuda").expander)            # Ayuda
 
 
 def test_app_simulador_cambia_con_el_control(app):
+    _ir(app, "Simulador")
     app.slider(key="sim_mxn").set_value(10.0).run()
     assert not app.exception
     tablas = [d.value for d in app.dataframe]

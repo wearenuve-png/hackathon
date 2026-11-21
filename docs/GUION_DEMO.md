@@ -1,4 +1,5 @@
 # Guion de demo NEXUS (3 a 5 minutos)
+> **Navegación:** la interfaz usa un menú horizontal de secciones (Inicio, Estados, Alertas, Hallazgos, Intercompañía, Trazabilidad, Indicadores, Variaciones, Simulador, Integridad, Ayuda, Asistente); donde este guion dice «pestaña» se refiere a una sección del menú.
 
 **Datos SINTÉTICOS** (Grupo Ferrex, generados con `data/synthetic/generate.py`). Nunca presentarlos como datos reales.
 Antes de empezar: `.venv/bin/streamlit run app.py`, período **2026-10** seleccionado. Plan B si falla la app o el
@@ -13,7 +14,7 @@ período **2026-10**. Todo son datos sintéticos.
 
 | Tiempo | Paso | Dónde |
 |---|---|---|
-| 0:00 – 1:30 | 1. Datos base: cifra y trazabilidad | Resumen, Estados financieros, Trazabilidad |
+| 0:00 – 1:30 | 1. Datos base: cifra y trazabilidad | Inicio, Estados financieros, Trazabilidad |
 | 1:30 – 2:00 | 2. Cambio a datos con errores | Selector **Escenario** (arriba) |
 | 2:00 – 3:30 | 3. Un error de cada tipo | Alertas y errores → Hallazgos |
 | 3:30 – 4:30 | 4. Aprobar una corrección con tu nombre | Alertas y errores → Hallazgos |
@@ -21,7 +22,7 @@ período **2026-10**. Todo son datos sintéticos.
 
 ### Paso 1 · Datos base (1:30)
 **Mostrar:** encabezado de octubre: **Ingresos consolidados 1,985,000.00 USD** y **Utilidad neta 359,125.00**; en *Estados
-financieros*, la suma de las empresas (2,078,000.00) contra el consolidado; en *Resumen*, **Resumen de la carga**: «6 de 6»
+financieros*, la suma de las empresas (2,078,000.00) contra el consolidado; en *Inicio*, **Resumen de la carga**: «6 de 6»
 archivos leídos y, debajo, la línea que aclara que **los datos base ya incluyen los 9 errores del reto**. Luego
 *Trazabilidad* → «Ingresos por ventas (cuenta 4000)» → archivo, hoja y fila.
 **Decir:** «Esta es la carga de seis empresas en seis formatos. Cada cifra se abre hasta la fila del archivo. Ojo: estos datos
@@ -134,7 +135,7 @@ y el saldo.)*
 **Cifras:** 20,000 vs 18,000 = 2,000 USD, referencia DC-IC-2611-MX.
 
 ### 6. De una cifra a su registro: Ingresos por ventas (cuenta 4000) (0:30)
-**Mostrar:** pestaña *Trazabilidad*, elegir «4000 - Ingresos por ventas».
+**Mostrar:** pestaña *Trazabilidad*, elegir «Ingresos por ventas (cuenta 4000)».
 **Decir:** «Elijo una cifra y veo de dónde sale: archivo, hoja y fila, el importe original, la moneda, la tasa del
 mes y los dólares. Aquí, Ferrex México, hoja “Presupuesto MX”, fila 5: 7,200,000 pesos mexicanos por 0.05 son
 360,000 dólares. Y abajo, los ajustes: cada eliminación intercompañía con su regla y su motivo.»
@@ -170,7 +171,7 @@ marcado provisional en lugar de esconderse. Corre dentro del servidor, sin inter
 sintéticos. Lo que sigue es la hoja de ruta.»
 
 ## Extras opcionales de la interfaz (si sobra tiempo)
-- **Pestaña Hallazgos** (dentro de «Alertas y errores»): una ficha por hallazgo con *qué pasó, dónde (archivo, hoja, fila), por qué importa (USD y
+- **Pestaña Hallazgos** (sección propia del menú horizontal): una ficha por hallazgo con *qué pasó, dónde (archivo, hoja, fila), por qué importa (USD y
   utilidad), causa probable y acción humana*, con contador por tipo y ordenada por impacto. Buen complemento del
   paso 3: abrir la ficha de la depreciación (signo invertido) y la de la moneda «Q» (*probable alias de GTQ, pero
   requiere aprobación humana; NEXUS no la convierte sola*).

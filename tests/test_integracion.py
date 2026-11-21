@@ -1,4 +1,4 @@
-"""Integracion: diseno de feat/ui (Sergio) + todo lo de main. Recorre la app completa y verifica que no hay
+"""Integracion: diseno de feat/ui (Sergio) + todo lo de main. Recorre la app completa (menu horizontal de Sergio, key "nav") y verifica que no hay
 errores, que las cifras en pantalla son las de answer_key.json y que los archivos originales no cambian."""
 import hashlib
 from decimal import ROUND_HALF_UP, Decimal
@@ -10,8 +10,9 @@ from conftest import DATA, KEY, ROOT
 
 APP = str(ROOT / "app.py")
 PERIODOS = sorted(KEY["consolidado_esperado_usd"])
-PESTANAS = ["Resumen", "Estados financieros", "Alertas y errores", "Intercompañía", "Trazabilidad", "Indicadores",
-            "Variaciones", "Simulador", "Perfiles e integridad", "Ayuda", "Asistente"]
+SECCIONES = ["Inicio", "Estados financieros", "Alertas y errores", "Hallazgos", "Intercompañía", "Trazabilidad",
+             "Indicadores", "Variaciones", "Simulador", "Perfiles e integridad", "Ayuda", "Asistente"]
+ESCENARIOS = ["Datos base", "Datos con errores (demostración)"]
 FALLA = ("falló", "No se pudo", "no define render", "Traceback", "Exception", "Próximamente")
 
 
@@ -41,41 +42,57 @@ def app():
     return at
 
 
+def ir(at, seccion):
+    at.radio(key="nav").set_value(seccion).run()
+    assert not at.exception, (seccion, at.exception)
+    return at
+
+
 def en_periodo(at, periodo):
     at.sidebar.radio[0].set_value(periodo).run()
     assert not at.exception, at.exception
     return at
 
 
-# ================================================================== recorre todas las pestanas
+# ================================================================== recorre todas las secciones
+@pytest.mark.parametrize("escenario", ESCENARIOS)
 @pytest.mark.parametrize("periodo", PERIODOS)
-def test_ninguna_pestana_muestra_errores_en_ningun_periodo(app, periodo):
+def test_ninguna_seccion_muestra_errores_en_ningun_periodo_ni_escenario(app, periodo, escenario):
+    app.radio(key="escenario").set_value(escenario).run()
     at = en_periodo(app, periodo)
-    assert [t.label for t in at.tabs] == PESTANAS
-    for t in textos(at):
-        for palabra in FALLA:
-            assert palabra not in t, f"{periodo}: aparece '{palabra}' en: {t[:120]}"
-    assert not at.exception
+    nav = at.radio(key="nav")
+    assert len(nav.options) == len(SECCIONES) and len(at.tabs) == 0
+    for sec in SECCIONES:
+        ir(at, sec)
+        for t in textos(at):
+            for palabra in FALLA:
+                assert palabra not in t, f"{escenario} {periodo} {sec}: aparece '{palabra}' en: {t[:120]}"
 
 
 @pytest.mark.parametrize("periodo", PERIODOS)
 def test_todo_lo_de_main_esta_accesible(app, periodo):
     at = en_periodo(app, periodo)
     tx = " ".join(textos(at))
+    assert "Resumen de la carga" in tx                                                # Inicio
+    assert "Nivel de confianza" in tx and any(m.label == "Registros limpios" for m in at.metric)
+    assert len(at.get("download_button")) == 1                                       # paquete de auditoria (barra lateral)
+    tx = " ".join(textos(ir(at, "Indicadores")))
     assert "Indicadores de rentabilidad" in tx and any(m.label == "ROIC (mensual)" for m in at.metric)
-    assert "Variaciones: ¿por qué cambió cada cifra?" in tx                          # Variaciones, sin "fallo"
-    assert "Hallazgos: qué pasó, dónde, por qué importa y qué hacer" in tx
-    assert "Simulador de tipo de cambio" in tx and any("SIMULACIÓN" in e.value for e in at.error)
-    assert "Nivel de confianza del período" in tx and any(m.label == "Registros limpios" for m in at.metric)
-    assert len(at.get("download_button")) == 1                                       # paquete de auditoria
-    assert any(e.label == "PROVISIONAL" for e in at.expander)                        # Ayuda
+    assert "Variaciones: ¿por qué cambió cada cifra?" in " ".join(textos(ir(at, "Variaciones")))
+    assert "Hallazgos: qué pasó, dónde, por qué importa y qué hacer" in " ".join(textos(ir(at, "Hallazgos")))
+    ir(at, "Simulador")
+    assert "Simulador de tipo de cambio" in " ".join(textos(at)) and any("SIMULACIÓN" in e.value for e in at.error)
+    ir(at, "Ayuda")
+    assert any(e.label == "PROVISIONAL" for e in at.expander)
     assert len(at.chat_input) == 0
+    assert "Seguridad e integridad" in " ".join(textos(ir(at, "Perfiles e integridad")))
+    assert any("Asistente NEXUS (prototipo)" in c.value for c in ir(at, "Asistente").caption)
 
 
 def test_variaciones_primer_periodo_avisa_y_los_demas_comparan(app):
-    primero = en_periodo(app, PERIODOS[0])
+    primero = ir(en_periodo(app, PERIODOS[0]), "Variaciones")
     assert any("primer periodo" in i.value for i in primero.info)
-    nov = en_periodo(app, PERIODOS[1])
+    nov = ir(en_periodo(app, PERIODOS[1]), "Variaciones")
     tx = " ".join(m.value for m in nov.markdown)
     assert "La utilidad neta consolidada baja 80,315.00 USD" in tx
     assert any(i.value.startswith("Operación se mide sobre todo lo cargado y valorable") for i in nov.info)
@@ -84,7 +101,7 @@ def test_variaciones_primer_periodo_avisa_y_los_demas_comparan(app):
 # ================================================================== cifras en pantalla = answer_key.json
 @pytest.mark.parametrize("periodo", PERIODOS)
 def test_las_cifras_en_pantalla_son_las_de_la_clave(app, periodo):
-    at = en_periodo(app, periodo)
+    at = ir(en_periodo(app, periodo), "Estados financieros")
     exp = KEY["consolidado_esperado_usd"][periodo]["resumen"]
     estado = next(t for t in tablas(at) if {"Concepto", "Suma de empresas", "Consolidado"} <= set(t.columns)
                   and "Ingresos" in set(t["Concepto"]))
@@ -98,7 +115,7 @@ def test_las_cifras_en_pantalla_son_las_de_la_clave(app, periodo):
 
 
 def test_octubre_ingresos_1985000_y_utilidad_359125(app):
-    at = en_periodo(app, "2026-10")
+    at = ir(en_periodo(app, "2026-10"), "Estados financieros")
     franja = " ".join(m.value for m in at.markdown if "nx-fig-v" in m.value)
     assert "1,985,000.00" in franja
     estado = next(t for t in tablas(at) if "Suma de empresas" in t.columns and "Ingresos" in set(t["Concepto"]))
@@ -109,16 +126,17 @@ def test_octubre_ingresos_1985000_y_utilidad_359125(app):
 
 # ================================================================== mejoras de presentacion conservadas
 def test_intercompania_en_una_sola_fila_con_explicacion(app):
-    at = en_periodo(app, "2026-11")
+    at = ir(en_periodo(app, "2026-11"), "Intercompañía")
     ic = next(t for t in tablas(at) if "Afecta" in t.columns and "Diferencia" in t.columns)
     assert len(ic) == 1 and ic.iloc[0]["Afecta"] == "operación (venta) y saldo (CxC y CxP)"
     assert ic.iloc[0]["Diferencia"] == "2,000.00" and ic.iloc[0]["Referencia"] == "DC-IC-2611-MX"
     assert any("una sola vez" in c.value for c in at.caption)
     franja = " ".join(m.value for m in at.markdown if "nx-fig-v" in m.value)
-    assert "1 operación no cuadra" in franja                                          # el conteo tambien es 1, no 2
+    assert 'Diferencias entre empresas</div><div class="nx-fig-v amber">1</div>' in franja   # el conteo tambien es 1, no 2
 
 
 def test_rotulo_ingresos_por_ventas_cuenta_4000_y_aclaracion(app):
+    ir(app, "Trazabilidad")
     next(b for b in app.selectbox if b.label == "Cifra").select("Ingresos por ventas (cuenta 4000)").run()
     assert not app.exception
     nota = [c.value for c in app.caption if c.value.startswith("Esta cifra es solo la cuenta 4000")]
@@ -127,12 +145,13 @@ def test_rotulo_ingresos_por_ventas_cuenta_4000_y_aclaracion(app):
 
 def test_provisional_y_hashes_de_integridad_visibles(app):
     assert any("PROVISIONAL" in e.value for e in app.error)
-    integ = next(t for t in tablas(app) if "SHA-256 registrado" in t.columns)
+    integ = next(t for t in tablas(ir(app, "Perfiles e integridad")) if "SHA-256 registrado" in t.columns)
     assert len(integ) >= 17 and set(integ["Estado"]) == {"OK"} and all(len(h) == 64 for h in integ["SHA-256 registrado"])
-    assert any("Archivos sin cambios: 17 de 17" in m.value for m in app.markdown)
+    assert any("17/17 archivos íntegros" in m.value for m in app.sidebar.markdown)
 
 
 def test_indicadores_solo_mensuales_en_la_vista_principal(app):
+    ir(app, "Indicadores")
     assert all(not m.delta for m in app.metric if m.label.endswith("(mensual)"))
     assert any("no son representativos por ser datos sinteticos" in c.value for c in app.caption)
 
@@ -175,8 +194,12 @@ def test_los_archivos_originales_no_cambian_al_usar_toda_la_app(app):
     antes = hashes()
     for p in PERIODOS:
         en_periodo(app, p)
+    ir(app, "Simulador")
     app.slider(key="sim_mxn").set_value(10.0).run()
     app.slider(key="sim_gtq").set_value(-10.0).run()
+    ir(app, "Trazabilidad")
     next(b for b in app.selectbox if b.label == "Cifra").select("Ingresos por ventas (cuenta 4000)").run()
     assert not app.exception
+    for sec in SECCIONES:
+        ir(app, sec)
     assert hashes() == antes and len(antes) >= 17

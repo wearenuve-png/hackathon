@@ -165,6 +165,7 @@ def test_el_diagnostico_de_balance_de_la_demostracion_anterior_se_ve_en_el_escen
     descuadra el balance de EMP006 en 2026-12 y la ficha lista como primera candidata el registro igual al desbalance."""
     app.radio(key="escenario").set_value("Datos con errores (demostración)").run()
     app.sidebar.radio[0].set_value("2026-12").run()
+    app.radio(key="nav").set_value("Hallazgos").run()
     tx = " ".join(m.value for m in app.markdown)
     assert "Balance descuadrado" in " ".join(e.label for e in app.expander if e.label.startswith("FCH-"))
     assert "Causas candidatas del desbalance" in tx and "cuyo importe es igual al desbalance (8,000.00 USD)" in tx
