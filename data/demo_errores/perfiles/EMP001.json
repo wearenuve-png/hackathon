@@ -1,0 +1,56 @@
+{
+  "company_id": "EMP001",
+  "company_name": "Aceros Ferrex S.A.",
+  "country": "Guatemala",
+  "functional_currency": "GTQ",
+  "source": {
+    "type": "xlsx",
+    "file": "aceros_ferrex_gt.xlsx"
+  },
+  "columns": {
+    "period": "Período",
+    "account": "Cuenta",
+    "description": "Descripción",
+    "amount": "Monto",
+    "currency": "Moneda",
+    "counterparty": "Contraparte",
+    "transaction_id": "No. Factura"
+  },
+  "accounts": {
+    "Alquiler de bodega": "6100",
+    "Caja y bancos": "1000",
+    "Capital social": "3000",
+    "Clientes": "1100",
+    "Costo de produccion vendida": "5000",
+    "Depreciacion de maquinaria": "6400",
+    "Fletes": "6200",
+    "ISR": "8000",
+    "Impuestos por pagar": "2100",
+    "Intereses bancarios": "7000",
+    "Inventarios": "1200",
+    "Maquinaria y equipo neto": "1500",
+    "Otros gastos": "6300",
+    "Prestamos bancarios": "2500",
+    "Proveedores": "2000",
+    "Sueldos y salarios": "6000",
+    "Total gastos de operacion": "TOT_GOP",
+    "Utilidades acumuladas": "3100",
+    "Ventas de varilla y alambre": "4000"
+  },
+  "sheets": [
+    "Presupuesto"
+  ],
+  "sign_convention": "signed_amount",
+  "currency_mode": "column",
+  "currency_key": "Moneda",
+  "counterparty_aliases": [
+    "Aceros Ferrex",
+    "Aceros Ferrex S.A."
+  ],
+  "schema_version": 1,
+  "profile_version": 1,
+  "approval_status": "APPROVED",
+  "approved_by": "Santiago Enriquez Salguero",
+  "approved_at": "2026-11-21",
+  "profile_hash": "b85150cfb0f1e0393b96f0d9f3085748d977da9b8fcaee4a9e67c1d829dceb3f"
+}

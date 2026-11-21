@@ -1,0 +1,50 @@
+{
+  "company_id": "EMP005",
+  "company_name": "Transportes Ferrex México S. de R.L. de C.V.",
+  "country": "México",
+  "functional_currency": "MXN",
+  "source": {
+    "type": "csv",
+    "file": "transportes_ferrex_mx.csv"
+  },
+  "columns": {
+    "period": "fecha",
+    "account": "cuenta",
+    "amount": "monto",
+    "currency": "moneda",
+    "counterparty": "cia_relacionada",
+    "transaction_id": "num_doc"
+  },
+  "accounts": {
+    "Alquiler de predio": "6100",
+    "Caja": "1000",
+    "Capital": "3000",
+    "Combustible y lubricantes": "6300",
+    "Cuentas por cobrar": "1100",
+    "Cuentas por pagar": "2000",
+    "Depreciación de vehículos": "6400",
+    "Impuesto sobre la renta": "8000",
+    "Impuestos por pagar": "2100",
+    "Ingresos por servicios de transporte": "4100",
+    "Intereses": "7000",
+    "Mantenimiento de flota": "6300",
+    "Préstamo vehicular": "2500",
+    "Salarios de pilotos": "6000",
+    "Utilidades acumuladas": "3100",
+    "Vehículos neto": "1500"
+  },
+  "sheets": [],
+  "sign_convention": "signed_amount",
+  "currency_mode": "column",
+  "currency_key": "moneda",
+  "counterparty_aliases": [
+    "Transportes Ferrex México",
+    "Transportes Ferrex"
+  ],
+  "schema_version": 1,
+  "profile_version": 2,
+  "approval_status": "APPROVED",
+  "approved_by": "Santiago Enriquez Salguero",
+  "approved_at": "2026-11-21",
+  "profile_hash": "0097dd89ac4169cb06269e98df1f5789bcf0dac8b1030f56491ef43254957283"
+}

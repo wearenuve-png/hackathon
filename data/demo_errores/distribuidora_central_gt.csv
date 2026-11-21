@@ -1,0 +1,67 @@
+periodo;cuenta;importe;moneda;contraparte;referencia
+10/2026;Ventas netas;2.600.000,00;GTQ;;
+10/2026;Costo de mercaderia vendida;1.500.000,00;GTQ;;
+10/2026;Planilla;220.000,00;GTQ;;
+10/2026;Arrendamientos;96.000,00;GTQ;;
+10/2026;Transporte;70.000,00;GTQ;;
+10/2026;Gastos varios;;GTQ;;
+10/2026;Depreciaciones;35.000,00;GTQ;;
+10/2026;Gastos financieros;20.000,00;GTQ;;
+10/2026;Impuesto sobre la renta;60.000,00;GTQ;;
+10/2026;Ventas netas;120.000,00;GTQ;Ferrex MX;DC-IC-2610-MX
+10/2026;Ventas netas;80.000,00;GTQ;Ferrex El Salvador;DC-IC-2610-SV
+10/2026;Costo de mercaderia vendida;400.000,00;GTQ;Aceros Ferrex;AF-IC-2610
+10/2026;Efectivo;450.000,00;GTQ;;
+10/2026;Cuentas por cobrar;1.200.000,00;GTQ;;
+10/2026;Inventario de mercaderia;1.800.000,00;GTQ;;
+10/2026;Mobiliario y equipo;900.000,00;GTQ;;
+10/2026;Cuentas por pagar;800.000,00;GTQ;;
+10/2026;ISR por pagar;70.000,00;GTQ;;
+10/2026;Deuda bancaria;600.000,00;GTQ;;
+10/2026;Capital pagado;1.500.000,00;GTQ;;
+10/2026;Cuentas por cobrar;120.000,00;GTQ;Ferrex MX;DC-IC-2610-MX
+10/2026;Cuentas por cobrar;80.000,00;GTQ;Ferrex El Salvador;DC-IC-2610-SV
+10/2026;Cuentas por pagar;400.000,00;GTQ;Aceros Ferrex;AF-IC-2610
+10/2026;Resultados acumulados;1.180.000,00;GTQ;;
+11/2026;Ventas netas;2.670.000,00;GTQ;;
+11/2026;Costo de mercaderia vendida;1.442.000,00;GTQ;;
+11/2026;Planilla;220.000,00;Q;;
+11/2026;Arrendamientos;96.000,00;GTQ;;
+11/2026;Transporte;72.000,00;GTQ;;
+11/2026;Gastos varios;40.000,00;GTQ;;
+11/2026;Depreciaciones;35.000,00;GTQ;;
+11/2026;Gastos financieros;20.000,00;GTQ;;
+11/2026;Impuesto sobre la renta;65.000,00;GTQ;;
+11/2026;Ventas netas;160.000,00;GTQ;Ferrex MX;DC-IC-2611-MX
+11/2026;Costo de mercaderia vendida;440.000,00;GTQ;Aceros Ferrex;AF-IC-2611
+11/2026;Efectivo;475.000,00;GTQ;;
+11/2026;Cuentas por cobrar;1.244.000,00;GTQ;;
+11/2026;Inventario de mercaderia;1.717.000,00;GTQ;;
+11/2026;Mobiliario y equipo;951.000,00;GTQ;;
+11/2026;Cuentas por pagar;804.000,00;GTQ;;
+11/2026;ISR por pagar;71.000,00;GTQ;;
+11/2026;Deuda bancaria;606.000,00;GTQ;;
+11/2026;Capital pagado;1.500.000,00;GTQ;;
+11/2026;Cuentas por cobrar;160.000,00;GTQ;Ferrex MX;DC-IC-2611-MX
+11/2026;Cuentas por pagar;440.000,00;GTQ;Aceros Ferrex;AF-IC-2611
+11/2026;Resultados acumulados;1.126.000,00;GTQ;;
+12/2026;Ventas netas;2.690.000,00;GTQ;;
+12/2026;Costo de mercaderia vendida;1.537.000,00;GTQ;;
+12/2026;Planilla;216.000,00;GTQ;;
+12/2026;Arrendamientos;96.000,00;USD;;
+12/2026;Transporte;72.000,00;GTQ;;
+12/2026;Gastos varios;42.000,00;GTQ;;
+12/2026;Depreciaciones;35.000,00;GTQ;;
+12/2026;Gastos financieros;21.000,00;GTQ;;
+12/2026;Impuesto sobre la renta;61.000,00;GTQ;;
+12/2026;Costo de mercaderia vendida;420.000,00;GTQ;Aceros Ferrex;AF-IC-2612
+12/2026;Efectivo;482.000,00;GTQ;;
+12/2026;Cuentas por cobrar;1.198.000,00;GTQ;;
+12/2026;Inventario de mercaderia;1.829.000,00;GTQ;;
+12/2026;Mobiliario y equipo;965.000,00;GTQ;;
+12/2026;Cuentas por pagar;818.000,00;GTQ;;
+12/2026;ISR por pagar;72.000,00;GTQ;;
+12/2026;Deuda bancaria;584.000,00;GTQ;;
+12/2026;Capital pagado;1.500.000,00;GTQ;;
+12/2026;Cuentas por pagar;420.000,00;GTQ;Aceros Ferrex;AF-IC-2612
+12/2026;Resultados acumulados;1.080.000,00;GTQ;;

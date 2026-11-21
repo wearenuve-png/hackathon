@@ -9,6 +9,12 @@ DATA = ROOT / "data" / "synthetic"
 KEY = json.loads((ROOT / "tests" / "fixtures" / "answer_key.json").read_text(encoding="utf-8"))
 
 
+@pytest.fixture(autouse=True)
+def _registro_de_aprobaciones_aislado(tmp_path_factory, monkeypatch):
+    """Ninguna prueba escribe ni lee el registro real de aprobaciones (data/output/aprobaciones.jsonl)."""
+    monkeypatch.setenv("NEXUS_APROBACIONES", str(tmp_path_factory.mktemp("aprob") / "aprobaciones.jsonl"))
+
+
 @pytest.fixture(scope="session")
 def key():
     return KEY

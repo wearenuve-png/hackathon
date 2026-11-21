@@ -35,6 +35,21 @@ Si una rama aún no existe, créala desde `main`: `git checkout -b feat/ui`.
 `nexus/schemas.py` y `data/synthetic/generate.py` son compartidos: se editan **solo avisando al equipo**.
 Regla de trabajo: cada persona toca solo sus archivos, en su rama, y no se cambian las firmas existentes.
 
+## Escenario con errores (demostración)
+
+`data/demo_errores/` es una copia de `data/synthetic` con **7 errores sembrados más** (monto en blanco, texto en un campo
+numérico, duplicado con el mismo ID, archivo que declara USD siendo GTQ, signo invertido, asiento omitido que descuadra el
+balance y tasa mal escrita). Su clave está en `data/demo_errores/ANSWER_KEY.md`. Se regenera con:
+
+```bash
+.venv/bin/python scripts/generate_demo_errores.py
+```
+
+En la app, el selector **Escenario** (barra lateral) alterna entre «Datos limpios» y «Datos con errores (demostración)»;
+ambos se leen en solo lectura. En «Alertas y errores» cada hallazgo con corrección propuesta tiene **Aprobar corrección**,
+**Rechazar** y **Deshacer**. Aprobar **no modifica ningún archivo**: la decisión (quién, cuándo, valor y motivo) queda en
+`data/output/aprobaciones.jsonl` y el consolidado se recalcula en memoria.
+
 ## Cómo correrlo
 
 ```bash

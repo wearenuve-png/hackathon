@@ -9,6 +9,7 @@ Hallazgos, Simulador, Ayuda, nivel de confianza y el paquete de auditoria vienen
 Ejecutar:  streamlit run app.py
 """
 import importlib
+import json
 import sys
 from collections import defaultdict
 from decimal import ROUND_HALF_UP, Decimal
@@ -25,7 +26,7 @@ from nexus.audit import verify_hashes
 from nexus.consolidation import trace
 from nexus.pipeline import run
 from nexus.schemas import BLOCK, BLOCKED, EXCLUDED_DUPLICATE, INFO, PENDING_MAPPING, WARN
-from nexus.ui import extras, tab_ayuda, tab_demo_error, tab_hallazgos, tab_simulador
+from nexus.ui import correcciones, explicar, extras, resumen_carga, tab_ayuda, tab_demo_error, tab_hallazgos, tab_simulador
 
 ROOT = Path(__file__).resolve().parent
 st.set_page_config(page_title="NEXUS | Consolidación", layout="wide", initial_sidebar_state="expanded")
@@ -128,6 +129,12 @@ def load(data_dir: str, profiles_dir: str, version: int):
     return run(data_dir, profiles_dir=profiles_dir or None)
 
 
+@st.cache_resource(show_spinner="Recalculando con las correcciones aprobadas...")
+def load_corregido(data_dir: str, profiles_dir: str, version: int, aprobadas: tuple):
+    """Mismo motor, pero aplicando en memoria las correcciones aprobadas; los archivos no se modifican."""
+    return correcciones.run_corregido(data_dir, profiles_dir or None, [json.loads(a) for a in aprobadas])
+
+
 def optional_render(module: str):
     """(render, error). render=None y error=None: el modulo aun no existe -> 'Proximamente'."""
     full = f"nexus.ui.{module}"
@@ -159,18 +166,29 @@ def optional_tab(module: str, title: str, what: str, res, period: str) -> None:
 # ------------------------------------------------------------------ barra lateral
 with st.sidebar:
     html('<div class="nx-word">NEXUS</div><div class="nx-word-sub">Muchas empresas.<br>Un solo número.</div>')
+    ESCENARIOS = ["Datos limpios", "Datos con errores (demostración)"]
+    escenario = st.selectbox("Escenario", ESCENARIOS, key="escenario",
+                             help="Ambos se leen en solo lectura. El segundo tiene 7 errores sembrados.")
+    demo = escenario == ESCENARIOS[1]
     period_box = st.container()
     status_box = st.container()
     with st.expander("Configuración de la fuente"):
-        data_dir = st.text_input("Carpeta del servidor con los archivos (solo lectura)", str(ROOT / "data" / "synthetic"))
-        profiles_dir = st.text_input("Carpeta de perfiles (vacío = detección automática)", str(ROOT / "profiles"))
+        data_dir = st.text_input("Carpeta del servidor con los archivos (solo lectura)",
+                                 str(ROOT / "data" / ("demo_errores" if demo else "synthetic")), key=f"data_dir_{int(demo)}")
+        profiles_dir = st.text_input("Carpeta de perfiles (vacío = detección automática)",
+                                     str(ROOT / "data" / "demo_errores" / "perfiles" if demo else ROOT / "profiles"),
+                                     key=f"profiles_dir_{int(demo)}")
         if "ver" not in st.session_state:
             st.session_state.ver = 0
         if st.button("Volver a ejecutar el motor"):
             st.session_state.ver += 1
 
+LOG = correcciones.log_por_defecto()
+_aprobadas = correcciones.aprobaciones(LOG, str(data_dir))
 try:
-    res = load(data_dir, profiles_dir, st.session_state.ver)
+    res = (load_corregido(data_dir, profiles_dir, st.session_state.ver,
+                          tuple(json.dumps(a, sort_keys=True) for a in _aprobadas))
+           if _aprobadas else load(data_dir, profiles_dir, st.session_state.ver))
 except Exception as e:  # noqa: BLE001 - se muestra el error tal cual
     st.error(f"No se pudo ejecutar el motor: {e}")
     st.stop()
@@ -228,6 +246,8 @@ currencies = sorted({c.currency for c in cfg.companies.values()})
 cur_txt = ", ".join(currencies[:-1]) + f" y {currencies[-1]}" if len(currencies) > 1 else "".join(currencies)
 
 # ------------------------------------------------------------------ encabezado
+if demo:
+    st.error("DEMOSTRACIÓN: datos de prueba con errores sembrados", icon=":material/science:")
 head, badge_col = st.columns([5, 1.1], vertical_alignment="center")
 with head:
     html(f'<div class="nx-title">Consolidado de {escape(month(period))}</div>'
@@ -261,7 +281,12 @@ figures([
      "Variaciones", "Simulador", "Perfiles e integridad", "Ayuda"])
 
 # ------------------------------------------------------------------ Resumen
+props_abiertas = correcciones.proponer(res)
 with tab_sum:
+    heading("Resumen de la carga")
+    resumen_carga.render(res, props_abiertas)
+    explicar.render(res, period, props_abiertas)
+    st.write("")
     left, right = st.columns([3, 2], gap="large")
     with left:
         heading("Ingresos por empresa (USD)")
@@ -442,7 +467,8 @@ with tab_alert:
         st.caption("Ningún registro bloqueado o pendiente afecta la utilidad en este período.")
 
     st.divider()
-    tab_hallazgos.render(res, period)
+    tab_hallazgos.render(res, period, tab_hallazgos.Contexto(LOG, str(data_dir), lambda: st.session_state.update(
+        ver=st.session_state.ver + 1)))
     st.divider()
     tab_demo_error.render(res, period, data_dir, profiles_dir)
 

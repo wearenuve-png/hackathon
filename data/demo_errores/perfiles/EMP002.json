@@ -1,0 +1,53 @@
+{
+  "company_id": "EMP002",
+  "company_name": "Distribuidora Ferrex Central S.A.",
+  "country": "Guatemala",
+  "functional_currency": "GTQ",
+  "source": {
+    "type": "csv",
+    "file": "distribuidora_central_gt.csv"
+  },
+  "columns": {
+    "period": "periodo",
+    "account": "cuenta",
+    "amount": "importe",
+    "currency": "moneda",
+    "counterparty": "contraparte",
+    "transaction_id": "referencia"
+  },
+  "accounts": {
+    "Arrendamientos": "6100",
+    "Capital pagado": "3000",
+    "Costo de mercaderia vendida": "5000",
+    "Cuentas por cobrar": "1100",
+    "Cuentas por pagar": "2000",
+    "Depreciaciones": "6400",
+    "Deuda bancaria": "2500",
+    "Efectivo": "1000",
+    "Gastos financieros": "7000",
+    "Gastos varios": "6300",
+    "ISR por pagar": "2100",
+    "Impuesto sobre la renta": "8000",
+    "Inventario de mercaderia": "1200",
+    "Mobiliario y equipo": "1500",
+    "Planilla": "6000",
+    "Resultados acumulados": "3100",
+    "Transporte": "6200",
+    "Ventas netas": "4000"
+  },
+  "sheets": [],
+  "sign_convention": "signed_amount",
+  "currency_mode": "column",
+  "currency_key": "moneda",
+  "counterparty_aliases": [
+    "Distribuidora Ferrex Central",
+    "Distribuidora Central GT",
+    "Ferrex Distribution Center GT"
+  ],
+  "schema_version": 1,
+  "profile_version": 1,
+  "approval_status": "APPROVED",
+  "approved_by": "Santiago Enriquez Salguero",
+  "approved_at": "2026-11-21",
+  "profile_hash": "cb3c78fe47e782383809194bd3035755377f76f9fad141a8c3f345edd423d05a"
+}

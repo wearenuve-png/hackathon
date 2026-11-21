@@ -1,0 +1,54 @@
+{
+  "company_id": "EMP003",
+  "company_name": "Ferrex México S. de R.L. de C.V.",
+  "country": "México",
+  "functional_currency": "MXN",
+  "source": {
+    "type": "xlsx",
+    "file": "ferrex_mexico.xlsx"
+  },
+  "columns": {
+    "period": "Mes",
+    "account": "Cuenta contable",
+    "amount": "Valor",
+    "currency": "Divisa",
+    "counterparty": "Empresa relacionada",
+    "transaction_id": "Documento"
+  },
+  "accounts": {
+    "Activo fijo neto": "1500",
+    "Alquileres de tiendas": "6100",
+    "Bancos": "1000",
+    "Capital": "3000",
+    "Costo de ventas": "5000",
+    "Cuentas por cobrar clientes": "1100",
+    "Depreciacion": "6400",
+    "Impuesto sobre la renta": "8000",
+    "Impuestos por pagar": "2100",
+    "Ingresos netos": "4000",
+    "Intereses": "7000",
+    "Inventario": "1200",
+    "Otros gastos de operacion": "6300",
+    "Prestamos": "2500",
+    "Proveedores": "2000",
+    "Salarios": "6000",
+    "Servicios de transporte": "6200",
+    "Utilidades retenidas": "3100"
+  },
+  "sheets": [
+    "Presupuesto MX"
+  ],
+  "sign_convention": "signed_amount",
+  "currency_mode": "column",
+  "currency_key": "Divisa",
+  "counterparty_aliases": [
+    "Ferrex México",
+    "Ferrex MX"
+  ],
+  "schema_version": 1,
+  "profile_version": 2,
+  "approval_status": "APPROVED",
+  "approved_by": "Santiago Enriquez Salguero",
+  "approved_at": "2026-11-21",
+  "profile_hash": "bb39ee5bd0b56285f3dda2e70192bb84457f7d44e2b90ec029efb5bfbf701e14"
+}
