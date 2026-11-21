@@ -111,6 +111,29 @@ def preparar(carpetas: List[str], base: Optional[Path] = None) -> dict:
     return out
 
 
+MAX_SUBIDA_MB = 60
+
+
+def guardar_subidas(archivos, base: Optional[Path] = None) -> Optional[Path]:
+    """Guarda en una carpeta de trabajo los archivos que la persona subio desde el navegador (lista de (nombre, bytes)).
+    Sirve cuando la app corre en un servidor y la persona no tiene una carpeta en esa maquina. Devuelve la carpeta,
+    o None si no hay archivos validos o pesan mas del limite."""
+    validos = [(Path(n).name, b) for n, b in archivos
+               if Path(n).name and not Path(n).name.startswith(".") and Path(n).suffix.lower() in EXT]
+    if not validos or sum(len(b) for _, b in validos) > MAX_SUBIDA_MB * 1024 * 1024:
+        return None
+    clave = hashlib.sha256("".join(f"{n}:{hashlib.sha256(b).hexdigest()}" for n, b in sorted(validos)).encode()).hexdigest()[:12]
+    destino = (base or carpeta_trabajo()) / f"subidas-{clave}"
+    try:
+        destino.mkdir(parents=True, exist_ok=True)
+        (destino / MARCA).write_text("archivos subidos desde el navegador; se pueden borrar\n", encoding="utf-8")
+        for n, b in validos:
+            (destino / n).write_bytes(b)
+    except OSError:
+        return None
+    return destino
+
+
 def elegir_carpeta() -> Optional[str]:
     """Selector de carpeta del sistema (macOS). None si se cancela o no esta disponible: se puede escribir la ruta."""
     if sys.platform != "darwin":

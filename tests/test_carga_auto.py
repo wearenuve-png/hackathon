@@ -175,3 +175,20 @@ def test_una_carpeta_con_perfiles_los_usa(nuevo):
     nuevo.radio(key="nav").set_value("Perfiles e integridad").run()
     perf = next(d.value for d in nuevo.dataframe if "Ultima carga" in d.value.columns)
     assert "Coincide con el perfil" in set(perf["Ultima carga"])
+
+
+def test_archivos_subidos_desde_el_navegador_se_guardan_y_se_leen(tmp_path):
+    archivos = [(f.name, f.read_bytes()) for f in DEMO.iterdir() if f.is_file() and f.name != "LEEME_DEMO.md"]
+    archivos += [("nota.txt", b"no es presupuesto"), ("../../escape.csv", b"x")]      # sin extension valida / ruta peligrosa
+    d = CA.guardar_subidas(archivos, tmp_path)
+    assert d.parent == tmp_path and (d / CA.MARCA).is_file() and not (tmp_path / "escape.csv").exists()
+    guardados = sorted(p.name for p in d.iterdir() if p.name != CA.MARCA)
+    assert "nota.txt" not in guardados and "escape.csv" in guardados                    # el nombre peligroso queda solo como «escape.csv»
+    r = CA.preparar([str(d)], tmp_path / "t")
+    assert r["ok"] and utilidades(run(r["dir"])) == UTILIDAD                               # mismas cifras que desde la carpeta
+    assert CA.guardar_subidas([("a.txt", b"x")], tmp_path) is None and CA.guardar_subidas([], tmp_path) is None
+    assert CA.guardar_subidas([("grande.csv", b"0" * (CA.MAX_SUBIDA_MB * 1024 * 1024 + 1))], tmp_path) is None
+
+
+def test_el_panel_de_carga_ofrece_subir_archivos(nuevo):
+    assert len(nuevo.get("file_uploader")) == 1

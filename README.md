@@ -57,6 +57,21 @@ automáticas** (con sus claves de respuestas); la app no las abre por su cuenta.
 La app lee carpetas **de la computadora donde corre**: no se sube nada a internet y no necesita red (salvo el Asistente
 conectado, que es opcional). El selector «Elegir carpeta…» solo existe en macOS; en Windows/Linux se escribe la ruta.
 
+## Probar la web solo con GitHub (sin instalar nada)
+
+**Opción A · GitHub Codespaces** (la más directa; solo hace falta una cuenta de GitHub con acceso al repositorio):
+en la página del repositorio → **Code** → **Codespaces** → **Create codespace on feat/integracion**. Se instala solo y
+la app se abre en el navegador (pestaña *Ports*, puerto 8501). Configuración en `.devcontainer/devcontainer.json`.
+
+**Opción B · Streamlit Community Cloud** (un enlace público para compartir): en https://share.streamlit.io inicia sesión
+con GitHub → **New app** → repositorio `wearenuve-png/hackathon`, rama `feat/integracion` (o `main` cuando se
+fusione), archivo `app.py` → **Deploy**. Si el repositorio es privado, la app solo la verán las personas invitadas,
+salvo que la publiques. Usa solo datos sintéticos.
+
+En ambos casos la app corre en un servidor: no ve las carpetas de tu computadora. En «Cargar presupuestos» puedes
+**subir los archivos** (presupuestos y las 5 tablas de configuración, todos juntos) o escribir la ruta de una carpeta del
+repositorio: `data/demo` o `data/demo_ampliado`. El selector «Elegir carpeta…» solo existe en macOS local.
+
 ## Cargar tus propios presupuestos y Restablecer
 
 - **Cargar presupuestos** (arriba, junto a Restablecer): escribe o elige una o varias carpetas (una por línea; en macOS

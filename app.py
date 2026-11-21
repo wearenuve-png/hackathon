@@ -218,7 +218,16 @@ def _alternar_carga():
 
 def _leer_carpetas():
     """Callback: lee las carpetas. Si todo esta bien, muestra esos datos; si no, deja los avisos en el panel."""
-    r = carga_auto.preparar(st.session_state.get("carga_rutas", "").splitlines())
+    rutas = st.session_state.get("carga_rutas", "").splitlines()
+    subidos = st.session_state.get("carga_archivos") or []
+    if subidos:                                                        # archivos subidos desde el navegador
+        destino = carga_auto.guardar_subidas([(f.name, f.getvalue()) for f in subidos])
+        if destino is None:
+            st.session_state["carga_problemas"] = [
+                f"No se pudieron usar los archivos subidos (solo XLSX, CSV y JSON, hasta {carga_auto.MAX_SUBIDA_MB} MB)."]
+            return
+        rutas = rutas + [str(destino)]
+    r = carga_auto.preparar(rutas)
     st.session_state["carga_problemas"] = r["problemas"]
     if r["ok"]:
         for k in ("carga_abierta", "nav", "asist_hist", "asist_revision"):
@@ -257,6 +266,8 @@ if st.session_state.get("carga_abierta", not _carga):
                    "XLSX, CSV y JSON.")
         st.text_area("Carpetas", key="carga_rutas", height=90, label_visibility="collapsed",
                      placeholder="/ruta/a/la/carpeta")
+        st.file_uploader("O sube los archivos desde tu computadora (presupuestos y configuración, todos juntos)",
+                         accept_multiple_files=True, type=["xlsx", "csv", "json"], key="carga_archivos")
         _b1, _b2, _ = st.columns([1.3, 1.3, 3])
         _b1.button("Elegir carpeta…", key="carga_elegir", on_click=_elegir_carpeta)
         _b2.button("Leer presupuestos", key="carga_leer", type="primary", on_click=_leer_carpetas)
