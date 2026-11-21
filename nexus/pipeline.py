@@ -2,13 +2,14 @@
 import datetime as dt
 from pathlib import Path
 
-from . import audit, consolidation, currency, ingestion, intercompany, validation
+from . import audit, consolidation, currency, historial, ingestion, intercompany, validation
 from .config import load_group_config
 from .profiles import apply_profiles, load_profiles
 from .schemas import BLOCK, USD_PER_LOCAL, WARN, Finding, FxRate, RunResult
 
 
-def run(input_dir, config_dir=None, ic_tolerance_usd="1.00", profiles_dir=None, rate_scale=None) -> RunResult:
+def run(input_dir, config_dir=None, ic_tolerance_usd="1.00", profiles_dir=None, rate_scale=None,
+        history_dir=None) -> RunResult:
     """profiles_dir=None: modo legado (deteccion automatica). Con perfiles: cada empresa se lee solo con
     el suyo y una fuente que no coincide queda en REVISION (no se procesa en silencio)."""
     input_dir = Path(input_dir)
@@ -61,6 +62,8 @@ def run(input_dir, config_dir=None, ic_tolerance_usd="1.00", profiles_dir=None, 
                                     f"SHA-256 {h[:16]}...): posible reenvio del mismo archivo bajo otro nombre.",
                                     [], None, cs[0].company_id, h[:16], "archivos distintos",
                                     "Confirmar cual es el archivo correcto de cada empresa"))
+    if history_dir is not None:     # opcional: advertir reenvios contra ejecuciones guardadas por audit.write_run
+        findings += historial.detect_resend(records, cfg, hashes, history_dir)
     findings += validation.validate(records, cfg)
     periods = consolidation.consolidate(records, adjustments, matches, findings, cfg)
     run_id = dt.datetime.now().strftime("run-%Y%m%d-%H%M%S")
