@@ -150,11 +150,17 @@ with tab_alert:
     bad = [x for x in ms if x.status != "RECONCILED"]
     st.caption(f"{len(ok)} operaciones conciliadas y eliminadas, {len(bad)} abiertas (no se eliminan).")
     if bad:
-        st.dataframe(pd.DataFrame([{"Estado": x.status, "Vendedor": x.seller_id, "Comprador": x.buyer_id,
-                                    "Referencia": x.reference, "Tipo": "Operacion" if x.statement == "ER" else "Saldo",
-                                    "USD vendedor": m(x.seller_usd), "USD comprador": m(x.buyer_usd),
-                                    "Diferencia": m(x.difference_usd)} for x in bad]),
+        _g = {}
+        for x in bad:
+            _g.setdefault((x.seller_id, x.buyer_id, x.reference), []).append(x)
+        st.dataframe(pd.DataFrame([{"Estado": v[0].status, "Vendedor": k[0], "Comprador": k[1], "Referencia": k[2],
+                                    "Afecta": " y ".join("operacion (venta)" if y.statement == "ER" else "saldo (CxC y CxP)"
+                                                         for y in sorted(v, key=lambda y: y.statement != "ER")),
+                                    "USD vendedor": m(v[0].seller_usd), "USD comprador": m(v[0].buyer_usd),
+                                    "Diferencia": m(v[0].difference_usd)} for k, v in _g.items()]),
                      width="stretch", hide_index=True)
+        st.caption("Cada discrepancia se muestra una sola vez: la misma diferencia afecta la operacion (la venta) y el "
+                   "saldo (cuenta por cobrar y por pagar). No se elimina ninguna de las dos.")
     with st.expander("Ver las eliminaciones conciliadas"):
         st.dataframe(pd.DataFrame([{"Vendedor": x.seller_id, "Comprador": x.buyer_id, "Referencia": x.reference,
                                     "Tipo": "Operacion" if x.statement == "ER" else "Saldo",

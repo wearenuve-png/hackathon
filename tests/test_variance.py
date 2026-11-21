@@ -190,6 +190,14 @@ def test_la_pestana_muestra_frase_causas_y_trazabilidad():
     assert any("Sin explicar" in str(t.get("Causa", "")) for t in tablas if "Causa" in t.columns)
 
 
+def test_la_pestana_explica_como_se_mide_operacion_con_registros_bloqueados():
+    at = app()
+    nota = [i.value for i in at.info if i.value.startswith("Operación se mide sobre todo lo cargado y valorable")]
+    assert len(nota) == 1
+    assert "incluidos registros bloqueados" in nota[0] and "«Ajustes y registros bloqueados»" in nota[0]
+    assert "Un signo invertido se ve como movimiento grande en Operación compensado en esa causa." in nota[0]
+
+
 def test_sin_periodo_previo_avisa():
     at = app("2026-10", None)
     assert any("primer periodo" in i.value for i in at.info)

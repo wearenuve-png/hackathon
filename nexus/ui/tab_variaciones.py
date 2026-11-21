@@ -66,6 +66,9 @@ def render(consolidado_actual, consolidado_previo, params=None) -> None:
     st.caption(f"Comparacion {p0} → {p1}. Umbral de materialidad (SUPUESTO, config/variance.json): "
                f"{rep.params.min_pct:.0%} y {fmt(rep.params.min_abs_usd)} USD. {rep.convention}")
 
+    st.info("Operación se mide sobre todo lo cargado y valorable, incluidos registros bloqueados; su exclusión aparece "
+            "en «Ajustes y registros bloqueados». Un signo invertido se ve como movimiento grande en Operación "
+            "compensado en esa causa.")
     st.markdown("### Utilidad neta consolidada")
     _show(rep.total, expanded=False)
 
