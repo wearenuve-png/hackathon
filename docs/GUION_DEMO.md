@@ -15,13 +15,12 @@ las mismas cifras y exporta la evidencia a `data/output/`).
 | 4 | 1:50 – 2:30 | Consolidado de octubre vs. suma ingenua | Pestaña **Resultados y balance** |
 | 5 | 2:30 – 3:00 | Discrepancia intercompañía | Período **2026-11**, **Alertas y exclusiones** |
 | 6 | 3:00 – 3:30 | Clic hasta archivo, hoja y fila | Pestaña **Trazabilidad** |
-| 7 | 3:30 – 4:10 | ROIC, ROCE y EVA | Pestaña de indicadores (ver nota) |
+| 7 | 3:30 – 4:10 | ROIC, ROCE y EVA | Pestaña **Indicadores** |
 | 8 | 4:10 – 4:40 | Una variación explicada | Pestaña **Variaciones** (2026-11 vs. 2026-10) |
 | — | 4:40 – 5:00 | Cierre y hoja de ruta | — |
 
-> **Nota paso 7:** la pestaña existe como `nexus/ui/tab_indicadores.py` (`render(consolidado, periodo)`), pero
-> **no está conectada en `app.py`** (su dueño debe agregarla). Mientras no lo esté, mostrar este paso con
-> `scripts/demo_respaldo.py` (paso 7) y decirlo tal cual.
+> **Nota paso 7:** la pestaña *Indicadores* (`nexus/ui/tab_indicadores.py`) ya está conectada en `app.py`. Plan B:
+> `scripts/demo_respaldo.py` (paso 7).
 >
 > **Nota paso 8:** el explicador (`nexus/variance.py`, pestaña *Variaciones*) está construido. Con plantillas, sin
 > IA, descompone la variación en causas que suman exacto el total y muestra «Sin explicar» cuando los datos no
@@ -107,6 +106,14 @@ archivo, hoja y fila. Está marcado **PROVISIONAL** porque hay datos sin resolve
 «Resumen: seis formatos, un consolidado en dólares, ninguna cifra sin origen, y todo lo dudoso queda visible y
 marcado provisional en lugar de esconderse. Corre dentro del servidor, sin internet, y los datos de hoy son
 sintéticos. Lo que sigue es la hoja de ruta.»
+
+## Extras opcionales de la interfaz (si sobra tiempo)
+- **Nivel de confianza del período** (arriba): registros limpios vs. bloqueados o pendientes y por qué es PROVISIONAL.
+- **Descargar paquete de auditoría**: zip con el consolidado, ajustes, alertas, discrepancias, perfiles y hashes SHA-256.
+- **Simulador**: mueve la tasa de MXN o GTQ entre −10 % y +10 % y ve el efecto en el consolidado y los indicadores,
+  con la etiqueta **SIMULACIÓN** (no modifica datos ni archivos).
+- **Ayuda**: glosario, preguntas frecuentes y lo que NEXUS no puede detectar (sin chatbot).
+- La matriz de errores y sus limitaciones están en `docs/VERIFICACION.md`.
 
 ## Versión corta (3 minutos)
 Pasos 1 (0:15), 2 (0:30), 3 (0:40), 4 (0:35), 5 (0:20), 6 (0:30), cierre (0:10). Omitir 7 y 8.

@@ -34,7 +34,7 @@ def at():
 
 def test_arranca_sin_errores_y_con_las_cuatro_pantallas(at):
     assert [t.label for t in at.tabs] == ["Resultados y balance", "Alertas y exclusiones", "Trazabilidad",
-                                          "Perfiles por empresa"]
+                                          "Perfiles por empresa", "Indicadores", "Variaciones", "Simulador", "Ayuda"]
     assert list(at.sidebar.radio[0].options) == ["2026-10 (real)", "2026-11 (real)", "2026-12 (presupuesto)"]
 
 
