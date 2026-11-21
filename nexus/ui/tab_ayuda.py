@@ -75,7 +75,7 @@ ETIQUETA_FAQ = "Preguntas frecuentes · respuestas predefinidas"
 
 
 def _faq() -> None:
-    """Mini chat de burbujas SIN campo de texto y sin modelo: cada boton agrega la pregunta y su respuesta fija."""
+    """FAQ en burbujas predefinidas (sin texto libre): cada boton agrega la pregunta y su respuesta fija."""
     st.caption(ETIQUETA_FAQ)
     hist = st.session_state.setdefault("faq_hist", [])
     cols = st.columns(2)
@@ -93,9 +93,37 @@ def _faq() -> None:
         st.rerun()
 
 
+ETIQUETA_CHAT = ("Chat de la Ayuda · responde solo con el texto de esta pestaña · búsqueda local, "
+                 "sin modelo de lenguaje")
+
+
+def _chat() -> None:
+    from . import ayuda_chat
+    st.caption(ETIQUETA_CHAT)
+    hist = st.session_state.setdefault("ayuda_chat", [])
+    for m in hist:
+        with st.chat_message(m["role"], avatar=None if m["role"] == "user" else "ℹ️"):
+            st.markdown(m["content"])
+    q = st.chat_input("Pregunta algo de lo que explica la Ayuda (ej.: ¿qué es PROVISIONAL?)", key="ayuda_chat_input")
+    if q:
+        r = ayuda_chat.buscar(q)
+        txt = r["respuesta"]
+        if r["fuente"]:
+            txt += f"\n\n*Fuente: {r['fuente']}*"
+            if r["tambien"]:
+                txt += "\n\nTambién puede servirte: " + "; ".join(f"«{t}»" for t in r["tambien"])
+        hist += [{"role": "user", "content": q}, {"role": "assistant", "content": txt}]
+        st.rerun()
+    if hist and st.button("Borrar conversación", key="ayuda_chat_borrar"):
+        st.session_state["ayuda_chat"] = []
+        st.rerun()
+
+
 def render() -> None:
     st.subheader("Ayuda")
     st.caption("Glosario y preguntas frecuentes. Contenido fijo (el Asistente es otra pestaña).")
+    st.markdown("### Pregúntale a la Ayuda")
+    _chat()
     st.markdown("### Glosario")
     for termino, texto in GLOSARIO:
         with st.expander(termino):

@@ -199,7 +199,7 @@ def test_la_ayuda_trae_glosario_faq_y_limitaciones_sin_chatbot():
     assert "Qué NO puede detectar NEXUS" in " ".join(m.value for m in at.markdown)
     for id_, titulo, _ in LIMITACIONES:
         assert f"{id_}. {titulo}" in etiquetas
-    assert len(at.chat_input) == 0                                              # sin chatbot
+    assert len(at.chat_input) == 1 and "sin modelo de lenguaje" in " ".join(c.value for c in at.caption)
 
 
 @pytest.fixture()

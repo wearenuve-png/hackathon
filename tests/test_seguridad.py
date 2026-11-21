@@ -225,11 +225,11 @@ def test_faq_es_un_mini_chat_de_burbujas_predefinidas(app):
     ir(app, "Ayuda")
     t = todo(app)
     assert "Preguntas frecuentes · respuestas predefinidas" in t
-    assert len(app.chat_input) == 0 and len(app.chat_message) == 0
+    assert len(app.chat_input) == 1 and len(app.chat_message) == 0                  # chat de la Ayuda: local, sin modelo
     botones = [b for b in app.button if b.key and b.key.startswith("faq_") and b.key != "faq_limpiar"]
     assert len(botones) == len(FAQ)
     next(b for b in botones if b.key == "faq_1").click().run()
     assert len(app.chat_message) == 2 and not app.exception
     burbujas = [[x.value for x in m.markdown] for m in app.chat_message]
     assert burbujas[0] == [FAQ[1][0]] and burbujas[1][-1] == FAQ[1][1]
-    assert len(app.chat_input) == 0
+    assert len(app.chat_input) == 1

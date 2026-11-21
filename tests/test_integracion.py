@@ -84,7 +84,7 @@ def test_todo_lo_de_main_esta_accesible(app, periodo):
     assert "Simulador de tipo de cambio" in " ".join(textos(at)) and any("SIMULACIÓN" in e.value for e in at.error)
     ir(at, "Ayuda")
     assert any(e.label == "PROVISIONAL" for e in at.expander)
-    assert len(at.chat_input) == 0
+    assert len(at.chat_input) == 1                                                   # chat local de la Ayuda
     assert "Seguridad e integridad" in " ".join(textos(ir(at, "Perfiles e integridad")))
     assert any("Asistente NEXUS (prototipo)" in c.value for c in ir(at, "Asistente").caption)
 
