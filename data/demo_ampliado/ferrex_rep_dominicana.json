@@ -1,0 +1,3409 @@
+{
+ "company_name": "Ferrex Rep. Dominicana S.R.L.",
+ "reporting_currency": "DOP",
+ "source_system": "ERP - export",
+ "entries": [
+  {
+   "period": "2025-01-01",
+   "account": "Ingresos por ventas netas",
+   "amount": 13037759.19,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-01-01",
+   "account": "Costo de mercaderia vendida",
+   "amount": 8083410.7,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-01-01",
+   "account": "Gastos de personal",
+   "amount": 1564531.1,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-01-01",
+   "account": "Renta de locales",
+   "amount": 391132.78,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-01-01",
+   "account": "Transporte y fletes",
+   "amount": 521510.37,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-01-01",
+   "account": "Gastos generales",
+   "amount": 391132.78,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-01-01",
+   "account": "Depreciaciones",
+   "amount": 260755.18,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-01-01",
+   "account": "Gastos financieros",
+   "amount": 130377.59,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-01-01",
+   "account": "ISR del periodo",
+   "amount": 423727.17,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-01-01",
+   "account": "Efectivo",
+   "amount": 11733983.27,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-01-01",
+   "account": "Cuentas por cobrar",
+   "amount": 18252862.87,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-01-01",
+   "account": "Existencias",
+   "amount": 20860414.7,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-01-01",
+   "account": "Propiedad planta y equipo",
+   "amount": 39113277.57,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-01-01",
+   "account": "Cuentas por pagar",
+   "amount": 14341535.11,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-01-01",
+   "account": "Impuestos por pagar",
+   "amount": 2607551.84,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-01-01",
+   "account": "Deuda bancaria",
+   "amount": 19556638.78,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-01-01",
+   "account": "Capital",
+   "amount": 26075518.38,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-01-01",
+   "account": "Resultados acumulados",
+   "amount": 27379294.3,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-02-01",
+   "account": "Ingresos por ventas netas",
+   "amount": 13306986.19,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-02-01",
+   "account": "Costo de mercaderia vendida",
+   "amount": 8250331.44,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-02-01",
+   "account": "Gastos de personal",
+   "amount": 1596838.34,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-02-01",
+   "account": "Renta de locales",
+   "amount": 399209.59,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-02-01",
+   "account": "Transporte y fletes",
+   "amount": 532279.45,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-02-01",
+   "account": "Gastos generales",
+   "amount": 399209.59,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-02-01",
+   "account": "Depreciaciones",
+   "amount": 266139.72,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-02-01",
+   "account": "Gastos financieros",
+   "amount": 133069.86,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-02-01",
+   "account": "ISR del periodo",
+   "amount": 432477.05,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-02-01",
+   "account": "Efectivo",
+   "amount": 11976287.57,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-02-01",
+   "account": "Cuentas por cobrar",
+   "amount": 18629780.66,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-02-01",
+   "account": "Existencias",
+   "amount": 21291177.9,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-02-01",
+   "account": "Propiedad planta y equipo",
+   "amount": 39920958.56,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-02-01",
+   "account": "Cuentas por pagar",
+   "amount": 14637684.81,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-02-01",
+   "account": "Impuestos por pagar",
+   "amount": 2661397.24,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-02-01",
+   "account": "Deuda bancaria",
+   "amount": 19960479.28,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-02-01",
+   "account": "Capital",
+   "amount": 26613972.37,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-02-01",
+   "account": "Resultados acumulados",
+   "amount": 27944670.99,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-03-01",
+   "account": "Ingresos por ventas netas",
+   "amount": 13830774.11,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-03-01",
+   "account": "Costo de mercaderia vendida",
+   "amount": 8575079.95,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-03-01",
+   "account": "Gastos de personal",
+   "amount": 1659692.89,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-03-01",
+   "account": "Renta de locales",
+   "amount": 414923.22,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-03-01",
+   "account": "Transporte y fletes",
+   "amount": 553230.96,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-03-01",
+   "account": "Gastos generales",
+   "amount": 414923.22,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-03-01",
+   "account": "Depreciaciones",
+   "amount": 276615.48,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-03-01",
+   "account": "Gastos financieros",
+   "amount": 138307.74,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-03-01",
+   "account": "ISR del periodo",
+   "amount": 449500.16,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-03-01",
+   "account": "Efectivo",
+   "amount": 12447696.7,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-03-01",
+   "account": "Cuentas por cobrar",
+   "amount": 19363083.76,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-03-01",
+   "account": "Existencias",
+   "amount": 22129238.58,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-03-01",
+   "account": "Propiedad planta y equipo",
+   "amount": 41492322.34,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-03-01",
+   "account": "Cuentas por pagar",
+   "amount": 15213851.53,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-03-01",
+   "account": "Impuestos por pagar",
+   "amount": 2766154.82,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-03-01",
+   "account": "Deuda bancaria",
+   "amount": 20746161.17,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-03-01",
+   "account": "Capital",
+   "amount": 27661548.23,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-03-01",
+   "account": "Resultados acumulados",
+   "amount": 29044625.63,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-04-01",
+   "account": "Ingresos por ventas netas",
+   "amount": 13481617.34,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-04-01",
+   "account": "Costo de mercaderia vendida",
+   "amount": 8358602.75,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-04-01",
+   "account": "Gastos de personal",
+   "amount": 1617794.08,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-04-01",
+   "account": "Renta de locales",
+   "amount": 404448.52,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-04-01",
+   "account": "Transporte y fletes",
+   "amount": 539264.69,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-04-01",
+   "account": "Gastos generales",
+   "amount": 404448.52,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-04-01",
+   "account": "Depreciaciones",
+   "amount": 269632.35,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-04-01",
+   "account": "Gastos financieros",
+   "amount": 134816.17,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-04-01",
+   "account": "ISR del periodo",
+   "amount": 438152.57,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-04-01",
+   "account": "Efectivo",
+   "amount": 12133455.61,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-04-01",
+   "account": "Cuentas por cobrar",
+   "amount": 18874264.28,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-04-01",
+   "account": "Existencias",
+   "amount": 21570587.75,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-04-01",
+   "account": "Propiedad planta y equipo",
+   "amount": 40444852.03,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-04-01",
+   "account": "Cuentas por pagar",
+   "amount": 14829779.08,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-04-01",
+   "account": "Impuestos por pagar",
+   "amount": 2696323.47,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-04-01",
+   "account": "Deuda bancaria",
+   "amount": 20222426.02,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-04-01",
+   "account": "Capital",
+   "amount": 26963234.69,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-04-01",
+   "account": "Resultados acumulados",
+   "amount": 28311396.41,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-05-01",
+   "account": "Ingresos por ventas netas",
+   "amount": 14278107.49,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-05-01",
+   "account": "Costo de mercaderia vendida",
+   "amount": 8852426.64,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-05-01",
+   "account": "Gastos de personal",
+   "amount": 1713372.9,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-05-01",
+   "account": "Renta de locales",
+   "amount": 428343.22,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-05-01",
+   "account": "Transporte y fletes",
+   "amount": 571124.3,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-05-01",
+   "account": "Gastos generales",
+   "amount": 428343.22,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-05-01",
+   "account": "Depreciaciones",
+   "amount": 285562.15,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-05-01",
+   "account": "Gastos financieros",
+   "amount": 142781.07,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-05-01",
+   "account": "ISR del periodo",
+   "amount": 464038.5,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-05-01",
+   "account": "Efectivo",
+   "amount": 12850296.74,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-05-01",
+   "account": "Cuentas por cobrar",
+   "amount": 19989350.49,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-05-01",
+   "account": "Existencias",
+   "amount": 22844971.98,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-05-01",
+   "account": "Propiedad planta y equipo",
+   "amount": 42834322.47,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-05-01",
+   "account": "Cuentas por pagar",
+   "amount": 15705918.24,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-05-01",
+   "account": "Impuestos por pagar",
+   "amount": 2855621.5,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-05-01",
+   "account": "Deuda bancaria",
+   "amount": 21417161.24,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-05-01",
+   "account": "Capital",
+   "amount": 28556214.98,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-05-01",
+   "account": "Resultados acumulados",
+   "amount": 29984025.72,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-06-01",
+   "account": "Ingresos por ventas netas",
+   "amount": 13698175.49,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-06-01",
+   "account": "Costo de mercaderia vendida",
+   "amount": 8492868.81,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-06-01",
+   "account": "Gastos de personal",
+   "amount": 1643781.06,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-06-01",
+   "account": "Renta de locales",
+   "amount": 410945.26,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-06-01",
+   "account": "Transporte y fletes",
+   "amount": 547927.02,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-06-01",
+   "account": "Gastos generales",
+   "amount": 410945.26,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-06-01",
+   "account": "Depreciaciones",
+   "amount": 273963.51,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-06-01",
+   "account": "Gastos financieros",
+   "amount": 136981.75,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-06-01",
+   "account": "ISR del periodo",
+   "amount": 445190.71,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-06-01",
+   "account": "Efectivo",
+   "amount": 12328357.94,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-06-01",
+   "account": "Cuentas por cobrar",
+   "amount": 19177445.69,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-06-01",
+   "account": "Existencias",
+   "amount": 21917080.79,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-06-01",
+   "account": "Propiedad planta y equipo",
+   "amount": 41094526.48,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-06-01",
+   "account": "Cuentas por pagar",
+   "amount": 15067993.04,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-06-01",
+   "account": "Impuestos por pagar",
+   "amount": 2739635.1,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-06-01",
+   "account": "Deuda bancaria",
+   "amount": 20547263.24,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-06-01",
+   "account": "Capital",
+   "amount": 27396350.99,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-06-01",
+   "account": "Resultados acumulados",
+   "amount": 28766168.53,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-07-01",
+   "account": "Ingresos por ventas netas",
+   "amount": 14158681.17,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-07-01",
+   "account": "Costo de mercaderia vendida",
+   "amount": 8778382.33,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-07-01",
+   "account": "Gastos de personal",
+   "amount": 1699041.74,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-07-01",
+   "account": "Renta de locales",
+   "amount": 424760.44,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-07-01",
+   "account": "Transporte y fletes",
+   "amount": 566347.25,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-07-01",
+   "account": "Gastos generales",
+   "amount": 424760.44,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-07-01",
+   "account": "Depreciaciones",
+   "amount": 283173.62,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-07-01",
+   "account": "Gastos financieros",
+   "amount": 141586.81,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-07-01",
+   "account": "ISR del periodo",
+   "amount": 460157.14,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-07-01",
+   "account": "Efectivo",
+   "amount": 12742813.05,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-07-01",
+   "account": "Cuentas por cobrar",
+   "amount": 19822153.64,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-07-01",
+   "account": "Existencias",
+   "amount": 22653889.87,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-07-01",
+   "account": "Propiedad planta y equipo",
+   "amount": 42476043.51,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-07-01",
+   "account": "Cuentas por pagar",
+   "amount": 15574549.29,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-07-01",
+   "account": "Impuestos por pagar",
+   "amount": 2831736.23,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-07-01",
+   "account": "Deuda bancaria",
+   "amount": 21238021.76,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-07-01",
+   "account": "Capital",
+   "amount": 28317362.34,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-07-01",
+   "account": "Resultados acumulados",
+   "amount": 29733230.45,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-08-01",
+   "account": "Ingresos por ventas netas",
+   "amount": 14744060.18,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-08-01",
+   "account": "Costo de mercaderia vendida",
+   "amount": 9141317.31,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-08-01",
+   "account": "Gastos de personal",
+   "amount": 1769287.22,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-08-01",
+   "account": "Renta de locales",
+   "amount": 442321.81,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-08-01",
+   "account": "Transporte y fletes",
+   "amount": 589762.41,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-08-01",
+   "account": "Gastos generales",
+   "amount": 442321.81,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-08-01",
+   "account": "Depreciaciones",
+   "amount": 294881.2,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-08-01",
+   "account": "Gastos financieros",
+   "amount": 147440.6,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-08-01",
+   "account": "ISR del periodo",
+   "amount": 479181.96,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-08-01",
+   "account": "Efectivo",
+   "amount": 13269654.16,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-08-01",
+   "account": "Cuentas por cobrar",
+   "amount": 20641684.25,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-08-01",
+   "account": "Existencias",
+   "amount": 23590496.28,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-08-01",
+   "account": "Propiedad planta y equipo",
+   "amount": 44232180.53,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-08-01",
+   "account": "Cuentas por pagar",
+   "amount": 16218466.19,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-08-01",
+   "account": "Impuestos por pagar",
+   "amount": 2948812.04,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-08-01",
+   "account": "Deuda bancaria",
+   "amount": 22116090.26,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-08-01",
+   "account": "Capital",
+   "amount": 29488120.35,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-08-01",
+   "account": "Resultados acumulados",
+   "amount": 30962526.38,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-09-01",
+   "account": "Ingresos por ventas netas",
+   "amount": 15129814.5,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-09-01",
+   "account": "Costo de mercaderia vendida",
+   "amount": 9380484.99,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-09-01",
+   "account": "Gastos de personal",
+   "amount": 1815577.74,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-09-01",
+   "account": "Renta de locales",
+   "amount": 453894.43,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-09-01",
+   "account": "Transporte y fletes",
+   "amount": 605192.58,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-09-01",
+   "account": "Gastos generales",
+   "amount": 453894.43,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-09-01",
+   "account": "Depreciaciones",
+   "amount": 302596.29,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-09-01",
+   "account": "Gastos financieros",
+   "amount": 151298.14,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-09-01",
+   "account": "ISR del periodo",
+   "amount": 491718.98,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-09-01",
+   "account": "Efectivo",
+   "amount": 13616833.05,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-09-01",
+   "account": "Cuentas por cobrar",
+   "amount": 21181740.3,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-09-01",
+   "account": "Existencias",
+   "amount": 24207703.2,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-09-01",
+   "account": "Propiedad planta y equipo",
+   "amount": 45389443.5,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-09-01",
+   "account": "Cuentas por pagar",
+   "amount": 16642795.95,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-09-01",
+   "account": "Impuestos por pagar",
+   "amount": 3025962.9,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-09-01",
+   "account": "Deuda bancaria",
+   "amount": 22694721.75,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-09-01",
+   "account": "Capital",
+   "amount": 30259629.0,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-09-01",
+   "account": "Resultados acumulados",
+   "amount": 31772610.45,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-10-01",
+   "account": "Ingresos por ventas netas",
+   "amount": 14381176.89,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-10-01",
+   "account": "Costo de mercaderia vendida",
+   "amount": 8916329.67,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-10-01",
+   "account": "Gastos de personal",
+   "amount": 1725741.23,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-10-01",
+   "account": "Renta de locales",
+   "amount": 431435.31,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-10-01",
+   "account": "Transporte y fletes",
+   "amount": 575247.08,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-10-01",
+   "account": "Gastos generales",
+   "amount": 431435.31,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-10-01",
+   "account": "Depreciaciones",
+   "amount": 287623.54,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-10-01",
+   "account": "Gastos financieros",
+   "amount": 143811.77,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-10-01",
+   "account": "ISR del periodo",
+   "amount": 467388.25,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-10-01",
+   "account": "Efectivo",
+   "amount": 12943059.2,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-10-01",
+   "account": "Cuentas por cobrar",
+   "amount": 20133647.65,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-10-01",
+   "account": "Existencias",
+   "amount": 23009883.03,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-10-01",
+   "account": "Propiedad planta y equipo",
+   "amount": 43143530.68,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-10-01",
+   "account": "Cuentas por pagar",
+   "amount": 15819294.58,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-10-01",
+   "account": "Impuestos por pagar",
+   "amount": 2876235.38,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-10-01",
+   "account": "Deuda bancaria",
+   "amount": 21571765.34,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-10-01",
+   "account": "Capital",
+   "amount": 28762353.78,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-10-01",
+   "account": "Resultados acumulados",
+   "amount": 30200471.48,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-11-01",
+   "account": "Ingresos por ventas netas",
+   "amount": 14666385.14,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-11-01",
+   "account": "Costo de mercaderia vendida",
+   "amount": 9093158.78,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-11-01",
+   "account": "Gastos de personal",
+   "amount": 1759966.22,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-11-01",
+   "account": "Renta de locales",
+   "amount": 439991.55,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-11-01",
+   "account": "Transporte y fletes",
+   "amount": 586655.41,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-11-01",
+   "account": "Gastos generales",
+   "amount": 439991.55,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-11-01",
+   "account": "Depreciaciones",
+   "amount": 293327.7,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-11-01",
+   "account": "Gastos financieros",
+   "amount": 146663.85,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-11-01",
+   "account": "ISR del periodo",
+   "amount": 476657.52,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-11-01",
+   "account": "Efectivo",
+   "amount": 13199746.62,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-11-01",
+   "account": "Cuentas por cobrar",
+   "amount": 20532939.19,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-11-01",
+   "account": "Existencias",
+   "amount": 23466216.22,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-11-01",
+   "account": "Propiedad planta y equipo",
+   "amount": 43999155.41,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-11-01",
+   "account": "Cuentas por pagar",
+   "amount": 16133023.65,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-11-01",
+   "account": "Impuestos por pagar",
+   "amount": 2933277.03,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-11-01",
+   "account": "Deuda bancaria",
+   "amount": 21999577.7,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-11-01",
+   "account": "Capital",
+   "amount": 29332770.27,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-11-01",
+   "account": "Resultados acumulados",
+   "amount": 30799408.79,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-12-01",
+   "account": "Ingresos por ventas netas",
+   "amount": 14556360.16,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-12-01",
+   "account": "Costo de mercaderia vendida",
+   "amount": 9024943.3,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-12-01",
+   "account": "Gastos de personal",
+   "amount": 1746763.22,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-12-01",
+   "account": "Renta de locales",
+   "amount": 436690.8,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-12-01",
+   "account": "Transporte y fletes",
+   "amount": 582254.41,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-12-01",
+   "account": "Gastos generales",
+   "amount": 436690.8,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-12-01",
+   "account": "Depreciaciones",
+   "amount": 291127.2,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-12-01",
+   "account": "Gastos financieros",
+   "amount": 145563.6,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-12-01",
+   "account": "ISR del periodo",
+   "amount": 473081.71,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-12-01",
+   "account": "Efectivo",
+   "amount": 13100724.14,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-12-01",
+   "account": "Cuentas por cobrar",
+   "amount": 20378904.22,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-12-01",
+   "account": "Existencias",
+   "amount": 23290176.25,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-12-01",
+   "account": "Propiedad planta y equipo",
+   "amount": 43669080.47,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-12-01",
+   "account": "Cuentas por pagar",
+   "amount": 16011996.17,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-12-01",
+   "account": "Impuestos por pagar",
+   "amount": 2911272.03,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-12-01",
+   "account": "Deuda bancaria",
+   "amount": 21834540.24,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-12-01",
+   "account": "Capital",
+   "amount": 29112720.31,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-12-01",
+   "account": "Resultados acumulados",
+   "amount": 30568356.33,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-01-01",
+   "account": "Ingresos por ventas netas",
+   "amount": 14993809.52,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-01-01",
+   "account": "Costo de mercaderia vendida",
+   "amount": 9296161.9,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-01-01",
+   "account": "Gastos de personal",
+   "amount": 1799257.14,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-01-01",
+   "account": "Renta de locales",
+   "amount": 449814.29,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-01-01",
+   "account": "Transporte y fletes",
+   "amount": 599752.38,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-01-01",
+   "account": "Gastos generales",
+   "amount": 449814.29,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-01-01",
+   "account": "Depreciaciones",
+   "amount": 299876.19,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-01-01",
+   "account": "Gastos financieros",
+   "amount": 149938.1,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-01-01",
+   "account": "ISR del periodo",
+   "amount": 487298.81,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-01-01",
+   "account": "Efectivo",
+   "amount": 13494428.57,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-01-01",
+   "account": "Cuentas por cobrar",
+   "amount": 20991333.33,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-01-01",
+   "account": "Existencias",
+   "amount": 23990095.24,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-01-01",
+   "account": "Propiedad planta y equipo",
+   "amount": 44981428.57,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-01-01",
+   "account": "Cuentas por pagar",
+   "amount": 16493190.48,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-01-01",
+   "account": "Impuestos por pagar",
+   "amount": 2998761.9,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-01-01",
+   "account": "Deuda bancaria",
+   "amount": 22490714.29,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-01-01",
+   "account": "Capital",
+   "amount": 29987619.05,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-01-01",
+   "account": "Resultados acumulados",
+   "amount": 31486999.99,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-02-01",
+   "account": "Ingresos por ventas netas",
+   "amount": 15378648.96,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-02-01",
+   "account": "Costo de mercaderia vendida",
+   "amount": 9534762.35,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-02-01",
+   "account": "Gastos de personal",
+   "amount": 1845437.87,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-02-01",
+   "account": "Renta de locales",
+   "amount": 461359.47,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-02-01",
+   "account": "Transporte y fletes",
+   "amount": 615145.96,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-02-01",
+   "account": "Gastos generales",
+   "amount": 461359.47,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-02-01",
+   "account": "Depreciaciones",
+   "amount": 307572.98,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-02-01",
+   "account": "Gastos financieros",
+   "amount": 153786.49,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-02-01",
+   "account": "ISR del periodo",
+   "amount": 499806.09,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-02-01",
+   "account": "Efectivo",
+   "amount": 13840784.06,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-02-01",
+   "account": "Cuentas por cobrar",
+   "amount": 21530108.54,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-02-01",
+   "account": "Existencias",
+   "amount": 24605838.33,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-02-01",
+   "account": "Propiedad planta y equipo",
+   "amount": 46135946.87,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-02-01",
+   "account": "Cuentas por pagar",
+   "amount": 16916513.85,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-02-01",
+   "account": "Impuestos por pagar",
+   "amount": 3075729.79,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-02-01",
+   "account": "Deuda bancaria",
+   "amount": 23067973.44,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-02-01",
+   "account": "Capital",
+   "amount": 30757297.92,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-02-01",
+   "account": "Resultados acumulados",
+   "amount": 32295162.8,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-03-01",
+   "account": "Ingresos por ventas netas",
+   "amount": 15784273.39,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-03-01",
+   "account": "Costo de mercaderia vendida",
+   "amount": 9786249.5,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-03-01",
+   "account": "Gastos de personal",
+   "amount": 1894112.81,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-03-01",
+   "account": "Renta de locales",
+   "amount": 473528.2,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-03-01",
+   "account": "Transporte y fletes",
+   "amount": 631370.94,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-03-01",
+   "account": "Gastos generales",
+   "amount": 473528.2,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-03-01",
+   "account": "Depreciaciones",
+   "amount": 315685.47,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-03-01",
+   "account": "Gastos financieros",
+   "amount": 157842.73,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-03-01",
+   "account": "ISR del periodo",
+   "amount": 512988.89,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-03-01",
+   "account": "Efectivo",
+   "amount": 14205846.05,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-03-01",
+   "account": "Cuentas por cobrar",
+   "amount": 22097982.74,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-03-01",
+   "account": "Existencias",
+   "amount": 25254837.42,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-03-01",
+   "account": "Propiedad planta y equipo",
+   "amount": 47352820.16,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-03-01",
+   "account": "Cuentas por pagar",
+   "amount": 17362700.73,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-03-01",
+   "account": "Impuestos por pagar",
+   "amount": 3156854.68,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-03-01",
+   "account": "Deuda bancaria",
+   "amount": 23676410.08,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-03-01",
+   "account": "Capital",
+   "amount": 31568546.78,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-03-01",
+   "account": "Resultados acumulados",
+   "amount": 33146974.1,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-04-01",
+   "account": "Ingresos por ventas netas",
+   "amount": 15990267.99,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-04-01",
+   "account": "Costo de mercaderia vendida",
+   "amount": 9913966.15,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-04-01",
+   "account": "Gastos de personal",
+   "amount": 1918832.16,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-04-01",
+   "account": "Renta de locales",
+   "amount": 479708.04,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-04-01",
+   "account": "Transporte y fletes",
+   "amount": 639610.72,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-04-01",
+   "account": "Gastos generales",
+   "amount": 479708.04,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-04-01",
+   "account": "Depreciaciones",
+   "amount": 319805.36,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-04-01",
+   "account": "Gastos financieros",
+   "amount": 159902.68,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-04-01",
+   "account": "ISR del periodo",
+   "amount": 519683.71,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-04-01",
+   "account": "Efectivo",
+   "amount": 14391241.19,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-04-01",
+   "account": "Cuentas por cobrar",
+   "amount": 22386375.18,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-04-01",
+   "account": "Existencias",
+   "amount": 25584428.78,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-04-01",
+   "account": "Propiedad planta y equipo",
+   "amount": 47970803.97,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-04-01",
+   "account": "Cuentas por pagar",
+   "amount": 17589294.79,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-04-01",
+   "account": "Impuestos por pagar",
+   "amount": 3198053.6,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-04-01",
+   "account": "Deuda bancaria",
+   "amount": 23985401.98,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-04-01",
+   "account": "Capital",
+   "amount": 31980535.98,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-04-01",
+   "account": "Resultados acumulados",
+   "amount": 33579562.77,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-05-01",
+   "account": "Ingresos por ventas netas",
+   "amount": 14905561.1,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-05-01",
+   "account": "Costo de mercaderia vendida",
+   "amount": 9241447.88,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-05-01",
+   "account": "Gastos de personal",
+   "amount": 1788667.33,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-05-01",
+   "account": "Renta de locales",
+   "amount": 447166.83,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-05-01",
+   "account": "Transporte y fletes",
+   "amount": 596222.44,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-05-01",
+   "account": "Gastos generales",
+   "amount": 447166.83,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-05-01",
+   "account": "Depreciaciones",
+   "amount": 298111.22,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-05-01",
+   "account": "Gastos financieros",
+   "amount": 149055.61,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-05-01",
+   "account": "ISR del periodo",
+   "amount": 484430.74,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-05-01",
+   "account": "Efectivo",
+   "amount": 13415004.99,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-05-01",
+   "account": "Cuentas por cobrar",
+   "amount": 20867785.54,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-05-01",
+   "account": "Existencias",
+   "amount": 23848897.76,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-05-01",
+   "account": "Propiedad planta y equipo",
+   "amount": 44716683.31,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-05-01",
+   "account": "Cuentas por pagar",
+   "amount": 16396117.21,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-05-01",
+   "account": "Impuestos por pagar",
+   "amount": 2981112.22,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-05-01",
+   "account": "Deuda bancaria",
+   "amount": 22358341.65,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-05-01",
+   "account": "Capital",
+   "amount": 29811122.21,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-05-01",
+   "account": "Resultados acumulados",
+   "amount": 31301678.31,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-06-01",
+   "account": "Ingresos por ventas netas",
+   "amount": 15347976.77,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-06-01",
+   "account": "Costo de mercaderia vendida",
+   "amount": 9515745.6,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-06-01",
+   "account": "Gastos de personal",
+   "amount": 1841757.21,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-06-01",
+   "account": "Renta de locales",
+   "amount": 460439.3,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-06-01",
+   "account": "Transporte y fletes",
+   "amount": 613919.07,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-06-01",
+   "account": "Gastos generales",
+   "amount": 460439.3,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-06-01",
+   "account": "Depreciaciones",
+   "amount": 306959.54,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-06-01",
+   "account": "Gastos financieros",
+   "amount": 153479.77,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-06-01",
+   "account": "ISR del periodo",
+   "amount": 498809.25,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-06-01",
+   "account": "Efectivo",
+   "amount": 13813179.09,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-06-01",
+   "account": "Cuentas por cobrar",
+   "amount": 21487167.47,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-06-01",
+   "account": "Existencias",
+   "amount": 24556762.83,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-06-01",
+   "account": "Propiedad planta y equipo",
+   "amount": 46043930.3,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-06-01",
+   "account": "Cuentas por pagar",
+   "amount": 16882774.44,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-06-01",
+   "account": "Impuestos por pagar",
+   "amount": 3069595.35,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-06-01",
+   "account": "Deuda bancaria",
+   "amount": 23021965.15,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-06-01",
+   "account": "Capital",
+   "amount": 30695953.54,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-06-01",
+   "account": "Resultados acumulados",
+   "amount": 32230751.21,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-07-01",
+   "account": "Ingresos por ventas netas",
+   "amount": 15960920.24,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-07-01",
+   "account": "Costo de mercaderia vendida",
+   "amount": 9895770.55,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-07-01",
+   "account": "Gastos de personal",
+   "amount": 1915310.43,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-07-01",
+   "account": "Renta de locales",
+   "amount": 478827.61,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-07-01",
+   "account": "Transporte y fletes",
+   "amount": 638436.81,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-07-01",
+   "account": "Gastos generales",
+   "amount": 478827.61,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-07-01",
+   "account": "Depreciaciones",
+   "amount": 319218.4,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-07-01",
+   "account": "Gastos financieros",
+   "amount": 159609.2,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-07-01",
+   "account": "ISR del periodo",
+   "amount": 518729.91,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-07-01",
+   "account": "Efectivo",
+   "amount": 14364828.22,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-07-01",
+   "account": "Cuentas por cobrar",
+   "amount": 22345288.34,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-07-01",
+   "account": "Existencias",
+   "amount": 25537472.39,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-07-01",
+   "account": "Propiedad planta y equipo",
+   "amount": 47882760.73,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-07-01",
+   "account": "Cuentas por pagar",
+   "amount": 17557012.27,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-07-01",
+   "account": "Impuestos por pagar",
+   "amount": 3192184.05,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-07-01",
+   "account": "Deuda bancaria",
+   "amount": 23941380.36,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-07-01",
+   "account": "Capital",
+   "amount": 31921840.48,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-07-01",
+   "account": "Resultados acumulados",
+   "amount": 33517932.52,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-08-01",
+   "account": "Ingresos por ventas netas",
+   "amount": 15792431.78,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-08-01",
+   "account": "Costo de mercaderia vendida",
+   "amount": 9791307.7,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-08-01",
+   "account": "Gastos de personal",
+   "amount": 1895091.81,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-08-01",
+   "account": "Renta de locales",
+   "amount": 473772.95,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-08-01",
+   "account": "Transporte y fletes",
+   "amount": 631697.27,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-08-01",
+   "account": "Gastos generales",
+   "amount": 473772.95,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-08-01",
+   "account": "Depreciaciones",
+   "amount": 315848.64,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-08-01",
+   "account": "Gastos financieros",
+   "amount": 157924.32,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-08-01",
+   "account": "ISR del periodo",
+   "amount": 513254.04,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-08-01",
+   "account": "Efectivo",
+   "amount": 14213188.6,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-08-01",
+   "account": "Cuentas por cobrar",
+   "amount": 22109404.49,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-08-01",
+   "account": "Existencias",
+   "amount": 25267890.85,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-08-01",
+   "account": "Propiedad planta y equipo",
+   "amount": 47377295.34,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-08-01",
+   "account": "Cuentas por pagar",
+   "amount": 17371674.96,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-08-01",
+   "account": "Impuestos por pagar",
+   "amount": 3158486.36,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-08-01",
+   "account": "Deuda bancaria",
+   "amount": 23688647.67,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-08-01",
+   "account": "Capital",
+   "amount": 31584863.56,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-08-01",
+   "account": "Resultados acumulados",
+   "amount": 33164106.73,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-09-01",
+   "account": "Ingresos por ventas netas",
+   "amount": 16203579.93,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-09-01",
+   "account": "Costo de mercaderia vendida",
+   "amount": 10046219.56,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-09-01",
+   "account": "Gastos de personal",
+   "amount": 1944429.59,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-09-01",
+   "account": "Renta de locales",
+   "amount": 486107.4,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-09-01",
+   "account": "Transporte y fletes",
+   "amount": 648143.2,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-09-01",
+   "account": "Gastos generales",
+   "amount": 486107.4,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-09-01",
+   "account": "Depreciaciones",
+   "amount": 324071.6,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-09-01",
+   "account": "Gastos financieros",
+   "amount": 162035.8,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-09-01",
+   "account": "ISR del periodo",
+   "amount": 526616.35,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-09-01",
+   "account": "Efectivo",
+   "amount": 14583221.94,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-09-01",
+   "account": "Cuentas por cobrar",
+   "amount": 22685011.91,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-09-01",
+   "account": "Existencias",
+   "amount": 25925727.9,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-09-01",
+   "account": "Propiedad planta y equipo",
+   "amount": 48610739.8,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-09-01",
+   "account": "Cuentas por pagar",
+   "amount": 17823937.93,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-09-01",
+   "account": "Impuestos por pagar",
+   "amount": 3240715.99,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-09-01",
+   "account": "Deuda bancaria",
+   "amount": 24305369.9,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-09-01",
+   "account": "Capital",
+   "amount": 32407159.87,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-09-01",
+   "account": "Resultados acumulados",
+   "amount": 34027517.86,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-10-01",
+   "account": "Ingresos por ventas netas",
+   "amount": 16043574.04,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-10-01",
+   "account": "Costo de mercaderia vendida",
+   "amount": 9947015.9,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-10-01",
+   "account": "Gastos de personal",
+   "amount": 1925228.88,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-10-01",
+   "account": "Renta de locales",
+   "amount": 481307.22,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-10-01",
+   "account": "Transporte y fletes",
+   "amount": 641742.96,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-10-01",
+   "account": "Gastos generales",
+   "amount": 481307.22,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-10-01",
+   "account": "Depreciaciones",
+   "amount": 320871.48,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-10-01",
+   "account": "Gastos financieros",
+   "amount": 160435.74,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-10-01",
+   "account": "ISR del periodo",
+   "amount": 521416.16,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-10-01",
+   "account": "Efectivo",
+   "amount": 14439216.63,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-10-01",
+   "account": "Cuentas por cobrar",
+   "amount": 22461003.65,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-10-01",
+   "account": "Existencias",
+   "amount": 25669718.46,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-10-01",
+   "account": "Propiedad planta y equipo",
+   "amount": 48130722.11,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-10-01",
+   "account": "Cuentas por pagar",
+   "amount": 17647931.44,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-10-01",
+   "account": "Impuestos por pagar",
+   "amount": 3208714.81,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-10-01",
+   "account": "Deuda bancaria",
+   "amount": 24065361.05,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-10-01",
+   "account": "Capital",
+   "amount": 32087148.07,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-10-01",
+   "account": "Resultados acumulados",
+   "amount": 33691505.48,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-11-01",
+   "account": "Ingresos por ventas netas",
+   "amount": 16840552.13,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-11-01",
+   "account": "Costo de mercaderia vendida",
+   "amount": 10441142.32,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-11-01",
+   "account": "Gastos de personal",
+   "amount": 2020866.26,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-11-01",
+   "account": "Renta de locales",
+   "amount": 505216.56,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-11-01",
+   "account": "Transporte y fletes",
+   "amount": 673622.09,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-11-01",
+   "account": "Gastos generales",
+   "amount": 505216.56,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-11-01",
+   "account": "Depreciaciones",
+   "amount": 336811.04,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-11-01",
+   "account": "Gastos financieros",
+   "amount": 168405.52,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-11-01",
+   "account": "ISR del periodo",
+   "amount": 547317.95,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-11-01",
+   "account": "Efectivo",
+   "amount": 15156496.92,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-11-01",
+   "account": "Cuentas por cobrar",
+   "amount": 23576772.98,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-11-01",
+   "account": "Existencias",
+   "amount": 26944883.41,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-11-01",
+   "account": "Propiedad planta y equipo",
+   "amount": 50521656.39,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-11-01",
+   "account": "Cuentas por pagar",
+   "amount": 18524607.34,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-11-01",
+   "account": "Impuestos por pagar",
+   "amount": 3368110.43,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-11-01",
+   "account": "Deuda bancaria",
+   "amount": 25260828.19,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-11-01",
+   "account": "Capital",
+   "amount": 33681104.26,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-11-01",
+   "account": "Resultados acumulados",
+   "amount": 35365159.48,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-12-01",
+   "account": "Ingresos por ventas netas",
+   "amount": 16623929.06,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-12-01",
+   "account": "Costo de mercaderia vendida",
+   "amount": 10306836.02,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-12-01",
+   "account": "Gastos de personal",
+   "amount": 1994871.49,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-12-01",
+   "account": "Renta de locales",
+   "amount": 498717.87,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-12-01",
+   "account": "Transporte y fletes",
+   "amount": 664957.16,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-12-01",
+   "account": "Gastos generales",
+   "amount": 498717.87,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-12-01",
+   "account": "Depreciaciones",
+   "amount": 332478.58,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-12-01",
+   "account": "Gastos financieros",
+   "amount": 166239.29,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-12-01",
+   "account": "ISR del periodo",
+   "amount": 540277.7,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-12-01",
+   "account": "Efectivo",
+   "amount": 14961536.15,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-12-01",
+   "account": "Cuentas por cobrar",
+   "amount": 23273500.68,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-12-01",
+   "account": "Existencias",
+   "amount": 26598286.5,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-12-01",
+   "account": "Propiedad planta y equipo",
+   "amount": 49871787.18,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-12-01",
+   "account": "Cuentas por pagar",
+   "amount": 18286321.97,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-12-01",
+   "account": "Impuestos por pagar",
+   "amount": 3324785.81,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-12-01",
+   "account": "Deuda bancaria",
+   "amount": 24935893.59,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-12-01",
+   "account": "Capital",
+   "amount": 33247858.12,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-12-01",
+   "account": "Resultados acumulados",
+   "amount": 34910251.02,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2027-01-01",
+   "account": "Ingresos por ventas netas",
+   "amount": 15985563.08,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2027-01-01",
+   "account": "Costo de mercaderia vendida",
+   "amount": 9911049.11,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2027-01-01",
+   "account": "Gastos de personal",
+   "amount": 1918267.57,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2027-01-01",
+   "account": "Renta de locales",
+   "amount": 479566.89,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2027-01-01",
+   "account": "Transporte y fletes",
+   "amount": 639422.52,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2027-01-01",
+   "account": "Gastos generales",
+   "amount": 479566.89,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2027-01-01",
+   "account": "Depreciaciones",
+   "amount": 319711.26,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2027-01-01",
+   "account": "Gastos financieros",
+   "amount": 159855.63,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2027-01-01",
+   "account": "ISR del periodo",
+   "amount": 519530.8,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2027-01-01",
+   "account": "Efectivo",
+   "amount": 14387006.77,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2027-01-01",
+   "account": "Cuentas por cobrar",
+   "amount": 22379788.31,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2027-01-01",
+   "account": "Existencias",
+   "amount": 25576900.92,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2027-01-01",
+   "account": "Propiedad planta y equipo",
+   "amount": 47956689.23,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2027-01-01",
+   "account": "Cuentas por pagar",
+   "amount": 17584119.38,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2027-01-01",
+   "account": "Impuestos por pagar",
+   "amount": 3197112.62,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2027-01-01",
+   "account": "Deuda bancaria",
+   "amount": 23978344.61,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2027-01-01",
+   "account": "Capital",
+   "amount": 31971126.15,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2027-01-01",
+   "account": "Resultados acumulados",
+   "amount": 33569682.47,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2027-02-01",
+   "account": "Ingresos por ventas netas",
+   "amount": 16036270.37,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2027-02-01",
+   "account": "Costo de mercaderia vendida",
+   "amount": 9942487.63,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2027-02-01",
+   "account": "Gastos de personal",
+   "amount": 1924352.44,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2027-02-01",
+   "account": "Renta de locales",
+   "amount": 481088.11,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2027-02-01",
+   "account": "Transporte y fletes",
+   "amount": 641450.81,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2027-02-01",
+   "account": "Gastos generales",
+   "amount": 481088.11,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2027-02-01",
+   "account": "Depreciaciones",
+   "amount": 320725.41,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2027-02-01",
+   "account": "Gastos financieros",
+   "amount": 160362.7,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2027-02-01",
+   "account": "ISR del periodo",
+   "amount": 521178.79,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2027-02-01",
+   "account": "Efectivo",
+   "amount": 14432643.33,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2027-02-01",
+   "account": "Cuentas por cobrar",
+   "amount": 22450778.51,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2027-02-01",
+   "account": "Existencias",
+   "amount": 25658032.59,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2027-02-01",
+   "account": "Propiedad planta y equipo",
+   "amount": 48108811.1,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2027-02-01",
+   "account": "Cuentas por pagar",
+   "amount": 17639897.4,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2027-02-01",
+   "account": "Impuestos por pagar",
+   "amount": 3207254.07,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2027-02-01",
+   "account": "Deuda bancaria",
+   "amount": 24054405.55,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2027-02-01",
+   "account": "Capital",
+   "amount": 32072540.73,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2027-02-01",
+   "account": "Resultados acumulados",
+   "amount": 33676167.78,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2027-03-01",
+   "account": "Ingresos por ventas netas",
+   "amount": 16042013.32,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2027-03-01",
+   "account": "Costo de mercaderia vendida",
+   "amount": 9946048.26,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2027-03-01",
+   "account": "Gastos de personal",
+   "amount": 1925041.6,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2027-03-01",
+   "account": "Renta de locales",
+   "amount": 481260.4,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2027-03-01",
+   "account": "Transporte y fletes",
+   "amount": 641680.53,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2027-03-01",
+   "account": "Gastos generales",
+   "amount": 481260.4,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2027-03-01",
+   "account": "Depreciaciones",
+   "amount": 320840.27,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2027-03-01",
+   "account": "Gastos financieros",
+   "amount": 160420.13,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2027-03-01",
+   "account": "ISR del periodo",
+   "amount": 521365.43,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2027-03-01",
+   "account": "Efectivo",
+   "amount": 14437811.99,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2027-03-01",
+   "account": "Cuentas por cobrar",
+   "amount": 22458818.65,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2027-03-01",
+   "account": "Existencias",
+   "amount": 25667221.32,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2027-03-01",
+   "account": "Propiedad planta y equipo",
+   "amount": 48126039.97,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2027-03-01",
+   "account": "Cuentas por pagar",
+   "amount": 17646214.66,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2027-03-01",
+   "account": "Impuestos por pagar",
+   "amount": 3208402.66,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2027-03-01",
+   "account": "Deuda bancaria",
+   "amount": 24063019.99,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2027-03-01",
+   "account": "Capital",
+   "amount": 32084026.65,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2027-03-01",
+   "account": "Resultados acumulados",
+   "amount": 33688227.97,
+   "counterparty": null,
+   "transaction_id": null
+  }
+ ]
+}

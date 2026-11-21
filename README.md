@@ -43,6 +43,20 @@ automáticas** (con sus claves de respuestas); la app no las abre por su cuenta.
 `data/demo/` (12 archivos de Mateo, con su `LEEME_DEMO.md`). `data/demo_errores/` se regenera con
 `.venv/bin/python scripts/generate_demo_errores.py`.
 
+## Correrlo en cualquier computadora
+
+1. Instala **Python 3.9 o superior** y **Git** (o descarga el repositorio como zip desde GitHub).
+2. `git clone https://github.com/wearenuve-png/hackathon.git` y entra a la carpeta.
+3. Abre la app con un solo comando (la primera vez instala las dependencias; necesita internet):
+   - **Mac / Linux:** `./iniciar.sh`  (si no deja ejecutarlo: `bash iniciar.sh`)
+   - **Windows:** doble clic en `iniciar.bat`
+4. Se abre `http://localhost:8501` (si no, pégalo en el navegador). Otro puerto: `PUERTO=8502 ./iniciar.sh`.
+5. Pulsa **Cargar presupuestos**, escribe la ruta de una carpeta y pulsa **Leer presupuestos**. Carpetas listas:
+   `data/demo/` (6 empresas con 10 errores sembrados) y `data/demo_ampliado/` (12 empresas, 11 monedas, 2025-2027, limpias).
+
+La app lee carpetas **de la computadora donde corre**: no se sube nada a internet y no necesita red (salvo el Asistente
+conectado, que es opcional). El selector «Elegir carpeta…» solo existe en macOS; en Windows/Linux se escribe la ruta.
+
 ## Cargar tus propios presupuestos y Restablecer
 
 - **Cargar presupuestos** (arriba, junto a Restablecer): escribe o elige una o varias carpetas (una por línea; en macOS

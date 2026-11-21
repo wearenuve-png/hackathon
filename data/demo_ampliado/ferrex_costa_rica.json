@@ -1,0 +1,3409 @@
+{
+ "company_name": "Ferrex Costa Rica S.A.",
+ "reporting_currency": "CRC",
+ "source_system": "ERP - export",
+ "entries": [
+  {
+   "period": "2025-01-01",
+   "account": "Net revenue",
+   "amount": 95862032.59,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-01-01",
+   "account": "Cost of goods sold",
+   "amount": 59434460.21,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-01-01",
+   "account": "Payroll",
+   "amount": 11503443.91,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-01-01",
+   "account": "Rent",
+   "amount": 2875860.98,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-01-01",
+   "account": "Freight",
+   "amount": 3834481.3,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-01-01",
+   "account": "Other operating expenses",
+   "amount": 2875860.98,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-01-01",
+   "account": "Depreciation",
+   "amount": 1917240.65,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-01-01",
+   "account": "Interest expense",
+   "amount": 958620.33,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-01-01",
+   "account": "Income tax",
+   "amount": 3115516.06,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-01-01",
+   "account": "Cash and banks",
+   "amount": 86275829.33,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-01-01",
+   "account": "Accounts receivable",
+   "amount": 134206845.63,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-01-01",
+   "account": "Inventory",
+   "amount": 153379252.15,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-01-01",
+   "account": "Fixed assets net",
+   "amount": 287586097.78,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-01-01",
+   "account": "Accounts payable",
+   "amount": 105448235.85,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-01-01",
+   "account": "Taxes payable",
+   "amount": 19172406.52,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-01-01",
+   "account": "Bank loans",
+   "amount": 143793048.89,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-01-01",
+   "account": "Share capital",
+   "amount": 191724065.19,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-01-01",
+   "account": "Retained earnings",
+   "amount": 201310268.44,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-02-01",
+   "account": "Net revenue",
+   "amount": 96536523.93,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-02-01",
+   "account": "Cost of goods sold",
+   "amount": 59852644.84,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-02-01",
+   "account": "Payroll",
+   "amount": 11584382.87,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-02-01",
+   "account": "Rent",
+   "amount": 2896095.72,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-02-01",
+   "account": "Freight",
+   "amount": 3861460.96,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-02-01",
+   "account": "Other operating expenses",
+   "amount": 2896095.72,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-02-01",
+   "account": "Depreciation",
+   "amount": 1930730.48,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-02-01",
+   "account": "Interest expense",
+   "amount": 965365.24,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-02-01",
+   "account": "Income tax",
+   "amount": 3137437.03,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-02-01",
+   "account": "Cash and banks",
+   "amount": 86882871.54,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-02-01",
+   "account": "Accounts receivable",
+   "amount": 135151133.5,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-02-01",
+   "account": "Inventory",
+   "amount": 154458438.29,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-02-01",
+   "account": "Fixed assets net",
+   "amount": 289609571.79,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-02-01",
+   "account": "Accounts payable",
+   "amount": 106190176.32,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-02-01",
+   "account": "Taxes payable",
+   "amount": 19307304.79,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-02-01",
+   "account": "Bank loans",
+   "amount": 144804785.89,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-02-01",
+   "account": "Share capital",
+   "amount": 193073047.86,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-02-01",
+   "account": "Retained earnings",
+   "amount": 202726700.26,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-03-01",
+   "account": "Net revenue",
+   "amount": 93125691.7,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-03-01",
+   "account": "Cost of goods sold",
+   "amount": 57737928.85,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-03-01",
+   "account": "Payroll",
+   "amount": 11175083.0,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-03-01",
+   "account": "Rent",
+   "amount": 2793770.75,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-03-01",
+   "account": "Freight",
+   "amount": 3725027.67,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-03-01",
+   "account": "Other operating expenses",
+   "amount": 2793770.75,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-03-01",
+   "account": "Depreciation",
+   "amount": 1862513.83,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-03-01",
+   "account": "Interest expense",
+   "amount": 931256.92,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-03-01",
+   "account": "Income tax",
+   "amount": 3026584.98,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-03-01",
+   "account": "Cash and banks",
+   "amount": 83813122.53,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-03-01",
+   "account": "Accounts receivable",
+   "amount": 130375968.38,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-03-01",
+   "account": "Inventory",
+   "amount": 149001106.72,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-03-01",
+   "account": "Fixed assets net",
+   "amount": 279377075.1,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-03-01",
+   "account": "Accounts payable",
+   "amount": 102438260.87,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-03-01",
+   "account": "Taxes payable",
+   "amount": 18625138.34,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-03-01",
+   "account": "Bank loans",
+   "amount": 139688537.55,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-03-01",
+   "account": "Share capital",
+   "amount": 186251383.4,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-03-01",
+   "account": "Retained earnings",
+   "amount": 195563952.57,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-04-01",
+   "account": "Net revenue",
+   "amount": 93854501.4,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-04-01",
+   "account": "Cost of goods sold",
+   "amount": 58189790.87,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-04-01",
+   "account": "Payroll",
+   "amount": 11262540.17,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-04-01",
+   "account": "Rent",
+   "amount": 2815635.04,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-04-01",
+   "account": "Freight",
+   "amount": 3754180.06,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-04-01",
+   "account": "Other operating expenses",
+   "amount": 2815635.04,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-04-01",
+   "account": "Depreciation",
+   "amount": 1877090.03,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-04-01",
+   "account": "Interest expense",
+   "amount": 938545.01,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-04-01",
+   "account": "Income tax",
+   "amount": 3050271.3,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-04-01",
+   "account": "Cash and banks",
+   "amount": 84469051.26,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-04-01",
+   "account": "Accounts receivable",
+   "amount": 131396301.95,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-04-01",
+   "account": "Inventory",
+   "amount": 150167202.23,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-04-01",
+   "account": "Fixed assets net",
+   "amount": 281563504.19,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-04-01",
+   "account": "Accounts payable",
+   "amount": 103239951.54,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-04-01",
+   "account": "Taxes payable",
+   "amount": 18770900.28,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-04-01",
+   "account": "Bank loans",
+   "amount": 140781752.09,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-04-01",
+   "account": "Share capital",
+   "amount": 187709002.79,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-04-01",
+   "account": "Retained earnings",
+   "amount": 197094452.93,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-05-01",
+   "account": "Net revenue",
+   "amount": 94592274.68,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-05-01",
+   "account": "Cost of goods sold",
+   "amount": 58647210.3,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-05-01",
+   "account": "Payroll",
+   "amount": 11351072.96,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-05-01",
+   "account": "Rent",
+   "amount": 2837768.24,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-05-01",
+   "account": "Freight",
+   "amount": 3783690.99,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-05-01",
+   "account": "Other operating expenses",
+   "amount": 2837768.24,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-05-01",
+   "account": "Depreciation",
+   "amount": 1891845.49,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-05-01",
+   "account": "Interest expense",
+   "amount": 945922.75,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-05-01",
+   "account": "Income tax",
+   "amount": 3074248.93,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-05-01",
+   "account": "Cash and banks",
+   "amount": 85133047.21,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-05-01",
+   "account": "Accounts receivable",
+   "amount": 132429184.55,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-05-01",
+   "account": "Inventory",
+   "amount": 151347639.48,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-05-01",
+   "account": "Fixed assets net",
+   "amount": 283776824.03,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-05-01",
+   "account": "Accounts payable",
+   "amount": 104051502.15,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-05-01",
+   "account": "Taxes payable",
+   "amount": 18918454.94,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-05-01",
+   "account": "Bank loans",
+   "amount": 141888412.02,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-05-01",
+   "account": "Share capital",
+   "amount": 189184549.36,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-05-01",
+   "account": "Retained earnings",
+   "amount": 198643776.8,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-06-01",
+   "account": "Net revenue",
+   "amount": 102308717.68,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-06-01",
+   "account": "Cost of goods sold",
+   "amount": 63431404.96,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-06-01",
+   "account": "Payroll",
+   "amount": 12277046.12,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-06-01",
+   "account": "Rent",
+   "amount": 3069261.53,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-06-01",
+   "account": "Freight",
+   "amount": 4092348.71,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-06-01",
+   "account": "Other operating expenses",
+   "amount": 3069261.53,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-06-01",
+   "account": "Depreciation",
+   "amount": 2046174.35,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-06-01",
+   "account": "Interest expense",
+   "amount": 1023087.18,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-06-01",
+   "account": "Income tax",
+   "amount": 3325033.33,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-06-01",
+   "account": "Cash and banks",
+   "amount": 92077845.91,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-06-01",
+   "account": "Accounts receivable",
+   "amount": 143232204.75,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-06-01",
+   "account": "Inventory",
+   "amount": 163693948.28,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-06-01",
+   "account": "Fixed assets net",
+   "amount": 306926153.03,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-06-01",
+   "account": "Accounts payable",
+   "amount": 112539589.44,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-06-01",
+   "account": "Taxes payable",
+   "amount": 20461743.54,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-06-01",
+   "account": "Bank loans",
+   "amount": 153463076.51,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-06-01",
+   "account": "Share capital",
+   "amount": 204617435.35,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-06-01",
+   "account": "Retained earnings",
+   "amount": 214848307.13,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-07-01",
+   "account": "Net revenue",
+   "amount": 96544758.66,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-07-01",
+   "account": "Cost of goods sold",
+   "amount": 59857750.37,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-07-01",
+   "account": "Payroll",
+   "amount": 11585371.04,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-07-01",
+   "account": "Rent",
+   "amount": 2896342.76,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-07-01",
+   "account": "Freight",
+   "amount": 3861790.35,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-07-01",
+   "account": "Other operating expenses",
+   "amount": 2896342.76,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-07-01",
+   "account": "Depreciation",
+   "amount": 1930895.17,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-07-01",
+   "account": "Interest expense",
+   "amount": 965447.59,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-07-01",
+   "account": "Income tax",
+   "amount": 3137704.66,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-07-01",
+   "account": "Cash and banks",
+   "amount": 86890282.8,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-07-01",
+   "account": "Accounts receivable",
+   "amount": 135162662.13,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-07-01",
+   "account": "Inventory",
+   "amount": 154471613.86,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-07-01",
+   "account": "Fixed assets net",
+   "amount": 289634275.99,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-07-01",
+   "account": "Accounts payable",
+   "amount": 106199234.53,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-07-01",
+   "account": "Taxes payable",
+   "amount": 19308951.73,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-07-01",
+   "account": "Bank loans",
+   "amount": 144817138.0,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-07-01",
+   "account": "Share capital",
+   "amount": 193089517.33,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-07-01",
+   "account": "Retained earnings",
+   "amount": 202743993.19,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-08-01",
+   "account": "Net revenue",
+   "amount": 104285790.46,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-08-01",
+   "account": "Cost of goods sold",
+   "amount": 64657190.08,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-08-01",
+   "account": "Payroll",
+   "amount": 12514294.85,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-08-01",
+   "account": "Rent",
+   "amount": 3128573.71,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-08-01",
+   "account": "Freight",
+   "amount": 4171431.62,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-08-01",
+   "account": "Other operating expenses",
+   "amount": 3128573.71,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-08-01",
+   "account": "Depreciation",
+   "amount": 2085715.81,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-08-01",
+   "account": "Interest expense",
+   "amount": 1042857.9,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-08-01",
+   "account": "Income tax",
+   "amount": 3389288.2,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-08-01",
+   "account": "Cash and banks",
+   "amount": 93857211.41,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-08-01",
+   "account": "Accounts receivable",
+   "amount": 146000106.64,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-08-01",
+   "account": "Inventory",
+   "amount": 166857264.73,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-08-01",
+   "account": "Fixed assets net",
+   "amount": 312857371.37,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-08-01",
+   "account": "Accounts payable",
+   "amount": 114714369.5,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-08-01",
+   "account": "Taxes payable",
+   "amount": 20857158.09,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-08-01",
+   "account": "Bank loans",
+   "amount": 156428685.68,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-08-01",
+   "account": "Share capital",
+   "amount": 208571580.91,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-08-01",
+   "account": "Retained earnings",
+   "amount": 219000159.97,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-09-01",
+   "account": "Net revenue",
+   "amount": 103760290.82,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-09-01",
+   "account": "Cost of goods sold",
+   "amount": 64331380.31,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-09-01",
+   "account": "Payroll",
+   "amount": 12451234.9,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-09-01",
+   "account": "Rent",
+   "amount": 3112808.72,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-09-01",
+   "account": "Freight",
+   "amount": 4150411.63,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-09-01",
+   "account": "Other operating expenses",
+   "amount": 3112808.72,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-09-01",
+   "account": "Depreciation",
+   "amount": 2075205.82,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-09-01",
+   "account": "Interest expense",
+   "amount": 1037602.91,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-09-01",
+   "account": "Income tax",
+   "amount": 3372209.45,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-09-01",
+   "account": "Cash and banks",
+   "amount": 93384261.73,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-09-01",
+   "account": "Accounts receivable",
+   "amount": 145264407.14,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-09-01",
+   "account": "Inventory",
+   "amount": 166016465.31,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-09-01",
+   "account": "Fixed assets net",
+   "amount": 311280872.45,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-09-01",
+   "account": "Accounts payable",
+   "amount": 114136319.9,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-09-01",
+   "account": "Taxes payable",
+   "amount": 20752058.16,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-09-01",
+   "account": "Bank loans",
+   "amount": 155640436.22,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-09-01",
+   "account": "Share capital",
+   "amount": 207520581.63,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-09-01",
+   "account": "Retained earnings",
+   "amount": 217896610.72,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-10-01",
+   "account": "Net revenue",
+   "amount": 103955619.87,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-10-01",
+   "account": "Cost of goods sold",
+   "amount": 64452484.32,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-10-01",
+   "account": "Payroll",
+   "amount": 12474674.38,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-10-01",
+   "account": "Rent",
+   "amount": 3118668.6,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-10-01",
+   "account": "Freight",
+   "amount": 4158224.79,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-10-01",
+   "account": "Other operating expenses",
+   "amount": 3118668.6,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-10-01",
+   "account": "Depreciation",
+   "amount": 2079112.4,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-10-01",
+   "account": "Interest expense",
+   "amount": 1039556.2,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-10-01",
+   "account": "Income tax",
+   "amount": 3378557.65,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-10-01",
+   "account": "Cash and banks",
+   "amount": 93560057.89,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-10-01",
+   "account": "Accounts receivable",
+   "amount": 145537867.82,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-10-01",
+   "account": "Inventory",
+   "amount": 166328991.8,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-10-01",
+   "account": "Fixed assets net",
+   "amount": 311866859.62,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-10-01",
+   "account": "Accounts payable",
+   "amount": 114351181.86,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-10-01",
+   "account": "Taxes payable",
+   "amount": 20791123.97,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-10-01",
+   "account": "Bank loans",
+   "amount": 155933429.81,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-10-01",
+   "account": "Share capital",
+   "amount": 207911239.75,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-10-01",
+   "account": "Retained earnings",
+   "amount": 218306801.74,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-11-01",
+   "account": "Net revenue",
+   "amount": 101429029.16,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-11-01",
+   "account": "Cost of goods sold",
+   "amount": 62885998.08,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-11-01",
+   "account": "Payroll",
+   "amount": 12171483.5,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-11-01",
+   "account": "Rent",
+   "amount": 3042870.87,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-11-01",
+   "account": "Freight",
+   "amount": 4057161.17,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-11-01",
+   "account": "Other operating expenses",
+   "amount": 3042870.87,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-11-01",
+   "account": "Depreciation",
+   "amount": 2028580.58,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-11-01",
+   "account": "Interest expense",
+   "amount": 1014290.29,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-11-01",
+   "account": "Income tax",
+   "amount": 3296443.45,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-11-01",
+   "account": "Cash and banks",
+   "amount": 91286126.24,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-11-01",
+   "account": "Accounts receivable",
+   "amount": 142000640.82,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-11-01",
+   "account": "Inventory",
+   "amount": 162286446.65,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-11-01",
+   "account": "Fixed assets net",
+   "amount": 304287087.47,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-11-01",
+   "account": "Accounts payable",
+   "amount": 111571932.07,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-11-01",
+   "account": "Taxes payable",
+   "amount": 20285805.83,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-11-01",
+   "account": "Bank loans",
+   "amount": 152143543.74,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-11-01",
+   "account": "Share capital",
+   "amount": 202858058.31,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-11-01",
+   "account": "Retained earnings",
+   "amount": 213000961.23,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-12-01",
+   "account": "Net revenue",
+   "amount": 105452425.13,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-12-01",
+   "account": "Cost of goods sold",
+   "amount": 65380503.58,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-12-01",
+   "account": "Payroll",
+   "amount": 12654291.02,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-12-01",
+   "account": "Rent",
+   "amount": 3163572.75,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-12-01",
+   "account": "Freight",
+   "amount": 4218097.01,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-12-01",
+   "account": "Other operating expenses",
+   "amount": 3163572.75,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-12-01",
+   "account": "Depreciation",
+   "amount": 2109048.5,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-12-01",
+   "account": "Interest expense",
+   "amount": 1054524.25,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-12-01",
+   "account": "Income tax",
+   "amount": 3427203.82,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-12-01",
+   "account": "Cash and banks",
+   "amount": 94907182.61,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-12-01",
+   "account": "Accounts receivable",
+   "amount": 147633395.18,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-12-01",
+   "account": "Inventory",
+   "amount": 168723880.2,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-12-01",
+   "account": "Fixed assets net",
+   "amount": 316357275.38,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-12-01",
+   "account": "Accounts payable",
+   "amount": 115997667.64,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-12-01",
+   "account": "Taxes payable",
+   "amount": 21090485.03,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-12-01",
+   "account": "Bank loans",
+   "amount": 158178637.69,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-12-01",
+   "account": "Share capital",
+   "amount": 210904850.25,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2025-12-01",
+   "account": "Retained earnings",
+   "amount": 221450092.76,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-01-01",
+   "account": "Net revenue",
+   "amount": 108049726.4,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-01-01",
+   "account": "Cost of goods sold",
+   "amount": 66990830.37,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-01-01",
+   "account": "Payroll",
+   "amount": 12965967.17,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-01-01",
+   "account": "Rent",
+   "amount": 3241491.79,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-01-01",
+   "account": "Freight",
+   "amount": 4321989.06,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-01-01",
+   "account": "Other operating expenses",
+   "amount": 3241491.79,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-01-01",
+   "account": "Depreciation",
+   "amount": 2160994.53,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-01-01",
+   "account": "Interest expense",
+   "amount": 1080497.26,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-01-01",
+   "account": "Income tax",
+   "amount": 3511616.11,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-01-01",
+   "account": "Cash and banks",
+   "amount": 97244753.76,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-01-01",
+   "account": "Accounts receivable",
+   "amount": 151269616.96,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-01-01",
+   "account": "Inventory",
+   "amount": 172879562.24,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-01-01",
+   "account": "Fixed assets net",
+   "amount": 324149179.2,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-01-01",
+   "account": "Accounts payable",
+   "amount": 118854699.04,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-01-01",
+   "account": "Taxes payable",
+   "amount": 21609945.28,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-01-01",
+   "account": "Bank loans",
+   "amount": 162074589.6,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-01-01",
+   "account": "Share capital",
+   "amount": 216099452.8,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-01-01",
+   "account": "Retained earnings",
+   "amount": 226904425.44,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-02-01",
+   "account": "Net revenue",
+   "amount": 106643868.55,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-02-01",
+   "account": "Cost of goods sold",
+   "amount": 66119198.5,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-02-01",
+   "account": "Payroll",
+   "amount": 12797264.23,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-02-01",
+   "account": "Rent",
+   "amount": 3199316.06,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-02-01",
+   "account": "Freight",
+   "amount": 4265754.74,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-02-01",
+   "account": "Other operating expenses",
+   "amount": 3199316.06,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-02-01",
+   "account": "Depreciation",
+   "amount": 2132877.37,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-02-01",
+   "account": "Interest expense",
+   "amount": 1066438.69,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-02-01",
+   "account": "Income tax",
+   "amount": 3465925.73,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-02-01",
+   "account": "Cash and banks",
+   "amount": 95979481.7,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-02-01",
+   "account": "Accounts receivable",
+   "amount": 149301415.98,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-02-01",
+   "account": "Inventory",
+   "amount": 170630189.69,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-02-01",
+   "account": "Fixed assets net",
+   "amount": 319931605.66,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-02-01",
+   "account": "Accounts payable",
+   "amount": 117308255.41,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-02-01",
+   "account": "Taxes payable",
+   "amount": 21328773.71,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-02-01",
+   "account": "Bank loans",
+   "amount": 159965802.83,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-02-01",
+   "account": "Share capital",
+   "amount": 213287737.11,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-02-01",
+   "account": "Retained earnings",
+   "amount": 223952123.97,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-03-01",
+   "account": "Net revenue",
+   "amount": 104332191.78,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-03-01",
+   "account": "Cost of goods sold",
+   "amount": 64685958.9,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-03-01",
+   "account": "Payroll",
+   "amount": 12519863.01,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-03-01",
+   "account": "Rent",
+   "amount": 3129965.75,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-03-01",
+   "account": "Freight",
+   "amount": 4173287.67,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-03-01",
+   "account": "Other operating expenses",
+   "amount": 3129965.75,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-03-01",
+   "account": "Depreciation",
+   "amount": 2086643.84,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-03-01",
+   "account": "Interest expense",
+   "amount": 1043321.92,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-03-01",
+   "account": "Income tax",
+   "amount": 3390796.24,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-03-01",
+   "account": "Cash and banks",
+   "amount": 93898972.6,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-03-01",
+   "account": "Accounts receivable",
+   "amount": 146065068.49,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-03-01",
+   "account": "Inventory",
+   "amount": 166931506.85,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-03-01",
+   "account": "Fixed assets net",
+   "amount": 312996575.34,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-03-01",
+   "account": "Accounts payable",
+   "amount": 114765410.96,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-03-01",
+   "account": "Taxes payable",
+   "amount": 20866438.36,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-03-01",
+   "account": "Bank loans",
+   "amount": 156498287.67,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-03-01",
+   "account": "Share capital",
+   "amount": 208664383.56,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-03-01",
+   "account": "Retained earnings",
+   "amount": 219097602.73,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-04-01",
+   "account": "Net revenue",
+   "amount": 107086664.53,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-04-01",
+   "account": "Cost of goods sold",
+   "amount": 66393732.01,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-04-01",
+   "account": "Payroll",
+   "amount": 12850399.74,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-04-01",
+   "account": "Rent",
+   "amount": 3212599.94,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-04-01",
+   "account": "Freight",
+   "amount": 4283466.58,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-04-01",
+   "account": "Other operating expenses",
+   "amount": 3212599.94,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-04-01",
+   "account": "Depreciation",
+   "amount": 2141733.29,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-04-01",
+   "account": "Interest expense",
+   "amount": 1070866.65,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-04-01",
+   "account": "Income tax",
+   "amount": 3480316.6,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-04-01",
+   "account": "Cash and banks",
+   "amount": 96377998.08,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-04-01",
+   "account": "Accounts receivable",
+   "amount": 149921330.35,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-04-01",
+   "account": "Inventory",
+   "amount": 171338663.26,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-04-01",
+   "account": "Fixed assets net",
+   "amount": 321259993.6,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-04-01",
+   "account": "Accounts payable",
+   "amount": 117795330.99,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-04-01",
+   "account": "Taxes payable",
+   "amount": 21417332.91,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-04-01",
+   "account": "Bank loans",
+   "amount": 160629996.8,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-04-01",
+   "account": "Share capital",
+   "amount": 214173329.07,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-04-01",
+   "account": "Retained earnings",
+   "amount": 224881995.52,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-05-01",
+   "account": "Net revenue",
+   "amount": 105442936.95,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-05-01",
+   "account": "Cost of goods sold",
+   "amount": 65374620.91,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-05-01",
+   "account": "Payroll",
+   "amount": 12653152.43,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-05-01",
+   "account": "Rent",
+   "amount": 3163288.11,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-05-01",
+   "account": "Freight",
+   "amount": 4217717.48,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-05-01",
+   "account": "Other operating expenses",
+   "amount": 3163288.11,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-05-01",
+   "account": "Depreciation",
+   "amount": 2108858.74,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-05-01",
+   "account": "Interest expense",
+   "amount": 1054429.37,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-05-01",
+   "account": "Income tax",
+   "amount": 3426895.45,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-05-01",
+   "account": "Cash and banks",
+   "amount": 94898643.26,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-05-01",
+   "account": "Accounts receivable",
+   "amount": 147620111.73,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-05-01",
+   "account": "Inventory",
+   "amount": 168708699.12,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-05-01",
+   "account": "Fixed assets net",
+   "amount": 316328810.85,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-05-01",
+   "account": "Accounts payable",
+   "amount": 115987230.65,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-05-01",
+   "account": "Taxes payable",
+   "amount": 21088587.39,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-05-01",
+   "account": "Bank loans",
+   "amount": 158164405.43,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-05-01",
+   "account": "Share capital",
+   "amount": 210885873.9,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-05-01",
+   "account": "Retained earnings",
+   "amount": 221430167.59,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-06-01",
+   "account": "Net revenue",
+   "amount": 109725699.07,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-06-01",
+   "account": "Cost of goods sold",
+   "amount": 68029933.42,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-06-01",
+   "account": "Payroll",
+   "amount": 13167083.89,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-06-01",
+   "account": "Rent",
+   "amount": 3291770.97,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-06-01",
+   "account": "Freight",
+   "amount": 4389027.96,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-06-01",
+   "account": "Other operating expenses",
+   "amount": 3291770.97,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-06-01",
+   "account": "Depreciation",
+   "amount": 2194513.98,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-06-01",
+   "account": "Interest expense",
+   "amount": 1097256.99,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-06-01",
+   "account": "Income tax",
+   "amount": 3566085.22,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-06-01",
+   "account": "Cash and banks",
+   "amount": 98753129.16,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-06-01",
+   "account": "Accounts receivable",
+   "amount": 153615978.7,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-06-01",
+   "account": "Inventory",
+   "amount": 175561118.51,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-06-01",
+   "account": "Fixed assets net",
+   "amount": 329177097.2,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-06-01",
+   "account": "Accounts payable",
+   "amount": 120698268.97,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-06-01",
+   "account": "Taxes payable",
+   "amount": 21945139.81,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-06-01",
+   "account": "Bank loans",
+   "amount": 164588548.6,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-06-01",
+   "account": "Share capital",
+   "amount": 219451398.14,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-06-01",
+   "account": "Retained earnings",
+   "amount": 230423968.05,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-07-01",
+   "account": "Net revenue",
+   "amount": 112350610.41,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-07-01",
+   "account": "Cost of goods sold",
+   "amount": 69657378.45,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-07-01",
+   "account": "Payroll",
+   "amount": 13482073.25,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-07-01",
+   "account": "Rent",
+   "amount": 3370518.31,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-07-01",
+   "account": "Freight",
+   "amount": 4494024.42,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-07-01",
+   "account": "Other operating expenses",
+   "amount": 3370518.31,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-07-01",
+   "account": "Depreciation",
+   "amount": 2247012.21,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-07-01",
+   "account": "Interest expense",
+   "amount": 1123506.1,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-07-01",
+   "account": "Income tax",
+   "amount": 3651394.84,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-07-01",
+   "account": "Cash and banks",
+   "amount": 101115549.37,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-07-01",
+   "account": "Accounts receivable",
+   "amount": 157290854.57,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-07-01",
+   "account": "Inventory",
+   "amount": 179760976.65,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-07-01",
+   "account": "Fixed assets net",
+   "amount": 337051831.23,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-07-01",
+   "account": "Accounts payable",
+   "amount": 123585671.45,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-07-01",
+   "account": "Taxes payable",
+   "amount": 22470122.08,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-07-01",
+   "account": "Bank loans",
+   "amount": 168525915.61,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-07-01",
+   "account": "Share capital",
+   "amount": 224701220.82,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-07-01",
+   "account": "Retained earnings",
+   "amount": 235936281.86,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-08-01",
+   "account": "Net revenue",
+   "amount": 115201933.4,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-08-01",
+   "account": "Cost of goods sold",
+   "amount": 71425198.71,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-08-01",
+   "account": "Payroll",
+   "amount": 13824232.01,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-08-01",
+   "account": "Rent",
+   "amount": 3456058.0,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-08-01",
+   "account": "Freight",
+   "amount": 4608077.34,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-08-01",
+   "account": "Other operating expenses",
+   "amount": 3456058.0,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-08-01",
+   "account": "Depreciation",
+   "amount": 2304038.67,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-08-01",
+   "account": "Interest expense",
+   "amount": 1152019.33,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-08-01",
+   "account": "Income tax",
+   "amount": 3744062.84,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-08-01",
+   "account": "Cash and banks",
+   "amount": 103681740.06,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-08-01",
+   "account": "Accounts receivable",
+   "amount": 161282706.77,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-08-01",
+   "account": "Inventory",
+   "amount": 184323093.45,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-08-01",
+   "account": "Fixed assets net",
+   "amount": 345605800.21,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-08-01",
+   "account": "Accounts payable",
+   "amount": 126722126.75,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-08-01",
+   "account": "Taxes payable",
+   "amount": 23040386.68,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-08-01",
+   "account": "Bank loans",
+   "amount": 172802900.11,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-08-01",
+   "account": "Share capital",
+   "amount": 230403866.81,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-08-01",
+   "account": "Retained earnings",
+   "amount": 241924060.14,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-09-01",
+   "account": "Net revenue",
+   "amount": 113776054.29,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-09-01",
+   "account": "Cost of goods sold",
+   "amount": 70541153.66,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-09-01",
+   "account": "Payroll",
+   "amount": 13653126.51,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-09-01",
+   "account": "Rent",
+   "amount": 3413281.63,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-09-01",
+   "account": "Freight",
+   "amount": 4551042.17,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-09-01",
+   "account": "Other operating expenses",
+   "amount": 3413281.63,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-09-01",
+   "account": "Depreciation",
+   "amount": 2275521.09,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-09-01",
+   "account": "Interest expense",
+   "amount": 1137760.54,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-09-01",
+   "account": "Income tax",
+   "amount": 3697721.77,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-09-01",
+   "account": "Cash and banks",
+   "amount": 102398448.86,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-09-01",
+   "account": "Accounts receivable",
+   "amount": 159286476.01,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-09-01",
+   "account": "Inventory",
+   "amount": 182041686.86,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-09-01",
+   "account": "Fixed assets net",
+   "amount": 341328162.87,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-09-01",
+   "account": "Accounts payable",
+   "amount": 125153659.72,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-09-01",
+   "account": "Taxes payable",
+   "amount": 22755210.86,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-09-01",
+   "account": "Bank loans",
+   "amount": 170664081.43,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-09-01",
+   "account": "Share capital",
+   "amount": 227552108.58,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-09-01",
+   "account": "Retained earnings",
+   "amount": 238929714.01,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-10-01",
+   "account": "Net revenue",
+   "amount": 112678967.59,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-10-01",
+   "account": "Cost of goods sold",
+   "amount": 69860959.9,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-10-01",
+   "account": "Payroll",
+   "amount": 13521476.11,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-10-01",
+   "account": "Rent",
+   "amount": 3380369.03,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-10-01",
+   "account": "Freight",
+   "amount": 4507158.7,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-10-01",
+   "account": "Other operating expenses",
+   "amount": 3380369.03,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-10-01",
+   "account": "Depreciation",
+   "amount": 2253579.35,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-10-01",
+   "account": "Interest expense",
+   "amount": 1126789.68,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-10-01",
+   "account": "Income tax",
+   "amount": 3662066.45,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-10-01",
+   "account": "Cash and banks",
+   "amount": 101411070.83,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-10-01",
+   "account": "Accounts receivable",
+   "amount": 157750554.62,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-10-01",
+   "account": "Inventory",
+   "amount": 180286348.14,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-10-01",
+   "account": "Fixed assets net",
+   "amount": 338036902.77,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-10-01",
+   "account": "Accounts payable",
+   "amount": 123946864.35,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-10-01",
+   "account": "Taxes payable",
+   "amount": 22535793.52,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-10-01",
+   "account": "Bank loans",
+   "amount": 169018451.38,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-10-01",
+   "account": "Share capital",
+   "amount": 225357935.18,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-10-01",
+   "account": "Retained earnings",
+   "amount": 236625831.93,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-11-01",
+   "account": "Net revenue",
+   "amount": 113443826.59,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-11-01",
+   "account": "Cost of goods sold",
+   "amount": 70335172.49,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-11-01",
+   "account": "Payroll",
+   "amount": 13613259.19,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-11-01",
+   "account": "Rent",
+   "amount": 3403314.8,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-11-01",
+   "account": "Freight",
+   "amount": 4537753.06,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-11-01",
+   "account": "Other operating expenses",
+   "amount": 3403314.8,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-11-01",
+   "account": "Depreciation",
+   "amount": 2268876.53,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-11-01",
+   "account": "Interest expense",
+   "amount": 1134438.27,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-11-01",
+   "account": "Income tax",
+   "amount": 3686924.36,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-11-01",
+   "account": "Cash and banks",
+   "amount": 102099443.93,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-11-01",
+   "account": "Accounts receivable",
+   "amount": 158821357.23,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-11-01",
+   "account": "Inventory",
+   "amount": 181510122.55,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-11-01",
+   "account": "Fixed assets net",
+   "amount": 340331479.78,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-11-01",
+   "account": "Accounts payable",
+   "amount": 124788209.25,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-11-01",
+   "account": "Taxes payable",
+   "amount": 22688765.32,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-11-01",
+   "account": "Bank loans",
+   "amount": 170165739.89,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-11-01",
+   "account": "Share capital",
+   "amount": 226887653.19,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-11-01",
+   "account": "Retained earnings",
+   "amount": 238232035.84,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-12-01",
+   "account": "Net revenue",
+   "amount": 112686230.25,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-12-01",
+   "account": "Cost of goods sold",
+   "amount": 69865462.75,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-12-01",
+   "account": "Payroll",
+   "amount": 13522347.63,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-12-01",
+   "account": "Rent",
+   "amount": 3380586.91,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-12-01",
+   "account": "Freight",
+   "amount": 4507449.21,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-12-01",
+   "account": "Other operating expenses",
+   "amount": 3380586.91,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-12-01",
+   "account": "Depreciation",
+   "amount": 2253724.6,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-12-01",
+   "account": "Interest expense",
+   "amount": 1126862.3,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-12-01",
+   "account": "Income tax",
+   "amount": 3662302.49,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-12-01",
+   "account": "Cash and banks",
+   "amount": 101417607.22,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-12-01",
+   "account": "Accounts receivable",
+   "amount": 157760722.35,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-12-01",
+   "account": "Inventory",
+   "amount": 180297968.4,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-12-01",
+   "account": "Fixed assets net",
+   "amount": 338058690.74,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-12-01",
+   "account": "Accounts payable",
+   "amount": 123954853.27,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-12-01",
+   "account": "Taxes payable",
+   "amount": 22537246.05,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-12-01",
+   "account": "Bank loans",
+   "amount": 169029345.37,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-12-01",
+   "account": "Share capital",
+   "amount": 225372460.5,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2026-12-01",
+   "account": "Retained earnings",
+   "amount": 236641083.52,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2027-01-01",
+   "account": "Net revenue",
+   "amount": 117637644.05,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2027-01-01",
+   "account": "Cost of goods sold",
+   "amount": 72935339.31,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2027-01-01",
+   "account": "Payroll",
+   "amount": 14116517.29,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2027-01-01",
+   "account": "Rent",
+   "amount": 3529129.32,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2027-01-01",
+   "account": "Freight",
+   "amount": 4705505.76,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2027-01-01",
+   "account": "Other operating expenses",
+   "amount": 3529129.32,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2027-01-01",
+   "account": "Depreciation",
+   "amount": 2352752.88,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2027-01-01",
+   "account": "Interest expense",
+   "amount": 1176376.44,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2027-01-01",
+   "account": "Income tax",
+   "amount": 3823223.43,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2027-01-01",
+   "account": "Cash and banks",
+   "amount": 105873879.64,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2027-01-01",
+   "account": "Accounts receivable",
+   "amount": 164692701.66,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2027-01-01",
+   "account": "Inventory",
+   "amount": 188220230.47,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2027-01-01",
+   "account": "Fixed assets net",
+   "amount": 352912932.14,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2027-01-01",
+   "account": "Accounts payable",
+   "amount": 129401408.45,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2027-01-01",
+   "account": "Taxes payable",
+   "amount": 23527528.81,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2027-01-01",
+   "account": "Bank loans",
+   "amount": 176456466.07,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2027-01-01",
+   "account": "Share capital",
+   "amount": 235275288.09,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2027-01-01",
+   "account": "Retained earnings",
+   "amount": 247039052.49,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2027-02-01",
+   "account": "Net revenue",
+   "amount": 115867715.52,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2027-02-01",
+   "account": "Cost of goods sold",
+   "amount": 71837983.62,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2027-02-01",
+   "account": "Payroll",
+   "amount": 13904125.86,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2027-02-01",
+   "account": "Rent",
+   "amount": 3476031.47,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2027-02-01",
+   "account": "Freight",
+   "amount": 4634708.62,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2027-02-01",
+   "account": "Other operating expenses",
+   "amount": 3476031.47,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2027-02-01",
+   "account": "Depreciation",
+   "amount": 2317354.31,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2027-02-01",
+   "account": "Interest expense",
+   "amount": 1158677.16,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2027-02-01",
+   "account": "Income tax",
+   "amount": 3765700.75,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2027-02-01",
+   "account": "Cash and banks",
+   "amount": 104280943.97,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2027-02-01",
+   "account": "Accounts receivable",
+   "amount": 162214801.73,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2027-02-01",
+   "account": "Inventory",
+   "amount": 185388344.84,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2027-02-01",
+   "account": "Fixed assets net",
+   "amount": 347603146.57,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2027-02-01",
+   "account": "Accounts payable",
+   "amount": 127454487.08,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2027-02-01",
+   "account": "Taxes payable",
+   "amount": 23173543.1,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2027-02-01",
+   "account": "Bank loans",
+   "amount": 173801573.29,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2027-02-01",
+   "account": "Share capital",
+   "amount": 231735431.05,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2027-02-01",
+   "account": "Retained earnings",
+   "amount": 243322202.59,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2027-03-01",
+   "account": "Net revenue",
+   "amount": 111884615.38,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2027-03-01",
+   "account": "Cost of goods sold",
+   "amount": 69368461.54,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2027-03-01",
+   "account": "Payroll",
+   "amount": 13426153.85,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2027-03-01",
+   "account": "Rent",
+   "amount": 3356538.46,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2027-03-01",
+   "account": "Freight",
+   "amount": 4475384.62,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2027-03-01",
+   "account": "Other operating expenses",
+   "amount": 3356538.46,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2027-03-01",
+   "account": "Depreciation",
+   "amount": 2237692.31,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2027-03-01",
+   "account": "Interest expense",
+   "amount": 1118846.15,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2027-03-01",
+   "account": "Income tax",
+   "amount": 3636250.0,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2027-03-01",
+   "account": "Cash and banks",
+   "amount": 100696153.85,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2027-03-01",
+   "account": "Accounts receivable",
+   "amount": 156638461.54,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2027-03-01",
+   "account": "Inventory",
+   "amount": 179015384.62,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2027-03-01",
+   "account": "Fixed assets net",
+   "amount": 335653846.15,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2027-03-01",
+   "account": "Accounts payable",
+   "amount": 123073076.92,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2027-03-01",
+   "account": "Taxes payable",
+   "amount": 22376923.08,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2027-03-01",
+   "account": "Bank loans",
+   "amount": 167826923.08,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2027-03-01",
+   "account": "Share capital",
+   "amount": 223769230.77,
+   "counterparty": null,
+   "transaction_id": null
+  },
+  {
+   "period": "2027-03-01",
+   "account": "Retained earnings",
+   "amount": 234957692.31,
+   "counterparty": null,
+   "transaction_id": null
+  }
+ ]
+}

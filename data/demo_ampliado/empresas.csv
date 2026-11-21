@@ -1,0 +1,13 @@
+company_id,nombre,pais,moneda_funcional,actividad,archivo,alias
+EMP101,Ferrex Honduras S.A.,Honduras,HNL,Comercializacion de ferreteria,ferrex_honduras.xlsx,Ferrex Honduras
+EMP102,Ferrex Colombia S.A.S.,Colombia,COP,Comercializacion de ferreteria,ferrex_colombia.csv,Ferrex ColombiaS.
+EMP103,Ferrex Costa Rica S.A.,Costa Rica,CRC,Comercializacion de ferreteria,ferrex_costa_rica.json,Ferrex Costa Rica
+EMP104,Ferrex Peru S.A.C.,Peru,PEN,Comercializacion de ferreteria,ferrex_peru.xlsx,Ferrex PeruC.
+EMP105,Ferrex Chile SpA,Chile,CLP,Comercializacion de ferreteria,ferrex_chile.csv,Ferrex Chile SpA
+EMP106,Ferrex Brasil Ltda.,Brasil,BRL,Comercializacion de ferreteria,ferrex_brasil.json,Ferrex Brasil Ltda.
+EMP107,Ferrex Guatemala Norte S.A.,Guatemala,GTQ,Comercializacion de ferreteria,ferrex_guatemala_norte.xlsx,Ferrex Guatemala Norte
+EMP108,Ferrex Mexico Sur S. de R.L.,Mexico,MXN,Comercializacion de ferreteria,ferrex_mexico_sur.csv,Ferrex Mexico Sur S. de R.L.
+EMP109,Ferrex Panama Logistica S.A.,Panama,USD,Comercializacion de ferreteria,ferrex_panama_logistica.json,Ferrex Panama Logistica
+EMP110,Ferrex Ecuador S.A.,Ecuador,USD,Comercializacion de ferreteria,ferrex_ecuador.xlsx,Ferrex Ecuador
+EMP111,Ferrex Nicaragua S.A.,Nicaragua,NIO,Comercializacion de ferreteria,ferrex_nicaragua.csv,Ferrex Nicaragua
+EMP112,Ferrex Rep. Dominicana S.R.L.,Rep. Dominicana,DOP,Comercializacion de ferreteria,ferrex_rep_dominicana.json,Ferrex Rep. Dominicana S.R.L.

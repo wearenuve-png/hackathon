@@ -89,3 +89,12 @@ def test_en_la_app_se_ven_los_tres_anios_sin_errores(carpeta, monkeypatch):
         at.radio(key="nav").set_value(sec).run()
         assert not at.exception, (sec, at.exception)
         assert "falló" not in " ".join(m.value for m in at.markdown)
+
+
+def test_la_carpeta_lista_del_repositorio_es_la_que_genera_el_script(carpeta):
+    listo = ROOT / "data" / "demo_ampliado"
+    assert sorted(p.name for p in listo.iterdir()) == sorted(p.name for p in carpeta.iterdir())
+    for f in carpeta.iterdir():
+        if f.suffix != ".xlsx":
+            assert (listo / f.name).read_bytes() == f.read_bytes(), f.name
+    assert CA.preparar([str(listo)])["ok"]

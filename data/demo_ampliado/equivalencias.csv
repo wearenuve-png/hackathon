@@ -1,0 +1,217 @@
+company_id,cuenta_local,account_code
+EMP101,Ventas,4000
+EMP101,Costo de ventas,5000
+EMP101,Sueldos y salarios,6000
+EMP101,Alquileres,6100
+EMP101,Fletes,6200
+EMP101,Otros gastos,6300
+EMP101,Depreciacion,6400
+EMP101,Intereses,7000
+EMP101,Impuesto sobre la renta,8000
+EMP101,Caja y bancos,1000
+EMP101,Clientes,1100
+EMP101,Inventarios,1200
+EMP101,Activo fijo neto,1500
+EMP101,Proveedores,2000
+EMP101,Impuestos por pagar,2100
+EMP101,Prestamos,2500
+EMP101,Capital social,3000
+EMP101,Utilidades acumuladas,3100
+EMP102,Ingresos por ventas netas,4000
+EMP102,Costo de mercaderia vendida,5000
+EMP102,Gastos de personal,6000
+EMP102,Renta de locales,6100
+EMP102,Transporte y fletes,6200
+EMP102,Gastos generales,6300
+EMP102,Depreciaciones,6400
+EMP102,Gastos financieros,7000
+EMP102,ISR del periodo,8000
+EMP102,Efectivo,1000
+EMP102,Cuentas por cobrar,1100
+EMP102,Existencias,1200
+EMP102,Propiedad planta y equipo,1500
+EMP102,Cuentas por pagar,2000
+EMP102,Impuestos por pagar,2100
+EMP102,Deuda bancaria,2500
+EMP102,Capital,3000
+EMP102,Resultados acumulados,3100
+EMP103,Net revenue,4000
+EMP103,Cost of goods sold,5000
+EMP103,Payroll,6000
+EMP103,Rent,6100
+EMP103,Freight,6200
+EMP103,Other operating expenses,6300
+EMP103,Depreciation,6400
+EMP103,Interest expense,7000
+EMP103,Income tax,8000
+EMP103,Cash and banks,1000
+EMP103,Accounts receivable,1100
+EMP103,Inventory,1200
+EMP103,Fixed assets net,1500
+EMP103,Accounts payable,2000
+EMP103,Taxes payable,2100
+EMP103,Bank loans,2500
+EMP103,Share capital,3000
+EMP103,Retained earnings,3100
+EMP104,Ventas,4000
+EMP104,Costo de ventas,5000
+EMP104,Sueldos y salarios,6000
+EMP104,Alquileres,6100
+EMP104,Fletes,6200
+EMP104,Otros gastos,6300
+EMP104,Depreciacion,6400
+EMP104,Intereses,7000
+EMP104,Impuesto sobre la renta,8000
+EMP104,Caja y bancos,1000
+EMP104,Clientes,1100
+EMP104,Inventarios,1200
+EMP104,Activo fijo neto,1500
+EMP104,Proveedores,2000
+EMP104,Impuestos por pagar,2100
+EMP104,Prestamos,2500
+EMP104,Capital social,3000
+EMP104,Utilidades acumuladas,3100
+EMP105,Ingresos por ventas netas,4000
+EMP105,Costo de mercaderia vendida,5000
+EMP105,Gastos de personal,6000
+EMP105,Renta de locales,6100
+EMP105,Transporte y fletes,6200
+EMP105,Gastos generales,6300
+EMP105,Depreciaciones,6400
+EMP105,Gastos financieros,7000
+EMP105,ISR del periodo,8000
+EMP105,Efectivo,1000
+EMP105,Cuentas por cobrar,1100
+EMP105,Existencias,1200
+EMP105,Propiedad planta y equipo,1500
+EMP105,Cuentas por pagar,2000
+EMP105,Impuestos por pagar,2100
+EMP105,Deuda bancaria,2500
+EMP105,Capital,3000
+EMP105,Resultados acumulados,3100
+EMP106,Net revenue,4000
+EMP106,Cost of goods sold,5000
+EMP106,Payroll,6000
+EMP106,Rent,6100
+EMP106,Freight,6200
+EMP106,Other operating expenses,6300
+EMP106,Depreciation,6400
+EMP106,Interest expense,7000
+EMP106,Income tax,8000
+EMP106,Cash and banks,1000
+EMP106,Accounts receivable,1100
+EMP106,Inventory,1200
+EMP106,Fixed assets net,1500
+EMP106,Accounts payable,2000
+EMP106,Taxes payable,2100
+EMP106,Bank loans,2500
+EMP106,Share capital,3000
+EMP106,Retained earnings,3100
+EMP107,Ingresos por ventas netas,4000
+EMP107,Costo de mercaderia vendida,5000
+EMP107,Gastos de personal,6000
+EMP107,Renta de locales,6100
+EMP107,Transporte y fletes,6200
+EMP107,Gastos generales,6300
+EMP107,Depreciaciones,6400
+EMP107,Gastos financieros,7000
+EMP107,ISR del periodo,8000
+EMP107,Efectivo,1000
+EMP107,Cuentas por cobrar,1100
+EMP107,Existencias,1200
+EMP107,Propiedad planta y equipo,1500
+EMP107,Cuentas por pagar,2000
+EMP107,Impuestos por pagar,2100
+EMP107,Deuda bancaria,2500
+EMP107,Capital,3000
+EMP107,Resultados acumulados,3100
+EMP108,Ventas,4000
+EMP108,Costo de ventas,5000
+EMP108,Sueldos y salarios,6000
+EMP108,Alquileres,6100
+EMP108,Fletes,6200
+EMP108,Otros gastos,6300
+EMP108,Depreciacion,6400
+EMP108,Intereses,7000
+EMP108,Impuesto sobre la renta,8000
+EMP108,Caja y bancos,1000
+EMP108,Clientes,1100
+EMP108,Inventarios,1200
+EMP108,Activo fijo neto,1500
+EMP108,Proveedores,2000
+EMP108,Impuestos por pagar,2100
+EMP108,Prestamos,2500
+EMP108,Capital social,3000
+EMP108,Utilidades acumuladas,3100
+EMP109,Net revenue,4000
+EMP109,Cost of goods sold,5000
+EMP109,Payroll,6000
+EMP109,Rent,6100
+EMP109,Freight,6200
+EMP109,Other operating expenses,6300
+EMP109,Depreciation,6400
+EMP109,Interest expense,7000
+EMP109,Income tax,8000
+EMP109,Cash and banks,1000
+EMP109,Accounts receivable,1100
+EMP109,Inventory,1200
+EMP109,Fixed assets net,1500
+EMP109,Accounts payable,2000
+EMP109,Taxes payable,2100
+EMP109,Bank loans,2500
+EMP109,Share capital,3000
+EMP109,Retained earnings,3100
+EMP110,Net revenue,4000
+EMP110,Cost of goods sold,5000
+EMP110,Payroll,6000
+EMP110,Rent,6100
+EMP110,Freight,6200
+EMP110,Other operating expenses,6300
+EMP110,Depreciation,6400
+EMP110,Interest expense,7000
+EMP110,Income tax,8000
+EMP110,Cash and banks,1000
+EMP110,Accounts receivable,1100
+EMP110,Inventory,1200
+EMP110,Fixed assets net,1500
+EMP110,Accounts payable,2000
+EMP110,Taxes payable,2100
+EMP110,Bank loans,2500
+EMP110,Share capital,3000
+EMP110,Retained earnings,3100
+EMP111,Ventas,4000
+EMP111,Costo de ventas,5000
+EMP111,Sueldos y salarios,6000
+EMP111,Alquileres,6100
+EMP111,Fletes,6200
+EMP111,Otros gastos,6300
+EMP111,Depreciacion,6400
+EMP111,Intereses,7000
+EMP111,Impuesto sobre la renta,8000
+EMP111,Caja y bancos,1000
+EMP111,Clientes,1100
+EMP111,Inventarios,1200
+EMP111,Activo fijo neto,1500
+EMP111,Proveedores,2000
+EMP111,Impuestos por pagar,2100
+EMP111,Prestamos,2500
+EMP111,Capital social,3000
+EMP111,Utilidades acumuladas,3100
+EMP112,Ingresos por ventas netas,4000
+EMP112,Costo de mercaderia vendida,5000
+EMP112,Gastos de personal,6000
+EMP112,Renta de locales,6100
+EMP112,Transporte y fletes,6200
+EMP112,Gastos generales,6300
+EMP112,Depreciaciones,6400
+EMP112,Gastos financieros,7000
+EMP112,ISR del periodo,8000
+EMP112,Efectivo,1000
+EMP112,Cuentas por cobrar,1100
+EMP112,Existencias,1200
+EMP112,Propiedad planta y equipo,1500
+EMP112,Cuentas por pagar,2000
+EMP112,Impuestos por pagar,2100
+EMP112,Deuda bancaria,2500
+EMP112,Capital,3000
+EMP112,Resultados acumulados,3100

@@ -1,0 +1,22 @@
+account_code,account_name,estado,clase,corriente,total_de
+1000,Efectivo y equivalentes,BG,activo,S,
+1100,Cuentas por cobrar,BG,activo,S,
+1200,Inventario,BG,activo,S,
+1500,"Propiedad, planta y equipo neto",BG,activo,N,
+2000,Cuentas por pagar,BG,pasivo,S,
+2100,Impuestos por pagar,BG,pasivo,S,
+2500,Prestamos bancarios,BG,pasivo,N,
+3000,Capital social,BG,patrimonio,N,
+3100,Utilidades retenidas,BG,patrimonio,N,
+4000,Ingresos por ventas,ER,ingreso,,
+4100,Ingresos por servicios,ER,ingreso,,
+5000,Costo de ventas,ER,costo,,
+6000,Gastos de personal,ER,gasto_operativo,,
+6100,Alquileres,ER,gasto_operativo,,
+6200,Fletes y transporte,ER,gasto_operativo,,
+6300,Otros gastos operativos,ER,gasto_operativo,,
+6400,Depreciacion,ER,gasto_operativo,,
+7000,Gastos financieros,ER,gasto_financiero,,
+8000,Impuesto sobre la renta,ER,impuesto,,
+TOT_ING,Total ingresos,ER,total,,4000|4100
+TOT_GOP,Total gastos de operacion,ER,total,,6000|6100|6200|6300|6400
