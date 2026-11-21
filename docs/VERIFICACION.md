@@ -9,7 +9,7 @@ documentada abajo.
 
 ## Matriz
 
-| # | Caso | Qué hace NEXUS | Estado | Qué ve el usuario | Prueba |
+| # | Caso | Qué hace FinaCore | Estado | Qué ve el usuario | Prueba |
 |---|---|---|---|---|---|
 | 1 | Mismo ID de transacción duplicado en un archivo | Excluye la segunda fila con un ajuste registrado, con motivo y regla, **reversible**. El original no se borra. | probado | Fila en «Registros fuera del consolidado» (`EXCLUDED_DUPLICATE`); hallazgo `DUP-01`; el consolidado la cuenta una sola vez. | `caso01` |
 | 2a | Mismo archivo reenviado con otro nombre (mismo SHA-256) | Advierte; no excluye nada. | probado con límite (L4) | Alerta `ARC-01` con los dos nombres de archivo. | `caso02a` |
@@ -51,14 +51,14 @@ pasando y la clave de respuestas no cambió.
 | L14, L15 | **Nuevas**: alias de moneda no soportado en perfiles; el diagnóstico de balance es una heurística. |
 | Resto | Sin cambios. Ninguna limitación desaparece por completo. |
 
-## Limitaciones (lo que NEXUS no puede detectar con certeza)
+## Limitaciones (lo que FinaCore no puede detectar con certeza)
 No prometemos detectar «todo error»: detecta los casos de la matriz, y lo siguiente **queda fuera**.
 
 | Id | Limitación | Detalle |
 |---|---|---|
 | L1 | Error de moneda con poco historial | La sospecha de moneda equivocada (x8, /8) necesita al menos 3 periodos de la misma cuenta y empresa. Con 2 periodos o menos no hay referencia para decir cual es el atipico. |
 | L2 | Errores presentes en todo el historial | Si el error esta en todos los periodos (siempre mal), no hay comparacion que lo delate. |
-| L3 | La hipotesis de moneda no es una certeza | NEXUS propone que otra moneda explicaria el historial y muestra el impacto; dos monedas pueden encajar. Nunca corrige solo: una persona confirma. |
+| L3 | La hipotesis de moneda no es una certeza | FinaCore propone que otra moneda explicaria el historial y muestra el impacto; dos monedas pueden encajar. Nunca corrige solo: una persona confirma. |
 | L4 | Duplicados con datos distintos o sin historial activado | Se detectan duplicados por mismo ID (confirmado), por mismo importe, fecha y contraparte (posible), por mismo ID en dos empresas y por archivos identicos (mismo SHA-256) dentro de una carga. El reenvio ENTRE ejecuciones (mismo archivo o mismos IDs en una ejecucion anterior guardada) solo se advierte si se activa el historial (run(history_dir=...) o --historial); la interfaz no lo activa por defecto. Un duplicado con otro ID, otro importe o sin contraparte no se detecta. |
 | L5 | Cuenta mapeada pero equivocada | Solo se detecta la cuenta SIN equivalencia. Una equivalencia aprobada que apunta a la cuenta equivocada pasa. |
 | L6 | Tasa mal escrita sin salto detectable | Se bloquea la tasa faltante, vacia, en 0 o no numerica, y se marca como sospechosa la que cambia mas del umbral (15 %) frente al mes anterior. No se detecta la PRIMERA tasa de una moneda (sin historial), ni una tasa mal escrita que cambie menos que el umbral, ni una deriva gradual. |

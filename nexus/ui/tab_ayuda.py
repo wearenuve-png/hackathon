@@ -10,7 +10,7 @@ GLOSARIO = [
      "Las cifras se muestran igual, pero no son definitivas hasta resolver esos puntos."),
     ("Discrepancia intercompañía",
      "Una empresa del grupo dice haber vendido X a otra, y la otra dice haber comprado Y. Si X e Y no coinciden "
-     "dentro de la tolerancia, NEXUS abre una discrepancia y NO elimina ninguno de los dos lados: eliminar a ciegas "
+     "dentro de la tolerancia, FinaCore abre una discrepancia y NO elimina ninguno de los dos lados: eliminar a ciegas "
      "taparia un error. Se concilia con las empresas y se corrige el archivo."),
     ("De una cifra a su registro",
      "En la pestaña Trazabilidad se elige una cifra (por ejemplo Ingresos por ventas, cuenta 4000) y se ve cada "
@@ -26,7 +26,7 @@ GLOSARIO = [
      "Siempre se muestra con la etiqueta SUPUESTO y se puede cambiar sin tocar el codigo."),
     ("Sin explicar",
      "En el explicador de variaciones, la parte del cambio que los datos no prueban (por ejemplo, un registro "
-     "bloqueado sin valor en USD o un cambio de moneda entre periodos). NEXUS prefiere decirlo antes que adivinar."),
+     "bloqueado sin valor en USD o un cambio de moneda entre periodos). FinaCore prefiere decirlo antes que adivinar."),
     ("Rango de impacto",
      "Para un registro bloqueado que afecta la utilidad: cuanto valdria la utilidad si se excluye (como esta), si "
      "entrara tal como viene y si se corrigiera. Es informativo: ninguna cifra se modifica."),
@@ -37,9 +37,9 @@ GLOSARIO = [
     ("Ficha de hallazgo",
      "Cada hallazgo bloqueado o marcado tiene una ficha: que paso, donde (archivo, hoja y fila), por que importa "
      "(impacto en USD y en la utilidad), la causa PROBABLE y la accion humana recomendada. La causa siempre es una "
-     "hipotesis y nunca se atribuye a una persona; NEXUS no corrige ni convierte nada por su cuenta."),
+     "hipotesis y nunca se atribuye a una persona; FinaCore no corrige ni convierte nada por su cuenta."),
     ("Diagnóstico de balance descuadrado",
-     "Cuando activo no es igual a pasivo + patrimonio por una diferencia D, NEXUS busca en orden causas candidatas: "
+     "Cuando activo no es igual a pasivo + patrimonio por una diferencia D, FinaCore busca en orden causas candidatas: "
      "un registro con importe igual a D, un registro cuyo importe x 2 es D (signo invertido), un duplicado por D, "
      "registros bloqueados o pendientes que suman D, o una diferencia de tasa. Si ninguna coincide, dice 'causa no "
      "identificada' y muestra los registros mas cercanos. Son coincidencias numericas, no pruebas."),
@@ -130,7 +130,7 @@ def render() -> None:
             st.markdown(texto)
     st.markdown("### Preguntas frecuentes")
     _faq()
-    st.markdown("### Qué NO puede detectar NEXUS")
+    st.markdown("### Qué NO puede detectar FinaCore")
     st.caption("No prometemos detectar todo error. Estas son las limitaciones conocidas (detalle en "
                "docs/VERIFICACION.md).")
     for id_, titulo, detalle in LIMITACIONES:

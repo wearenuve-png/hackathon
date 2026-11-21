@@ -22,7 +22,7 @@ PESTANAS = {
     "Variaciones": "Por qué cambió cada cifra frente al período anterior, con causas que suman el total.",
     "Simulador": "Efecto de mover la tasa de MXN o GTQ entre -10 % y +10 % (SIMULACIÓN).",
     "Perfiles e integridad": "Cómo se lee cada archivo, versión y aprobación del perfil, y el SHA-256 de cada archivo.",
-    "Ayuda": "Glosario, preguntas frecuentes y lo que NEXUS no puede detectar.",
+    "Ayuda": "Glosario, preguntas frecuentes y lo que FinaCore no puede detectar.",
 }
 NOTA_CARGA = ("Estos datos vienen de las carpetas que la persona eligió; los errores los detectó el motor al leer "
               "esos archivos.")

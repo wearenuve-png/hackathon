@@ -340,21 +340,21 @@ def test_resumen_de_la_carga_y_explicar_todo_en_simple_en_la_interfaz(app):
     assert "5 de 6" in franja and "Pendientes de tu decisión" in franja and "Corregidos automáticamente" in franja
     todo = " ".join(m.value for m in app.markdown)
     assert "Huella (SHA-256)" in todo and ">Rojo<" in todo and ">Amarillo<" in todo
-    assert not [m for m in app.markdown if "Qué hizo NEXUS con tus archivos" in m.value]
+    assert not [m for m in app.markdown if "Qué hizo FinaCore con tus archivos" in m.value]
     app.button(key="explicar_btn").click().run()
     tx = " ".join(m.value for m in app.markdown)
     for titulo in ("1. Lectura", "2. Normalización", "3. Validación", "4. Conversión a USD",
                    "5. Eliminaciones entre empresas", "6. Consolidación"):
         assert f"**{titulo}.**" in tx
     app.button(key="explicar_btn").click().run()
-    assert not [m for m in app.markdown if "Qué hizo NEXUS con tus archivos" in m.value]
+    assert not [m for m in app.markdown if "Qué hizo FinaCore con tus archivos" in m.value]
 
 
 def test_la_ficha_responde_que_paso_donde_valor_leido_por_que_importa_que_hizo_que_propone_y_que_decide(app):
     a_demo(app)
     ir(app, "Hallazgos")
     tx = " ".join(m.value for m in app.markdown)
-    for frag in ("**Valor leído.** `1O,000`", "**Qué hizo NEXUS.**", "**Qué propone.**", "**Qué debe decidir una persona.**",
+    for frag in ("**Valor leído.** `1O,000`", "**Qué hizo FinaCore.**", "**Qué propone.**", "**Qué debe decidir una persona.**",
                  "**Por qué importa.**", "**Causa probable.**", "APLICADA AUTOMÁTICAMENTE"):
         assert frag in tx, frag
     assert "(vacío)" in tx

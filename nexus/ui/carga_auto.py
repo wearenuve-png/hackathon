@@ -1,6 +1,6 @@
 """Carga automatica de presupuestos desde una o varias carpetas elegidas por la persona.
 
-NEXUS lee los archivos en SOLO LECTURA. Si hay una sola carpeta completa se usa tal cual; si hay varias, se arma una
+FinaCore lee los archivos en SOLO LECTURA. Si hay una sola carpeta completa se usa tal cual; si hay varias, se arma una
 carpeta de trabajo con COPIAS (los originales no se tocan). No se adivina nada: si falta la configuracion del grupo
 (empresas, tasas, catalogo, equivalencias, periodos) o un archivo de empresa, se dice exactamente que falta."""
 import csv
@@ -65,7 +65,7 @@ def preparar(carpetas: List[str], base: Optional[Path] = None) -> dict:
             out["problemas"].append(f"No se pudo leer la carpeta {r}.")
     falta = [c for c in CONFIG if c not in archivos]
     if falta:
-        out["problemas"].append("Falta la configuración del grupo: " + ", ".join(falta) + ". NEXUS no adivina qué "
+        out["problemas"].append("Falta la configuración del grupo: " + ", ".join(falta) + ". FinaCore no adivina qué "
                                 "empresa, moneda o tasa corresponde a cada archivo; agrégalos en alguna de las carpetas.")
     if out["problemas"]:
         return out
@@ -90,7 +90,7 @@ def preparar(carpetas: List[str], base: Optional[Path] = None) -> dict:
         destino = (base or carpeta_trabajo()) / clave
         try:
             destino.mkdir(parents=True, exist_ok=True)
-            (destino / MARCA).write_text("copias de trabajo creadas por NEXUS; se pueden borrar\n", encoding="utf-8")
+            (destino / MARCA).write_text("copias de trabajo creadas por FinaCore; se pueden borrar\n", encoding="utf-8")
             for n in list(CONFIG) + esperados:
                 shutil.copy2(archivos[n], destino / n)
         except OSError:

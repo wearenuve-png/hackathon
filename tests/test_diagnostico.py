@@ -95,7 +95,7 @@ def test_moneda_q_es_probable_alias_de_gtq_pero_requiere_aprobacion_y_no_se_conv
     assert "aprobación humana" in f.causa_probable and "NO convierte" in f.causa_probable
     assert "una persona" in f.accion.lower()
     r = next(r for r in res.records if r.source_file == loc["file"] and r.source_row == loc["row"])
-    assert r.status == "BLOCKED" and r.amount_usd is None and r.currency == "Q"           # NEXUS no la convirtio
+    assert r.status == "BLOCKED" and r.amount_usd is None and r.currency == "Q"           # FinaCore no la convirtio
     import csv
     with open(DATA / "tasas.csv", encoding="utf-8") as fh:
         tasa = next(D(x["usd_por_unidad_local"]) for x in csv.DictReader(fh)

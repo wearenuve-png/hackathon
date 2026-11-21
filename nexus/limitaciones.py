@@ -1,4 +1,4 @@
-"""Lo que NEXUS NO puede detectar con certeza. Una sola lista: la usan docs/VERIFICACION.md y la pestana Ayuda
+"""Lo que FinaCore NO puede detectar con certeza. Una sola lista: la usan docs/VERIFICACION.md y la pestana Ayuda
 (un test verifica que el documento contiene cada titulo)."""
 
 LIMITACIONES = [
@@ -8,7 +8,7 @@ LIMITACIONES = [
     ("L2", "Errores presentes en todo el historial",
      "Si el error esta en todos los periodos (siempre mal), no hay comparacion que lo delate."),
     ("L3", "La hipotesis de moneda no es una certeza",
-     "NEXUS propone que otra moneda explicaria el historial y muestra el impacto; dos monedas pueden encajar. "
+     "FinaCore propone que otra moneda explicaria el historial y muestra el impacto; dos monedas pueden encajar. "
      "Nunca corrige solo: una persona confirma."),
     ("L4", "Duplicados con datos distintos o sin historial activado",
      "Se detectan duplicados por mismo ID (confirmado), por mismo importe, fecha y contraparte (posible), por mismo "

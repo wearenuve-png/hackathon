@@ -1,4 +1,4 @@
-# Guion de demo NEXUS (3 a 5 minutos)
+# Guion de demo FinaCore (3 a 5 minutos)
 > **Navegación:** la interfaz usa un menú horizontal de secciones (Inicio, Estados, Alertas, Hallazgos, Intercompañía, Trazabilidad, Indicadores, Variaciones, Simulador, Integridad, Ayuda, Asistente); donde este guion dice «pestaña» se refiere a una sección del menú.
 
 **Datos SINTÉTICOS** (Grupo Ferrex, generados con `data/synthetic/generate.py`). Nunca presentarlos como datos reales.
@@ -21,7 +21,7 @@ carpeta que la persona elige. Carpeta sugerida: `ARCHIVOS PRUEBA` (los 12 archiv
 | 4:30 – 5:00 | 5. Restablecer | Todo vuelve a blanco |
 
 ### Paso 1 · Pantalla en blanco (0:30)
-**Hacer:** abrir la app. **Decir:** «Aquí no hay nada precargado; NEXUS solo trabaja con los presupuestos que le demos.»
+**Hacer:** abrir la app. **Decir:** «Aquí no hay nada precargado; FinaCore solo trabaja con los presupuestos que le demos.»
 
 ### Paso 2 · Cargar la carpeta (1:00)
 **Hacer:** pulsar **Cargar presupuestos**, elegir la carpeta (o escribir su ruta) y pulsar **Leer presupuestos**.
@@ -33,7 +33,7 @@ solo lectura: no se modifican.
 **Mostrar:** sección **Hallazgos**. Cada ficha explica qué pasó, en qué archivo, hoja y fila está, por qué importa
 (USD y utilidad), la causa probable y qué debe decidir una persona. Recorrer dos o tres: un importe con letra O, una
 moneda mal escrita, un duplicado, una diferencia entre empresas que **no** se elimina. **ESTIMACIÓN: requiere
-aprobación humana** aparece solo donde NEXUS propone un valor estimado. Si hay corrección propuesta, escribir el
+aprobación humana** aparece solo donde FinaCore propone un valor estimado. Si hay corrección propuesta, escribir el
 nombre en **Quién aprueba** y pulsar **Aprobar corrección** (el archivo no cambia; la decisión queda registrada).
 
 ### Paso 4 · El asistente los explica (1:00)
@@ -70,13 +70,13 @@ archivos originales siguen intactos.
 ### 1. El problema (0:20)
 **Decir:** «Un grupo con seis empresas, tres monedas y seis formatos de archivo distintos consolida hoy a mano:
 semanas de trabajo, ventas entre empresas contadas dos veces y errores que nadie ve hasta que ya contaminaron el
-número del grupo. NEXUS lo consolida en segundos, sin captura manual, y cada cifra se puede rastrear hasta su
+número del grupo. FinaCore lo consolida en segundos, sin captura manual, y cada cifra se puede rastrear hasta su
 registro. Los datos de hoy son sintéticos.»
 
 ### 2. Seis formatos, cada uno contra su perfil (0:40)
 **Mostrar:** pestaña *Perfiles e integridad*. Seis filas: XLSX, CSV, JSON; todas «Coincide con el perfil»; versión
 v1; «Aprobado por: Santiago Enriquez Salguero». Bajar a la tabla de integridad.
-**Decir:** «NEXUS corre dentro del servidor de la empresa: lee una carpeta en solo lectura, sin que nadie suba
+**Decir:** «FinaCore corre dentro del servidor de la empresa: lee una carpeta en solo lectura, sin que nadie suba
 archivos y sin internet. Cada archivo queda registrado con su SHA-256 y la app lo vuelve a calcular: todos
 coinciden. Cada empresa tiene un perfil aprobado que dice cómo leer su formato; si un archivo deja de
 coincidir con su perfil, la carga queda en revisión y no se procesa en silencio.»
@@ -86,7 +86,7 @@ coincidir con su perfil, la carga queda en revisión y no se procesa en silencio
 **Mostrar:** el encabezado de 2026-10 (etiqueta **PROVISIONAL**) y la pestaña *Alertas y errores*, tabla de
 registros fuera del consolidado y tabla de impacto.
 **Decir:** «Esta depreciación de Transportes Ferrex México llegó con signo negativo: −240,000 pesos mexicanos, −12,000 dólares.
-NEXUS no la corrige ni la ignora: la bloquea y la deja fuera del consolidado, con su importe y su motivo. Como no
+FinaCore no la corrige ni la ignora: la bloquea y la deja fuera del consolidado, con su importe y su motivo. Como no
 sabemos cuál es el dato correcto, mostramos el rango: excluida, la utilidad es 359,125; si entrara tal como viene,
 sube 12,000; con el signo corregido, baja 12,000. Por eso el período se marca **PROVISIONAL**: rango de utilidad
 342,325 a 375,925 dólares. Ninguna cifra se modificó.»
@@ -97,7 +97,7 @@ de 4,800 USD y un duplicado de factura excluido con ajuste reversible; mencionar
 ### 4. Consolidado de octubre (0:40)
 **Mostrar:** pestaña *Estados financieros*, estado de resultados con las tres columnas.
 **Decir:** «Sumar las seis empresas sin más da ingresos de 2,078,000 dólares. Pero las empresas se venden entre
-sí: 93,000 dólares se contarían dos veces. NEXUS elimina solo lo que concilia exacto y el consolidado real es
+sí: 93,000 dólares se contarían dos veces. FinaCore elimina solo lo que concilia exacto y el consolidado real es
 **1,985,000**. La utilidad neta es **359,125** y no cambia, porque lo que sale de ingresos también sale de costos.
 El balance cuadra.»
 **Cifras:** ingresos 1,985,000 (ingenua 2,078,000); utilidad neta 359,125; 8 eliminaciones conciliadas.
@@ -105,7 +105,7 @@ El balance cuadra.»
 ### 5. La discrepancia que no se elimina (0:30)
 **Mostrar:** período 2026-11, tabla de intercompañía.
 **Decir:** «Distribuidora Central dice haber vendido 20,000 dólares a Ferrex México; México dice haber
-comprado 18,000. NEXUS no elimina a ciegas: abre una discrepancia de **2,000 dólares** para revisión y marca
+comprado 18,000. FinaCore no elimina a ciegas: abre una discrepancia de **2,000 dólares** para revisión y marca
 el período como provisional. Es una sola diferencia: afecta tanto la operación (la venta) como el saldo (cuenta por
 cobrar y por pagar), y no se elimina ninguna de las dos.»
 *(La interfaz y el script de respaldo muestran la discrepancia una sola vez, con una nota de que afecta la operación
@@ -138,7 +138,7 @@ son representativas por ser datos sintéticos**; no se presentan en la demo.
 descompone en causas que suman exacto. Operación, menos 55,815; ajustes y registros bloqueados, más 17,000; mes
 faltante de una empresa (Ferrex Importaciones no entregó noviembre), menos 69,000. Y queda una parte **sin
 explicar**, más 27,500 dólares: es la planilla de Distribuidora Central, que llegó con la moneda “Q”, bloqueada y sin
-valor en dólares. NEXUS no adivina: lo dice. Todo es calculado con plantillas, sin IA, y cada línea se abre hasta
+valor en dólares. FinaCore no adivina: lo dice. Todo es calculado con plantillas, sin IA, y cada línea se abre hasta
 archivo, hoja y fila. Está marcado **PROVISIONAL** porque hay datos sin resolver.»
 **Cifras:** −80,315 (−22.4%): operación −55,815; ajustes y bloqueados +17,000; mes faltante −69,000; sin explicar
 +27,500 (EMP002, cuenta 6000, moneda «Q»).
@@ -152,7 +152,7 @@ sintéticos. Lo que sigue es la hoja de ruta.»
 - **Pestaña Hallazgos** (sección propia del menú horizontal): una ficha por hallazgo con *qué pasó, dónde (archivo, hoja, fila), por qué importa (USD y
   utilidad), causa probable y acción humana*, con contador por tipo y ordenada por impacto. Buen complemento del
   paso 3: abrir la ficha de la depreciación (signo invertido) y la de la moneda «Q» (*probable alias de GTQ, pero
-  requiere aprobación humana; NEXUS no la convierte sola*).
+  requiere aprobación humana; FinaCore no la convierte sola*).
 - **Ficha de balance descuadrado**: lista causas candidatas en orden (registro igual al desbalance, importe × 2,
   duplicado, registros fuera de balance, diferencia de tasa) o «causa no identificada». **Con los datos sintéticos el
   balance cuadra, así que esta ficha no aparece en la demo**; se verifica en `tests/test_diagnostico.py`. Decirlo así
@@ -161,7 +161,7 @@ sintéticos. Lo que sigue es la hoja de ruta.»
 - **Descargar paquete de auditoría**: zip con el consolidado, ajustes, alertas, discrepancias, perfiles y hashes SHA-256.
 - **Simulador**: mueve la tasa de MXN o GTQ entre −10 % y +10 % y ve el efecto en el consolidado y los indicadores,
   con la etiqueta **SIMULACIÓN** (no modifica datos ni archivos).
-- **Ayuda**: glosario, preguntas frecuentes y lo que NEXUS no puede detectar (contenido fijo).
+- **Ayuda**: glosario, preguntas frecuentes y lo que FinaCore no puede detectar (contenido fijo).
 - La matriz de errores y sus limitaciones están en `docs/VERIFICACION.md`.
 
 ## Versión corta (3 minutos)
@@ -189,7 +189,7 @@ Decirlo como plan, sin fechas ni promesas:
 | ¿Qué tan confiables son ROIC, ROCE y EVA? | Las fórmulas son estándar y se calculan con las cifras consolidadas, pero WACC, impuesto y definición de capital son supuestos nuestros, visibles y editables. Son mensuales; no son una valoración. |
 | ¿Cómo manejan los duplicados? | Mismo ID de factura: se excluye automáticamente con un ajuste registrado y reversible. Sin ID (mismo importe, fecha y contraparte): solo se marca, y una persona decide. |
 | ¿Es seguro? ¿Dónde corre? | Dentro del servidor de la empresa, sin internet. Lee los archivos en solo lectura, registra su SHA-256 y no los modifica; hay pruebas que bloquean la red y verifican que los hashes no cambian. No tiene inicio de sesión ni control de accesos todavía. |
-| ¿Qué hace NEXUS si el balance no cuadra? | Alerta y una ficha con causas **candidatas** en orden (un registro igual a la diferencia, un importe × 2 por signo invertido, un duplicado, registros fuera del balance o una diferencia de tasa) o «causa no identificada» con los registros más cercanos. Son coincidencias numéricas, no pruebas, y se calculan por empresa y período. Con los datos de la demo el balance cuadra; se probó con casos armados a mano. |
+| ¿Qué hace FinaCore si el balance no cuadra? | Alerta y una ficha con causas **candidatas** en orden (un registro igual a la diferencia, un importe × 2 por signo invertido, un duplicado, registros fuera del balance o una diferencia de tasa) o «causa no identificada» con los registros más cercanos. Son coincidencias numéricas, no pruebas, y se calculan por empresa y período. Con los datos de la demo el balance cuadra; se probó con casos armados a mano. |
 | ¿Y si una tasa de cambio se escribe mal? | Si cambia más de un umbral (15 %, configurable) frente al mes anterior se marca como sospechosa, con su impacto en USD, y se pide confirmación; no se bloquea ni se corrige. No se detecta la primera tasa de una moneda (sin historial) ni un cambio menor al umbral. |
 | ¿Y si me reenvían el mismo archivo? | Dentro de una carga se advierte por hash idéntico o ID repetido. Entre ejecuciones, solo si se activa el historial (`--historial`); la interfaz no lo activa por defecto. Solo advierte: no excluye nada. |
 | ¿Por qué no usaron un chatbot? | Porque un número que nadie puede auditar no sirve. Los cálculos son código determinista y ninguna IA calcula ni altera importes. Existe un **Asistente (prototipo)** opcional y apagado por defecto: es un modelo de lenguaje que solo explica resultados ya calculados, con la etiqueta visible y sin ver archivos ni filas crudas. Sin llave funciona en modo local con plantillas. |

@@ -3,7 +3,7 @@
 Cada hallazgo termina en UNA de dos acciones:
   APLICADA_AUTOMATICAMENTE  solo el duplicado exacto con el mismo ID: el motor ya lo excluyo con un ajuste
                             registrado y reversible.
-  PROPUESTA                 todo lo demas: el registro queda bloqueado o pendiente y NEXUS propone una correccion
+  PROPUESTA                 todo lo demas: el registro queda bloqueado o pendiente y FinaCore propone una correccion
                             (valor, motivo, impacto). Una persona la aprueba o la rechaza.
 
 Aprobar NO modifica ningun archivo: la decision queda en un registro de auditoria (JSONL, solo se agrega) y el
@@ -205,7 +205,7 @@ def _prop_asiento(res, f) -> Optional[Propuesta]:
     opciones = [(c, a.name) for c, a in res.config.catalog.items() if a.cls in cls]
     return Propuesta(f"ASIENTO|{f.company_id}|{f.period}", ASIENTO, PROPUESTA, f.rule_id, f.company_id, f.period, [],
                      f"D = {fmt(D_)} USD", abs(D_),
-                     f"Agregar el asiento omitido por {fmt(abs(D_))} USD para que el balance cuadre; NEXUS no sabe en qué "
+                     f"Agregar el asiento omitido por {fmt(abs(D_))} USD para que el balance cuadre; FinaCore no sabe en qué "
                      f"cuenta va: la elige una persona.", abs(D_),
                      "No cambia el estado de resultados; hace cuadrar el balance de la empresa en ese período.",
                      "No cambió nada: el registro huérfano sigue en el consolidado y el período queda PROVISIONAL.",

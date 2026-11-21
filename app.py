@@ -1,4 +1,4 @@
-"""NEXUS - interfaz Streamlit.
+"""FinaCore - interfaz Streamlit.
 
 La interfaz NO calcula cifras del consolidado: solo ordena y muestra lo que devuelve el motor
 (nexus.pipeline.run). Las secciones se eligen en el menu horizontal de arriba (key "nav") y el modo
@@ -32,10 +32,10 @@ from nexus.ui import (carga_auto, correcciones, explicar, extras, panel_segurida
 from nexus.variance import view
 
 ROOT = Path(__file__).resolve().parent
-st.set_page_config(page_title="NEXUS | Consolidación", layout="wide", initial_sidebar_state="expanded")
+st.set_page_config(page_title="FinaCore | Consolidación", layout="wide", initial_sidebar_state="expanded")
 
 # ------------------------------------------------------------------ temas (sin fuentes externas: corre sin red)
-# Linea grafica del pitch: carbon, naranja NEXUS y blanco hueso; en modo claro, papel y tinta negra.
+# Linea grafica del pitch: carbon, naranja FinaCore y blanco hueso; en modo claro, papel y tinta negra.
 # El texto es blanco en oscuro y negro en claro: el color queda para puntos de estado, marca y graficos.
 # Streamlit no cambia de tema desde el codigo: se ajustan sus opciones y se vuelve a dibujar la pagina.
 THEMES = {
@@ -61,7 +61,7 @@ TOKENS = {
 CSS = """
 .block-container{padding-top:1.4rem;padding-left:2.2rem;padding-right:2.2rem;max-width:1420px}
 [data-testid="stAppDeployButton"],.stDeployButton{display:none}
-.nx-word{font-family:var(--display);font-weight:900;font-size:2.7rem;color:var(--brand);letter-spacing:-.055em;
+.nx-word{font-family:var(--display);font-weight:900;font-size:2.1rem;color:var(--brand);letter-spacing:-.055em;
  line-height:.95;margin:.1rem 0 .35rem}
 .nx-word-sub{font-family:var(--display);font-weight:900;font-size:1.02rem;color:var(--ink);letter-spacing:-.02em;
  line-height:1.15;margin-bottom:1rem}
@@ -274,7 +274,7 @@ def _cambiar_tema():
 
 with st.sidebar:
     _logo, _tema = st.columns([4, 1], vertical_alignment="center")
-    _logo.markdown('<div class="nx-word">NEXUS</div>', unsafe_allow_html=True)
+    _logo.markdown('<div class="nx-word">FinaCore</div>', unsafe_allow_html=True)
     _claro = st.session_state.modo_claro                  # luna en oscuro, sol en claro; solo blanco y negro
     _tema.button("", key="tema", type="tertiary", on_click=_cambiar_tema,
                  icon=":material/light_mode:" if _claro else ":material/dark_mode:",
@@ -294,7 +294,7 @@ if not _carga:
     st.write("")
     html('<div class="nx-title">Sin datos cargados</div>'
          '<div class="nx-lede">No hay cifras, gráficas ni archivos leídos. Pulsa «Cargar presupuestos», elige la '
-         'carpeta donde están los presupuestos y NEXUS los leerá, detectará los errores y explicará cada uno.</div>')
+         'carpeta donde están los presupuestos y FinaCore los leerá, detectará los errores y explicará cada uno.</div>')
     st.stop()
 
 with st.sidebar:
@@ -667,7 +667,7 @@ if section == "Perfiles e integridad":
         with st.expander(f"Perfil {cid} v{p.profile_version}"):
             c1, c2 = st.columns(2)
             c1.markdown("**Columnas**")
-            c1.dataframe(pd.DataFrame([{"Campo NEXUS": k, "Encabezado en la fuente": v} for k, v in p.columns.items()]),
+            c1.dataframe(pd.DataFrame([{"Campo FinaCore": k, "Encabezado en la fuente": v} for k, v in p.columns.items()]),
                          width="stretch", hide_index=True)
             c2.markdown("**Cuentas**")
             c2.dataframe(pd.DataFrame([{"Cuenta local": k, "Codigo": v} for k, v in p.accounts.items()]),

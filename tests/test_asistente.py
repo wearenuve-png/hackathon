@@ -1,4 +1,4 @@
-"""Asistente NEXUS (prototipo): modo local sin llave, cliente simulado, llave nunca expuesta, contexto sin filas crudas."""
+"""Asistente FinaCore (prototipo): modo local sin llave, cliente simulado, llave nunca expuesta, contexto sin filas crudas."""
 import json
 from decimal import Decimal
 from pathlib import Path

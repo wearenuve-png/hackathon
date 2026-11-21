@@ -4,7 +4,7 @@ Por cada hallazgo bloqueado o marcado genera una ficha: que paso, donde (archivo
 (impacto en USD y en utilidad), causa PROBABLE y accion humana recomendada. Reglas de redaccion:
   - la causa siempre dice "probable": son hipotesis, nunca certezas;
   - nunca se atribuye el error a personas; se habla de datos, archivos y procesos;
-  - NEXUS no corrige ni convierte nada solo: la accion siempre la toma una persona.
+  - FinaCore no corrige ni convierte nada solo: la accion siempre la toma una persona.
 Todo es calculo determinista con Decimal sobre el resultado del motor."""
 import re
 from collections import defaultdict
@@ -159,7 +159,7 @@ def _dup(f, ctx, recs):
                 else "No afecta la utilidad.")
         causa = ("Probable doble captura (mismo importe, fecha y contraparte, sin ID); también es posible que sean "
                  "dos operaciones distintas e iguales.")
-        acc = "Confirmar con la empresa si es una sola operación. NEXUS no excluye sin confirmación humana."
+        acc = "Confirmar con la empresa si es una sola operación. FinaCore no excluye sin confirmación humana."
         usd = (r0.amount_usd or D0)
     elif f.rule_id == "DUP-03":
         imp = (f"El mismo ID aparece en archivos de empresas distintas por {fmt(usd)} USD; si es una sola operación "
@@ -194,7 +194,7 @@ def _moneda_sospechosa(f, ctx, recs):
            " El importe sigue en el consolidado sin modificar y el período queda PROVISIONAL.")
     causa = (f"Probable moneda equivocada: el importe parece estar expresado en {x} y no en la moneda con la que se "
              f"marcó (la razón contra el historial coincide con una tasa de cambio). Es una hipótesis, no una certeza.")
-    acc = f"Confirmar la moneda del importe con la empresa y corregir el archivo si corresponde. NEXUS no corrige solo."
+    acc = f"Confirmar la moneda del importe con la empresa y corregir el archivo si corresponde. FinaCore no corrige solo."
     return imp, dif, True, util, causa, acc
 
 
@@ -215,7 +215,7 @@ def _moneda_no_reconocida(f, ctx, recs):
         util = "Queda fuera del consolidado; su efecto en la utilidad no se puede calcular sin conocer la moneda."
     if alias:
         causa = (f"Probable alias de {alias}: «{codigo}» suele ser el símbolo de esa moneda. Es solo una sospecha: "
-                 f"requiere aprobación humana en el perfil de la empresa y NEXUS NO convierte el importe por su cuenta.")
+                 f"requiere aprobación humana en el perfil de la empresa y FinaCore NO convierte el importe por su cuenta.")
         acc = (f"Una persona debe confirmar si «{codigo}» equivale a {alias}: corregir el archivo de origen "
                f"(escribir {alias}) o aprobar el alias en el perfil de la empresa. Hoy los perfiles no admiten alias de "
                f"moneda, por lo que la vía disponible es corregir el archivo.")
@@ -249,7 +249,7 @@ def _tasa_sospechosa(f, ctx, recs):
     return (f.message, abs(n[0]) if n else None, True, "Ver impacto: " + (f.impact or "no cuantificado"),
             "Probable error de captura en la tasa (por ejemplo un decimal corrido) o un cambio real y fuerte de la "
             "moneda. Es una sospecha, no una certeza.",
-            "Confirmar la tasa del mes con la fuente oficial. NEXUS no la corrige ni bloquea la carga.")
+            "Confirmar la tasa del mes con la fuente oficial. FinaCore no la corrige ni bloquea la carga.")
 
 
 def _sin_mapear(f, ctx, recs):
@@ -260,7 +260,7 @@ def _sin_mapear(f, ctx, recs):
     return (f"El registro ({fmt(r.amount_original)} {r.currency}, {fmt(r.amount_usd)} USD) no entra al consolidado "
             f"hasta mapear su cuenta.", abs(r.amount_usd) if r.amount_usd is not None else None, False, util,
             "Probable cuenta nueva o escrita con otro nombre que aún no está en las equivalencias del perfil.",
-            "Una persona debe mapearla a una cuenta del catálogo común y aprobar el perfil. NEXUS no adivina la cuenta.")
+            "Una persona debe mapearla a una cuenta del catálogo común y aprobar el perfil. FinaCore no adivina la cuenta.")
 
 
 def _fecha(f, ctx, recs):
@@ -423,7 +423,7 @@ def _fichas_intercompania(ctx: _Ctx) -> List[Ficha]:
             f"operación y el período queda PROVISIONAL.", dif, False,
             f"La utilidad incluye {efecto:+,.2f} USD de esta operación que desaparecería al conciliar.",
             "Probable diferencia de fecha, de moneda o de tasa, un registro faltante o un importe distinto en una de "
-            "las dos empresas.", "Conciliar con ambas empresas antes de eliminar; NEXUS nunca elimina sola una "
+            "las dos empresas.", "Conciliar con ambas empresas antes de eliminar; FinaCore nunca elimina sola una "
             "diferencia."))
     return out
 

@@ -87,7 +87,7 @@ def test_todo_lo_de_main_esta_accesible(app, periodo):
     assert any(e.label == "PROVISIONAL" for e in at.expander)
     assert len(at.chat_input) == 1                                                   # chat local de la Ayuda
     assert "Seguridad e integridad" in " ".join(textos(ir(at, "Perfiles e integridad")))
-    assert any("Asistente NEXUS (prototipo)" in c.value for c in ir(at, "Asistente").caption)
+    assert any("Asistente FinaCore (prototipo)" in c.value for c in ir(at, "Asistente").caption)
 
 
 def test_variaciones_primer_periodo_avisa_y_los_demas_comparan(app):

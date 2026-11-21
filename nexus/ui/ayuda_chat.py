@@ -27,7 +27,7 @@ def entradas() -> List[Tuple[str, str, str]]:
     """(seccion, titulo, texto) de todo lo que hay en la Ayuda."""
     from .tab_ayuda import FAQ, GLOSARIO
     out = [("Glosario", t, d) for t, d in GLOSARIO] + [("Preguntas frecuentes", q, a) for q, a in FAQ]
-    out += [("Qué NO puede detectar NEXUS", f"{i}. {t}", d) for i, t, d in LIMITACIONES]
+    out += [("Qué NO puede detectar FinaCore", f"{i}. {t}", d) for i, t, d in LIMITACIONES]
     return out
 
 

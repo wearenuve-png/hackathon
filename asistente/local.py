@@ -2,19 +2,19 @@
 from typing import Dict, List, Tuple
 
 PREGUNTAS: List[Tuple[str, str]] = [
-    ("archivos", "¿Qué archivos leyó NEXUS?"),
+    ("archivos", "¿Qué archivos leyó FinaCore?"),
     ("errores", "¿Qué errores encontró?"),
     ("utilidad", "¿Por qué cambió la utilidad?"),
     ("provisional", "¿Qué significa PROVISIONAL?"),
     ("cifra", "¿Cómo llego de una cifra a su registro?"),
-    ("limites", "¿Qué no detecta NEXUS?"),
+    ("limites", "¿Qué no detecta FinaCore?"),
 ]
 ESTADO = {"rojo": "rojo", "amarillo": "amarillo", "verde": "verde"}
 
 
 def _archivos(c: dict) -> str:
     a = c["archivos"]
-    lineas = [f"NEXUS leyó **{a['leidos']} de {a['total']}** archivos y obtuvo **{a['registros_leidos']}** registros "
+    lineas = [f"FinaCore leyó **{a['leidos']} de {a['total']}** archivos y obtuvo **{a['registros_leidos']}** registros "
               f"({a['correctos']} correctos, {a['bloqueados']} bloqueados, {a['corregidos_automaticamente']} corregidos "
               f"automáticamente). Fuente: pestaña *Resumen → Resumen de la carga*.", ""]
     for f in a["lista"]:
@@ -53,7 +53,7 @@ def _utilidad(c: dict) -> str:
                 f"Elige un período posterior para ver la comparación en la pestaña *Variaciones*.")
     lineas = [f"{v['utilidad_neta']}", "", "Causas (pestaña *Variaciones*, suman exacto el total):"]
     lineas += [f"- {k}: {val} USD" for k, val in v["causas_de_la_utilidad_usd"].items()]
-    lineas += ["", "Si aparece «Sin explicar», es la parte que los datos no prueban: NEXUS prefiere decirlo antes que adivinar."]
+    lineas += ["", "Si aparece «Sin explicar», es la parte que los datos no prueban: FinaCore prefiere decirlo antes que adivinar."]
     return "\n".join(lineas)
 
 
@@ -84,7 +84,7 @@ def _cifra(c: dict) -> str:
 
 
 def _limites(c: dict) -> str:
-    lineas = ["NEXUS no promete detectar «todo error». Lo que **no** puede detectar con certeza (detalle en la pestaña "
+    lineas = ["FinaCore no promete detectar «todo error». Lo que **no** puede detectar con certeza (detalle en la pestaña "
               "*Ayuda* y en `docs/VERIFICACION.md`):", ""]
     lineas += [f"- **{x['id']}. {x['titulo']}**: {x['detalle']}" for x in c["limitaciones_de_nexus"]]
     return "\n".join(lineas)
@@ -94,8 +94,8 @@ def revision(c: dict) -> str:
     """Revision completa de los errores de la carga, con plantillas: que es, donde, por que importa, causa y accion."""
     h = c["hallazgos"]
     if not h:
-        return f"En {c['periodo']} NEXUS no encontró errores ni hallazgos en los archivos cargados."
-    lineas = [f"NEXUS revisó los archivos y encontró **{len(h)} hallazgo(s)** en {c['periodo']}. Para cada uno: "
+        return f"En {c['periodo']} FinaCore no encontró errores ni hallazgos en los archivos cargados."
+    lineas = [f"FinaCore revisó los archivos y encontró **{len(h)} hallazgo(s)** en {c['periodo']}. Para cada uno: "
               "qué pasó, dónde está, por qué importa, la causa probable y qué decide una persona.", ""]
     for x in h:
         donde = "; ".join(f"`{d['archivo']}`, hoja {d['hoja'] or '-'}, fila {d['fila']}" for d in x["donde"][:3]) or "-"
@@ -104,7 +104,7 @@ def revision(c: dict) -> str:
                    f"- Qué pasó: {x['que_paso']}", f"- Dónde: {donde}",
                    f"- Por qué importa: {x['por_que_importa']}{imp}", f"- Causa probable: {x['causa_probable']}",
                    f"- Qué decidir: {x['accion_recomendada']}", ""]
-    lineas.append("Fuente: pestaña *Hallazgos*. NEXUS no corrige solo: cada corrección la aprueba una persona.")
+    lineas.append("Fuente: pestaña *Hallazgos*. FinaCore no corrige solo: cada corrección la aprueba una persona.")
     return "\n".join(lineas)
 
 

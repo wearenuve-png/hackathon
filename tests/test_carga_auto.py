@@ -83,7 +83,7 @@ def test_limpiar_todo_borra_lo_del_programa_y_no_toca_presupuestos(tmp_path):
     CO.registrar(log, {"evento": "APROBAR", "quien": "Ana", "escenario": "e", "key": "k"})
     SG.guardar_manifiesto(man / "manifiesto_x.json", "x", {"a": "1"})
     CA.preparar([str(a), str(b)], trabajo)
-    ajeno = trabajo / "carpeta_del_usuario"                   # sin marca de NEXUS: no se borra
+    ajeno = trabajo / "carpeta_del_usuario"                   # sin marca de FinaCore: no se borra
     ajeno.mkdir()
     r = RS.limpiar_todo(log, man, trabajo)
     assert r == {"eventos": 1, "manifiestos": 1, "copias": 1}

@@ -17,7 +17,7 @@ def test_prototipo_esta_documentado_como_referencia():
 
 
 def test_el_motor_no_importa_librerias_de_red():
-    """NEXUS corre dentro del servidor, sin internet: ninguna libreria de red ni de IA en la nube."""
+    """FinaCore corre dentro del servidor, sin internet: ninguna libreria de red ni de IA en la nube."""
     banned = r"^\s*(from|import)\s+(requests|urllib|http|httpx|socket|ftplib|smtplib|anthropic|openai|aiohttp|websocket)\b"
     for f in (ROOT / "nexus").rglob("*.py"):
         assert not re.search(banned, f.read_text(encoding="utf-8"), re.M), f"{f} importa una libreria de red"

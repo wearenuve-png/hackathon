@@ -61,14 +61,14 @@ def calcular(res, props=None) -> Dict:
             "pendientes": len(abiertas) + tot["pendientes"], "sin_confirmar": tot["pendientes"]}
 
 
-NOTA_CARGA = ("Estos datos vienen de las carpetas que elegiste. NEXUS no conoce sus errores de antemano: todo lo que "
+NOTA_CARGA = ("Estos datos vienen de las carpetas que elegiste. FinaCore no conoce sus errores de antemano: todo lo que "
               "ves lo detectó el motor al leer tus archivos.")
 
 
 def render(res, props=None, nota=None) -> None:
     d = calcular(res, props)
     st.caption(nota if nota is not None else NOTA_CARGA)
-    cel = [("Archivos leídos", f"{d['archivos_leidos']} de {d['archivos_total']}", "Los que NEXUS pudo leer con su perfil.", ""),
+    cel = [("Archivos leídos", f"{d['archivos_leidos']} de {d['archivos_total']}", "Los que FinaCore pudo leer con su perfil.", ""),
            ("Registros leídos", d["registros"], "Filas de todos los archivos.", ""),
            ("Correctos", d["correctos"], "Entran al consolidado tal como vienen.", ""),
            ("Corregidos automáticamente", d["auto"], "Solo duplicados exactos con el mismo ID; se pueden revertir.",

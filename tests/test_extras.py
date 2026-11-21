@@ -196,7 +196,7 @@ def test_la_ayuda_trae_glosario_faq_y_limitaciones_sin_chatbot():
     for termino in ["PROVISIONAL", "Discrepancia intercompañía", "De una cifra a su registro",
                     "Por qué se bloquea un registro", "SUPUESTO", "Sin explicar", "SIMULACIÓN"]:
         assert termino in etiquetas, termino
-    assert "Qué NO puede detectar NEXUS" in " ".join(m.value for m in at.markdown)
+    assert "Qué NO puede detectar FinaCore" in " ".join(m.value for m in at.markdown)
     for id_, titulo, _ in LIMITACIONES:
         assert f"{id_}. {titulo}" in etiquetas
     assert len(at.chat_input) == 1 and "sin modelo de lenguaje" in " ".join(c.value for c in at.caption)

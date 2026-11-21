@@ -1,4 +1,4 @@
-"""Ejecuta NEXUS de punta a punta sin interfaz y exporta la evidencia.
+"""Ejecuta FinaCore de punta a punta sin interfaz y exporta la evidencia.
 
     .venv/bin/python scripts/run_pipeline.py [carpeta_datos] [--periodo 2026-10]
 """

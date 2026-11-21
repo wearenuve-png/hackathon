@@ -1,4 +1,4 @@
-# NEXUS — Motor de consolidación financiera multiempresa
+# FinaCore — Motor de consolidación financiera multiempresa
 
 Hackatón Open2 Build & Pitch, track Accounting. Brief completo en [CLAUDE.md](CLAUDE.md).
 
@@ -35,34 +35,27 @@ Si una rama aún no existe, créala desde `main`: `git checkout -b feat/ui`.
 `nexus/schemas.py` y `data/synthetic/generate.py` son compartidos: se editan **solo avisando al equipo**.
 Regla de trabajo: cada persona toca solo sus archivos, en su rama, y no se cambian las firmas existentes.
 
-## Escenario con errores (demostración)
+## Datos de prueba (solo para desarrollo)
 
-`data/demo_errores/` es una copia de `data/synthetic` con **7 errores sembrados más** (monto en blanco, texto en un campo
-numérico, duplicado con el mismo ID, archivo que declara USD siendo GTQ, signo invertido, asiento omitido que descuadra el
-balance y tasa mal escrita). Su clave está en `data/demo_errores/ANSWER_KEY.md`. Se regenera con:
-
-```bash
-.venv/bin/python scripts/generate_demo_errores.py
-```
-
-En la app, el selector **Escenario** (arriba de la pantalla, siempre visible) alterna entre «Datos base» y «Datos con errores (demostración)»;
-ambos se leen en solo lectura. En «Alertas y errores» cada hallazgo con corrección propuesta tiene **Aprobar corrección**,
-**Rechazar** y **Deshacer**. Aprobar **no modifica ningún archivo**: la decisión (quién, cuándo, valor y motivo) queda en
-`data/output/aprobaciones.jsonl` y el consolidado se recalcula en memoria.
+La pantalla **no trae datos precargados**: arranca en blanco y solo muestra lo que se carga con «Cargar presupuestos».
+Las carpetas `data/synthetic/` y `data/demo_errores/` quedan en el repositorio únicamente como **material de pruebas
+automáticas** (con sus claves de respuestas); la app no las abre por su cuenta. Para una demostración usa la carpeta
+`data/demo/` (12 archivos de Mateo, con su `LEEME_DEMO.md`). `data/demo_errores/` se regenera con
+`.venv/bin/python scripts/generate_demo_errores.py`.
 
 ## Cargar tus propios presupuestos y Restablecer
 
-- **Cargar presupuestos** (arriba, junto al selector): escribe o elige una o varias carpetas (una por línea; en macOS
-  hay un selector de carpeta). NEXUS lee los archivos XLSX, CSV y JSON **en solo lectura** y llena toda la pantalla con
+- **Cargar presupuestos** (arriba, junto a Restablecer): escribe o elige una o varias carpetas (una por línea; en macOS
+  hay un selector de carpeta). FinaCore lee los archivos XLSX, CSV y JSON **en solo lectura** y llena toda la pantalla con
   ellos. Deben estar los presupuestos y la configuración del grupo (`empresas.csv`, `tasas.csv`, `catalogo_cuentas.csv`,
-  `equivalencias.csv`, `periodos.csv`); si falta algo, NEXUS dice qué y no adivina. Con varias carpetas trabaja sobre
+  `equivalencias.csv`, `periodos.csv`); si falta algo, FinaCore dice qué y no adivina. Con varias carpetas trabaja sobre
   copias en `data/output/carga_auto/`; los originales no se tocan. Ejemplo: `data/demo/` (de Mateo).
 - **Restablecer**: deja el programa **en blanco**: borra lo que guardó (decisiones aprobadas, manifiestos de huellas,
   copias de trabajo, carga elegida y estado de la pantalla) y no muestra ninguna cifra, gráfica ni tabla hasta que
   elijas «Usar datos base», «Usar datos con errores (demostración)» o «Cargar presupuestos». **No** borra presupuestos,
   datos de ejemplo del repositorio ni evidencias exportadas.
 
-## Asistente NEXUS (prototipo, opcional)
+## Asistente FinaCore (prototipo, opcional)
 
 Pestaña **Asistente**: un modelo de lenguaje que explica resultados **ya calculados** de la pantalla (no calcula, no corrige,
 no aprueba). Está **apagado por defecto**: sin `ANTHROPIC_API_KEY` funciona en *modo local* con 6 preguntas sugeridas

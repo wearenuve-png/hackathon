@@ -19,7 +19,7 @@ def limpiar_todo(log_path, manifiestos_dir, carga_dir=None) -> dict:
     cd = Path(carga_dir) if carga_dir else carga_auto.carpeta_trabajo()
     if cd.is_dir():
         for sub in cd.iterdir():
-            if sub.is_dir() and (sub / carga_auto.MARCA).is_file():      # solo carpetas creadas por NEXUS
+            if sub.is_dir() and (sub / carga_auto.MARCA).is_file():      # solo carpetas creadas por FinaCore
                 shutil.rmtree(sub)
                 copias += 1
     return {"eventos": eventos, "manifiestos": manifiestos, "copias": copias}

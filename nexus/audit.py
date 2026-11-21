@@ -124,7 +124,7 @@ def build_audit_package(run, source_dir=None) -> bytes:
     for cid, p in cfg.profiles.items():
         files[f"perfiles/{cid}.json"] = json.dumps(dataclasses.asdict(p), indent=2, ensure_ascii=False).encode("utf-8")
     files["LEEME.txt"] = (
-        f"Paquete de auditoria NEXUS\nEjecucion: {run.run_id}\nReglas: {run.config.rules_version}\n"
+        f"Paquete de auditoria FinaCore\nEjecucion: {run.run_id}\nReglas: {run.config.rules_version}\n"
         f"Fuente: carpeta del servidor, solo lectura: {source_dir}\nSin conexion a internet.\n"
         "DATOS SINTETICOS si se trata del grupo de demostracion.\n\n"
         "consolidado.csv / resumen.csv: cifras en USD por periodo (con su estado PROVISIONAL o DEFINITIVO)\n"

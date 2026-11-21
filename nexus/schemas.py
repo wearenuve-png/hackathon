@@ -1,4 +1,4 @@
-"""Contrato de datos de NEXUS. Se cambia solo avisando al equipo.
+"""Contrato de datos de FinaCore. Se cambia solo avisando al equipo.
 
 Reglas: dinero siempre Decimal; el dato original nunca se pierde (raw, source_*).
 """

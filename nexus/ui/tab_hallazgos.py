@@ -118,9 +118,9 @@ def _deshacer(ev, ctx):
 
 
 def _bloque_decision(f, p, ctx, quien):
-    """Lo que NEXUS hizo, que propone y que debe decidir una persona + botones."""
+    """Lo que FinaCore hizo, que propone y que debe decidir una persona + botones."""
     st.markdown(f"**Valor leído.** `{p.valor_leido}`")
-    st.markdown(f"**Qué hizo NEXUS.** {p.que_hizo}")
+    st.markdown(f"**Qué hizo FinaCore.** {p.que_hizo}")
     if p.accion == CO.AUTO:
         st.markdown(f"**Acción.** APLICADA AUTOMÁTICAMENTE (solo el duplicado exacto con el mismo ID). {p.motivo}")
     else:
@@ -180,7 +180,7 @@ def render(consolidado, periodo=None, contexto=None) -> None:
     if contexto is not None:
         return _render_con_decisiones(consolidado, periodo, fichas, contexto)
     st.caption("Plantillas en español, sin IA. La causa siempre es **probable** (una hipótesis) y la acción la toma "
-               "una persona: NEXUS no corrige ni convierte nada por su cuenta. Orden: mayor impacto en USD primero.")
+               "una persona: FinaCore no corrige ni convierte nada por su cuenta. Orden: mayor impacto en USD primero.")
     if not fichas:
         st.success("Sin hallazgos en este período.")
         return
@@ -206,7 +206,7 @@ def _render_con_decisiones(res, periodo, fichas, ctx) -> None:
     st.text_input("Quién aprueba (tu nombre)", key="aprobador",
                   help="Queda en el registro de auditoría junto con la fecha, el valor y el motivo.")
     quien = (st.session_state.get("aprobador") or "").strip()
-    st.caption("Plantillas en español, sin IA. La causa siempre es **probable** y la decisión es de una persona: NEXUS "
+    st.caption("Plantillas en español, sin IA. La causa siempre es **probable** y la decisión es de una persona: FinaCore "
                "no corrige ni convierte nada por su cuenta, y el archivo fuente NUNCA se modifica.")
     visibles = [f for f in fichas if f.ficha_id not in hijos]
     rechazadas = {p.key for p in props if est.get(p.key, {}).get("evento") == "RECHAZAR"}

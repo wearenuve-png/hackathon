@@ -6,9 +6,9 @@ from . import cliente, local
 from .config import cargar_config
 from .contexto import construir_contexto
 
-ETIQUETA_CONECTADO = ("Asistente NEXUS (prototipo) · impulsado por un modelo de lenguaje · responde solo con los datos "
+ETIQUETA_CONECTADO = ("Asistente FinaCore (prototipo) · impulsado por un modelo de lenguaje · responde solo con los datos "
                       "de esta pantalla · modo conectado")
-ETIQUETA_LOCAL = ("Asistente NEXUS (prototipo) · modo local: sin modelo de lenguaje, respuestas con plantillas a partir "
+ETIQUETA_LOCAL = ("Asistente FinaCore (prototipo) · modo local: sin modelo de lenguaje, respuestas con plantillas a partir "
                   "de los resultados de esta pantalla")
 PROMPT_REVISION = ("Revisa los hallazgos de esta carga. Para cada uno explica: qué error es, dónde está (archivo, hoja "
                    "y fila), por qué ocurre (causa probable), cuánto afecta y qué debe decidir una persona. Cita la "
