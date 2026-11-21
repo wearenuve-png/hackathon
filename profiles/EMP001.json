@@ -49,8 +49,8 @@
   ],
   "schema_version": 1,
   "profile_version": 1,
-  "approval_status": "PENDING",
-  "approved_by": null,
-  "approved_at": null,
+  "approval_status": "APPROVED",
+  "approved_by": "Santiago Enriquez Salguero",
+  "approved_at": "2026-11-21",
   "profile_hash": "b85150cfb0f1e0393b96f0d9f3085748d977da9b8fcaee4a9e67c1d829dceb3f"
 }
