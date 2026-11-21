@@ -312,11 +312,11 @@ def test_el_selector_de_escenario_muestra_el_banner_solo_en_la_demostracion(app)
     assert not [e for e in app.error if "DEMOSTRACIÓN: datos de prueba con errores sembrados" in e.value]
     a_demo(app)
     assert len([e for e in app.error if e.value == "DEMOSTRACIÓN: datos de prueba con errores sembrados"]) == 1
-    app.radio(key="escenario").set_value("Datos limpios").run()
+    app.radio(key="escenario").set_value("Datos base").run()
     assert not [e for e in app.error if "errores sembrados" in e.value]
 
 
-@pytest.mark.parametrize("escenario", ["Datos limpios", "Datos con errores (demostración)"])
+@pytest.mark.parametrize("escenario", ["Datos base", "Datos con errores (demostración)"])
 @pytest.mark.parametrize("periodo", ["2026-10", "2026-11", "2026-12"])
 def test_ninguna_pestana_falla_en_ningun_escenario(app, escenario, periodo):
     app.radio(key="escenario").set_value(escenario).run()

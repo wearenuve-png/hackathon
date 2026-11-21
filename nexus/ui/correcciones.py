@@ -66,6 +66,10 @@ class Propuesta:
     aprobable: bool
     cuenta_requerida: bool = False
     extra: dict = field(default_factory=dict)
+    estimacion: bool = False            # el valor propuesto es una estimacion, no un dato leido ni un calculo exacto
+
+
+ESTIMACION = "ESTIMACIÓN: requiere aprobación humana."
 
 
 # ------------------------------------------------------------------ propuestas
@@ -112,7 +116,7 @@ def _prop_importe(res, f, r) -> Propuesta:
     base = dict(key=key, kind=IMPORTE, accion=PROPUESTA, rule_id=f.rule_id, company_id=r.company_id, period=r.period,
                 record_ids=[r.record_id], valor_leido=leido,
                 que_hizo="Dejó el registro bloqueado: no entra al consolidado hasta que una persona decida.")
-    prop, motivo = None, ""
+    prop, motivo, estima = None, "", False
     if leido != "(vacío)":
         prop = interpretar_texto(leido)
         motivo = "Se cambió la letra O por el cero en el texto leído." if prop is not None else ""
@@ -124,8 +128,9 @@ def _prop_importe(res, f, r) -> Propuesta:
                 otros[x.period] = otros.get(x.period, D0) + x.amount_original
         if otros:
             prop = Decimal(str(median(otros.values()))).quantize(Decimal("0.01"))
-            motivo = (f"Mediana del mismo rubro en los otros períodos ({', '.join(sorted(otros))}). Es una referencia, "
-                      f"no una certeza.")
+            motivo = (f"{ESTIMACION} Mediana del mismo rubro en los otros períodos ({', '.join(sorted(otros))}). "
+                      f"Es una referencia, no una certeza.")
+            estima = True
     if prop is None:
         return Propuesta(**base, valor_propuesto=None, motivo="No hay un valor que se pueda proponer con certeza.",
                          impacto_usd=None, impacto_utilidad="No cuantificable sin un valor.",
@@ -133,7 +138,8 @@ def _prop_importe(res, f, r) -> Propuesta:
     usd = _usd(res, r, prop)
     return Propuesta(**base, valor_propuesto=prop, motivo=motivo, impacto_usd=usd,
                      impacto_utilidad=_efecto(res, r, usd),
-                     decide=f"Aprobar o rechazar el valor propuesto ({fmt(prop)} {r.currency}).", aprobable=True)
+                     decide=f"Aprobar o rechazar el valor propuesto ({fmt(prop)} {r.currency}).", aprobable=True,
+                     estimacion=estima)
 
 
 def _prop_signo(res, f, r) -> Propuesta:
@@ -154,17 +160,18 @@ def _prop_tasa(res, f) -> Optional[Propuesta]:
     cands = [new / 10, new / 100, new * 10]
     best = min(cands, key=lambda c: abs(c / prev - 1))
     if abs(best / prev - 1) <= validation.load_rate_jump():
-        prop, motivo = best, (f"Parece un decimal corrido: {new} ÷ {new / best:g} = {best}, que queda a "
+        prop, motivo = best, (f"{ESTIMACION} Parece un decimal corrido: {new} ÷ {new / best:g} = {best}, que queda a "
                               f"{abs(best / prev - 1):.1%} de la tasa del mes anterior ({prev}).")
     else:
-        prop, motivo = prev, f"No hay un decimal corrido que lo explique; se propone la tasa del mes anterior ({prev})."
+        prop, motivo = prev, (f"{ESTIMACION} No hay un decimal corrido que lo explique; se propone la tasa del mes "
+                              f"anterior ({prev}).")
     n = re.findall(r"[-+]?\d[\d,]*\.\d{2}", f.impact or "")
     imp = abs(Decimal(n[0].replace(",", ""))) if n else None
     return Propuesta(f"TASA|{cur}|{p1}", TASA, PROPUESTA, f.rule_id, None, p1, [], new_str(new), prop, motivo, imp,
                      "Diferencia en el consolidado: " + (f.impact or "no cuantificada"),
                      "Usó la tasa tal cual está en la tabla; no la bloqueó ni la corrigió.",
                      f"Confirmar con la fuente oficial. Aprobar o rechazar la tasa propuesta ({prop}).", True,
-                     extra={"moneda": cur, "periodo": p1})
+                     extra={"moneda": cur, "periodo": p1}, estimacion=True)
 
 
 def new_str(d) -> str:
@@ -282,6 +289,16 @@ def evento_desde(p: Propuesta, evento: str, quien: str, escenario: str, cuenta: 
             "motivo": p.motivo, "impacto_usd": None if p.impacto_usd is None else str(p.impacto_usd),
             "cuenta": cuenta, "extra": {k: v for k, v in p.extra.items() if k in ("moneda", "periodo", "adjustment_id",
                                                                                    "declara")}}
+
+
+def restablecer(log_path) -> int:
+    """Deja VACIO el registro de aprobaciones (todas las decisiones, de todos los escenarios). No toca ningun archivo
+    fuente. Devuelve cuantos eventos se quitaron."""
+    n = len(leer(log_path))
+    p = Path(log_path)
+    p.parent.mkdir(parents=True, exist_ok=True)
+    p.write_text("", encoding="utf-8")
+    return n
 
 
 # ------------------------------------------------------------------ recalculo en memoria

@@ -5,15 +5,77 @@ Antes de empezar: `.venv/bin/streamlit run app.py`, período **2026-10** selecci
 proyector: `.venv/bin/python scripts/demo_respaldo.py` (corre todo sin interfaz, en menos de un segundo, imprime
 las mismas cifras y exporta la evidencia a `data/output/`).
 
-## Recorrido (4:40 + 0:20 de cierre = 5:00)
+## Recorrido de demo en la interfaz (5 minutos): datos base → errores → aprobación → vuelta
+
+**Antes de ensayar:** `.venv/bin/python scripts/reset_demo.py` (vacía el registro de aprobaciones y no toca ningún archivo
+fuente) y `.venv/bin/streamlit run app.py`. El selector **Escenario** está arriba de la pantalla; empieza en **Datos base**,
+período **2026-10**. Todo son datos sintéticos.
+
+| Tiempo | Paso | Dónde |
+|---|---|---|
+| 0:00 – 1:30 | 1. Datos base: cifra y trazabilidad | Resumen, Estados financieros, Trazabilidad |
+| 1:30 – 2:00 | 2. Cambio a datos con errores | Selector **Escenario** (arriba) |
+| 2:00 – 3:30 | 3. Un error de cada tipo | Alertas y errores → Hallazgos |
+| 3:30 – 4:30 | 4. Aprobar una corrección con tu nombre | Alertas y errores → Hallazgos |
+| 4:30 – 5:00 | 5. Vuelta a datos base | Botón **Restablecer demostración** |
+
+### Paso 1 · Datos base (1:30)
+**Mostrar:** encabezado de octubre: **Ingresos consolidados 1,985,000.00 USD** y **Utilidad neta 359,125.00**; en *Estados
+financieros*, la suma de las empresas (2,078,000.00) contra el consolidado; en *Resumen*, **Resumen de la carga**: «6 de 6»
+archivos leídos y, debajo, la línea que aclara que **los datos base ya incluyen los 9 errores del reto**. Luego
+*Trazabilidad* → «Ingresos por ventas (cuenta 4000)» → archivo, hoja y fila.
+**Decir:** «Esta es la carga de seis empresas en seis formatos. Cada cifra se abre hasta la fila del archivo. Ojo: estos datos
+base ya traen los 9 errores del reto, por eso hay hallazgos aunque no hayamos tocado nada. La cuenta 4000 son solo
+ingresos por ventas; el total incluye también servicios.»
+
+### Paso 2 · Cambio a datos con errores (0:30)
+**Hacer:** en el selector de arriba, elegir **Datos con errores (demostración)**.
+**Decir:** «Ahora leo otra carpeta, también en solo lectura, con 7 errores más sembrados. Mira el banner: DEMOSTRACIÓN. Los
+ingresos bajan a 1,758,000 porque el archivo de Aceros Ferrex declara USD siendo una empresa en quetzales y NEXUS no lo
+procesa. En el resumen: 5 de 6 archivos, uno en rojo, y varias correcciones esperando decisión.»
+
+### Paso 3 · Un error de cada tipo (1:30)
+En *Alertas y errores* → **Hallazgos**, abrir una ficha de cada tipo (qué pasó, dónde con el **valor leído**, por qué importa,
+qué hizo NEXUS, qué propone y qué debe decidir una persona):
+- **Aplicada automáticamente** (solo el duplicado exacto con el mismo ID): factura FAC-M-0902 de Ferrex México, excluida con
+  un ajuste reversible.
+- **Bloqueado con propuesta exacta**: «1O,000» (letra O) de Transportes Ferrex México en octubre → propuesta 10,000 MXN
+  (500 USD).
+- **ESTIMACIÓN: requiere aprobación humana**: el monto en blanco de Distribuidora Central → propuesta 41,000 GTQ (mediana del
+  rubro en los otros períodos). Decir que es una referencia, no un dato.
+- **Balance descuadrado** (período **2026-12**): asiento omitido de 8,000 USD en Ferrex Importaciones, con el diagnóstico de
+  balance (la primera candidata es el registro igual al desbalance). Y, en el mismo período, la **tasa 0.525** en vez de
+  0.0525: también una *ESTIMACIÓN* (decimal corrido); sus ~28 alertas de importe atípico están dentro de su ficha como
+  consecuencias.
+**Decir:** «NEXUS solo aplica solo el duplicado exacto. Todo lo demás lo bloquea o lo marca y propone; las estimaciones lo
+dicen con todas las letras. Nunca atribuimos el error a una persona: la causa siempre es *probable*.»
+
+### Paso 4 · Aprobar una corrección con nombre (1:00)
+**Hacer:** escribir tu nombre en **Quién aprueba**, abrir la ficha de «1O,000» en octubre y pulsar **Aprobar corrección**.
+**Mostrar:** la ficha pasa a **Resueltos** (quién, cuándo, valor leído → valor aprobado, motivo); en *Estados financieros* los
+gastos operativos de octubre suben 500 USD (355,325.00) y la utilidad neta baja a **300,375.00** (antes 300,875.00); en el lateral
+sigue «Archivos sin cambios: 17 de 17». Mencionar el registro `data/output/aprobaciones.jsonl` y, si hay tiempo, **Deshacer**.
+**Decir:** «Aprobar no modifica el archivo: se recalcula el consolidado con la corrección y queda el registro de auditoría con
+mi nombre. Sin nombre, el botón está desactivado.»
+
+### Paso 5 · Vuelta a datos base (0:30)
+**Hacer:** pulsar **Restablecer demostración** (o `scripts/reset_demo.py`).
+**Decir y mostrar:** «Vacía el registro de aprobaciones y vuelve a Datos base: el ingreso consolidado vuelve a 1,985,000 y los
+archivos fuente nunca cambiaron.»
+
+> Si algo sale mal en vivo: `scripts/demo_respaldo.py` corre el recorrido sin interfaz.
+
+---
+
+## Recorrido por temas (guion original, 4:40 + 0:20 de cierre = 5:00)
 
 | # | Tiempo | Paso | Dónde en la app |
 |---|---|---|---|
 | 1 | 0:00 – 0:20 | El problema | — |
-| 2 | 0:20 – 1:00 | 6 formatos, perfiles y hashes | Pestaña **Perfiles por empresa** |
-| 3 | 1:00 – 1:50 | Error bloqueado, rango de impacto, PROVISIONAL | Encabezado + pestaña **Alertas y exclusiones** |
-| 4 | 1:50 – 2:30 | Consolidado de octubre vs. suma ingenua | Pestaña **Resultados y balance** |
-| 5 | 2:30 – 3:00 | Discrepancia intercompañía | Período **2026-11**, **Alertas y exclusiones** |
+| 2 | 0:20 – 1:00 | 6 formatos, perfiles y hashes | Pestaña **Perfiles e integridad** |
+| 3 | 1:00 – 1:50 | Error bloqueado, rango de impacto, PROVISIONAL | Encabezado + pestaña **Alertas y errores** |
+| 4 | 1:50 – 2:30 | Consolidado de octubre vs. suma ingenua | Pestaña **Estados financieros** |
+| 5 | 2:30 – 3:00 | Discrepancia intercompañía | Período **2026-11**, **Alertas y errores** |
 | 6 | 3:00 – 3:30 | Clic hasta archivo, hoja y fila | Pestaña **Trazabilidad** |
 | 7 | 3:30 – 4:10 | ROIC, ROCE y EVA | Pestaña **Indicadores** |
 | 8 | 4:10 – 4:40 | Una variación explicada | Pestaña **Variaciones** (2026-11 vs. 2026-10) |
@@ -33,7 +95,7 @@ número del grupo. NEXUS lo consolida en segundos, sin captura manual, y cada ci
 registro. Los datos de hoy son sintéticos.»
 
 ### 2. Seis formatos, cada uno contra su perfil (0:40)
-**Mostrar:** pestaña *Perfiles por empresa*. Seis filas: XLSX, CSV, JSON; todas «Coincide con el perfil»; versión
+**Mostrar:** pestaña *Perfiles e integridad*. Seis filas: XLSX, CSV, JSON; todas «Coincide con el perfil»; versión
 v1; «Aprobado por: Santiago Enriquez Salguero». Bajar a la tabla de integridad.
 **Decir:** «NEXUS corre dentro del servidor de la empresa: lee una carpeta en solo lectura, sin que nadie suba
 archivos y sin internet. Cada archivo queda registrado con su SHA-256 y la app lo vuelve a calcular: todos
@@ -42,7 +104,7 @@ coincidir con su perfil, la carga queda en revisión y no se procesa en silencio
 **Cifras:** 6 de 6 cargas coinciden; 17 archivos con hash estable.
 
 ### 3. Un error sembrado, bloqueado (0:50)
-**Mostrar:** el encabezado de 2026-10 (etiqueta **PROVISIONAL**) y la pestaña *Alertas y exclusiones*, tabla de
+**Mostrar:** el encabezado de 2026-10 (etiqueta **PROVISIONAL**) y la pestaña *Alertas y errores*, tabla de
 registros fuera del consolidado y tabla de impacto.
 **Decir:** «Esta depreciación de Transportes Ferrex México llegó con signo negativo: −240,000 pesos mexicanos, −12,000 dólares.
 NEXUS no la corrige ni la ignora: la bloquea y la deja fuera del consolidado, con su importe y su motivo. Como no
@@ -54,7 +116,7 @@ sube 12,000; con el signo corregido, baja 12,000. Por eso el período se marca *
 de 4,800 USD y un duplicado de factura excluido con ajuste reversible; mencionarlos solo si preguntan.)
 
 ### 4. Consolidado de octubre (0:40)
-**Mostrar:** pestaña *Resultados y balance*, estado de resultados con las tres columnas.
+**Mostrar:** pestaña *Estados financieros*, estado de resultados con las tres columnas.
 **Decir:** «Sumar las seis empresas sin más da ingresos de 2,078,000 dólares. Pero las empresas se venden entre
 sí: 93,000 dólares se contarían dos veces. NEXUS elimina solo lo que concilia exacto y el consolidado real es
 **1,985,000**. La utilidad neta es **359,125** y no cambia, porque lo que sale de ingresos también sale de costos.
@@ -108,7 +170,7 @@ marcado provisional en lugar de esconderse. Corre dentro del servidor, sin inter
 sintéticos. Lo que sigue es la hoja de ruta.»
 
 ## Extras opcionales de la interfaz (si sobra tiempo)
-- **Pestaña Hallazgos**: una ficha por hallazgo con *qué pasó, dónde (archivo, hoja, fila), por qué importa (USD y
+- **Pestaña Hallazgos** (dentro de «Alertas y errores»): una ficha por hallazgo con *qué pasó, dónde (archivo, hoja, fila), por qué importa (USD y
   utilidad), causa probable y acción humana*, con contador por tipo y ordenada por impacto. Buen complemento del
   paso 3: abrir la ficha de la depreciación (signo invertido) y la de la moneda «Q» (*probable alias de GTQ, pero
   requiere aprobación humana; NEXUS no la convierte sola*).

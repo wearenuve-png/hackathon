@@ -164,9 +164,24 @@ def optional_tab(module: str, title: str, what: str, res, period: str) -> None:
 
 
 # ------------------------------------------------------------------ escenario (arriba, siempre visible)
-ESCENARIOS = ["Datos limpios", "Datos con errores (demostración)"]
-escenario = st.radio("Escenario", ESCENARIOS, key="escenario", horizontal=True,
-                     help="Ambos se leen en solo lectura. El segundo tiene 7 errores sembrados a propósito.")
+ESCENARIOS = ["Datos base", "Datos con errores (demostración)"]
+
+
+def _restablecer():
+    """Vacia el registro de aprobaciones y vuelve al escenario base. No toca ningun archivo fuente."""
+    correcciones.restablecer(correcciones.log_por_defecto())
+    st.session_state["escenario"] = ESCENARIOS[0]
+    st.session_state["ver"] = st.session_state.get("ver", 0) + 1
+    st.session_state.pop("explicar_on", None)
+
+
+_c_esc, _c_rst = st.columns([5, 1.3], vertical_alignment="bottom")
+with _c_esc:
+    escenario = st.radio("Escenario", ESCENARIOS, key="escenario", horizontal=True,
+                         help="Ambos se leen en solo lectura. El segundo tiene 7 errores sembrados a propósito.")
+with _c_rst:
+    st.button("Restablecer demostración", key="restablecer_btn", on_click=_restablecer,
+              help="Vacía el registro de aprobaciones y vuelve a «Datos base». No modifica ningún archivo.")
 demo = escenario == ESCENARIOS[1]
 
 # ------------------------------------------------------------------ barra lateral
@@ -286,7 +301,7 @@ figures([
 props_abiertas = correcciones.proponer(res)
 with tab_sum:
     heading("Resumen de la carga")
-    resumen_carga.render(res, props_abiertas)
+    resumen_carga.render(res, props_abiertas, demo=demo)
     explicar.render(res, period, props_abiertas)
     st.write("")
     left, right = st.columns([3, 2], gap="large")

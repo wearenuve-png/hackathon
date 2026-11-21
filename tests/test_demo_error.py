@@ -141,7 +141,7 @@ def app():
     return at
 
 
-@pytest.mark.parametrize("escenario", ["Datos limpios", "Datos con errores (demostración)"])
+@pytest.mark.parametrize("escenario", ["Datos base", "Datos con errores (demostración)"])
 def test_la_demostracion_anterior_ya_no_esta_en_la_interfaz(app, escenario):
     app.radio(key="escenario").set_value(escenario).run()
     assert not app.exception
@@ -154,7 +154,7 @@ def test_la_demostracion_anterior_ya_no_esta_en_la_interfaz(app, escenario):
 def test_el_unico_selector_de_escenario_esta_arriba_y_a_la_vista(app):
     esc = [r for r in app.radio if r.key == "escenario"]
     assert len(esc) == 1 and esc[0].label == "Escenario" and list(esc[0].options) == [
-        "Datos limpios", "Datos con errores (demostración)"]
+        "Datos base", "Datos con errores (demostración)"]
     assert "escenario" not in [r.key for r in app.sidebar.radio]                      # no esta escondido en la barra lateral
     assert all(r.key != "escenario" for t in app.tabs for r in getattr(t, "radio", []))  # ni dentro de una pestana
     assert [r.key for r in app.main.radio][:1] == ["escenario"]                         # es lo primero de la pantalla

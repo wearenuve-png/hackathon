@@ -125,6 +125,8 @@ def _bloque_decision(f, p, ctx, quien):
         st.markdown(f"**Acción.** APLICADA AUTOMÁTICAMENTE (solo el duplicado exacto con el mismo ID). {p.motivo}")
     else:
         prop = "-" if p.valor_propuesto is None else p.valor_propuesto
+        if p.estimacion:
+            st.warning(CO.ESTIMACION, icon=":material/functions:")
         st.markdown(f"**Qué propone.** {p.motivo} Valor propuesto: **{prop}**. Impacto en USD: "
                     f"**{fmt(p.impacto_usd)}**. {p.impacto_utilidad}")
     st.markdown(f"**Qué debe decidir una persona.** {p.decide}")

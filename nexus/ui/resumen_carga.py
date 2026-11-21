@@ -61,8 +61,15 @@ def calcular(res, props=None) -> Dict:
             "pendientes": len(abiertas) + tot["pendientes"], "sin_confirmar": tot["pendientes"]}
 
 
-def render(res, props=None) -> None:
+NOTA_BASE = ("Los datos base ya incluyen los 9 errores del reto (están en tests/fixtures/ANSWER_KEY.md): por eso "
+             "verás hallazgos aunque no hayas alterado nada.")
+NOTA_DEMO = ("Esta demostración parte de los datos base, que ya incluyen los 9 errores del reto, y suma 7 errores "
+             "más (data/demo_errores/ANSWER_KEY.md).")
+
+
+def render(res, props=None, demo: bool = False) -> None:
     d = calcular(res, props)
+    st.caption(NOTA_DEMO if demo else NOTA_BASE)
     cel = [("Archivos leídos", f"{d['archivos_leidos']} de {d['archivos_total']}", "Los que NEXUS pudo leer con su perfil.", ""),
            ("Registros leídos", d["registros"], "Filas de todos los archivos.", ""),
            ("Correctos", d["correctos"], "Entran al consolidado tal como vienen.", ""),

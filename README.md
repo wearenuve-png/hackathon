@@ -45,7 +45,7 @@ balance y tasa mal escrita). Su clave está en `data/demo_errores/ANSWER_KEY.md`
 .venv/bin/python scripts/generate_demo_errores.py
 ```
 
-En la app, el selector **Escenario** (arriba de la pantalla, siempre visible) alterna entre «Datos limpios» y «Datos con errores (demostración)»;
+En la app, el selector **Escenario** (arriba de la pantalla, siempre visible) alterna entre «Datos base» y «Datos con errores (demostración)»;
 ambos se leen en solo lectura. En «Alertas y errores» cada hallazgo con corrección propuesta tiene **Aprobar corrección**,
 **Rechazar** y **Deshacer**. Aprobar **no modifica ningún archivo**: la decisión (quién, cuándo, valor y motivo) queda en
 `data/output/aprobaciones.jsonl` y el consolidado se recalcula en memoria.
