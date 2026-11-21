@@ -103,18 +103,16 @@ def test_estado_de_carga_y_hashes(demo):
     assert k["archivos_ok"] == 6 + len(config_csv) + len(list(PROFILES.glob("*.json")))   # empresas + tablas + perfiles
 
 
-def test_el_paso_8_refleja_si_el_explicador_existe(demo):
-    from nexus import variance
+def test_el_paso_8_explica_la_variacion_y_suma_exacto(demo):
     k, txt, _ = demo
-    try:
-        variance.compare(None, None, None)
-        stub = False
-    except NotImplementedError:
-        stub = True
-    except Exception:  # noqa: BLE001
-        stub = False
-    assert k["explicador_pendiente"] is stub
-    assert ("PENDIENTE" in txt) is stub
+    v = k["variacion"]
+    a, b = KEY["consolidado_esperado_usd"]["2026-10"]["resumen"], KEY["consolidado_esperado_usd"]["2026-11"]["resumen"]
+    assert q2(v["total"]) == D(b["utilidad_neta"]) - D(a["utilidad_neta"]) == D("-80315.00")
+    assert v["causas_suma"] == v["total"]                                       # las causas suman EXACTO
+    assert k["explicador_pendiente"] is False and "PENDIENTE" not in txt.split("PASO 8:")[1]
+    p8 = txt.split("PASO 8:")[1]
+    assert "-80,315.00" in p8 and "Sin explicar" in p8 and "'Q'" in p8 and "distribuidora_central_gt.csv" in p8
+    assert v["sin_explicar_celdas"] == ["EMP002|6000"]
 
 
 def test_el_script_corre_solo_en_menos_de_un_minuto_y_exporta_evidencia(tmp_path):

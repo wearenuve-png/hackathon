@@ -16,16 +16,16 @@ las mismas cifras y exporta la evidencia a `data/output/`).
 | 5 | 2:30 – 3:00 | Discrepancia intercompañía | Período **2026-11**, **Alertas y exclusiones** |
 | 6 | 3:00 – 3:30 | Clic hasta archivo, hoja y fila | Pestaña **Trazabilidad** |
 | 7 | 3:30 – 4:10 | ROIC, ROCE y EVA | Pestaña de indicadores (ver nota) |
-| 8 | 4:10 – 4:40 | Una variación explicada | **PENDIENTE** (ver nota) |
+| 8 | 4:10 – 4:40 | Una variación explicada | Pestaña **Variaciones** (2026-11 vs. 2026-10) |
 | — | 4:40 – 5:00 | Cierre y hoja de ruta | — |
 
 > **Nota paso 7:** la pestaña existe como `nexus/ui/tab_indicadores.py` (`render(consolidado, periodo)`), pero
 > **no está conectada en `app.py`** (su dueño debe agregarla). Mientras no lo esté, mostrar este paso con
 > `scripts/demo_respaldo.py` (paso 7) y decirlo tal cual.
 >
-> **Nota paso 8:** `nexus/variance.py` es todavía un esqueleto. **Paso pendiente**: no se muestra en vivo. Si el
-> explicador se integra antes de la demo, mostrar la comparación 2026-10 vs. 2026-11 con registros concretos;
-> si no, pasarlo a la hoja de ruta (ver más abajo).
+> **Nota paso 8:** el explicador (`nexus/variance.py`, pestaña *Variaciones*) está construido. Con plantillas, sin
+> IA, descompone la variación en causas que suman exacto el total y muestra «Sin explicar» cuando los datos no
+> prueban la causa. Plan B: paso 8 de `scripts/demo_respaldo.py`.
 
 ### 1. El problema (0:20)
 **Decir:** «Un grupo con seis empresas, tres monedas y seis formatos de archivo distintos consolida hoy a mano:
@@ -92,9 +92,16 @@ datos sintéticos, octubre da ROIC de 11.16% del mes, ROCE de 13.00% y EVA de 30
 *Nota al pie (solo si preguntan):* la interfaz y el script también pueden mostrar cifras anualizadas, pero **no
 son representativas por ser datos sintéticos**; no se presentan en la demo.
 
-### 8. Una variación explicada (0:30) — PENDIENTE
-No construido. Si no se integra, decir en este punto: «La comparación entre períodos con explicación basada en
-registros concretos es lo siguiente en nuestra hoja de ruta.» No improvisar una explicación.
+### 8. Una variación explicada (0:30)
+**Mostrar:** período **2026-11**, pestaña *Variaciones*: la frase de la utilidad neta y su tabla de causas.
+**Decir:** «La utilidad neta baja 80,315 dólares entre octubre y noviembre. No es un número suelto: el motor lo
+descompone en causas que suman exacto. Operación, menos 55,815; ajustes y registros bloqueados, más 17,000; mes
+faltante de una empresa (Ferrex Importaciones no entregó noviembre), menos 69,000. Y queda una parte **sin
+explicar**, más 27,500 dólares: es la planilla de Distribuidora Central, que llegó con la moneda “Q”, bloqueada y sin
+valor en dólares. NEXUS no adivina: lo dice. Todo es calculado con plantillas, sin IA, y cada línea se abre hasta
+archivo, hoja y fila. Está marcado **PROVISIONAL** porque hay datos sin resolver.»
+**Cifras:** −80,315 (−22.4%): operación −55,815; ajustes y bloqueados +17,000; mes faltante −69,000; sin explicar
++27,500 (EMP002, cuenta 6000, moneda «Q»).
 
 ### Cierre (0:20)
 «Resumen: seis formatos, un consolidado en dólares, ninguna cifra sin origen, y todo lo dudoso queda visible y
@@ -106,7 +113,6 @@ Pasos 1 (0:15), 2 (0:30), 3 (0:40), 4 (0:35), 5 (0:20), 6 (0:30), cierre (0:10).
 
 ## Hoja de ruta (lo que NO está construido)
 Decirlo como plan, sin fechas ni promesas:
-- **Explicador de variaciones** con plantillas a partir de los cálculos del motor (en desarrollo, no integrado).
 - **Clasificador local de anomalías**, sin chatbot ni nube: se entrenaría con ejemplos etiquetados generados con
   semillas distintas y se mediría con una semilla no usada al entrenar, comparado contra «solo reglas». **No existe
   todavía; no hay ningún modelo entrenado.**
