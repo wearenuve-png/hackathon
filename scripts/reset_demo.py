@@ -3,7 +3,7 @@ variable NEXUS_APROBACIONES). No toca ningun archivo fuente: lo comprueba con ha
 
     .venv/bin/python scripts/reset_demo.py [--registro RUTA]
 
-En la app, el selector vuelve a «Datos base» al abrirla de nuevo (o con el boton «Restablecer demostración»)."""
+En la app, el selector vuelve a «Datos base» al abrirla de nuevo (o con el boton «Restablecer»)."""
 import argparse
 import hashlib
 import sys

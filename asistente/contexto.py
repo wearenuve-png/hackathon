@@ -32,7 +32,8 @@ def _m(d) -> str:
     return f"{Decimal(d).quantize(Decimal('0.01'), rounding=ROUND_HALF_UP):,.2f}"
 
 
-def construir_contexto(res, period: str, escenario: str, demo: bool = False, props: Optional[list] = None) -> dict:
+def construir_contexto(res, period: str, escenario: str, demo: bool = False, props: Optional[list] = None,
+                       nota: Optional[str] = None) -> dict:
     cfg = res.config
     pr = res.periods[period]
     props = props if props is not None else correcciones.proponer(res)
@@ -44,7 +45,7 @@ def construir_contexto(res, period: str, escenario: str, demo: bool = False, pro
               "utilidad_neta", "activo_total", "pasivo_total", "patrimonio")
     ctx = {
         "escenario": escenario, "periodo": period, "tipo_periodo": pr.kind,
-        "nota_escenario": NOTA_DEMO if demo else NOTA_BASE,
+        "nota_escenario": nota if nota is not None else (NOTA_DEMO if demo else NOTA_BASE),
         "estado_periodo": {"provisional": pr.provisional, "razones": list(pr.provisional_reasons),
                            "rango_utilidad_neta_usd": [_m(pr.utility_range[0]), _m(pr.utility_range[1])]
                            if pr.utility_range else None,

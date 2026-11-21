@@ -14,6 +14,7 @@ def _registro_de_aprobaciones_aislado(tmp_path_factory, monkeypatch):
     """Ninguna prueba escribe ni lee el registro real de aprobaciones (data/output/aprobaciones.jsonl)."""
     monkeypatch.setenv("NEXUS_APROBACIONES", str(tmp_path_factory.mktemp("aprob") / "aprobaciones.jsonl"))
     monkeypatch.setenv("NEXUS_MANIFIESTOS", str(tmp_path_factory.mktemp("manif")))
+    monkeypatch.setenv("NEXUS_CARGA", str(tmp_path_factory.mktemp("carga")))
 
 
 @pytest.fixture(autouse=True)

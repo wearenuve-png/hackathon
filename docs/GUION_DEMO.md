@@ -18,7 +18,7 @@ período **2026-10**. Todo son datos sintéticos.
 | 1:30 – 2:00 | 2. Cambio a datos con errores | Selector **Escenario** (arriba) |
 | 2:00 – 3:30 | 3. Un error de cada tipo | Alertas y errores → Hallazgos |
 | 3:30 – 4:30 | 4. Aprobar una corrección con tu nombre | Alertas y errores → Hallazgos |
-| 4:30 – 5:00 | 5. Vuelta a datos base | Botón **Restablecer demostración** |
+| 4:30 – 5:00 | 5. Vuelta a datos base | Botón **Restablecer** |
 
 ### Paso 1 · Datos base (1:30)
 **Mostrar:** encabezado de octubre: **Ingresos consolidados 1,985,000.00 USD** y **Utilidad neta 359,125.00**; en *Estados
@@ -60,7 +60,7 @@ sigue «Archivos sin cambios: 17 de 17». Mencionar el registro `data/output/apr
 mi nombre. Sin nombre, el botón está desactivado.»
 
 ### Paso 5 · Vuelta a datos base (0:30)
-**Hacer:** pulsar **Restablecer demostración** (o `scripts/reset_demo.py`).
+**Hacer:** pulsar **Restablecer** (o `scripts/reset_demo.py`).
 **Decir y mostrar:** «Vacía el registro de aprobaciones y vuelve a Datos base: el ingreso consolidado vuelve a 1,985,000 y los
 archivos fuente nunca cambiaron.»
 

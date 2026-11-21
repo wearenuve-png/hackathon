@@ -25,10 +25,10 @@ def _local(ctx: dict):
         st.markdown(local.responder_local(clave, ctx))
 
 
-def render(res, period: str, escenario: str, demo: bool = False, props=None):
+def render(res, period: str, escenario: str, demo: bool = False, props=None, nota=None):
     cfg = cargar_config()
     try:
-        ctx = construir_contexto(res, period, escenario, demo, props)
+        ctx = construir_contexto(res, period, escenario, demo, props, nota)
     except Exception:  # noqa: BLE001
         st.info("El asistente no tiene resultados que mostrar en este momento.")
         return

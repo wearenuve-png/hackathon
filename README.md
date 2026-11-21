@@ -50,6 +50,17 @@ ambos se leen en solo lectura. En «Alertas y errores» cada hallazgo con correc
 **Rechazar** y **Deshacer**. Aprobar **no modifica ningún archivo**: la decisión (quién, cuándo, valor y motivo) queda en
 `data/output/aprobaciones.jsonl` y el consolidado se recalcula en memoria.
 
+## Cargar tus propios presupuestos y Restablecer
+
+- **Cargar presupuestos** (arriba, junto al selector): escribe o elige una o varias carpetas (una por línea; en macOS
+  hay un selector de carpeta). NEXUS lee los archivos XLSX, CSV y JSON **en solo lectura** y llena toda la pantalla con
+  ellos. Deben estar los presupuestos y la configuración del grupo (`empresas.csv`, `tasas.csv`, `catalogo_cuentas.csv`,
+  `equivalencias.csv`, `periodos.csv`); si falta algo, NEXUS dice qué y no adivina. Con varias carpetas trabaja sobre
+  copias en `data/output/carga_auto/`; los originales no se tocan. Ejemplo: `data/demo/` (de Mateo).
+- **Restablecer**: borra todo lo que el programa guardó (decisiones aprobadas, manifiestos de huellas, copias de
+  trabajo, carga elegida y estado de la pantalla) y vuelve a «Datos base». **No** borra presupuestos, datos de ejemplo
+  ni evidencias exportadas.
+
 ## Asistente NEXUS (prototipo, opcional)
 
 Pestaña **Asistente**: un modelo de lenguaje que explica resultados **ya calculados** de la pantalla (no calcula, no corrige,

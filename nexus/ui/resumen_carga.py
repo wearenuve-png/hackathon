@@ -67,9 +67,13 @@ NOTA_DEMO = ("Esta demostración parte de los datos base, que ya incluyen los 9 
              "más (data/demo_errores/ANSWER_KEY.md).")
 
 
-def render(res, props=None, demo: bool = False) -> None:
+NOTA_CARGA = ("Estos datos vienen de las carpetas que elegiste. NEXUS no conoce sus errores de antemano: todo lo que "
+              "ves lo detectó el motor al leer tus archivos.")
+
+
+def render(res, props=None, demo: bool = False, nota=None) -> None:
     d = calcular(res, props)
-    st.caption(NOTA_DEMO if demo else NOTA_BASE)
+    st.caption(nota if nota is not None else (NOTA_DEMO if demo else NOTA_BASE))
     cel = [("Archivos leídos", f"{d['archivos_leidos']} de {d['archivos_total']}", "Los que NEXUS pudo leer con su perfil.", ""),
            ("Registros leídos", d["registros"], "Filas de todos los archivos.", ""),
            ("Correctos", d["correctos"], "Entran al consolidado tal como vienen.", ""),

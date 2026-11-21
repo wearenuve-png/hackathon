@@ -27,7 +27,7 @@ from nexus.consolidation import trace
 from nexus.pipeline import run
 from nexus.schemas import BLOCK, BLOCKED, EXCLUDED_DUPLICATE, INFO, PENDING_MAPPING, WARN
 from nexus.ui.colores import company_colors
-from nexus.ui import (correcciones, explicar, extras, panel_seguridad, resumen_carga, tab_ayuda, tab_hallazgos,
+from nexus.ui import (carga_auto, correcciones, explicar, extras, panel_seguridad, resumen_carga, restablecer as restablecer_ui, tab_ayuda, tab_hallazgos,
                       tab_indicadores, tab_simulador, tab_variaciones)
 from nexus.variance import view
 
@@ -196,21 +196,80 @@ ESCENARIOS = ["Datos base", "Datos con errores (demostración)"]
 
 
 def _restablecer():
-    """Vacia el registro de aprobaciones y vuelve al escenario base. No toca ningun archivo fuente."""
-    correcciones.restablecer(correcciones.log_por_defecto())
+    """Borra todo lo que el programa guarda por su cuenta (decisiones, manifiestos, copias de trabajo, cargas y estado
+    de la pantalla) y vuelve al inicio. No toca ningun archivo fuente ni los datos de ejemplo."""
+    restablecer_ui.limpiar_todo(correcciones.log_por_defecto(), seguridad_manifiestos())
+    claro = st.session_state.get("modo_claro", False)               # el tema es una preferencia, no un dato
+    for k in list(st.session_state.keys()):
+        del st.session_state[k]
+    st.cache_resource.clear()
+    st.session_state["modo_claro"] = claro
     st.session_state["escenario"] = ESCENARIOS[0]
+    st.session_state["ver"] = 0
+
+
+def seguridad_manifiestos():
+    return panel_seguridad.seguridad.manifiesto_path("x").parent
+
+
+def _quitar_carga():
+    st.session_state.pop("carga", None)
     st.session_state["ver"] = st.session_state.get("ver", 0) + 1
-    st.session_state.pop("explicar_on", None)
 
 
-_c_esc, _c_rst = st.columns([5, 1.3], vertical_alignment="bottom")
+def _alternar_carga():
+    st.session_state["carga_abierta"] = not st.session_state.get("carga_abierta", False)
+
+
+def _leer_carpetas():
+    """Callback: lee las carpetas. Si todo esta bien, muestra esos datos; si no, deja los avisos en el panel."""
+    r = carga_auto.preparar(st.session_state.get("carga_rutas", "").splitlines())
+    st.session_state["carga_problemas"] = r["problemas"]
+    if r["ok"]:
+        st.session_state["carga"] = r
+        st.session_state["carga_abierta"] = False
+        st.session_state["ver"] = st.session_state.get("ver", 0) + 1
+
+
+def _elegir_carpeta():
+    ruta = carga_auto.elegir_carpeta()
+    if ruta:
+        actual = st.session_state.get("carga_rutas", "").rstrip()
+        st.session_state["carga_rutas"] = (actual + "\n" if actual else "") + ruta
+
+
+_c_esc, _c_rst, _c_car = st.columns([4.2, 1.1, 1.9], vertical_alignment="bottom")
 with _c_esc:
     escenario = st.radio("Escenario", ESCENARIOS, key="escenario", horizontal=True,
                          help="Ambos se leen en solo lectura. El segundo tiene 7 errores sembrados a propósito.")
 with _c_rst:
-    st.button("Restablecer demostración", key="restablecer_btn", on_click=_restablecer,
-              help="Vacía el registro de aprobaciones y vuelve a «Datos base». No modifica ningún archivo.")
-demo = escenario == ESCENARIOS[1]
+    st.button("Restablecer", key="restablecer_btn", on_click=_restablecer,
+              help="Borra todo lo que el programa guardó (decisiones, cargas, manifiestos y copias de trabajo) y vuelve "
+                   "a «Datos base». No modifica ni borra ningún archivo de presupuesto.")
+with _c_car:
+    st.button("Cargar presupuestos", key="carga_btn", on_click=_alternar_carga, icon=":material/folder_open:",
+              help="Lee automáticamente los presupuestos de una o varias carpetas y llena toda la pantalla con ellos.")
+if st.session_state.get("carga_abierta"):
+    with st.container(border=True):
+        st.markdown("**Cargar presupuestos desde carpetas** (solo lectura: tus archivos no se modifican)")
+        st.caption("Una carpeta por línea. Deben estar los presupuestos de las empresas y la configuración del grupo "
+                   "(empresas.csv, tasas.csv, catalogo_cuentas.csv, equivalencias.csv, periodos.csv). Formatos: "
+                   "XLSX, CSV y JSON.")
+        st.text_area("Carpetas", key="carga_rutas", height=90, label_visibility="collapsed",
+                     placeholder="/ruta/a/la/carpeta")
+        _b1, _b2, _ = st.columns([1.3, 1.3, 3])
+        _b1.button("Elegir carpeta…", key="carga_elegir", on_click=_elegir_carpeta)
+        _b2.button("Leer presupuestos", key="carga_leer", type="primary", on_click=_leer_carpetas)
+        for _p in st.session_state.get("carga_problemas", []):
+            st.warning(_p)
+_carga = st.session_state.get("carga")
+if _carga:
+    _cc, _cb = st.columns([5, 1.3], vertical_alignment="center")
+    _cc.info("Mostrando tus presupuestos de: " + "; ".join(_carga["origen"]) +
+             (f". No se usaron: {', '.join(_carga['sin_usar'])}." if _carga["sin_usar"] else ""),
+             icon=":material/folder_open:")
+    _cb.button("Volver a los datos de ejemplo", key="carga_quitar", on_click=_quitar_carga)
+demo = escenario == ESCENARIOS[1] and not _carga
 
 # ------------------------------------------------------------------ barra lateral
 if "modo_claro" not in st.session_state:
@@ -254,6 +313,8 @@ with st.sidebar:
             st.session_state.ver += 1
 
 LOG = correcciones.log_por_defecto()
+if _carga:                                                          # carpetas elegidas por la persona
+    data_dir, profiles_dir = _carga["dir"], ""
 _aprobadas = correcciones.aprobaciones(LOG, str(data_dir))
 try:
     res = (load_corregido(data_dir, profiles_dir, st.session_state.ver,
@@ -329,7 +390,7 @@ props_abiertas = correcciones.proponer(res)
 # ------------------------------------------------------------------ Inicio (resumen del mes)
 if section == "Inicio":
     heading("Resumen de la carga")
-    resumen_carga.render(res, props_abiertas, demo=demo)
+    resumen_carga.render(res, props_abiertas, demo=demo, nota=resumen_carga.NOTA_CARGA if _carga else None)
     explicar.render(res, period, props_abiertas)
     st.write("")
     left, right = st.columns([3, 2], gap="large")
@@ -632,4 +693,5 @@ if section == "Perfiles e integridad":
 # ------------------------------------------------------------------ Asistente (prototipo, opcional)
 if section == "Asistente":
     from asistente import tab as tab_asistente
-    tab_asistente.render(res, period, escenario, demo, props_abiertas)
+    tab_asistente.render(res, period, "Tus carpetas" if _carga else escenario, demo, props_abiertas,
+                         nota=resumen_carga.NOTA_CARGA if _carga else None)

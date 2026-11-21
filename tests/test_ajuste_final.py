@@ -66,7 +66,7 @@ def test_el_script_reset_demo_vacia_el_registro_y_verifica_los_hashes(tmp_path):
 
 def test_el_boton_restablecer_vuelve_a_datos_base_y_vacia_el_registro(app):
     log = Path(os.environ["NEXUS_APROBACIONES"])
-    assert any(b.key == "restablecer_btn" and b.label == "Restablecer demostración" for b in app.button)
+    assert any(b.key == "restablecer_btn" and b.label == "Restablecer" for b in app.button)
     app.radio(key="escenario").set_value(DEMO_ESC).run()
     app.radio(key="nav").set_value("Hallazgos").run()
     app.text_input(key="aprobador").set_value("Ana Prueba").run()
@@ -82,6 +82,8 @@ def test_el_boton_restablecer_vuelve_a_datos_base_y_vacia_el_registro(app):
     assert "1,985,000.00" in franja                                                   # vuelve la cifra base
     assert hashes() == antes                                                          # ningun archivo fuente cambio
     app.radio(key="escenario").set_value(DEMO_ESC).run()                              # y la demo arranca limpia
+    assert app.radio(key="nav").value == "Inicio"                                     # Restablecer tambien vuelve al inicio
+    app.radio(key="nav").set_value("Hallazgos").run()
     assert any(m.label == "Resueltos" and m.value == "0" for m in app.metric)
 
 
@@ -166,7 +168,7 @@ def test_el_guion_trae_el_recorrido_de_la_demo_en_la_interfaz():
     assert [sec.index(x) for x in pasos] == sorted(sec.index(x) for x in pasos)          # el orden pedido
     for frag in ("1,985,000.00", "359,125.00", "Trazabilidad", "Ingresos por ventas (cuenta 4000)", NOTA.replace("ya incluyen",
                  "ya incluyen"), "DEMOSTRACIÓN", "ESTIMACIÓN: requiere aprobación humana", "Quién aprueba", "Aprobar corrección",
-                 "Restablecer demostración", "scripts/reset_demo.py", "300,375.00", "355,325.00", "17 de 17"):
+                 "Restablecer", "scripts/reset_demo.py", "300,375.00", "355,325.00", "17 de 17"):
         assert frag in sec, frag
     for viejo in ("Alertas y exclusiones", "Resultados y balance", "Perfiles por empresa"):
         assert viejo not in plano                                                       # nombres de pestanas del rediseno
