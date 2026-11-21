@@ -12,6 +12,8 @@ HEADER_ALIASES = {
     "period": {"periodo", "period", "mes", "month", "fecha", "date", "fecha contable"},
     "account": {"cuenta", "cuenta contable", "account", "account name", "concepto", "cuenta local", "rubro"},
     "amount": {"monto", "importe", "valor", "amount", "value", "saldo"},
+    "debit": {"debe", "debito", "cargo", "debit", "debit amt", "debit amount", "dr"},
+    "credit": {"haber", "credito", "abono", "credit", "credit amt", "credit amount", "cr"},
     "currency": {"moneda", "divisa", "currency", "moneda de reporte", "reporting currency"},
     "counterparty": {"contraparte", "empresa relacionada", "counterparty", "cia relacionada",
                      "compania relacionada", "related party", "cliente proveedor"},

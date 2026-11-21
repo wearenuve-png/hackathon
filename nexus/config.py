@@ -40,7 +40,8 @@ def load_group_config(config_dir, ic_tolerance_usd="1.00") -> GroupConfig:
         catalog[r["account_code"]] = Account(
             r["account_code"], r["account_name"], r["estado"], r["clase"],
             {"S": True, "N": False}.get(corr),
-            [c for c in (r.get("total_de") or "").split("|") if c])
+            [c for c in (r.get("total_de") or "").split("|") if c],
+            (r.get("naturaleza") or "").strip().upper() or None)
     equivalences = {(r["company_id"], norm(r["cuenta_local"])): r["account_code"]
                     for r in _rows(d / "equivalencias.csv")}
     periods = {r["periodo"]: r["tipo"] for r in _rows(d / "periodos.csv")}
