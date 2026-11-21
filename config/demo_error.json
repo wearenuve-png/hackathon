@@ -1,0 +1,13 @@
+{
+  "_nota": "Parametros de la demostracion de errores (nexus/ui/demo_error.py). La demostracion se aplica SIEMPRE sobre una copia temporal de los datos. Elegidos para el grupo sintetico: empresa y periodo donde no hay registros de 4,000 u 8,000 USD, para que la causa candidata correcta se distinga sin ruido.",
+  "empresa": "EMP005",
+  "periodo": "2026-10",
+  "cuenta_activo": "Caja",
+  "cuenta_pasivo": "Cuentas por pagar",
+  "contraparte": "Banco de demostracion",
+  "casos": {
+    "borrar": {"monto_usd": "8000"},
+    "signo": {"monto_usd": "4000"},
+    "duplicar": {"monto_usd": "8000"}
+  }
+}

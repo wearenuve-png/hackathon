@@ -25,7 +25,7 @@ from nexus.audit import verify_hashes
 from nexus.consolidation import trace
 from nexus.pipeline import run
 from nexus.schemas import BLOCK, BLOCKED, EXCLUDED_DUPLICATE, INFO, PENDING_MAPPING, WARN
-from nexus.ui import extras, tab_ayuda, tab_hallazgos, tab_simulador
+from nexus.ui import extras, tab_ayuda, tab_demo_error, tab_hallazgos, tab_simulador
 
 ROOT = Path(__file__).resolve().parent
 st.set_page_config(page_title="NEXUS | Consolidación", layout="wide", initial_sidebar_state="expanded")
@@ -443,6 +443,8 @@ with tab_alert:
 
     st.divider()
     tab_hallazgos.render(res, period)
+    st.divider()
+    tab_demo_error.render(res, period, data_dir, profiles_dir)
 
 # ------------------------------------------------------------------ Intercompañía
 with tab_ic:

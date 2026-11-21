@@ -77,7 +77,7 @@ def test_noviembre_muestra_la_discrepancia_intercompania(at):
 
 
 def test_trazabilidad_llega_a_archivo_hoja_y_fila(at):
-    at.selectbox[0].select("Ingresos por ventas (cuenta 4000)").run()
+    next(b for b in at.selectbox if b.label == "Cifra").select("Ingresos por ventas (cuenta 4000)").run()
     assert not at.exception
     t = next(f for f in frames(at) if "Archivo" in f.columns and "Fila" in f.columns and "Tasa" in f.columns)
     assert len(t) > 0 and (t["Archivo"] != "").all() and (t["Fila"] > 0).all()

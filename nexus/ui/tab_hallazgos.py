@@ -42,6 +42,11 @@ def _ficha(f) -> None:
                                    for u in f.cercanos]), width="stretch", hide_index=True)
 
 
+def mostrar_ficha(f) -> None:
+    """Dibuja el contenido de una ficha (la usa tambien la demostracion de errores)."""
+    _ficha(f)
+
+
 def render(consolidado, periodo=None) -> None:
     st.subheader("Hallazgos: qué pasó, dónde, por qué importa y qué hacer")
     fichas = [f for f in diagnosticar(consolidado) if periodo is None or f.period in (None, periodo)]

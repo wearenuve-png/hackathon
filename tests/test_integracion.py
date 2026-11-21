@@ -119,7 +119,7 @@ def test_intercompania_en_una_sola_fila_con_explicacion(app):
 
 
 def test_rotulo_ingresos_por_ventas_cuenta_4000_y_aclaracion(app):
-    app.selectbox[0].select("Ingresos por ventas (cuenta 4000)").run()
+    next(b for b in app.selectbox if b.label == "Cifra").select("Ingresos por ventas (cuenta 4000)").run()
     assert not app.exception
     nota = [c.value for c in app.caption if c.value.startswith("Esta cifra es solo la cuenta 4000")]
     assert len(nota) == 1 and "1,985,000.00" in nota[0] and "otras cuentas de ingresos" in nota[0]
@@ -177,6 +177,6 @@ def test_los_archivos_originales_no_cambian_al_usar_toda_la_app(app):
         en_periodo(app, p)
     app.slider(key="sim_mxn").set_value(10.0).run()
     app.slider(key="sim_gtq").set_value(-10.0).run()
-    app.selectbox[0].select("Ingresos por ventas (cuenta 4000)").run()
+    next(b for b in app.selectbox if b.label == "Cifra").select("Ingresos por ventas (cuenta 4000)").run()
     assert not app.exception
     assert hashes() == antes and len(antes) >= 17
