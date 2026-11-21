@@ -1,0 +1,372 @@
+{
+  "company_name": "Ferrex Importaciones S.A.",
+  "country": "Panama",
+  "reporting_currency": "USD",
+  "scenario_note": "2026-12 is budget",
+  "entries": [
+    {
+      "period": "2026-10",
+      "account": "Net revenue",
+      "amount": 450000,
+      "counterparty": null,
+      "transaction_id": null
+    },
+    {
+      "period": "2026-10",
+      "account": "Cost of sales",
+      "amount": 300000,
+      "counterparty": null,
+      "transaction_id": null
+    },
+    {
+      "period": "2026-10",
+      "account": "Salaries",
+      "amount": 40000,
+      "counterparty": null,
+      "transaction_id": null
+    },
+    {
+      "period": "2026-10",
+      "account": "Office rent",
+      "amount": 15000,
+      "counterparty": null,
+      "transaction_id": null
+    },
+    {
+      "period": "2026-10",
+      "account": "Other expenses",
+      "amount": 10000,
+      "counterparty": null,
+      "transaction_id": null
+    },
+    {
+      "period": "2026-10",
+      "account": "Depreciation",
+      "amount": 5000,
+      "counterparty": null,
+      "transaction_id": null
+    },
+    {
+      "period": "2026-10",
+      "account": "Interest",
+      "amount": 4000,
+      "counterparty": null,
+      "transaction_id": null
+    },
+    {
+      "period": "2026-10",
+      "account": "Income tax",
+      "amount": 15000,
+      "counterparty": null,
+      "transaction_id": null
+    },
+    {
+      "period": "2026-10",
+      "account": "Net revenue",
+      "amount": 8000,
+      "counterparty": "Ferrex México",
+      "transaction_id": "FI-IC-2610"
+    },
+    {
+      "period": "2026-10",
+      "account": "Cash and equivalents",
+      "amount": 120000,
+      "counterparty": null,
+      "transaction_id": null
+    },
+    {
+      "period": "2026-10",
+      "account": "Trade receivables",
+      "amount": 150000,
+      "counterparty": null,
+      "transaction_id": null
+    },
+    {
+      "period": "2026-10",
+      "account": "Inventory",
+      "amount": 350000,
+      "counterparty": null,
+      "transaction_id": null
+    },
+    {
+      "period": "2026-10",
+      "account": "Fixed assets",
+      "amount": 200000,
+      "counterparty": null,
+      "transaction_id": null
+    },
+    {
+      "period": "2026-10",
+      "account": "Trade payables",
+      "amount": 180000,
+      "counterparty": null,
+      "transaction_id": null
+    },
+    {
+      "period": "2026-10",
+      "account": "Tax payable",
+      "amount": 15000,
+      "counterparty": null,
+      "transaction_id": null
+    },
+    {
+      "period": "2026-10",
+      "account": "Long-term debt",
+      "amount": 250000,
+      "counterparty": null,
+      "transaction_id": null
+    },
+    {
+      "period": "2026-10",
+      "account": "Common stock",
+      "amount": 200000,
+      "counterparty": null,
+      "transaction_id": null
+    },
+    {
+      "period": "2026-10",
+      "account": "Retained earnings",
+      "amount": 175000,
+      "counterparty": null,
+      "transaction_id": null
+    },
+    {
+      "period": "2026-11",
+      "account": "Net revenue",
+      "amount": 450000,
+      "counterparty": null,
+      "transaction_id": null
+    },
+    {
+      "period": "2026-11",
+      "account": "Cost of sales",
+      "amount": 300000,
+      "counterparty": null,
+      "transaction_id": null
+    },
+    {
+      "period": "2026-11",
+      "account": "Salaries",
+      "amount": 40000,
+      "counterparty": null,
+      "transaction_id": null
+    },
+    {
+      "period": "2026-11",
+      "account": "Office rent",
+      "amount": 15000,
+      "counterparty": null,
+      "transaction_id": null
+    },
+    {
+      "period": "2026-11",
+      "account": "Other expenses",
+      "amount": 10000,
+      "counterparty": null,
+      "transaction_id": null
+    },
+    {
+      "period": "2026-11",
+      "account": "Depreciation",
+      "amount": 5000,
+      "counterparty": null,
+      "transaction_id": null
+    },
+    {
+      "period": "2026-11",
+      "account": "Interest",
+      "amount": 4000,
+      "counterparty": null,
+      "transaction_id": null
+    },
+    {
+      "period": "2026-11",
+      "account": "Income tax",
+      "amount": 15000,
+      "counterparty": null,
+      "transaction_id": null
+    },
+    {
+      "period": "2026-11",
+      "account": "Cash and equivalents",
+      "amount": 120000,
+      "counterparty": null,
+      "transaction_id": null
+    },
+    {
+      "period": "2026-11",
+      "account": "Trade receivables",
+      "amount": 150000,
+      "counterparty": null,
+      "transaction_id": null
+    },
+    {
+      "period": "2026-11",
+      "account": "Inventory",
+      "amount": 350000,
+      "counterparty": null,
+      "transaction_id": null
+    },
+    {
+      "period": "2026-11",
+      "account": "Fixed assets",
+      "amount": 200000,
+      "counterparty": null,
+      "transaction_id": null
+    },
+    {
+      "period": "2026-11",
+      "account": "Trade payables",
+      "amount": 180000,
+      "counterparty": null,
+      "transaction_id": null
+    },
+    {
+      "period": "2026-11",
+      "account": "Tax payable",
+      "amount": 15000,
+      "counterparty": null,
+      "transaction_id": null
+    },
+    {
+      "period": "2026-11",
+      "account": "Long-term debt",
+      "amount": 250000,
+      "counterparty": null,
+      "transaction_id": null
+    },
+    {
+      "period": "2026-11",
+      "account": "Common stock",
+      "amount": 200000,
+      "counterparty": null,
+      "transaction_id": null
+    },
+    {
+      "period": "2026-11",
+      "account": "Retained earnings",
+      "amount": 175000,
+      "counterparty": null,
+      "transaction_id": null
+    },
+    {
+      "period": "2026-12",
+      "account": "Net revenue",
+      "amount": 448000,
+      "counterparty": null,
+      "transaction_id": null
+    },
+    {
+      "period": "2026-12",
+      "account": "Cost of sales",
+      "amount": 310000,
+      "counterparty": null,
+      "transaction_id": null
+    },
+    {
+      "period": "2026-12",
+      "account": "Salaries",
+      "amount": 43000,
+      "counterparty": null,
+      "transaction_id": null
+    },
+    {
+      "period": "2026-12",
+      "account": "Office rent",
+      "amount": 15000,
+      "counterparty": null,
+      "transaction_id": null
+    },
+    {
+      "period": "2026-12",
+      "account": "Other expenses",
+      "amount": 11000,
+      "counterparty": null,
+      "transaction_id": null
+    },
+    {
+      "period": "2026-12",
+      "account": "Depreciation",
+      "amount": 5000,
+      "counterparty": null,
+      "transaction_id": null
+    },
+    {
+      "period": "2026-12",
+      "account": "Interest",
+      "amount": 4000,
+      "counterparty": null,
+      "transaction_id": null
+    },
+    {
+      "period": "2026-12",
+      "account": "Income tax",
+      "amount": 15000,
+      "counterparty": null,
+      "transaction_id": null
+    },
+    {
+      "period": "2026-12",
+      "account": "Cash and equivalents",
+      "amount": 125000,
+      "counterparty": null,
+      "transaction_id": null
+    },
+    {
+      "period": "2026-12",
+      "account": "Trade receivables",
+      "amount": 161000,
+      "counterparty": null,
+      "transaction_id": null
+    },
+    {
+      "period": "2026-12",
+      "account": "Inventory",
+      "amount": 370000,
+      "counterparty": null,
+      "transaction_id": null
+    },
+    {
+      "period": "2026-12",
+      "account": "Fixed assets",
+      "amount": 214000,
+      "counterparty": null,
+      "transaction_id": null
+    },
+    {
+      "period": "2026-12",
+      "account": "Trade payables",
+      "amount": 181000,
+      "counterparty": null,
+      "transaction_id": null
+    },
+    {
+      "period": "2026-12",
+      "account": "Tax payable",
+      "amount": 15000,
+      "counterparty": null,
+      "transaction_id": null
+    },
+    {
+      "period": "2026-12",
+      "account": "Long-term debt",
+      "amount": 265000,
+      "counterparty": null,
+      "transaction_id": null
+    },
+    {
+      "period": "2026-12",
+      "account": "Common stock",
+      "amount": 200000,
+      "counterparty": null,
+      "transaction_id": null
+    },
+    {
+      "period": "2026-12",
+      "account": "Retained earnings",
+      "amount": 209000,
+      "counterparty": null,
+      "transaction_id": null
+    }
+  ]
+}

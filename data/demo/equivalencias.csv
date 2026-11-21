@@ -1,0 +1,109 @@
+company_id,cuenta_local,account_code
+EMP001,Ventas de varilla y alambre,4000
+EMP001,Costo de produccion vendida,5000
+EMP001,Sueldos y salarios,6000
+EMP001,Alquiler de bodega,6100
+EMP001,Fletes,6200
+EMP001,Otros gastos,6300
+EMP001,Depreciacion de maquinaria,6400
+EMP001,Intereses bancarios,7000
+EMP001,ISR,8000
+EMP001,Total gastos de operacion,TOT_GOP
+EMP001,Caja y bancos,1000
+EMP001,Clientes,1100
+EMP001,Inventarios,1200
+EMP001,Maquinaria y equipo neto,1500
+EMP001,Proveedores,2000
+EMP001,Impuestos por pagar,2100
+EMP001,Prestamos bancarios,2500
+EMP001,Capital social,3000
+EMP001,Utilidades acumuladas,3100
+EMP002,Ventas netas,4000
+EMP002,Costo de mercaderia vendida,5000
+EMP002,Planilla,6000
+EMP002,Arrendamientos,6100
+EMP002,Transporte,6200
+EMP002,Gastos varios,6300
+EMP002,Depreciaciones,6400
+EMP002,Gastos financieros,7000
+EMP002,Impuesto sobre la renta,8000
+EMP002,Efectivo,1000
+EMP002,Cuentas por cobrar,1100
+EMP002,Inventario de mercaderia,1200
+EMP002,Mobiliario y equipo,1500
+EMP002,Cuentas por pagar,2000
+EMP002,ISR por pagar,2100
+EMP002,Deuda bancaria,2500
+EMP002,Capital pagado,3000
+EMP002,Resultados acumulados,3100
+EMP003,Ingresos netos,4000
+EMP003,Costo de ventas,5000
+EMP003,Salarios,6000
+EMP003,Alquileres de tiendas,6100
+EMP003,Servicios de transporte,6200
+EMP003,Otros gastos de operacion,6300
+EMP003,Depreciacion,6400
+EMP003,Intereses,7000
+EMP003,Impuesto sobre la renta,8000
+EMP003,Bancos,1000
+EMP003,Cuentas por cobrar clientes,1100
+EMP003,Inventario,1200
+EMP003,Activo fijo neto,1500
+EMP003,Proveedores,2000
+EMP003,Impuestos por pagar,2100
+EMP003,Prestamos,2500
+EMP003,Capital,3000
+EMP003,Utilidades retenidas,3100
+EMP004,Store sales - hardware,4000
+EMP004,Store sales - building materials,4000
+EMP004,Total revenue,TOT_ING
+EMP004,Cost of goods sold,5000
+EMP004,Payroll,6000
+EMP004,Rent,6100
+EMP004,Freight,6200
+EMP004,Other operating expenses,6300
+EMP004,Depreciation,6400
+EMP004,Interest expense,7000
+EMP004,Income tax,8000
+EMP004,Cash,1000
+EMP004,Accounts receivable,1100
+EMP004,Inventory,1200
+EMP004,"PP&E, net",1500
+EMP004,Accounts payable,2000
+EMP004,Taxes payable,2100
+EMP004,Bank loans,2500
+EMP004,Share capital,3000
+EMP004,Retained earnings,3100
+EMP005,Ingresos por servicios de transporte,4100
+EMP005,Salarios de pilotos,6000
+EMP005,Alquiler de predio,6100
+EMP005,Combustible y lubricantes,6300
+EMP005,Mantenimiento de flota,6300
+EMP005,Depreciación de vehículos,6400
+EMP005,Intereses,7000
+EMP005,Impuesto sobre la renta,8000
+EMP005,Caja,1000
+EMP005,Cuentas por cobrar,1100
+EMP005,Vehículos neto,1500
+EMP005,Cuentas por pagar,2000
+EMP005,Impuestos por pagar,2100
+EMP005,Préstamo vehicular,2500
+EMP005,Capital,3000
+EMP005,Utilidades acumuladas,3100
+EMP006,Net revenue,4000
+EMP006,Cost of sales,5000
+EMP006,Salaries,6000
+EMP006,Office rent,6100
+EMP006,Other expenses,6300
+EMP006,Depreciation,6400
+EMP006,Interest,7000
+EMP006,Income tax,8000
+EMP006,Cash and equivalents,1000
+EMP006,Trade receivables,1100
+EMP006,Inventory,1200
+EMP006,Fixed assets,1500
+EMP006,Trade payables,2000
+EMP006,Tax payable,2100
+EMP006,Long-term debt,2500
+EMP006,Common stock,3000
+EMP006,Retained earnings,3100
