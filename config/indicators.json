@@ -1,0 +1,9 @@
+{
+  "_nota": "Todos estos valores son SUPUESTOS del equipo, no datos del reto. Cambiarlos no requiere tocar el codigo.",
+  "wacc": "0.08",
+  "tax_rate": "0.25",
+  "periods_per_year": 12,
+  "cash_account_codes": ["1000"],
+  "invested_capital_override": null,
+  "capital_employed_override": null
+}
