@@ -1,11 +1,39 @@
 fecha,cuenta,monto,moneda,cia_relacionada,num_doc
-31/10/2026,Ingresos por servicios de transporte,2400000.00,MXN,,
-31/10/2026,Salarios de pilotos,720000.00,MXN,,
+01/10/2026,Ingresos por servicios de transporte,200912.62,MXN,Ferrex Mexico Tienda Norte,CP-00009
+02/10/2026,Ingresos por servicios de transporte,151066.03,MXN,Comercializadora Hidalguense,CP-00006
+02/10/2026,Ingresos por servicios de transporte,108006.45,MXN,Ferrex Mexico Tienda Norte,CP-00007
+06/10/2026,Ingresos por servicios de transporte,157455.55,MXN,Ferrex Mexico Tienda Norte,CP-00010
+09/10/2026,Ingresos por servicios de transporte,99005.77,MXN,Comercializadora Hidalguense,CP-00004
+09/10/2026,Ingresos por servicios de transporte,185833.31,MXN,Comercializadora Hidalguense,CP-00011
+13/10/2026,Ingresos por servicios de transporte,83577.89,MXN,Distribuidora Agricola del Centro,CP-00005
+14/10/2026,Ingresos por servicios de transporte,197003.40,MXN,Distribuidora Agricola del Centro,CP-00008
+15/10/2026,Ingresos por servicios de transporte,184226.91,MXN,Cementos del Bajio,CP-00017
+20/10/2026,Ingresos por servicios de transporte,86559.82,MXN,Distribuidora Agricola del Centro,CP-00015
+22/10/2026,Ingresos por servicios de transporte,98591.44,MXN,Distribuidora Agricola del Centro,CP-00002
+22/10/2026,Ingresos por servicios de transporte,158912.17,MXN,Ferrex Mexico Tienda Norte,CP-00003
+23/10/2026,Ingresos por servicios de transporte,78215.18,MXN,Ferrex Mexico Tienda Norte,CP-00001
+26/10/2026,Ingresos por servicios de transporte,127850.73,MXN,Distribuidora Agricola del Centro,CP-00012
+27/10/2026,Ingresos por servicios de transporte,136773.72,MXN,Comercializadora Hidalguense,CP-00014
+28/10/2026,Ingresos por servicios de transporte,91404.94,MXN,Grupo Constructor Leon,CP-00013
+29/10/2026,Ingresos por servicios de transporte,51927.52,MXN,Distribuidora Agricola del Centro,CP-00016
+30/10/2026,Ingresos por servicios de transporte,202676.55,MXN,Cementos del Bajio,CP-00018
+12/10/2026,Salarios de pilotos,262306.82,MXN,,NOM-00002
+28/10/2026,Salarios de pilotos,183540.81,MXN,,NOM-00003
+30/10/2026,Salarios de pilotos,274152.37,MXN,,NOM-00001
 31/10/2026,Alquiler de predio,120000.00,MXN,,
-31/10/2026,Combustible y lubricantes,480000.00,MXN,,
+01/10/2026,Combustible y lubricantes,59278.20,MXN,Llantera Industrial Queretaro,GTO-00005
+07/10/2026,Combustible y lubricantes,32305.31,MXN,Refaccionaria Diesel del Bajio,GTO-00001
+09/10/2026,Combustible y lubricantes,29972.32,MXN,Pemex Estacion 4471,GTO-00007
+15/10/2026,Combustible y lubricantes,75435.22,MXN,Llantera Industrial Queretaro,GTO-00002
+15/10/2026,Combustible y lubricantes,31163.80,MXN,Pemex Estacion 4471,GTO-00003
+15/10/2026,Combustible y lubricantes,27725.63,MXN,Refaccionaria Diesel del Bajio,GTO-00008
+28/10/2026,Combustible y lubricantes,70059.18,MXN,Llantera Industrial Queretaro,GTO-00006
+28/10/2026,Combustible y lubricantes,58743.36,MXN,Pemex Estacion 4471,GTO-00009
+29/10/2026,Combustible y lubricantes,95316.98,MXN,Gasolinera del Norte,GTO-00004
 31/10/2026,Mantenimiento de flota,200000.00,MXN,,
 31/10/2026,Depreciación de vehículos,240000.00,MXN,,
-31/10/2026,Intereses,64000.00,MXN,,
+12/10/2026,Intereses,23898.09,MXN,,INT-00001
+16/10/2026,Intereses,40101.91,MXN,,INT-00002
 31/10/2026,Impuesto sobre la renta,120000.00,MXN,,
 31/10/2026,Ingresos por servicios de transporte,200000.00,MXN,Ferrex México,TF-IC-2610
 31/10/2026,Caja,560000.00,MXN,,
@@ -16,13 +44,44 @@ fecha,cuenta,monto,moneda,cia_relacionada,num_doc
 31/10/2026,Préstamo vehicular,2000000.00,MXN,,
 31/10/2026,Capital,1600000.00,MXN,,
 31/10/2026,Utilidades acumuladas,1080000.00,MXN,,
-30/11/2026,Ingresos por servicios de transporte,2314400.00,MXN,,
-30/11/2026,Salarios de pilotos,764800.00,MXN,,
+02/11/2026,Ingresos por servicios de transporte,139164.19,MXN,Distribuidora Agricola del Centro,CP-00021
+02/11/2026,Ingresos por servicios de transporte,55835.16,MXN,Comercializadora Hidalguense,CP-00026
+02/11/2026,Ingresos por servicios de transporte,76725.15,MXN,Cementos del Bajio,CP-00028
+02/11/2026,Ingresos por servicios de transporte,75188.54,MXN,Ferrex Mexico Tienda Norte,CP-00030
+04/11/2026,Ingresos por servicios de transporte,183482.95,MXN,Comercializadora Hidalguense,CP-00019
+05/11/2026,Ingresos por servicios de transporte,74018.40,MXN,Cementos del Bajio,CP-00033
+09/11/2026,Ingresos por servicios de transporte,151088.66,MXN,Comercializadora Hidalguense,CP-00037
+09/11/2026,Ingresos por servicios de transporte,130676.94,MXN,Ferrex Mexico Tienda Norte,CP-00038
+12/11/2026,Ingresos por servicios de transporte,46439.29,MXN,Distribuidora Agricola del Centro,CP-00023
+12/11/2026,Ingresos por servicios de transporte,156000.29,MXN,Cementos del Bajio,CP-00029
+13/11/2026,Ingresos por servicios de transporte,171351.05,MXN,Cementos del Bajio,CP-00031
+13/11/2026,Ingresos por servicios de transporte,124798.99,MXN,Ferrex Mexico Tienda Norte,CP-00035
+18/11/2026,Ingresos por servicios de transporte,93138.32,MXN,Comercializadora Hidalguense,CP-00022
+20/11/2026,Ingresos por servicios de transporte,105332.31,MXN,Ferrex Mexico Tienda Norte,CP-00036
+23/11/2026,Ingresos por servicios de transporte,153633.25,MXN,Comercializadora Hidalguense,CP-00024
+25/11/2026,Ingresos por servicios de transporte,119416.02,MXN,Ferrex Mexico Tienda Norte,CP-00034
+26/11/2026,Ingresos por servicios de transporte,119332.24,MXN,Comercializadora Hidalguense,CP-00032
+30/11/2026,Ingresos por servicios de transporte,51017.63,MXN,Distribuidora Agricola del Centro,CP-00020
+30/11/2026,Ingresos por servicios de transporte,160296.99,MXN,Comercializadora Hidalguense,CP-00025
+30/11/2026,Ingresos por servicios de transporte,127463.63,MXN,Grupo Constructor Leon,CP-00027
+03/11/2026,Salarios de pilotos,200210.04,MXN,,NOM-00004
+06/11/2026,Salarios de pilotos,230501.73,MXN,,NOM-00007
+09/11/2026,Salarios de pilotos,87179.33,MXN,,NOM-00005
+20/11/2026,Salarios de pilotos,246908.90,MXN,,NOM-00006
 30/11/2026,Alquiler de predio,120000.00,MXN,,
-30/11/2026,Combustible y lubricantes,485600.00,MXN,,
+03/11/2026,Combustible y lubricantes,24939.75,MXN,Gasolinera del Norte,GTO-00010
+04/11/2026,Combustible y lubricantes,77049.06,MXN,Refaccionaria Diesel del Bajio,GTO-00016
+04/11/2026,Combustible y lubricantes,60356.20,MXN,Gasolinera del Norte,GTO-00017
+06/11/2026,Combustible y lubricantes,77542.67,MXN,Gasolinera del Norte,GTO-00015
+11/11/2026,Combustible y lubricantes,41462.13,MXN,Llantera Industrial Queretaro,GTO-00018
+12/11/2026,Combustible y lubricantes,50852.29,MXN,Refaccionaria Diesel del Bajio,GTO-00014
+13/11/2026,Combustible y lubricantes,27124.76,MXN,Refaccionaria Diesel del Bajio,GTO-00013
+20/11/2026,Combustible y lubricantes,63199.59,MXN,Llantera Industrial Queretaro,GTO-00012
+27/11/2026,Combustible y lubricantes,63073.55,MXN,Gasolinera del Norte,GTO-00011
 30/11/2026,Mantenimiento de flota,203200.00,MXN,,
 30/11/2026,Depreciación de vehículos,240000.00,MXN,,
-30/11/2026,Intereses,7O000.00,MXN,,
+13/11/2026,Intereses,38845.52,MXN,,INT-00004
+18/11/2026,Intereses,2O954.48,MXN,,INT-00003
 30/11/2026,Impuesto sobre la renta,114400.00,MXN,,
 30/11/2026,Ingresos por servicios de transporte,200000.00,MXN,Ferrex México,TF-IC-2611
 30/11/2026,Caja,580800.00,MXN,,
@@ -33,15 +92,48 @@ fecha,cuenta,monto,moneda,cia_relacionada,num_doc
 30/11/2026,Préstamo vehicular,2086400.00,MXN,,
 30/11/2026,Capital,1600000.00,MXN,,
 30/11/2026,Utilidades acumuladas,897600.00,MXN,,
-31/12/2026,Ingresos por servicios de transporte,2526400.00,MXN,,
-31/12/2026,Salarios de pilotos,774400.00,MXN,,
+03/12/2026,Ingresos por servicios de transporte,92599.00,MXN,Cementos del Bajio,CP-00053
+03/12/2026,Ingresos por servicios de transporte,189348.52,MXN,Grupo Constructor Leon,CP-00056
+04/12/2026,Ingresos por servicios de transporte,91480.02,MXN,Distribuidora Agricola del Centro,CP-00051
+04/12/2026,Ingresos por servicios de transporte,180793.46,MXN,Cementos del Bajio,CP-00057
+07/12/2026,Ingresos por servicios de transporte,109676.40,MXN,Ferrex Mexico Tienda Norte,CP-00052
+08/12/2026,Ingresos por servicios de transporte,158003.32,MXN,Grupo Constructor Leon,CP-00040
+10/12/2026,Ingresos por servicios de transporte,48431.48,MXN,Comercializadora Hidalguense,CP-00043
+10/12/2026,Ingresos por servicios de transporte,79719.16,MXN,Cementos del Bajio,CP-00046
+10/12/2026,Ingresos por servicios de transporte,47316.29,MXN,Distribuidora Agricola del Centro,CP-00047
+10/12/2026,Ingresos por servicios de transporte,100890.32,MXN,Distribuidora Agricola del Centro,CP-00049
+14/12/2026,Ingresos por servicios de transporte,194633.54,MXN,Grupo Constructor Leon,CP-00055
+15/12/2026,Ingresos por servicios de transporte,80749.37,MXN,Cementos del Bajio,CP-00058
+16/12/2026,Ingresos por servicios de transporte,180257.44,MXN,Distribuidora Agricola del Centro,CP-00054
+17/12/2026,Ingresos por servicios de transporte,97953.97,MXN,Distribuidora Agricola del Centro,CP-00041
+22/12/2026,Ingresos por servicios de transporte,172988.22,MXN,Distribuidora Agricola del Centro,CP-00050
+23/12/2026,Ingresos por servicios de transporte,147961.84,MXN,Grupo Constructor Leon,CP-00039
+24/12/2026,Ingresos por servicios de transporte,57928.67,MXN,Grupo Constructor Leon,CP-00048
+28/12/2026,Ingresos por servicios de transporte,110559.15,MXN,Grupo Constructor Leon,CP-00042
+29/12/2026,Ingresos por servicios de transporte,140120.05,MXN,Grupo Constructor Leon,CP-00044
+29/12/2026,Ingresos por servicios de transporte,56953.99,MXN,Distribuidora Agricola del Centro,CP-00045
+30/12/2026,Ingresos por servicios de transporte,188035.79,MXN,Comercializadora Hidalguense,CP-00059
+02/12/2026,Salarios de pilotos,201775.21,MXN,,NOM-00009
+04/12/2026,Salarios de pilotos,223906.90,MXN,,NOM-00008
+15/12/2026,Salarios de pilotos,160393.47,MXN,,NOM-00011
+23/12/2026,Salarios de pilotos,188324.42,MXN,,NOM-00010
 31/12/2026,Alquiler de predio,120000.00,MXN,,
-31/12/2026,Combustible y lubricantes,500800.00,MXN,,
-31/12/2026,Mantenimiento de flota,208000.00,MXN,,
+01/12/2026,Combustible y lubricantes,65011.67,MXN,Pemex Estacion 4471,GTO-00019
+01/12/2026,Combustible y lubricantes,56146.40,MXN,Pemex Estacion 4471,GTO-00024
+04/12/2026,Combustible y lubricantes,33947.94,MXN,Gasolinera del Norte,GTO-00020
+14/12/2026,Combustible y lubricantes,47166.25,MXN,Pemex Estacion 4471,GTO-00026
+15/12/2026,Combustible y lubricantes,16884.41,MXN,Pemex Estacion 4471,GTO-00025
+16/12/2026,Combustible y lubricantes,48482.23,MXN,Pemex Estacion 4471,GTO-00022
+16/12/2026,Combustible y lubricantes,69707.44,MXN,Llantera Industrial Queretaro,GTO-00028
+21/12/2026,Combustible y lubricantes,64508.84,MXN,Pemex Estacion 4471,GTO-00027
+30/12/2026,Combustible y lubricantes,67145.79,MXN,Llantera Industrial Queretaro,GTO-00023
+31/12/2026,Combustible y lubricantes,31799.03,MXN,Llantera Industrial Queretaro,GTO-00021
+31/12/2026,Mantenimiento de flota,171200.00,MXN,,
 18/12/2026,Mantenimiento de flota,18400.00,MXN,Taller Mecanico Ruiz,
 18/12/2026,Mantenimiento de flota,18400.00,MXN,Taller Mecanico Ruiz,
 31/12/2026,Depreciación de vehículos,240000.00,MXN,,
-31/12/2026,Intereses,63200.00,MXN,,
+11/12/2026,Intereses,25248.59,MXN,,INT-00005
+31/12/2026,Intereses,37951.41,MXN,,INT-00006
 31/12/2026,Impuesto sobre la renta,120800.00,MXN,,
 31/12/2026,Ingresos por servicios de transporte,208000.00,MXN,Ferrex México,TF-IC-2612
 31/12/2026,Caja,579200.00,MXN,,

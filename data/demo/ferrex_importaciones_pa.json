@@ -2,369 +2,763 @@
   "company_name": "Ferrex Importaciones S.A.",
   "country": "Panama",
   "reporting_currency": "USD",
+  "source_system": "SAP Business One - export",
   "scenario_note": "2026-12 is budget",
+  "generated_at": "2026-11-20T18:42:00-05:00",
   "entries": [
     {
-      "period": "2026-10",
+      "period": "2026-10-01",
       "account": "Net revenue",
-      "amount": 450000,
-      "counterparty": null,
-      "transaction_id": null
+      "amount": 35333.46,
+      "counterparty": "Ferreteria Pacifico Colon",
+      "transaction_id": "INV-00012"
     },
     {
-      "period": "2026-10",
+      "period": "2026-10-06",
+      "account": "Net revenue",
+      "amount": 22187.03,
+      "counterparty": "Cochez y Cia",
+      "transaction_id": "INV-00005"
+    },
+    {
+      "period": "2026-10-08",
+      "account": "Net revenue",
+      "amount": 56267.51,
+      "counterparty": "Cochez y Cia",
+      "transaction_id": "INV-00008"
+    },
+    {
+      "period": "2026-10-08",
+      "account": "Net revenue",
+      "amount": 13294.11,
+      "counterparty": "Cochez y Cia",
+      "transaction_id": "INV-00010"
+    },
+    {
+      "period": "2026-10-12",
+      "account": "Net revenue",
+      "amount": 17083.75,
+      "counterparty": "Ferreteria Novey",
+      "transaction_id": "INV-00002"
+    },
+    {
+      "period": "2026-10-14",
+      "account": "Net revenue",
+      "amount": 32596.05,
+      "counterparty": "Materiales Generales del Istmo",
+      "transaction_id": "INV-00007"
+    },
+    {
+      "period": "2026-10-15",
+      "account": "Net revenue",
+      "amount": 40786.97,
+      "counterparty": "Materiales Generales del Istmo",
+      "transaction_id": "INV-00003"
+    },
+    {
+      "period": "2026-10-20",
+      "account": "Net revenue",
+      "amount": 51410.48,
+      "counterparty": "Ferreteria Pacifico Colon",
+      "transaction_id": "INV-00009"
+    },
+    {
+      "period": "2026-10-20",
+      "account": "Net revenue",
+      "amount": 14329.84,
+      "counterparty": "Ferreteria Novey",
+      "transaction_id": "INV-00014"
+    },
+    {
+      "period": "2026-10-21",
+      "account": "Net revenue",
+      "amount": 29797.15,
+      "counterparty": "Materiales Generales del Istmo",
+      "transaction_id": "INV-00006"
+    },
+    {
+      "period": "2026-10-21",
+      "account": "Net revenue",
+      "amount": 18546.04,
+      "counterparty": "Materiales Generales del Istmo",
+      "transaction_id": "INV-00013"
+    },
+    {
+      "period": "2026-10-22",
+      "account": "Net revenue",
+      "amount": 37703.89,
+      "counterparty": "Cochez y Cia",
+      "transaction_id": "INV-00001"
+    },
+    {
+      "period": "2026-10-29",
+      "account": "Net revenue",
+      "amount": 42992.7,
+      "counterparty": "Cochez y Cia",
+      "transaction_id": "INV-00004"
+    },
+    {
+      "period": "2026-10-30",
+      "account": "Net revenue",
+      "amount": 37671.02,
+      "counterparty": "Materiales Generales del Istmo",
+      "transaction_id": "INV-00011"
+    },
+    {
+      "period": "2026-10-06",
       "account": "Cost of sales",
-      "amount": 300000,
-      "counterparty": null,
-      "transaction_id": null
+      "amount": 43960.75,
+      "counterparty": "Stanley Black & Decker LatAm",
+      "transaction_id": "PO-00003"
     },
     {
-      "period": "2026-10",
+      "period": "2026-10-07",
+      "account": "Cost of sales",
+      "amount": 40410.42,
+      "counterparty": "Ningbo Hardware Export Co.",
+      "transaction_id": "PO-00004"
+    },
+    {
+      "period": "2026-10-12",
+      "account": "Cost of sales",
+      "amount": 91376.22,
+      "counterparty": "Makita Distribution",
+      "transaction_id": "PO-00001"
+    },
+    {
+      "period": "2026-10-15",
+      "account": "Cost of sales",
+      "amount": 33947.9,
+      "counterparty": "Bosch Power Tools",
+      "transaction_id": "PO-00002"
+    },
+    {
+      "period": "2026-10-19",
+      "account": "Cost of sales",
+      "amount": 90304.71,
+      "counterparty": "Bosch Power Tools",
+      "transaction_id": "PO-00005"
+    },
+    {
+      "period": "2026-10-09",
       "account": "Salaries",
-      "amount": 40000,
+      "amount": 8951.96,
       "counterparty": null,
-      "transaction_id": null
+      "transaction_id": "PAY-00003"
     },
     {
-      "period": "2026-10",
+      "period": "2026-10-21",
+      "account": "Salaries",
+      "amount": 17511.21,
+      "counterparty": null,
+      "transaction_id": "PAY-00001"
+    },
+    {
+      "period": "2026-10-28",
+      "account": "Salaries",
+      "amount": 13536.83,
+      "counterparty": null,
+      "transaction_id": "PAY-00002"
+    },
+    {
+      "period": "2026-10-31",
       "account": "Office rent",
-      "amount": 15000,
+      "amount": 15000.0,
       "counterparty": null,
       "transaction_id": null
     },
     {
-      "period": "2026-10",
+      "period": "2026-10-31",
       "account": "Other expenses",
-      "amount": 10000,
+      "amount": 10000.0,
       "counterparty": null,
       "transaction_id": null
     },
     {
-      "period": "2026-10",
+      "period": "2026-10-31",
       "account": "Depreciation",
-      "amount": 5000,
+      "amount": 5000.0,
       "counterparty": null,
       "transaction_id": null
     },
     {
-      "period": "2026-10",
+      "period": "2026-10-31",
       "account": "Interest",
-      "amount": 4000,
+      "amount": 4000.0,
       "counterparty": null,
       "transaction_id": null
     },
     {
-      "period": "2026-10",
+      "period": "2026-10-31",
       "account": "Income tax",
-      "amount": 15000,
+      "amount": 15000.0,
       "counterparty": null,
       "transaction_id": null
     },
     {
-      "period": "2026-10",
+      "period": "2026-10-31",
       "account": "Net revenue",
-      "amount": 8000,
+      "amount": 8000.0,
       "counterparty": "Ferrex México",
       "transaction_id": "FI-IC-2610"
     },
     {
-      "period": "2026-10",
+      "period": "2026-10-31",
       "account": "Cash and equivalents",
-      "amount": 120000,
+      "amount": 120000.0,
       "counterparty": null,
       "transaction_id": null
     },
     {
-      "period": "2026-10",
+      "period": "2026-10-31",
       "account": "Trade receivables",
-      "amount": 150000,
+      "amount": 150000.0,
       "counterparty": null,
       "transaction_id": null
     },
     {
-      "period": "2026-10",
+      "period": "2026-10-31",
       "account": "Inventory",
-      "amount": 350000,
+      "amount": 350000.0,
       "counterparty": null,
       "transaction_id": null
     },
     {
-      "period": "2026-10",
+      "period": "2026-10-31",
       "account": "Fixed assets",
-      "amount": 200000,
+      "amount": 200000.0,
       "counterparty": null,
       "transaction_id": null
     },
     {
-      "period": "2026-10",
+      "period": "2026-10-31",
       "account": "Trade payables",
-      "amount": 180000,
+      "amount": 180000.0,
       "counterparty": null,
       "transaction_id": null
     },
     {
-      "period": "2026-10",
+      "period": "2026-10-31",
       "account": "Tax payable",
-      "amount": 15000,
+      "amount": 15000.0,
       "counterparty": null,
       "transaction_id": null
     },
     {
-      "period": "2026-10",
+      "period": "2026-10-31",
       "account": "Long-term debt",
-      "amount": 250000,
+      "amount": 250000.0,
       "counterparty": null,
       "transaction_id": null
     },
     {
-      "period": "2026-10",
+      "period": "2026-10-31",
       "account": "Common stock",
-      "amount": 200000,
+      "amount": 200000.0,
       "counterparty": null,
       "transaction_id": null
     },
     {
-      "period": "2026-10",
+      "period": "2026-10-31",
       "account": "Retained earnings",
-      "amount": 175000,
+      "amount": 175000.0,
       "counterparty": null,
       "transaction_id": null
     },
     {
-      "period": "2026-11",
+      "period": "2026-11-04",
       "account": "Net revenue",
-      "amount": 450000,
-      "counterparty": null,
-      "transaction_id": null
+      "amount": 20214.13,
+      "counterparty": "Materiales Generales del Istmo",
+      "transaction_id": "INV-00019"
     },
     {
-      "period": "2026-11",
-      "account": "Cost of sales",
-      "amount": 300000,
-      "counterparty": null,
-      "transaction_id": null
-    },
-    {
-      "period": "2026-11",
-      "account": "Salaries",
-      "amount": 40000,
-      "counterparty": null,
-      "transaction_id": null
-    },
-    {
-      "period": "2026-11",
-      "account": "Office rent",
-      "amount": 15000,
-      "counterparty": null,
-      "transaction_id": null
-    },
-    {
-      "period": "2026-11",
-      "account": "Other expenses",
-      "amount": 10000,
-      "counterparty": null,
-      "transaction_id": null
-    },
-    {
-      "period": "2026-11",
-      "account": "Depreciation",
-      "amount": 5000,
-      "counterparty": null,
-      "transaction_id": null
-    },
-    {
-      "period": "2026-11",
-      "account": "Interest",
-      "amount": 4000,
-      "counterparty": null,
-      "transaction_id": null
-    },
-    {
-      "period": "2026-11",
-      "account": "Income tax",
-      "amount": 15000,
-      "counterparty": null,
-      "transaction_id": null
-    },
-    {
-      "period": "2026-11",
-      "account": "Cash and equivalents",
-      "amount": 120000,
-      "counterparty": null,
-      "transaction_id": null
-    },
-    {
-      "period": "2026-11",
-      "account": "Trade receivables",
-      "amount": 150000,
-      "counterparty": null,
-      "transaction_id": null
-    },
-    {
-      "period": "2026-11",
-      "account": "Inventory",
-      "amount": 350000,
-      "counterparty": null,
-      "transaction_id": null
-    },
-    {
-      "period": "2026-11",
-      "account": "Fixed assets",
-      "amount": 200000,
-      "counterparty": null,
-      "transaction_id": null
-    },
-    {
-      "period": "2026-11",
-      "account": "Trade payables",
-      "amount": 180000,
-      "counterparty": null,
-      "transaction_id": null
-    },
-    {
-      "period": "2026-11",
-      "account": "Tax payable",
-      "amount": 15000,
-      "counterparty": null,
-      "transaction_id": null
-    },
-    {
-      "period": "2026-11",
-      "account": "Long-term debt",
-      "amount": 250000,
-      "counterparty": null,
-      "transaction_id": null
-    },
-    {
-      "period": "2026-11",
-      "account": "Common stock",
-      "amount": 200000,
-      "counterparty": null,
-      "transaction_id": null
-    },
-    {
-      "period": "2026-11",
-      "account": "Retained earnings",
-      "amount": 175000,
-      "counterparty": null,
-      "transaction_id": null
-    },
-    {
-      "period": "2026-12",
+      "period": "2026-11-04",
       "account": "Net revenue",
-      "amount": 448000,
-      "counterparty": null,
-      "transaction_id": null
+      "amount": 59950.31,
+      "counterparty": "Do it Center Panama",
+      "transaction_id": "INV-00023"
     },
     {
-      "period": "2026-12",
+      "period": "2026-11-05",
+      "account": "Net revenue",
+      "amount": 31176.12,
+      "counterparty": "Ferreteria Novey",
+      "transaction_id": "INV-00025"
+    },
+    {
+      "period": "2026-11-06",
+      "account": "Net revenue",
+      "amount": 46605.37,
+      "counterparty": "Cochez y Cia",
+      "transaction_id": "INV-00016"
+    },
+    {
+      "period": "2026-11-06",
+      "account": "Net revenue",
+      "amount": 40783.26,
+      "counterparty": "Cochez y Cia",
+      "transaction_id": "INV-00022"
+    },
+    {
+      "period": "2026-11-16",
+      "account": "Net revenue",
+      "amount": 59205.6,
+      "counterparty": "Materiales Generales del Istmo",
+      "transaction_id": "INV-00018"
+    },
+    {
+      "period": "2026-11-16",
+      "account": "Net revenue",
+      "amount": 18483.84,
+      "counterparty": "Ferreteria Novey",
+      "transaction_id": "INV-00020"
+    },
+    {
+      "period": "2026-11-19",
+      "account": "Net revenue",
+      "amount": 33218.69,
+      "counterparty": "Do it Center Panama",
+      "transaction_id": "INV-00021"
+    },
+    {
+      "period": "2026-11-20",
+      "account": "Net revenue",
+      "amount": 46199.08,
+      "counterparty": "Cochez y Cia",
+      "transaction_id": "INV-00017"
+    },
+    {
+      "period": "2026-11-26",
+      "account": "Net revenue",
+      "amount": 57228.51,
+      "counterparty": "Ferreteria Pacifico Colon",
+      "transaction_id": "INV-00024"
+    },
+    {
+      "period": "2026-11-30",
+      "account": "Net revenue",
+      "amount": 36935.09,
+      "counterparty": "Materiales Generales del Istmo",
+      "transaction_id": "INV-00015"
+    },
+    {
+      "period": "2026-11-03",
       "account": "Cost of sales",
-      "amount": 310000,
-      "counterparty": null,
-      "transaction_id": null
+      "amount": 16781.07,
+      "counterparty": "Ningbo Hardware Export Co.",
+      "transaction_id": "PO-00010"
     },
     {
-      "period": "2026-12",
+      "period": "2026-11-06",
+      "account": "Cost of sales",
+      "amount": 21255.15,
+      "counterparty": "Makita Distribution",
+      "transaction_id": "PO-00006"
+    },
+    {
+      "period": "2026-11-10",
+      "account": "Cost of sales",
+      "amount": 23451.65,
+      "counterparty": "Makita Distribution",
+      "transaction_id": "PO-00013"
+    },
+    {
+      "period": "2026-11-11",
+      "account": "Cost of sales",
+      "amount": 25660.45,
+      "counterparty": "Bosch Power Tools",
+      "transaction_id": "PO-00008"
+    },
+    {
+      "period": "2026-11-16",
+      "account": "Cost of sales",
+      "amount": 63538.7,
+      "counterparty": "Ningbo Hardware Export Co.",
+      "transaction_id": "PO-00011"
+    },
+    {
+      "period": "2026-11-17",
+      "account": "Cost of sales",
+      "amount": 42116.69,
+      "counterparty": "Makita Distribution",
+      "transaction_id": "PO-00009"
+    },
+    {
+      "period": "2026-11-17",
+      "account": "Cost of sales",
+      "amount": 62516.51,
+      "counterparty": "Ningbo Hardware Export Co.",
+      "transaction_id": "PO-00012"
+    },
+    {
+      "period": "2026-11-23",
+      "account": "Cost of sales",
+      "amount": 44679.78,
+      "counterparty": "Bosch Power Tools",
+      "transaction_id": "PO-00007"
+    },
+    {
+      "period": "2026-11-10",
       "account": "Salaries",
-      "amount": 43000,
+      "amount": 19746.43,
       "counterparty": null,
-      "transaction_id": null
+      "transaction_id": "PAY-00005"
     },
     {
-      "period": "2026-12",
+      "period": "2026-11-20",
+      "account": "Salaries",
+      "amount": 20253.57,
+      "counterparty": null,
+      "transaction_id": "PAY-00004"
+    },
+    {
+      "period": "2026-11-30",
       "account": "Office rent",
-      "amount": 15000,
+      "amount": 15000.0,
       "counterparty": null,
       "transaction_id": null
     },
     {
-      "period": "2026-12",
+      "period": "2026-11-30",
       "account": "Other expenses",
-      "amount": 11000,
+      "amount": 10000.0,
       "counterparty": null,
       "transaction_id": null
     },
     {
-      "period": "2026-12",
+      "period": "2026-11-30",
       "account": "Depreciation",
-      "amount": 5000,
+      "amount": 5000.0,
       "counterparty": null,
       "transaction_id": null
     },
     {
-      "period": "2026-12",
+      "period": "2026-11-30",
       "account": "Interest",
-      "amount": 4000,
+      "amount": 4000.0,
       "counterparty": null,
       "transaction_id": null
     },
     {
-      "period": "2026-12",
+      "period": "2026-11-30",
       "account": "Income tax",
-      "amount": 15000,
+      "amount": 15000.0,
       "counterparty": null,
       "transaction_id": null
     },
     {
-      "period": "2026-12",
+      "period": "2026-11-30",
       "account": "Cash and equivalents",
-      "amount": 125000,
+      "amount": 120000.0,
       "counterparty": null,
       "transaction_id": null
     },
     {
-      "period": "2026-12",
+      "period": "2026-11-30",
       "account": "Trade receivables",
-      "amount": 161000,
+      "amount": 150000.0,
       "counterparty": null,
       "transaction_id": null
     },
     {
-      "period": "2026-12",
+      "period": "2026-11-30",
       "account": "Inventory",
-      "amount": 370000,
+      "amount": 350000.0,
       "counterparty": null,
       "transaction_id": null
     },
     {
-      "period": "2026-12",
+      "period": "2026-11-30",
       "account": "Fixed assets",
-      "amount": 214000,
+      "amount": 200000.0,
       "counterparty": null,
       "transaction_id": null
     },
     {
-      "period": "2026-12",
+      "period": "2026-11-30",
       "account": "Trade payables",
-      "amount": 181000,
+      "amount": 180000.0,
       "counterparty": null,
       "transaction_id": null
     },
     {
-      "period": "2026-12",
+      "period": "2026-11-30",
       "account": "Tax payable",
-      "amount": 15000,
+      "amount": 15000.0,
       "counterparty": null,
       "transaction_id": null
     },
     {
-      "period": "2026-12",
+      "period": "2026-11-30",
       "account": "Long-term debt",
-      "amount": 265000,
+      "amount": 250000.0,
       "counterparty": null,
       "transaction_id": null
     },
     {
-      "period": "2026-12",
+      "period": "2026-11-30",
       "account": "Common stock",
-      "amount": 200000,
+      "amount": 200000.0,
       "counterparty": null,
       "transaction_id": null
     },
     {
-      "period": "2026-12",
+      "period": "2026-11-30",
       "account": "Retained earnings",
-      "amount": 209000,
+      "amount": 175000.0,
+      "counterparty": null,
+      "transaction_id": null
+    },
+    {
+      "period": "2026-12-03",
+      "account": "Net revenue",
+      "amount": 28795.95,
+      "counterparty": "Do it Center Panama",
+      "transaction_id": "INV-00036"
+    },
+    {
+      "period": "2026-12-07",
+      "account": "Net revenue",
+      "amount": 51827.76,
+      "counterparty": "Ferreteria Novey",
+      "transaction_id": "INV-00035"
+    },
+    {
+      "period": "2026-12-09",
+      "account": "Net revenue",
+      "amount": 39455.16,
+      "counterparty": "Ferreteria Pacifico Colon",
+      "transaction_id": "INV-00029"
+    },
+    {
+      "period": "2026-12-09",
+      "account": "Net revenue",
+      "amount": 20190.55,
+      "counterparty": "Cochez y Cia",
+      "transaction_id": "INV-00032"
+    },
+    {
+      "period": "2026-12-09",
+      "account": "Net revenue",
+      "amount": 52132.64,
+      "counterparty": "Ferreteria Pacifico Colon",
+      "transaction_id": "INV-00034"
+    },
+    {
+      "period": "2026-12-15",
+      "account": "Net revenue",
+      "amount": 56195.21,
+      "counterparty": "Ferreteria Pacifico Colon",
+      "transaction_id": "INV-00033"
+    },
+    {
+      "period": "2026-12-16",
+      "account": "Net revenue",
+      "amount": 34211.11,
+      "counterparty": "Cochez y Cia",
+      "transaction_id": "INV-00030"
+    },
+    {
+      "period": "2026-12-17",
+      "account": "Net revenue",
+      "amount": 42637.55,
+      "counterparty": "Materiales Generales del Istmo",
+      "transaction_id": "INV-00026"
+    },
+    {
+      "period": "2026-12-22",
+      "account": "Net revenue",
+      "amount": 16302.57,
+      "counterparty": "Ferreteria Novey",
+      "transaction_id": "INV-00031"
+    },
+    {
+      "period": "2026-12-23",
+      "account": "Net revenue",
+      "amount": 58407.36,
+      "counterparty": "Ferreteria Novey",
+      "transaction_id": "INV-00028"
+    },
+    {
+      "period": "2026-12-30",
+      "account": "Net revenue",
+      "amount": 47844.14,
+      "counterparty": "Ferreteria Novey",
+      "transaction_id": "INV-00027"
+    },
+    {
+      "period": "2026-12-02",
+      "account": "Cost of sales",
+      "amount": 37496.39,
+      "counterparty": "Makita Distribution",
+      "transaction_id": "PO-00019"
+    },
+    {
+      "period": "2026-12-03",
+      "account": "Cost of sales",
+      "amount": 47486.84,
+      "counterparty": "Bosch Power Tools",
+      "transaction_id": "PO-00017"
+    },
+    {
+      "period": "2026-12-11",
+      "account": "Cost of sales",
+      "amount": 23922.7,
+      "counterparty": "Stanley Black & Decker LatAm",
+      "transaction_id": "PO-00015"
+    },
+    {
+      "period": "2026-12-11",
+      "account": "Cost of sales",
+      "amount": 46697.63,
+      "counterparty": "Stanley Black & Decker LatAm",
+      "transaction_id": "PO-00018"
+    },
+    {
+      "period": "2026-12-16",
+      "account": "Cost of sales",
+      "amount": 50228.64,
+      "counterparty": "Makita Distribution",
+      "transaction_id": "PO-00014"
+    },
+    {
+      "period": "2026-12-17",
+      "account": "Cost of sales",
+      "amount": 44650.9,
+      "counterparty": "Bosch Power Tools",
+      "transaction_id": "PO-00021"
+    },
+    {
+      "period": "2026-12-23",
+      "account": "Cost of sales",
+      "amount": 16417.81,
+      "counterparty": "Bosch Power Tools",
+      "transaction_id": "PO-00020"
+    },
+    {
+      "period": "2026-12-25",
+      "account": "Cost of sales",
+      "amount": 43099.09,
+      "counterparty": "Stanley Black & Decker LatAm",
+      "transaction_id": "PO-00016"
+    },
+    {
+      "period": "2026-12-04",
+      "account": "Salaries",
+      "amount": 10936.72,
+      "counterparty": null,
+      "transaction_id": "PAY-00006"
+    },
+    {
+      "period": "2026-12-23",
+      "account": "Salaries",
+      "amount": 13988.17,
+      "counterparty": null,
+      "transaction_id": "PAY-00007"
+    },
+    {
+      "period": "2026-12-24",
+      "account": "Salaries",
+      "amount": 18075.11,
+      "counterparty": null,
+      "transaction_id": "PAY-00008"
+    },
+    {
+      "period": "2026-12-31",
+      "account": "Office rent",
+      "amount": 15000.0,
+      "counterparty": null,
+      "transaction_id": null
+    },
+    {
+      "period": "2026-12-31",
+      "account": "Other expenses",
+      "amount": 11000.0,
+      "counterparty": null,
+      "transaction_id": null
+    },
+    {
+      "period": "2026-12-31",
+      "account": "Depreciation",
+      "amount": 5000.0,
+      "counterparty": null,
+      "transaction_id": null
+    },
+    {
+      "period": "2026-12-31",
+      "account": "Interest",
+      "amount": 4000.0,
+      "counterparty": null,
+      "transaction_id": null
+    },
+    {
+      "period": "2026-12-31",
+      "account": "Income tax",
+      "amount": 15000.0,
+      "counterparty": null,
+      "transaction_id": null
+    },
+    {
+      "period": "2026-12-31",
+      "account": "Cash and equivalents",
+      "amount": 125000.0,
+      "counterparty": null,
+      "transaction_id": null
+    },
+    {
+      "period": "2026-12-31",
+      "account": "Trade receivables",
+      "amount": 161000.0,
+      "counterparty": null,
+      "transaction_id": null
+    },
+    {
+      "period": "2026-12-31",
+      "account": "Inventory",
+      "amount": 370000.0,
+      "counterparty": null,
+      "transaction_id": null
+    },
+    {
+      "period": "2026-12-31",
+      "account": "Fixed assets",
+      "amount": 214000.0,
+      "counterparty": null,
+      "transaction_id": null
+    },
+    {
+      "period": "2026-12-31",
+      "account": "Trade payables",
+      "amount": 181000.0,
+      "counterparty": null,
+      "transaction_id": null
+    },
+    {
+      "period": "2026-12-31",
+      "account": "Tax payable",
+      "amount": 15000.0,
+      "counterparty": null,
+      "transaction_id": null
+    },
+    {
+      "period": "2026-12-31",
+      "account": "Long-term debt",
+      "amount": 265000.0,
+      "counterparty": null,
+      "transaction_id": null
+    },
+    {
+      "period": "2026-12-31",
+      "account": "Common stock",
+      "amount": 200000.0,
+      "counterparty": null,
+      "transaction_id": null
+    },
+    {
+      "period": "2026-12-31",
+      "account": "Retained earnings",
+      "amount": 209000.0,
       "counterparty": null,
       "transaction_id": null
     }

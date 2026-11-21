@@ -1,67 +1,247 @@
 periodo;cuenta;importe;moneda;contraparte;referencia
-10/2026;Ventas netas;2.600.000,00;GTQ;;
-10/2026;Costo de mercaderia vendida;1.500.000,00;GTQ;;
-10/2026;Planilla;220.000,00;GTQ;;
-10/2026;Arrendamientos;96.000,00;GTQ;;
-10/2026;Transporte;70.000,00;QTZ;;
-10/2026;Gastos varios;40.000,00;GTQ;;
-10/2026;Depreciaciones;35.000,00;GTQ;;
-10/2026;Gastos financieros;20.000,00;GTQ;;
-10/2026;Impuesto sobre la renta;60.000,00;GTQ;;
-10/2026;Ventas netas;120.000,00;GTQ;Ferrex MX;DC-IC-2610-MX
-10/2026;Ventas netas;80.000,00;GTQ;Ferrex El Salvador;DC-IC-2610-SV
-10/2026;Costo de mercaderia vendida;400.000,00;GTQ;Aceros Ferrex;AF-IC-2610
-10/2026;Efectivo;450.000,00;GTQ;;
-10/2026;Cuentas por cobrar;1.200.000,00;GTQ;;
-10/2026;Inventario de mercaderia;1.800.000,00;GTQ;;
-10/2026;Mobiliario y equipo;900.000,00;GTQ;;
-10/2026;Cuentas por pagar;800.000,00;GTQ;;
-10/2026;ISR por pagar;70.000,00;GTQ;;
-10/2026;Deuda bancaria;600.000,00;GTQ;;
-10/2026;Capital pagado;1.500.000,00;GTQ;;
-10/2026;Cuentas por cobrar;120.000,00;GTQ;Ferrex MX;DC-IC-2610-MX
-10/2026;Cuentas por cobrar;80.000,00;GTQ;Ferrex El Salvador;DC-IC-2610-SV
-10/2026;Cuentas por pagar;400.000,00;GTQ;Aceros Ferrex;AF-IC-2610
-10/2026;Resultados acumulados;1.180.000,00;GTQ;;
-11/2026;Ventas netas;2.670.000,00;GTQ;;
-11/2026;Costo de mercaderia vendida;1.442.000,00;GTQ;;
-11/2026;Planilla;220.000,00;GTQ;;
-11/2026;Arrendamientos;96.000,00;GTQ;;
-11/2026;Transporte;72.000,00;GTQ;;
-11/2026;Gastos varios;40.000,00;GTQ;;
-11/2026;Depreciaciones;35.000,00;GTQ;;
-11/2026;Gastos financieros;20.000,00;GTQ;;
-11/2026;Impuesto sobre la renta;65.000,00;GTQ;;
-11/2026;Ventas netas;160.000,00;GTQ;Ferrex MX;DC-IC-2611-MX
-11/2026;Costo de mercaderia vendida;440.000,00;GTQ;Aceros Ferrex;AF-IC-2611
-11/2026;Efectivo;475.000,00;GTQ;;
-11/2026;Cuentas por cobrar;1.244.000,00;GTQ;;
-11/2026;Inventario de mercaderia;1.717.000,00;GTQ;;
-11/2026;Mobiliario y equipo;951.000,00;GTQ;;
-11/2026;Cuentas por pagar;804.000,00;GTQ;;
-11/2026;ISR por pagar;71.000,00;GTQ;;
-11/2026;Deuda bancaria;606.000,00;GTQ;;
-11/2026;Capital pagado;1.500.000,00;GTQ;;
-11/2026;Cuentas por cobrar;160.000,00;GTQ;Ferrex MX;DC-IC-2611-MX
-11/2026;Cuentas por pagar;440.000,00;GTQ;Aceros Ferrex;AF-IC-2611
-11/2026;Resultados acumulados;1.126.000,00;GTQ;;
-12/2026;Ventas netas;2.690.000,00;GTQ;;
-12/2026;Costo de mercaderia vendida;1.537.000,00;GTQ;;
-12/2026;Planilla;980.000,00;GTQ;;
-12/2026;Arrendamientos;96.000,00;GTQ;;
-12/2026;Transporte;72.000,00;GTQ;;
-12/2026;Gastos varios;42.000,00;GTQ;;
-12/2026;Depreciaciones;35.000,00;GTQ;;
-12/2026;Gastos financieros;21.000,00;GTQ;;
-12/2026;Impuesto sobre la renta;61.000,00;GTQ;;
-12/2026;Costo de mercaderia vendida;420.000,00;GTQ;Aceros Ferrex;AF-IC-2612
-12/2026;Efectivo;482.000,00;GTQ;;
-12/2026;Cuentas por cobrar;1.198.000,00;GTQ;;
-12/2026;Inventario de mercaderia;1.829.000,00;GTQ;;
-12/2026;Mobiliario y equipo;965.000,00;GTQ;;
-12/2026;Cuentas por pagar;818.000,00;GTQ;;
-12/2026;ISR por pagar;72.000,00;GTQ;;
-12/2026;Deuda bancaria;584.000,00;GTQ;;
-12/2026;Capital pagado;1.500.000,00;GTQ;;
-12/2026;Cuentas por pagar;420.000,00;GTQ;Aceros Ferrex;AF-IC-2612
-12/2026;Resultados acumulados;1.080.000,00;GTQ;;
+01/10/2026;Ventas netas;62.646,45;GTQ;Distribuidora La Torre;FC-00023
+02/10/2026;Ventas netas;61.070,00;GTQ;Materiales San Lucas;FC-00013
+05/10/2026;Ventas netas;123.331,32;GTQ;Concretos del Pacifico;FC-00016
+06/10/2026;Ventas netas;150.401,64;GTQ;Ferreteria Los Altos;FC-00004
+06/10/2026;Ventas netas;77.555,98;GTQ;Concretos del Pacifico;FC-00006
+06/10/2026;Ventas netas;107.151,54;GTQ;Materiales San Lucas;FC-00018
+07/10/2026;Ventas netas;72.043,63;GTQ;Distribuidora La Torre;FC-00019
+08/10/2026;Ventas netas;94.691,69;GTQ;Grupo Constructor Atlantico;FC-00002
+08/10/2026;Ventas netas;139.937,61;GTQ;Ferreteria Los Altos;FC-00010
+08/10/2026;Ventas netas;39.819,79;GTQ;Concretos del Pacifico;FC-00017
+13/10/2026;Ventas netas;90.887,61;GTQ;Constructora Maya;FC-00001
+13/10/2026;Ventas netas;80.135,47;GTQ;Ferromax Xela;FC-00020
+13/10/2026;Ventas netas;163.972,99;GTQ;Ferreteria Los Altos;FC-00026
+13/10/2026;Ventas netas;131.946,89;GTQ;Ferromax Xela;FC-00027
+14/10/2026;Ventas netas;147.937,00;GTQ;Constructora Quetzal;FC-00005
+15/10/2026;Ventas netas;95.010,37;GTQ;Edificaciones Tikal;FC-00003
+15/10/2026;Ventas netas;45.451,30;GTQ;Distribuidora La Torre;FC-00009
+22/10/2026;Ventas netas;151.265,14;GTQ;Grupo Constructor Atlantico;FC-00022
+23/10/2026;Ventas netas;71.043,66;GTQ;Ferreteria Los Altos;FC-00011
+26/10/2026;Ventas netas;82.875,40;GTQ;Concretos del Pacifico;FC-00008
+26/10/2026;Ventas netas;147.742,64;GTQ;Distribuidora La Torre;FC-00024
+27/10/2026;Ventas netas;50.049,92;GTQ;Edificaciones Tikal;FC-00007
+27/10/2026;Ventas netas;108.135,05;GTQ;Constructora Maya;FC-00014
+27/10/2026;Ventas netas;69.675,97;GTQ;Concretos del Pacifico;FC-00025
+29/10/2026;Ventas netas;94.158,47;GTQ;Materiales San Lucas;FC-00021
+30/10/2026;Ventas netas;97.735,44;GTQ;Inmobiliaria Cayala;FC-00012
+30/10/2026;Ventas netas;43.327,03;GTQ;Constructora Maya;FC-00015
+07/10/2026;Costo de mercaderia vendida;207.716,25;GTQ;Pinturas Centroamericanas;OC-00007
+09/10/2026;Costo de mercaderia vendida;128.813,57;GTQ;Herramientas Truper Guatemala;OC-00006
+12/10/2026;Costo de mercaderia vendida;193.430,65;GTQ;Pinturas Centroamericanas;OC-00005
+13/10/2026;Costo de mercaderia vendida;61.200,40;GTQ;Cementos Progreso Distribucion;OC-00011
+14/10/2026;Costo de mercaderia vendida;197.319,44;GTQ;Tubovinil;OC-00009
+15/10/2026;Costo de mercaderia vendida;59.168,79;GTQ;Tubovinil;OC-00001
+19/10/2026;Costo de mercaderia vendida;144.496,72;GTQ;Pinturas Centroamericanas;OC-00003
+22/10/2026;Costo de mercaderia vendida;80.862,54;GTQ;Tubovinil;OC-00004
+23/10/2026;Costo de mercaderia vendida;189.349,85;GTQ;Cementos Progreso Distribucion;OC-00008
+23/10/2026;Costo de mercaderia vendida;104.681,37;GTQ;Tubovinil;OC-00010
+27/10/2026;Costo de mercaderia vendida;132.960,42;GTQ;Pinturas Centroamericanas;OC-00002
+13/10/2026;Planilla;87.835,23;GTQ;;PLA-00001
+16/10/2026;Planilla;27.266,70;GTQ;;PLA-00004
+19/10/2026;Planilla;28.736,53;GTQ;;PLA-00002
+28/10/2026;Planilla;76.161,54;GTQ;;PLA-00003
+31/10/2026;Arrendamientos;96.000,00;GTQ;;
+01/10/2026;Transporte;8.166,70;GTQ;Fletes Rapidos Chimaltenango;FLT-00001
+02/10/2026;Transporte;12.604,11;Q;Logistica Maya Express;FLT-00006
+07/10/2026;Transporte;15.176,51;GTQ;Logistica Maya Express;FLT-00004
+08/10/2026;Transporte;8.619,26;GTQ;Logistica Maya Express;FLT-00005
+21/10/2026;Transporte;6.005,01;GTQ;Logistica Maya Express;FLT-00003
+23/10/2026;Transporte;5.448,32;GTQ;Carga Pesada GT;FLT-00002
+23/10/2026;Transporte;13.980,09;GTQ;Transportes Lopez;FLT-00007
+07/10/2026;Gastos varios;7.260,63;GTQ;;GV-00001
+19/10/2026;Gastos varios;3.734,44;GTQ;;GV-00004
+21/10/2026;Gastos varios;12.856,42;GTQ;;GV-00003
+23/10/2026;Gastos varios;8.172,42;GTQ;;GV-00002
+26/10/2026;Gastos varios;7.976,09;GTQ;;GV-00005
+31/10/2026;Depreciaciones;35.000,00;GTQ;;
+31/10/2026;Gastos financieros;20.000,00;GTQ;;
+31/10/2026;Impuesto sobre la renta;60.000,00;GTQ;;
+31/10/2026;Ventas netas;120.000,00;GTQ;Ferrex MX;DC-IC-2610-MX
+31/10/2026;Ventas netas;80.000,00;GTQ;Ferrex El Salvador;DC-IC-2610-SV
+31/10/2026;Costo de mercaderia vendida;400.000,00;GTQ;Aceros Ferrex;AF-IC-2610
+31/10/2026;Efectivo;91.627,84;GTQ;;EC-2610-0001
+31/10/2026;Efectivo;189.877,98;GTQ;;EC-2610-0002
+31/10/2026;Efectivo;168.494,18;GTQ;;EC-2610-0003
+31/10/2026;Cuentas por cobrar;279.664,28;GTQ;Distribuidora La Torre;CXC-2610-0001
+31/10/2026;Cuentas por cobrar;72.881,51;GTQ;Grupo Constructor Atlantico;CXC-2610-0002
+31/10/2026;Cuentas por cobrar;155.445,91;GTQ;Ferreteria Los Altos;CXC-2610-0003
+31/10/2026;Cuentas por cobrar;163.582,84;GTQ;Inmobiliaria Cayala;CXC-2610-0004
+31/10/2026;Cuentas por cobrar;219.985,15;GTQ;Ferromax Xela;CXC-2610-0005
+31/10/2026;Cuentas por cobrar;231.523,44;GTQ;Bloqueras Unidas;CXC-2610-0006
+31/10/2026;Cuentas por cobrar;76.916,87;GTQ;Concretos del Pacifico;CXC-2610-0007
+31/10/2026;Inventario de mercaderia;1.800.000,00;GTQ;;
+31/10/2026;Mobiliario y equipo;900.000,00;GTQ;;
+31/10/2026;Cuentas por pagar;800.000,00;GTQ;;
+31/10/2026;ISR por pagar;70.000,00;GTQ;;
+31/10/2026;Deuda bancaria;600.000,00;GTQ;;
+31/10/2026;Capital pagado;1.500.000,00;GTQ;;
+31/10/2026;Cuentas por cobrar;120.000,00;GTQ;Ferrex MX;DC-IC-2610-MX
+31/10/2026;Cuentas por cobrar;80.000,00;GTQ;Ferrex El Salvador;DC-IC-2610-SV
+31/10/2026;Cuentas por pagar;400.000,00;GTQ;Aceros Ferrex;AF-IC-2610
+31/10/2026;Resultados acumulados;1.180.000,00;GTQ;;
+02/11/2026;Ventas netas;102.077,63;GTQ;Edificaciones Tikal;FC-00028
+02/11/2026;Ventas netas;122.577,31;GTQ;Concretos del Pacifico;FC-00055
+04/11/2026;Ventas netas;70.261,84;GTQ;Grupo Constructor Atlantico;FC-00036
+06/11/2026;Ventas netas;96.173,11;GTQ;Concretos del Pacifico;FC-00039
+06/11/2026;Ventas netas;125.687,17;GTQ;Inmobiliaria Cayala;FC-00042
+06/11/2026;Ventas netas;113.916,25;GTQ;Ferreteria Los Altos;FC-00054
+09/11/2026;Ventas netas;118.960,61;GTQ;Grupo Constructor Atlantico;FC-00045
+10/11/2026;Ventas netas;84.936,34;GTQ;Concretos del Pacifico;FC-00049
+10/11/2026;Ventas netas;27.963,45;GTQ;Constructora Quetzal;FC-00057
+11/11/2026;Ventas netas;61.496,25;GTQ;Ferreteria El Martillo;FC-00052
+11/11/2026;Ventas netas;68.742,38;GTQ;Grupo Constructor Atlantico;FC-00058
+12/11/2026;Ventas netas;116.114,21;GTQ;Distribuidora La Torre;FC-00035
+13/11/2026;Ventas netas;96.112,00;GTQ;Ferreteria Los Altos;FC-00030
+13/11/2026;Ventas netas;98.605,92;GTQ;Constructora Maya;FC-00031
+13/11/2026;Ventas netas;115.695,40;GTQ;Constructora Maya;FC-00034
+16/11/2026;Ventas netas;77.802,43;GTQ;Ferreteria Los Altos;FC-00043
+17/11/2026;Ventas netas;60.446,02;GTQ;Grupo Constructor Atlantico;FC-00046
+17/11/2026;Ventas netas;27.378,73;GTQ;Constructora Maya;FC-00048
+19/11/2026;Ventas netas;117.963,37;GTQ;Ferromax Xela;FC-00037
+23/11/2026;Ventas netas;81.373,49;GTQ;Ferreteria El Martillo;FC-00044
+24/11/2026;Ventas netas;99.477,75;GTQ;Constructora Maya;FC-00033
+24/11/2026;Ventas netas;100.115,79;GTQ;Distribuidora La Torre;FC-00041
+25/11/2026;Ventas netas;127.184,70;GTQ;Ferreteria El Martillo;FC-00038
+25/11/2026;Ventas netas;65.226,28;GTQ;Edificaciones Tikal;FC-00050
+25/11/2026;Ventas netas;60.239,99;GTQ;Inmobiliaria Cayala;FC-00051
+25/11/2026;Ventas netas;53.906,48;GTQ;Materiales San Lucas;FC-00056
+26/11/2026;Ventas netas;115.119,10;GTQ;Ferreteria El Martillo;FC-00053
+27/11/2026;Ventas netas;73.124,84;GTQ;Constructora Quetzal;FC-00029
+30/11/2026;Ventas netas;77.871,62;GTQ;Bloqueras Unidas;FC-00032
+30/11/2026;Ventas netas;75.441,11;GTQ;Constructora Quetzal;FC-00040
+30/11/2026;Ventas netas;38.008,43;GTQ;Constructora Quetzal;FC-00047
+03/11/2026;Costo de mercaderia vendida;67.806,08;GTQ;Cementos Progreso Distribucion;OC-00014
+03/11/2026;Costo de mercaderia vendida;68.488,32;GTQ;Aceros Arquitectonicos;OC-00019
+03/11/2026;Costo de mercaderia vendida;127.378,43;GTQ;Tubovinil;OC-00025
+04/11/2026;Costo de mercaderia vendida;51.950,29;GTQ;Tubovinil;OC-00024
+09/11/2026;Costo de mercaderia vendida;51.021,41;GTQ;Cementos Progreso Distribucion;OC-00017
+10/11/2026;Costo de mercaderia vendida;120.455,81;GTQ;Cementos Progreso Distribucion;OC-00023
+11/11/2026;Costo de mercaderia vendida;63.774,89;GTQ;Herramientas Truper Guatemala;OC-00012
+11/11/2026;Costo de mercaderia vendida;164.829,55;GTQ;Cementos Progreso Distribucion;OC-00021
+16/11/2026;Costo de mercaderia vendida;161.344,30;GTQ;Pinturas Centroamericanas;OC-00015
+18/11/2026;Costo de mercaderia vendida;156.311,14;GTQ;Herramientas Truper Guatemala;OC-00022
+19/11/2026;Costo de mercaderia vendida;45.689,62;GTQ;Herramientas Truper Guatemala;OC-00020
+26/11/2026;Costo de mercaderia vendida;134.840,21;GTQ;Cementos Progreso Distribucion;OC-00016
+30/11/2026;Costo de mercaderia vendida;103.010,44;GTQ;Pinturas Centroamericanas;OC-00013
+30/11/2026;Costo de mercaderia vendida;125.099,51;GTQ;Cementos Progreso Distribucion;OC-00018
+12/11/2026;Planilla;100.042,57;GTQ;;PLA-00007
+23/11/2026;Planilla;59.403,14;GTQ;;PLA-00006
+24/11/2026;Planilla;60.554,29;GTQ;;PLA-00005
+30/11/2026;Arrendamientos;96.000,00;GTQ;;
+05/11/2026;Transporte;13.693,36;GTQ;Transportes Lopez;FLT-00013
+13/11/2026;Transporte;16.242,62;GTQ;Carga Pesada GT;FLT-00010
+13/11/2026;Transporte;9.752,82;GTQ;Transportes Lopez;FLT-00012
+18/11/2026;Transporte;15.553,20;GTQ;Fletes Rapidos Chimaltenango;FLT-00011
+24/11/2026;Transporte;12.479,58;GTQ;Transportes Lopez;FLT-00009
+26/11/2026;Transporte;4.278,42;GTQ;Transportes Lopez;FLT-00008
+04/11/2026;Gastos varios;8.817,59;GTQ;;GV-00007
+09/11/2026;Gastos varios;4.205,27;GTQ;;GV-00008
+17/11/2026;Gastos varios;11.697,21;GTQ;;GV-00006
+17/11/2026;Gastos varios;15.279,93;GTQ;;GV-00009
+30/11/2026;Depreciaciones;35.000,00;GTQ;;
+30/11/2026;Gastos financieros;20.000,00;GTQ;;
+30/11/2026;Impuesto sobre la renta;65.000,00;GTQ;;
+30/11/2026;Ventas netas;160.000,00;GTQ;Ferrex MX;DC-IC-2611-MX
+30/11/2026;Costo de mercaderia vendida;440.000,00;GTQ;Aceros Ferrex;AF-IC-2611
+30/11/2026;Efectivo;183.968,43;GTQ;;EC-2611-0004
+30/11/2026;Efectivo;140.298,06;GTQ;;EC-2611-0005
+30/11/2026;Efectivo;150.733,51;GTQ;;EC-2611-0006
+30/11/2026;Cuentas por cobrar;196.629,03;GTQ;Constructora Maya;CXC-2611-0008
+30/11/2026;Cuentas por cobrar;176.426,89;GTQ;Ferromax Xela;CXC-2611-0009
+30/11/2026;Cuentas por cobrar;158.121,23;GTQ;Grupo Constructor Atlantico;CXC-2611-0010
+30/11/2026;Cuentas por cobrar;86.565,77;GTQ;Concretos del Pacifico;CXC-2611-0011
+30/11/2026;Cuentas por cobrar;367.133,26;GTQ;Edificaciones Tikal;CXC-2611-0012
+30/11/2026;Cuentas por cobrar;259.123,82;GTQ;Constructora Quetzal;CXC-2611-0013
+30/11/2026;Inventario de mercaderia;1.717.000,00;GTQ;;
+30/11/2026;Mobiliario y equipo;951.000,00;GTQ;;
+30/11/2026;Cuentas por pagar;804.000,00;GTQ;;
+30/11/2026;ISR por pagar;71.000,00;GTQ;;
+30/11/2026;Deuda bancaria;606.000,00;GTQ;;
+30/11/2026;Capital pagado;1.500.000,00;GTQ;;
+30/11/2026;Cuentas por cobrar;160.000,00;GTQ;Ferrex MX;DC-IC-2611-MX
+30/11/2026;Cuentas por pagar;440.000,00;GTQ;Aceros Ferrex;AF-IC-2611
+30/11/2026;Resultados acumulados;1.126.000,00;GTQ;;
+01/12/2026;Ventas netas;73.568,56;GTQ;Inmobiliaria Cayala;FC-00060
+01/12/2026;Ventas netas;46.339,43;GTQ;Grupo Constructor Atlantico;FC-00075
+01/12/2026;Ventas netas;109.839,27;GTQ;Edificaciones Tikal;FC-00076
+02/12/2026;Ventas netas;95.615,68;GTQ;Constructora Maya;FC-00078
+03/12/2026;Ventas netas;78.195,52;GTQ;Distribuidora La Torre;FC-00062
+03/12/2026;Ventas netas;48.155,94;GTQ;Constructora Quetzal;FC-00087
+03/12/2026;Ventas netas;66.735,39;GTQ;Edificaciones Tikal;FC-00088
+04/12/2026;Ventas netas;97.085,15;GTQ;Grupo Constructor Atlantico;FC-00074
+08/12/2026;Ventas netas;70.646,41;GTQ;Ferromax Xela;FC-00068
+10/12/2026;Ventas netas;92.821,98;GTQ;Materiales San Lucas;FC-00069
+10/12/2026;Ventas netas;105.305,98;GTQ;Concretos del Pacifico;FC-00083
+14/12/2026;Ventas netas;126.787,03;GTQ;Constructora Quetzal;FC-00061
+14/12/2026;Ventas netas;100.925,95;GTQ;Bloqueras Unidas;FC-00081
+14/12/2026;Ventas netas;78.889,31;GTQ;Ferreteria Los Altos;FC-00086
+15/12/2026;Ventas netas;110.696,36;GTQ;Constructora Maya;FC-00073
+16/12/2026;Ventas netas;117.792,60;GTQ;Concretos del Pacifico;FC-00064
+16/12/2026;Ventas netas;54.005,69;GTQ;Ferreteria Los Altos;FC-00079
+17/12/2026;Ventas netas;71.234,10;GTQ;Inmobiliaria Cayala;FC-00084
+21/12/2026;Ventas netas;80.644,30;GTQ;Constructora Quetzal;FC-00082
+23/12/2026;Ventas netas;105.267,89;GTQ;Edificaciones Tikal;FC-00065
+23/12/2026;Ventas netas;33.546,08;GTQ;Ferreteria Los Altos;FC-00071
+24/12/2026;Ventas netas;100.202,99;GTQ;Bloqueras Unidas;FC-00066
+24/12/2026;Ventas netas;82.442,30;GTQ;Concretos del Pacifico;FC-00077
+24/12/2026;Ventas netas;98.525,33;GTQ;Distribuidora La Torre;FC-00089
+28/12/2026;Ventas netas;91.076,50;GTQ;Constructora Quetzal;FC-00063
+29/12/2026;Ventas netas;70.937,42;GTQ;Inmobiliaria Cayala;FC-00059
+29/12/2026;Ventas netas;48.661,94;GTQ;Ferromax Xela;FC-00067
+29/12/2026;Ventas netas;80.341,47;GTQ;Concretos del Pacifico;FC-00070
+30/12/2026;Ventas netas;82.276,34;GTQ;Ferromax Xela;FC-00085
+30/12/2026;Ventas netas;45.115,78;GTQ;Inmobiliaria Cayala;FC-00090
+31/12/2026;Ventas netas;128.769,68;GTQ;Distribuidora La Torre;FC-00072
+31/12/2026;Ventas netas;97.551,63;GTQ;Inmobiliaria Cayala;FC-00080
+01/12/2026;Costo de mercaderia vendida;190.103,02;GTQ;Cementos Progreso Distribucion;OC-00035
+02/12/2026;Costo de mercaderia vendida;251.546,42;GTQ;Pinturas Centroamericanas;OC-00033
+03/12/2026;Costo de mercaderia vendida;162.867,67;GTQ;Tubovinil;OC-00031
+08/12/2026;Costo de mercaderia vendida;111.700,20;GTQ;Aceros Arquitectonicos;OC-00030
+10/12/2026;Costo de mercaderia vendida;138.779,48;GTQ;Pinturas Centroamericanas;OC-00034
+11/12/2026;Costo de mercaderia vendida;225.588,86;GTQ;Tubovinil;OC-00029
+16/12/2026;Costo de mercaderia vendida;143.127,27;GTQ;Herramientas Truper Guatemala;OC-00026
+21/12/2026;Costo de mercaderia vendida;74.313,15;GTQ;Tubovinil;OC-00028
+24/12/2026;Costo de mercaderia vendida;140.746,42;GTQ;Pinturas Centroamericanas;OC-00032
+29/12/2026;Costo de mercaderia vendida;98.227,51;GTQ;Pinturas Centroamericanas;OC-00027
+23/12/2026;Planilla;56.934,38;GTQ;;PLA-00008
+29/12/2026;Planilla;67.425,29;GTQ;;PLA-00010
+30/12/2026;Planilla;855.640,33;GTQ;;PLA-00009
+31/12/2026;Arrendamientos;96.000,00;GTQ;;
+03/12/2026;Transporte;11.525,00;GTQ;Logistica Maya Express;FLT-00019
+08/12/2026;Transporte;10.705,65;GTQ;Fletes Rapidos Chimaltenango;FLT-00016
+14/12/2026;Transporte;10.189,92;GTQ;Transportes Lopez;FLT-00022
+15/12/2026;Transporte;3.392,17;GTQ;Transportes Lopez;FLT-00015
+22/12/2026;Transporte;10.218,39;GTQ;Transportes Lopez;FLT-00014
+22/12/2026;Transporte;2.902,80;GTQ;Transportes Lopez;FLT-00017
+23/12/2026;Transporte;8.250,94;GTQ;Carga Pesada GT;FLT-00021
+28/12/2026;Transporte;8.157,61;GTQ;Transportes Lopez;FLT-00018
+29/12/2026;Transporte;6.657,52;GTQ;Carga Pesada GT;FLT-00020
+07/12/2026;Gastos varios;9.418,49;GTQ;;GV-00013
+15/12/2026;Gastos varios;5.599,48;GTQ;;GV-00015
+16/12/2026;Gastos varios;4.190,49;GTQ;;GV-00010
+16/12/2026;Gastos varios;6.915,30;GTQ;;GV-00012
+24/12/2026;Gastos varios;11.235,56;GTQ;;GV-00014
+28/12/2026;Gastos varios;4.640,68;GTQ;;GV-00011
+31/12/2026;Depreciaciones;35.000,00;GTQ;;
+31/12/2026;Gastos financieros;21.000,00;GTQ;;
+31/12/2026;Impuesto sobre la renta;61.000,00;GTQ;;
+31/12/2026;Costo de mercaderia vendida;420.000,00;GTQ;Aceros Ferrex;AF-IC-2612
+31/12/2026;Efectivo;242.818,05;GTQ;;EC-2612-0007
+31/12/2026;Efectivo;72.479,65;GTQ;;EC-2612-0008
+31/12/2026;Efectivo;166.702,30;GTQ;;EC-2612-0009
+31/12/2026;Cuentas por cobrar;199.773,34;GTQ;Ferreteria Los Altos;CXC-2612-0014
+31/12/2026;Cuentas por cobrar;76.357,37;GTQ;Ferreteria Los Altos;CXC-2612-0015
+31/12/2026;Cuentas por cobrar;157.579,24;GTQ;Constructora Quetzal;CXC-2612-0016
+31/12/2026;Cuentas por cobrar;260.403,21;GTQ;Constructora Quetzal;CXC-2612-0017
+31/12/2026;Cuentas por cobrar;157.064,57;GTQ;Bloqueras Unidas;CXC-2612-0018
+31/12/2026;Cuentas por cobrar;104.650,39;GTQ;Grupo Constructor Atlantico;CXC-2612-0019
+31/12/2026;Cuentas por cobrar;242.171,88;GTQ;Ferreteria Los Altos;CXC-2612-0020
+31/12/2026;Inventario de mercaderia;1.829.000,00;GTQ;;
+31/12/2026;Mobiliario y equipo;965.000,00;GTQ;;
+31/12/2026;Cuentas por pagar;818.000,00;GTQ;;
+31/12/2026;ISR por pagar;72.000,00;GTQ;;
+31/12/2026;Deuda bancaria;584.000,00;GTQ;;
+31/12/2026;Capital pagado;1.500.000,00;GTQ;;
+31/12/2026;Cuentas por pagar;420.000,00;GTQ;Aceros Ferrex;AF-IC-2612
+31/12/2026;Resultados acumulados;1.080.000,00;GTQ;;
