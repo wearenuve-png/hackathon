@@ -43,6 +43,20 @@ def main():
                 print(f"     Total {s}: {m(v).strip()} USD")
             if pr.excluded_not_convertible:
                 print(f"     + {pr.excluded_not_convertible} registro(s) sin conversion posible (ver arriba)")
+        if pr.impact_ranges:
+            print("\n  Impacto en utilidad neta de lo que quedo fuera (PROVISIONAL, ninguna cifra se modifica):")
+            print(f"   {'Registro':<46}{'Excluido':>12}{'Como viene':>14}{'Corregido':>14}")
+            for i in pr.impact_ranges:
+                f = lambda v: "n/c" if v is None else m(v).strip()
+                print(f"   {i.record_id[-44:]:<46}{f(i.utility_excluded):>12}{f(i.utility_as_is):>14}{f(i.utility_corrected):>14}")
+                print(f"      {i.note}")
+            lo, hi = pr.utility_range
+            print(f"   Utilidad neta mostrada: {m(pr.summary['utilidad_neta']).strip()} USD | rango posible: "
+                  f"{m(lo).strip()} a {m(hi).strip()} USD")
+        for x in [x for x in r.findings if x.period == p and x.rule_id in ("ATI-01", "DUP-02", "TOT-01")]:
+            print(f"   [{x.rule_id}] {x.message}")
+            if x.impact:
+                print(f"       impacto: {x.impact}")
         disc = [x for x in r.matches if x.period == p and x.status != "RECONCILED"]
         elim = [x for x in r.matches if x.period == p and x.status == "RECONCILED"]
         print(f"\n  Intercompania: {len(elim)} conciliadas y eliminadas, {len(disc)} abiertas")
