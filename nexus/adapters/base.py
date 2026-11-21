@@ -11,6 +11,7 @@ Sin perfil se usa deteccion automatica (modo legado / onboarding).
 from abc import ABC, abstractmethod
 from typing import Dict, List, Optional, Tuple
 
+from ..accounts import nature
 from ..mapping import file_currency_key, header_score, map_account, map_counterparty, map_headers
 from ..schemas import BLOCKED, PENDING_MAPPING, TOTAL, CompanyProfile, GroupConfig, Record
 from ..text import blank, detect_decimal_sep, norm, parse_amount, parse_period
@@ -122,7 +123,10 @@ class SourceAdapter(ABC):
             elif profile is None:
                 k = file_currency_key(t.meta)
                 file_cur = str(t.meta[k]).strip().upper() if k else None
-            dec = detect_decimal_sep(r[1][idx["amount"]] for r in t.rows if idx["amount"] < len(r[1]))
+            dc = (profile.sign_convention == "debit_credit") if profile is not None else \
+                ("amount" not in idx and "debit" in idx and "credit" in idx)
+            money_cols = [idx[f] for f in (("debit", "credit") if dc else ("amount",)) if f in idx]
+            dec = detect_decimal_sep(r[1][i] for r in t.rows for i in money_cols if i < len(r[1]))
 
             def cell(cells, f):
                 i = idx.get(f)
@@ -135,9 +139,10 @@ class SourceAdapter(ABC):
                 rec.period, rec.date = parse_period(cell(cells, "period"))
                 if rec.period is None:
                     rec.block(BLOCKED, f"Periodo invalido o vacio: {cell(cells, 'period')!r}")
-                rec.amount_original = parse_amount(cell(cells, "amount"), dec)
-                if rec.amount_original is None:
-                    rec.block(BLOCKED, f"Importe no numerico o vacio: {cell(cells, 'amount')!r}")
+                if not dc:
+                    rec.amount_original = parse_amount(cell(cells, "amount"), dec)
+                    if rec.amount_original is None:
+                        rec.block(BLOCKED, f"Importe no numerico o vacio: {cell(cells, 'amount')!r}")
                 # moneda: columna explicita > moneda del archivo > configuracion de la empresa
                 if cur_mode == "column":
                     v = cell(cells, "currency")
@@ -166,5 +171,29 @@ class SourceAdapter(ABC):
                         rec.is_total = True
                         if rec.status == "OK":
                             rec.status = TOTAL
+                if dc:
+                    self._debit_credit_amount(rec, cell(cells, "debit"), cell(cells, "credit"), dec, cfg)
                 records.append(rec)
         return records
+
+    @staticmethod
+    def _debit_credit_amount(rec: Record, debit_cell, credit_cell, dec: str, cfg: GroupConfig) -> None:
+        """Debito/credito -> un solo importe con el signo natural de la cuenta (cuenta deudora: debito -
+        credito; acreedora: credito - debito). El modelo canonico no cambia; debito y credito se conservan."""
+        for name, v in (("Debito", debit_cell), ("Credito", credit_cell)):
+            if not blank(v) and parse_amount(v, dec) is None:
+                rec.block(BLOCKED, f"{name} no numerico: {v!r}")
+                return
+        d, c = parse_amount(debit_cell, dec), parse_amount(credit_cell, dec)
+        rec.debit, rec.credit = d, c
+        if d is None and c is None:
+            rec.block(BLOCKED, "Ni debito ni credito: importe vacio")
+            return
+        if d not in (None, 0) and c not in (None, 0):
+            rec.block(BLOCKED, "Debito y credito en la misma fila: requiere revision (no se asume)")
+            return
+        net = (d or 0) - (c or 0)
+        if rec.account_code is None:
+            rec.amount_original = net            # cuenta sin mapear: naturaleza desconocida, no se asume
+        else:
+            rec.amount_original = net if nature(rec.account_code, cfg) == "D" else -net
