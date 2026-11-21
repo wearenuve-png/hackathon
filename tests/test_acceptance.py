@@ -174,11 +174,11 @@ def test_equivalencias_son_por_empresa(env):
 
 def test_archivo_de_otra_empresa_bajo_un_perfil_ajeno_no_se_procesa(env):
     base, data, profs = env
-    shutil.copy(data / "transportes_ferrex_hn.csv", data / "distribuidora_central_gt.csv")   # ambos CSV
+    shutil.copy(data / "transportes_ferrex_mx.csv", data / "distribuidora_central_gt.csv")   # ambos CSV
     res = run(data, profiles_dir=profs)
     assert res.load_reports["EMP002"].status == "REVIEW"
     assert not [r for r in res.records if r.company_id == "EMP002"]
-    assert {r.source_file for r in res.records if r.company_id == "EMP005"} == {"transportes_ferrex_hn.csv"}
+    assert {r.source_file for r in res.records if r.company_id == "EMP005"} == {"transportes_ferrex_mx.csv"}
 
 
 def test_dos_empresas_con_el_mismo_archivo_quedan_en_revision(env):

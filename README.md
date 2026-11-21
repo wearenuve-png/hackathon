@@ -55,7 +55,7 @@ normaliza a un solo importe con el signo natural de la cuenta.
 | Tema | Decisión |
 |---|---|
 | Moneda de presentación | USD |
-| Monedas del grupo | GTQ, HNL, USD |
+| Monedas del grupo | GTQ, MXN, USD |
 | Tasa | `usd_por_unidad_local`, se **multiplica**: `importe_usd = importe_local × tasa`. Ej.: 80,000 GTQ × 0.125 = 10,000 USD. Caso inverso (`local_por_usd`, se divide) en una función explícita y probada. |
 | Tasa usada | La del mes del registro, para resultados y balance (simplificación documentada; NIC 21 usaría promedio y cierre). |
 | Dinero | `decimal.Decimal` siempre. Sin redondeo interno; se presenta a 2 decimales `ROUND_HALF_UP`. |

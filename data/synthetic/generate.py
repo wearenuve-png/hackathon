@@ -1,7 +1,7 @@
 """DATOS SINTETICOS - NO SON DATOS DEL RETO NI DE GRUPO AG.
 
 Genera el grupo ficticio "Grupo Ferrex" (ferreteria y materiales de construccion):
-6 empresas, 3 monedas (GTQ, HNL, USD), 6 formatos distintos y 9 errores sembrados.
+6 empresas, 3 monedas (GTQ, MXN, USD), 6 formatos distintos y 9 errores sembrados.
 
 Uso (desde la raiz del repo):
     .venv/bin/python data/synthetic/generate.py
@@ -34,10 +34,15 @@ PERIOD_TYPE = {"2026-10": "real", "2026-11": "real", "2026-12": "presupuesto"}
 # Convencion acordada: usd_por_unidad_local, se MULTIPLICA (importe_usd = importe_local x tasa)
 RATES = {
     ("2026-10", "GTQ"): D("0.125"), ("2026-11", "GTQ"): D("0.125"), ("2026-12", "GTQ"): D("0.130"),
-    ("2026-10", "HNL"): D("0.040"), ("2026-11", "HNL"): D("0.040"), ("2026-12", "HNL"): D("0.042"),
+    ("2026-10", "MXN"): D("0.05"), ("2026-11", "MXN"): D("0.05"), ("2026-12", "MXN"): D("0.0525"),
     ("2026-10", "USD"): D("1"), ("2026-11", "USD"): D("1"), ("2026-12", "USD"): D("1"),
 }
 IC_TOLERANCE_USD = D("1.00")
+
+# Las cifras base de las empresas en MXN (BASE, IC_OPS y los importes sembrados) conservan las unidades de la
+# version anterior del grupo; al generar se multiplican por esta escala. Como 0.05 / 0.04 = 0.0525 / 0.042 = 1/0.8,
+# los importes en USD quedan IDENTICOS a los de esa version. Mismo orden de numeros aleatorios: misma semilla.
+LOCAL_SCALE = {"MXN": D("0.8")}
 
 COMPANIES = [
     dict(id="EMP001", name="Aceros Ferrex S.A.", country="Guatemala", currency="GTQ",
@@ -47,17 +52,17 @@ COMPANIES = [
          activity="Distribuidora central regional", file="distribuidora_central_gt.csv",
          fmt="CSV con ';', coma decimal y punto de miles, UTF-8",
          aliases=["Distribuidora Ferrex Central", "Distribuidora Central GT", "Ferrex Distribution Center GT"]),
-    dict(id="EMP003", name="Ferrex Honduras S. de R.L.", country="Honduras", currency="HNL",
-         activity="Tiendas minoristas Honduras", file="ferrex_honduras.xlsx",
-         fmt="XLSX con filas de titulo antes de la tabla", aliases=["Ferrex Honduras", "Ferrex HN"]),
+    dict(id="EMP003", name="Ferrex México S. de R.L. de C.V.", country="México", currency="MXN",
+         activity="Tiendas minoristas México", file="ferrex_mexico.xlsx",
+         fmt="XLSX con filas de titulo antes de la tabla", aliases=["Ferrex México", "Ferrex MX"]),
     dict(id="EMP004", name="Ferrex El Salvador S.A. de C.V.", country="El Salvador", currency="USD",
          activity="Tiendas minoristas El Salvador", file="ferrex_el_salvador.xlsx",
          fmt="XLSX en ingles, varias hojas (Income Statement, Balance Sheet, Notes)",
          aliases=["Ferrex El Salvador"]),
-    dict(id="EMP005", name="Transportes Ferrex S. de R.L.", country="Honduras", currency="HNL",
-         activity="Logistica y transporte", file="transportes_ferrex_hn.csv",
+    dict(id="EMP005", name="Transportes Ferrex México S. de R.L. de C.V.", country="México", currency="MXN",
+         activity="Logistica y transporte", file="transportes_ferrex_mx.csv",
          fmt="CSV con ',', punto decimal, codificacion Windows-1252, fecha dd/mm/aaaa",
-         aliases=["Transportes Ferrex"]),
+         aliases=["Transportes Ferrex México", "Transportes Ferrex"]),
     dict(id="EMP006", name="Ferrex Importaciones S.A.", country="Panama", currency="USD",
          activity="Importacion de herramientas", file="ferrex_importaciones_pa.json",
          fmt="JSON, moneda a nivel de archivo (no por fila)", aliases=["Ferrex Importaciones"]),
@@ -177,10 +182,10 @@ IC_OPS = [
 ]
 # alias que cada empresa escribe para referirse a la otra
 ALIAS_USED = {("EMP001", "EMP002"): "Distribuidora Ferrex Central", ("EMP002", "EMP001"): "Aceros Ferrex",
-              ("EMP002", "EMP003"): "Ferrex HN", ("EMP003", "EMP002"): "Distribuidora Central GT",
+              ("EMP002", "EMP003"): "Ferrex MX", ("EMP003", "EMP002"): "Distribuidora Central GT",
               ("EMP002", "EMP004"): "Ferrex El Salvador", ("EMP004", "EMP002"): "Ferrex Distribution Center GT",
-              ("EMP005", "EMP003"): "Ferrex Honduras", ("EMP003", "EMP005"): "Transportes Ferrex",
-              ("EMP006", "EMP003"): "Ferrex Honduras", ("EMP003", "EMP006"): "Ferrex Importaciones"}
+              ("EMP005", "EMP003"): "Ferrex México", ("EMP003", "EMP005"): "Transportes Ferrex",
+              ("EMP006", "EMP003"): "Ferrex México", ("EMP003", "EMP006"): "Ferrex Importaciones"}
 
 # Estados esperados de cada linea (lo que el motor DEBE hacer)
 INCLUDED = {"ok", "possible_duplicate", "atypical", "ic_discrepancy"}
@@ -192,6 +197,12 @@ INCLUDED = {"ok", "possible_duplicate", "atypical", "ic_discrepancy"}
 # pending_mapping    no entra hasta que se confirme el mapeo
 # blocked            no entra (moneda invalida, signo invertido)
 # total              fila de total: nunca entra, solo se verifica
+
+
+def S(cid, x):
+    """Importe base -> importe en la moneda local de la empresa (escala solo para MXN)."""
+    v = D(x) * LOCAL_SCALE.get(CO[cid]["currency"], D(1))
+    return int(v) if v == v.to_integral_value() else v
 
 
 def line(cid, period, code, amount, **kw):
@@ -221,12 +232,12 @@ def build_lines(rnd):
             amounts = {}
             for k, v in BASE[cid].items():
                 if isinstance(v, tuple):
-                    amounts[k] = v[1]
+                    amounts[k] = S(cid, v[1])
                 elif p == "2026-10":
-                    amounts[k] = v
+                    amounts[k] = S(cid, v)
                 else:
                     lo, hi = (0.95, 1.10) if p == "2026-11" else (0.97, 1.08)
-                    amounts[k] = int(round(v * rnd.uniform(lo, hi), -3))
+                    amounts[k] = S(cid, int(round(v * rnd.uniform(lo, hi), -3)))
             prev = amounts
             ics_sell = [o for o in IC_OPS if o[0] == p and o[2] == cid]
             ics_buy = [o for o in IC_OPS if o[0] == p and o[3] == cid]
@@ -251,18 +262,18 @@ def build_lines(rnd):
                                       status="ok" if i == 1 else "excluded_duplicate", error=3))
                 if cid == "EMP005" and p == "2026-11" and k == "6300a":
                     for _ in (1, 2):                                                     # error 4
-                        L.append(line(cid, p, "6300a", D("12500"), cp_text="Gasolinera del Norte",
+                        L.append(line(cid, p, "6300a", S(cid, "12500"), cp_text="Gasolinera del Norte",
                                       date=dt.date(2026, 11, 15), status="possible_duplicate", error=4))
             if cid == "EMP003" and p == "2026-10":
-                L.append(line(cid, p, "UNMAPPED", 120_000, local=UNMAPPED_NAME, status="pending_mapping",
+                L.append(line(cid, p, "UNMAPPED", S(cid, 120_000), local=UNMAPPED_NAME, status="pending_mapping",
                               error=5))                                                  # error 5
             for o in ics_sell:
                 st, err = ("ic_discrepancy", 6) if o[1] == "DC-IC-2611-HN" else ("ok", None)
-                L.append(line(cid, p, o[6], o[4], cp_text=ALIAS_USED[(cid, o[3])], cp_id=o[3], txn=o[1],
+                L.append(line(cid, p, o[6], S(cid, o[4]), cp_text=ALIAS_USED[(cid, o[3])], cp_id=o[3], txn=o[1],
                               desc=f"Venta intercompania {o[1]}", date=date, status=st, error=err))
             for o in ics_buy:
                 st, err = ("ic_discrepancy", 6) if o[1] == "DC-IC-2611-HN" else ("ok", None)
-                L.append(line(cid, p, o[7], o[5], cp_text=ALIAS_USED[(cid, o[2])], cp_id=o[2], txn=o[1],
+                L.append(line(cid, p, o[7], S(cid, o[5]), cp_text=ALIAS_USED[(cid, o[2])], cp_id=o[2], txn=o[1],
                               desc=f"Compra intercompania {o[1]}", date=date, status=st, error=err))
             # totales
             if cid == "EMP001":
@@ -281,11 +292,11 @@ def build_lines(rnd):
                                                                    "2100", "2500", "3000") if k in amounts]
             for o in [o for o in ics_sell if o[8]]:
                 st, err = ("ic_discrepancy", 6) if o[1] == "DC-IC-2611-HN" else ("ok", None)
-                bg.append(line(cid, p, "1100", o[4], cp_text=ALIAS_USED[(cid, o[3])], cp_id=o[3], txn=o[1],
+                bg.append(line(cid, p, "1100", S(cid, o[4]), cp_text=ALIAS_USED[(cid, o[3])], cp_id=o[3], txn=o[1],
                                desc=f"Saldo por cobrar intercompania {o[1]}", date=date, status=st, error=err))
             for o in [o for o in ics_buy if o[8]]:
                 st, err = ("ic_discrepancy", 6) if o[1] == "DC-IC-2611-HN" else ("ok", None)
-                bg.append(line(cid, p, "2000", o[5], cp_text=ALIAS_USED[(cid, o[2])], cp_id=o[2], txn=o[1],
+                bg.append(line(cid, p, "2000", S(cid, o[5]), cp_text=ALIAS_USED[(cid, o[2])], cp_id=o[2], txn=o[1],
                                desc=f"Saldo por pagar intercompania {o[1]}", date=date, status=st, error=err))
             act = sum(x["amount"] for x in bg if x["code"][0] == "1")
             pas = sum(x["amount"] for x in bg if x["code"][0] in "23")
@@ -330,9 +341,9 @@ def write_emp002(lines, path):
 def write_emp003(lines, path):
     wb = Workbook()
     ws = wb.active
-    ws.title = "Presupuesto HN"
-    ws.append(["Ferrex Honduras S. de R.L."])
-    ws.append(["Presupuesto y cifras reales - expresado en Lempiras (HNL)"])
+    ws.title = "Presupuesto MX"
+    ws.append(["Ferrex México S. de R.L. de C.V."])
+    ws.append(["Presupuesto y cifras reales - expresado en Pesos mexicanos (MXN)"])
     ws.append([])
     ws.append(["Mes", "Cuenta contable", "Valor", "Divisa", "Empresa relacionada", "Documento"])
     for x in lines:
@@ -441,9 +452,9 @@ def build_answer_key(lines_by_co):
         3: ("duplicado_confirmado", "Factura FAC-A-0457 dos veces (40,000 GTQ = 5,000 USD). Se excluye la segunda mediante ajuste registrado y reversible."),
         4: ("posible_duplicado", "Mismo importe, fecha y contraparte, sin ID. Solo se marca; ambos registros siguen en el consolidado."),
         5: ("cuenta_sin_mapear", "Cuenta local sin equivalencia en el catalogo. Queda pendiente de mapeo, fuera del consolidado."),
-        6: ("diferencia_intercompania", "EMP002 registra 160,000 GTQ = 20,000 USD; EMP003 registra 450,000 HNL = 18,000 USD. Discrepancia 2,000 USD; no se elimina (venta y saldo)."),
+        6: ("diferencia_intercompania", "EMP002 registra 160,000 GTQ = 20,000 USD; EMP003 registra 360,000 MXN = 18,000 USD. Discrepancia 2,000 USD; no se elimina (venta y saldo)."),
         7: ("importe_atipico", "Arrendamientos 96,000 marcado USD; en oct y nov fue 96,000 GTQ = 12,000 USD. Razon 8 = 1/0.125: posible GTQ marcado como USD. Alerta 'revisar'; la cifra NO se modifica."),
-        8: ("signo_invertido", "Depreciacion negativa (-300,000 HNL) en cuenta de gasto. Registro bloqueado hasta correccion."),
+        8: ("signo_invertido", "Depreciacion negativa (-240,000 MXN) en cuenta de gasto. Registro bloqueado hasta correccion."),
         9: ("mes_faltante", "EMP006 no trae 2026-11. El consolidado de 2026-11 queda marcado como incompleto."),
     }
     seeded = []

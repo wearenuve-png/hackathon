@@ -98,23 +98,23 @@
       "ubicaciones": [
         {
           "company_id": "EMP005",
-          "file": "transportes_ferrex_hn.csv",
+          "file": "transportes_ferrex_mx.csv",
           "sheet": null,
           "row": 23,
           "period": "2026-11",
           "account_local": "Combustible y lubricantes",
-          "amount_local": "12500",
-          "currency_written": "HNL"
+          "amount_local": "10000",
+          "currency_written": "MXN"
         },
         {
           "company_id": "EMP005",
-          "file": "transportes_ferrex_hn.csv",
+          "file": "transportes_ferrex_mx.csv",
           "sheet": null,
           "row": 24,
           "period": "2026-11",
           "account_local": "Combustible y lubricantes",
-          "amount_local": "12500",
-          "currency_written": "HNL"
+          "amount_local": "10000",
+          "currency_written": "MXN"
         }
       ]
     },
@@ -125,20 +125,20 @@
       "ubicaciones": [
         {
           "company_id": "EMP003",
-          "file": "ferrex_honduras.xlsx",
-          "sheet": "Presupuesto HN",
+          "file": "ferrex_mexico.xlsx",
+          "sheet": "Presupuesto MX",
           "row": 13,
           "period": "2026-10",
           "account_local": "Gastos de mercadeo y publicidad",
-          "amount_local": "120000",
-          "currency_written": "HNL"
+          "amount_local": "96000",
+          "currency_written": "MXN"
         }
       ]
     },
     {
       "id": 6,
       "tipo": "diferencia_intercompania",
-      "explicacion": "EMP002 registra 160,000 GTQ = 20,000 USD; EMP003 registra 450,000 HNL = 18,000 USD. Discrepancia 2,000 USD; no se elimina (venta y saldo).",
+      "explicacion": "EMP002 registra 160,000 GTQ = 20,000 USD; EMP003 registra 360,000 MXN = 18,000 USD. Discrepancia 2,000 USD; no se elimina (venta y saldo).",
       "ubicaciones": [
         {
           "company_id": "EMP002",
@@ -162,23 +162,23 @@
         },
         {
           "company_id": "EMP003",
-          "file": "ferrex_honduras.xlsx",
-          "sheet": "Presupuesto HN",
+          "file": "ferrex_mexico.xlsx",
+          "sheet": "Presupuesto MX",
           "row": 35,
           "period": "2026-11",
           "account_local": "Costo de ventas",
-          "amount_local": "450000",
-          "currency_written": "HNL"
+          "amount_local": "360000",
+          "currency_written": "MXN"
         },
         {
           "company_id": "EMP003",
-          "file": "ferrex_honduras.xlsx",
-          "sheet": "Presupuesto HN",
+          "file": "ferrex_mexico.xlsx",
+          "sheet": "Presupuesto MX",
           "row": 45,
           "period": "2026-11",
           "account_local": "Proveedores",
-          "amount_local": "450000",
-          "currency_written": "HNL"
+          "amount_local": "360000",
+          "currency_written": "MXN"
         }
       ]
     },
@@ -202,17 +202,17 @@
     {
       "id": 8,
       "tipo": "signo_invertido",
-      "explicacion": "Depreciacion negativa (-300,000 HNL) en cuenta de gasto. Registro bloqueado hasta correccion.",
+      "explicacion": "Depreciacion negativa (-240,000 MXN) en cuenta de gasto. Registro bloqueado hasta correccion.",
       "ubicaciones": [
         {
           "company_id": "EMP005",
-          "file": "transportes_ferrex_hn.csv",
+          "file": "transportes_ferrex_mx.csv",
           "sheet": null,
           "row": 7,
           "period": "2026-10",
           "account_local": "Depreciación de vehículos",
-          "amount_local": "-300000",
-          "currency_written": "HNL"
+          "amount_local": "-240000",
+          "currency_written": "MXN"
         }
       ]
     },

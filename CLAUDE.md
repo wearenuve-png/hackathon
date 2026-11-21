@@ -247,7 +247,7 @@ Mensaje del proyecto: NEXUS conecta presupuestos separados por empresa, formato 
 ## 12. Resoluciones del equipo (21 nov 2026) — prevalecen sobre los supuestos por defecto
 
 - Tasa: columna `usd_por_unidad_local`, se MULTIPLICA (importe_usd = importe_local x tasa). Control: 80,000 GTQ x 0.125 = 10,000 USD. Existe una función explícita para el caso inverso, con prueba.
-- Monedas del grupo: GTQ, HNL y USD.
+- Monedas del grupo: GTQ, MXN (peso mexicano) y USD. (Cambio de requisito posterior: los importes en USD del dataset sintético se conservaron idénticos.)
 - Duplicados: mismo ID de transacción = confirmado, se excluye automáticamente mediante un ajuste registrado (motivo, regla, reversible; el registro original no se borra). Sin ID (mismo importe, fecha y contraparte) = posible duplicado: solo se marca, pendiente de confirmación humana.
 - Resto de preguntas abiertas: se aplican los supuestos por defecto del plan.
 - No hay datos oficiales: se trabaja con el grupo ficticio "Grupo Ferrex" en `data/synthetic/` (script `generate.py`, semilla fija). Clave de respuestas en `tests/fixtures/`.

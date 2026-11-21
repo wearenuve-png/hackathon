@@ -10,15 +10,15 @@ Generado por `data/synthetic/generate.py`. No editar a mano.
 | 2 | total_no_cuadra | EMP004 | ferrex_el_salvador.xlsx | Income Statement | 24 | 2026-11 |
 | 3 | duplicado_confirmado | EMP001 | aceros_ferrex_gt.xlsx | Presupuesto | 3 | 2026-10 |
 | 3 | duplicado_confirmado | EMP001 | aceros_ferrex_gt.xlsx | Presupuesto | 4 | 2026-10 |
-| 4 | posible_duplicado | EMP005 | transportes_ferrex_hn.csv | - | 23 | 2026-11 |
-| 4 | posible_duplicado | EMP005 | transportes_ferrex_hn.csv | - | 24 | 2026-11 |
-| 5 | cuenta_sin_mapear | EMP003 | ferrex_honduras.xlsx | Presupuesto HN | 13 | 2026-10 |
+| 4 | posible_duplicado | EMP005 | transportes_ferrex_mx.csv | - | 23 | 2026-11 |
+| 4 | posible_duplicado | EMP005 | transportes_ferrex_mx.csv | - | 24 | 2026-11 |
+| 5 | cuenta_sin_mapear | EMP003 | ferrex_mexico.xlsx | Presupuesto MX | 13 | 2026-10 |
 | 6 | diferencia_intercompania | EMP002 | distribuidora_central_gt.csv | - | 35 | 2026-11 |
 | 6 | diferencia_intercompania | EMP002 | distribuidora_central_gt.csv | - | 45 | 2026-11 |
-| 6 | diferencia_intercompania | EMP003 | ferrex_honduras.xlsx | Presupuesto HN | 35 | 2026-11 |
-| 6 | diferencia_intercompania | EMP003 | ferrex_honduras.xlsx | Presupuesto HN | 45 | 2026-11 |
+| 6 | diferencia_intercompania | EMP003 | ferrex_mexico.xlsx | Presupuesto MX | 35 | 2026-11 |
+| 6 | diferencia_intercompania | EMP003 | ferrex_mexico.xlsx | Presupuesto MX | 45 | 2026-11 |
 | 7 | importe_atipico | EMP002 | distribuidora_central_gt.csv | - | 51 | 2026-12 |
-| 8 | signo_invertido | EMP005 | transportes_ferrex_hn.csv | - | 7 | 2026-10 |
+| 8 | signo_invertido | EMP005 | transportes_ferrex_mx.csv | - | 7 | 2026-10 |
 | 9 | mes_faltante | EMP006 | ferrex_importaciones_pa.json | - | - | 2026-11 |
 
 ## Eliminaciones esperadas (USD)

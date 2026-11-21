@@ -45,7 +45,7 @@ coincidir con su perfil, la carga queda en revisión y no se procesa en silencio
 ### 3. Un error sembrado, bloqueado (0:50)
 **Mostrar:** el encabezado de 2026-10 (etiqueta **PROVISIONAL**) y la pestaña *Alertas y exclusiones*, tabla de
 registros fuera del consolidado y tabla de impacto.
-**Decir:** «Esta depreciación de Transportes Ferrex llegó con signo negativo: −300,000 lempiras, −12,000 dólares.
+**Decir:** «Esta depreciación de Transportes Ferrex México llegó con signo negativo: −240,000 pesos mexicanos, −12,000 dólares.
 NEXUS no la corrige ni la ignora: la bloquea y la deja fuera del consolidado, con su importe y su motivo. Como no
 sabemos cuál es el dato correcto, mostramos el rango: excluida, la utilidad es 359,125; si entrara tal como viene,
 sube 12,000; con el signo corregido, baja 12,000. Por eso el período se marca **PROVISIONAL**: rango de utilidad
@@ -64,7 +64,7 @@ El balance cuadra.»
 
 ### 5. La discrepancia que no se elimina (0:30)
 **Mostrar:** período 2026-11, tabla de intercompañía.
-**Decir:** «Distribuidora Central dice haber vendido 20,000 dólares a Ferrex Honduras; Honduras dice haber
+**Decir:** «Distribuidora Central dice haber vendido 20,000 dólares a Ferrex México; México dice haber
 comprado 18,000. NEXUS no elimina a ciegas: abre una discrepancia de **2,000 dólares** para revisión y marca
 el período como provisional. Aparecen dos filas porque la discrepancia afecta tanto la operación (la venta)
 como el saldo (cuenta por cobrar y por pagar).»
@@ -73,11 +73,11 @@ como el saldo (cuenta por cobrar y por pagar).»
 ### 6. De una cifra a su registro: Ingresos por ventas (cuenta 4000) (0:30)
 **Mostrar:** pestaña *Trazabilidad*, elegir «4000 - Ingresos por ventas».
 **Decir:** «Elijo una cifra y veo de dónde sale: archivo, hoja y fila, el importe original, la moneda, la tasa del
-mes y los dólares. Aquí, Ferrex Honduras, hoja “Presupuesto HN”, fila 5: 9,000,000 lempiras por 0.04 son
+mes y los dólares. Aquí, Ferrex México, hoja “Presupuesto MX”, fila 5: 7,200,000 pesos mexicanos por 0.05 son
 360,000 dólares. Y abajo, los ajustes: cada eliminación intercompañía con su regla y su motivo.»
 **Aclarar (una frase):** «Esta cifra es solo la cuenta 4000, ingresos por ventas. El total de ingresos del
 consolidado, 1,985,000 dólares, incluye otras cuentas de ingresos, como los ingresos por servicios (cuenta 4100) de
-Transportes Ferrex, 120,000 dólares.»
+Transportes Ferrex México, 120,000 dólares.»
 **Cifras:** cuenta 4000: 1,948,000 antes de eliminar, 1,865,000 después (11 registros, 4 ajustes).
 
 ### 7. Indicadores (0:40)

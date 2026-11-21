@@ -1,11 +1,11 @@
 {
   "company_id": "EMP003",
-  "company_name": "Ferrex Honduras S. de R.L.",
-  "country": "Honduras",
-  "functional_currency": "HNL",
+  "company_name": "Ferrex México S. de R.L. de C.V.",
+  "country": "México",
+  "functional_currency": "MXN",
   "source": {
     "type": "xlsx",
-    "file": "ferrex_honduras.xlsx"
+    "file": "ferrex_mexico.xlsx"
   },
   "columns": {
     "period": "Mes",
@@ -36,19 +36,19 @@
     "Utilidades retenidas": "3100"
   },
   "sheets": [
-    "Presupuesto HN"
+    "Presupuesto MX"
   ],
   "sign_convention": "signed_amount",
   "currency_mode": "column",
   "currency_key": "Divisa",
   "counterparty_aliases": [
-    "Ferrex Honduras",
-    "Ferrex HN"
+    "Ferrex México",
+    "Ferrex MX"
   ],
   "schema_version": 1,
-  "profile_version": 1,
+  "profile_version": 2,
   "approval_status": "APPROVED",
   "approved_by": "Santiago Enriquez Salguero",
   "approved_at": "2026-11-21",
-  "profile_hash": "ceaefc149b7e6c3c876c442763b4fb2bf6e7abbb832ccc65b696103546730340"
+  "profile_hash": "bb39ee5bd0b56285f3dda2e70192bb84457f7d44e2b90ec029efb5bfbf701e14"
 }
