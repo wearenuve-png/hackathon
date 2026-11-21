@@ -100,6 +100,8 @@ def run_demo(datos, perfiles, salida, out=print) -> dict:
     k["eliminaciones_conciliadas"] = sum(1 for x in res.matches if x.period == PERIODO and x.status == "RECONCILED")
 
     paso(5, "La discrepancia intercompania que NO se elimina", out)
+    out("Aparecen dos filas porque la discrepancia afecta tanto la operacion (la venta) como el saldo (cuenta por "
+        "cobrar y por pagar).")
     k["discrepancias"] = []
     for x in [x for x in res.matches if x.status == "DISCREPANCY"]:
         out(f"  {x.period} {x.seller_id} -> {x.buyer_id} ref {x.reference} ({'saldo' if x.statement == 'BG' else 'operacion'}): "
@@ -107,10 +109,15 @@ def run_demo(datos, perfiles, salida, out=print) -> dict:
             f"USD. No se elimina; se abre para revision.")
         k["discrepancias"].append({"reference": x.reference, "period": x.period, "difference": x.difference_usd})
 
-    paso(6, "De una cifra a su registro original (clic en 'Ingresos' -> archivo, hoja y fila)", out)
+    paso(6, "De una cifra a su registro original: Ingresos por ventas (cuenta 4000) -> archivo, hoja y fila", out)
     t = trace(PERIODO, "4000", res)
-    out(f"Cuenta {t['account_code']} {t['account_name']}: {m(t['gross_usd'])} antes de eliminar, "
+    out(f"Ingresos por ventas (cuenta {t['account_code']}): {m(t['gross_usd'])} antes de eliminar, "
         f"{m(t['amount_usd'])} despues ({len(t['records'])} registros fuente, {len(t['adjustments'])} ajustes)")
+    otras = {c: ln.amount_usd for c, ln in pr.lines.items()
+             if cfg.catalog[c].cls == "ingreso" and c != "4000" and ln.amount_usd}
+    out(f"Nota: esta cifra ({m(t['amount_usd'])} USD) es solo la cuenta 4000. Difiere del total de ingresos del "
+        f"consolidado ({m(pr.summary['ingresos'])} USD) porque ese total incluye otras cuentas de ingresos: "
+        + ", ".join(f"{c} {cfg.catalog[c].name} ({m(v)} USD)" for c, v in otras.items()) + ".")
     out(f"  {'Empresa':<8}{'Archivo':<30}{'Hoja':<18}{'Fila':>5}{'Original':>16}{'Mon':>5}{'Tasa':>7}{'USD':>14}")
     for x in sorted(t["records"], key=lambda r: -r["amount_usd"])[:4]:
         out(f"  {x['company_id']:<8}{x['file']:<30}{(x['sheet'] or '-'):<18}{x['row']:>5}{m(x['amount_original']):>16}"
@@ -128,10 +135,12 @@ def run_demo(datos, perfiles, salida, out=print) -> dict:
         v = f"{i.value:,.4f}".rstrip("0").rstrip(".") if i.name in ("WACC (anual)", "Tasa de impuesto") else m(i.value)
         out(f"{i.name:<34}{v:>16}  {i.source}")
     out(f"\nNOPAT  = EBIT x (1 - tasa)                 = {m(ind.nopat)}")
-    out(f"ROIC   = NOPAT / capital invertido         = {ind.roic:.2%} del mes  ({ind.roic_annualized:.2%} anualizado)")
-    out(f"ROCE   = EBIT / capital empleado           = {ind.roce:.2%} del mes  ({ind.roce_annualized:.2%} anualizado)")
+    out(f"ROIC   = NOPAT / capital invertido         = {ind.roic:.2%} del mes")
+    out(f"ROCE   = EBIT / capital empleado           = {ind.roce:.2%} del mes")
     out(f"EVA    = NOPAT - (WACC/12) x capital       = {m(ind.eva)} USD del mes")
     out("WACC, tasa de impuesto y definicion de capital son SUPUESTO del equipo, no datos del reto.")
+    out(f"(*) Nota al pie: anualizados serian ROIC {ind.roic_annualized:.2%} y ROCE {ind.roce_annualized:.2%}; "
+        f"no son representativos por ser datos sinteticos.")
     k["ind"] = {"nopat": ind.nopat, "roic": ind.roic, "roce": ind.roce, "eva": ind.eva}
 
     paso(8, "Una variacion explicada con registros concretos", out)
