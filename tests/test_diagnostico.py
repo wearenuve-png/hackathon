@@ -185,7 +185,7 @@ def test_diagnosticar_no_modifica_el_resultado(res):
 def test_la_pestana_hallazgos_muestra_contador_y_fichas():
     at = AppTest.from_file(str(ROOT / "app.py"), default_timeout=120).run()
     assert not at.exception, at.exception
-    assert "Hallazgos" in [t.label for t in at.tabs]
+    assert "Alertas y errores" in [t.label for t in at.tabs]          # Hallazgos vive dentro de esta pestana
     # octubre: duplicado confirmado, cuenta sin mapear, signo invertido
     etiquetas = " | ".join(e.label for e in at.expander if e.label.startswith("FCH-"))
     for nombre in ("Duplicado", "Cuenta sin mapear", "Signo invertido"):
