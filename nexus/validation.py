@@ -4,8 +4,10 @@ apply_record_rules: las reglas que CAMBIAN el estado de un registro y por eso co
 consolidar (duplicado confirmado por ID, signo invertido). El resto del validador (totales,
 posibles duplicados, importes atipicos, meses faltantes) se agrega en la fase SHOULD.
 """
+import json
 from collections import defaultdict
 from decimal import Decimal
+from pathlib import Path
 from statistics import median
 from typing import List, Tuple
 
@@ -18,6 +20,8 @@ ATYPICAL_RATIO = Decimal("3")          # variacion generica contra otros periodo
 CURRENCY_FIT_TOLERANCE = Decimal("0.15")
 CURRENCY_TRIGGER = Decimal("1.5")      # solo se plantea hipotesis de moneda si la cifra se aleja >50%
 TOTAL_TOLERANCE = Decimal("0.01")
+VALIDATION_CONFIG = Path(__file__).resolve().parent.parent / "config" / "validacion.json"
+DEFAULT_RATE_JUMP = Decimal("0.15")
 
 # Clases de cuenta de flujo que, por convencion del catalogo, se registran en positivo.
 POSITIVE_FLOW_CLASSES = {"ingreso", "costo", "gasto_operativo", "gasto_financiero", "impuesto"}
@@ -312,9 +316,55 @@ def cross_file_duplicates(records, cfg):
     return out
 
 
+def load_rate_jump(path=None) -> Decimal:
+    """Umbral de cambio de tasa mes a mes (config/validacion.json). Un valor invalido no se usa."""
+    p = Path(path) if path else VALIDATION_CONFIG
+    try:
+        v = Decimal(str(json.loads(p.read_text(encoding="utf-8")).get("umbral_cambio_tasa", DEFAULT_RATE_JUMP)))
+    except (OSError, ValueError, ArithmeticError):
+        return DEFAULT_RATE_JUMP
+    return v if 0 < v <= 5 else DEFAULT_RATE_JUMP
+
+
+def suspicious_rates(records, cfg, threshold=None):
+    """Tasa de un mes que difiere de la del mes anterior en mas de un umbral (defecto 15 %): 'tasa sospechosa'.
+    Muestra el impacto en USD y pide confirmacion humana; NO bloquea ni corrige. Sin historial no se marca."""
+    thr = Decimal(str(threshold)) if threshold is not None else load_rate_jump()
+    by_cur = defaultdict(list)
+    for (p, cur), fx in cfg.rates.items():
+        if cur != cfg.base_currency and fx.rate > 0:
+            by_cur[cur].append((p, fx))
+    out = []
+    for cur, lst in sorted(by_cur.items()):
+        lst.sort(key=lambda t: t[0])
+        for (p0, f0), (p1, f1) in zip(lst, lst[1:]):
+            r0, r1 = to_usd(Decimal(1), f0), to_usd(Decimal(1), f1)
+            cambio = r1 / r0 - 1
+            if abs(cambio) <= thr:
+                continue
+            rs = [r for r in records if r.currency == cur and r.period == p1 and r.status == OK
+                  and r.amount_original is not None and r.amount_usd is not None]
+            nuevo = sum((r.amount_usd for r in rs), D0)
+            previo = sum((r.amount_original * r0 for r in rs), D0)
+            out.append(Finding(_f(len(out) + 1, "F-TAS"), "TAS-01", WARN,
+                               f"Tasa sospechosa: {cur} pasa de {f0.rate} a {f1.rate} ({cambio:+.1%}) entre {p0} y {p1}, "
+                               f"mas del umbral de {thr:.0%}. Se usa tal cual hasta que una persona la confirme.",
+                               [r.record_id for r in rs], p1, None, f"{f1.rate}", f"~{f0.rate} (mes anterior)",
+                               "Confirmar la tasa del mes con la fuente oficial y corregir la tabla de tasas si "
+                               "corresponde",
+                               impact=f"Diferencia de {nuevo - previo:+,.2f} USD en el consolidado: los {len(rs)} "
+                                      f"registro(s) en {cur} de {p1} valen {_m(nuevo)} USD con la tasa nueva y "
+                                      f"{_m(previo)} USD con la del mes anterior. No se bloquea ni se corrige."))
+    return out
+
+
+D0 = Decimal(0)
+
+
 def validate(records: List[Record], cfg: GroupConfig) -> List[Finding]:
     return (totals(records, cfg) + possible_duplicates(records, cfg) + cross_file_duplicates(records, cfg)
             + atypical_amounts(records, cfg) + missing_months(records, cfg) + unbalanced(records, cfg)
+            + suspicious_rates(records, cfg)
             + unresolved_records(records, cfg))
 
 

@@ -245,7 +245,8 @@ def _tasa_invalida(f, ctx, recs):
 
 
 def _tasa_sospechosa(f, ctx, recs):
-    return (f.message, (_nums(f.impact) or [None])[0], True, "Ver impacto: " + (f.impact or "no cuantificado"),
+    n = _nums(f.impact)
+    return (f.message, abs(n[0]) if n else None, True, "Ver impacto: " + (f.impact or "no cuantificado"),
             "Probable error de captura en la tasa (por ejemplo un decimal corrido) o un cambio real y fuerte de la "
             "moneda. Es una sospecha, no una certeza.",
             "Confirmar la tasa del mes con la fuente oficial. NEXUS no la corrige ni bloquea la carga.")
