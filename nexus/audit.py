@@ -7,7 +7,30 @@ from pathlib import Path
 
 
 def file_hashes(paths) -> dict:
-    return {Path(p).name: hashlib.sha256(Path(p).read_bytes()).hexdigest() for p in paths}
+    return {Path(p).name: sha256_file(p) for p in paths}
+
+
+def sha256_file(path) -> str:
+    """Lectura en bloques, solo lectura: nunca abre el archivo en modo escritura."""
+    h = hashlib.sha256()
+    with open(path, "rb") as f:
+        for chunk in iter(lambda: f.read(1 << 20), b""):
+            h.update(chunk)
+    return h.hexdigest()
+
+
+def verify_hashes(hashes: dict, dirs) -> dict:
+    """Vuelve a calcular el SHA-256 de cada archivo registrado: OK (igual), CAMBIO (distinto) o FALTA."""
+    out = {}
+    for name, registered in hashes.items():
+        path = next((Path(d) / name for d in dirs if (Path(d) / name).is_file()), None)
+        if path is None:
+            out[name] = {"status": "FALTA", "registered": registered, "current": None}
+            continue
+        cur = sha256_file(path)
+        out[name] = {"status": "OK" if cur == registered else "CAMBIO", "registered": registered, "current": cur,
+                     "path": str(path)}
+    return out
 
 
 def _default(o):
@@ -20,11 +43,14 @@ def _default(o):
     return str(o)
 
 
-def write_run(run, output_dir) -> str:
+def write_run(run, output_dir, source_dir=None) -> str:
+    """source_dir (opcional): carpeta del servidor de donde se leyeron los archivos; queda en la evidencia."""
     d = Path(output_dir) / run.run_id
     d.mkdir(parents=True, exist_ok=True)
     (d / "run.json").write_text(json.dumps({
         "run_id": run.run_id, "rules_version": run.config.rules_version,
+        "source": {"kind": "server_folder", "mode": "read_only", "path": str(source_dir) if source_dir else None,
+                   "network": "none"},
         "ic_tolerance_usd": run.config.ic_tolerance_usd, "input_hashes": run.input_hashes,
         "periods": {p: {"kind": pr.kind, "provisional": pr.provisional, "provisional_reasons": pr.provisional_reasons,
                         "summary": pr.summary, "naive_summary": pr.naive_summary,

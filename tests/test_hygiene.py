@@ -14,3 +14,10 @@ def test_el_prototipo_validador_no_se_importa_desde_el_flujo():
 
 def test_prototipo_esta_documentado_como_referencia():
     assert "SOLO REFERENCIA" in (ROOT / "validador" / "README.md").read_text(encoding="utf-8")
+
+
+def test_el_motor_no_importa_librerias_de_red():
+    """NEXUS corre dentro del servidor, sin internet: ninguna libreria de red ni de IA en la nube."""
+    banned = r"^\s*(from|import)\s+(requests|urllib|http|httpx|socket|ftplib|smtplib|anthropic|openai|aiohttp|websocket)\b"
+    for f in (ROOT / "nexus").rglob("*.py"):
+        assert not re.search(banned, f.read_text(encoding="utf-8"), re.M), f"{f} importa una libreria de red"
