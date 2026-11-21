@@ -1,7 +1,7 @@
 company_id,nombre,pais,moneda_funcional,actividad,archivo,alias
 EMP001,Aceros Ferrex S.A.,Guatemala,GTQ,Planta: fabrica varilla y alambre,aceros_ferrex_gt.xlsx,Aceros Ferrex|Aceros Ferrex S.A.
 EMP002,Distribuidora Ferrex Central S.A.,Guatemala,GTQ,Distribuidora central regional,distribuidora_central_gt.csv,Distribuidora Ferrex Central|Distribuidora Central GT|Ferrex Distribution Center GT
-EMP003,Ferrex Honduras S. de R.L.,Honduras,HNL,Tiendas minoristas Honduras,ferrex_honduras.xlsx,Ferrex Honduras|Ferrex HN
+EMP003,Ferrex México S. de R.L. de C.V.,México,MXN,Tiendas minoristas México,ferrex_mexico.xlsx,Ferrex México|Ferrex MX
 EMP004,Ferrex El Salvador S.A. de C.V.,El Salvador,USD,Tiendas minoristas El Salvador,ferrex_el_salvador.xlsx,Ferrex El Salvador
-EMP005,Transportes Ferrex S. de R.L.,Honduras,HNL,Logistica y transporte,transportes_ferrex_hn.csv,Transportes Ferrex
+EMP005,Transportes Ferrex México S. de R.L. de C.V.,México,MXN,Logistica y transporte,transportes_ferrex_mx.csv,Transportes Ferrex México|Transportes Ferrex
 EMP006,Ferrex Importaciones S.A.,Panama,USD,Importacion de herramientas,ferrex_importaciones_pa.json,Ferrex Importaciones

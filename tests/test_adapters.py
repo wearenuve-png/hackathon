@@ -57,11 +57,11 @@ def test_hoja_faltante_en_excel_queda_en_revision(built_profiles, data_copy):
 
 
 def test_archivo_con_otro_tipo_que_el_perfil_queda_en_revision(built_profiles, data_copy):
-    (data_copy / "transportes_ferrex_hn.csv").rename(data_copy / "transportes_ferrex_hn.json")
+    (data_copy / "transportes_ferrex_mx.csv").rename(data_copy / "transportes_ferrex_mx.json")
     import json
     p = built_profiles / "EMP005.json"
     d = json.loads(p.read_text(encoding="utf-8"))
-    d["source"]["file"] = "transportes_ferrex_hn.json"
+    d["source"]["file"] = "transportes_ferrex_mx.json"
     d.pop("profile_hash")
     p.write_text(json.dumps(d), encoding="utf-8")
     rep = run(data_copy, profiles_dir=built_profiles).load_reports["EMP005"]

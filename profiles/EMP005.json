@@ -1,11 +1,11 @@
 {
   "company_id": "EMP005",
-  "company_name": "Transportes Ferrex S. de R.L.",
-  "country": "Honduras",
-  "functional_currency": "HNL",
+  "company_name": "Transportes Ferrex México S. de R.L. de C.V.",
+  "country": "México",
+  "functional_currency": "MXN",
   "source": {
     "type": "csv",
-    "file": "transportes_ferrex_hn.csv"
+    "file": "transportes_ferrex_mx.csv"
   },
   "columns": {
     "period": "fecha",
@@ -38,12 +38,13 @@
   "currency_mode": "column",
   "currency_key": "moneda",
   "counterparty_aliases": [
+    "Transportes Ferrex México",
     "Transportes Ferrex"
   ],
   "schema_version": 1,
-  "profile_version": 1,
+  "profile_version": 2,
   "approval_status": "APPROVED",
   "approved_by": "Santiago Enriquez Salguero",
   "approved_at": "2026-11-21",
-  "profile_hash": "101d1aad705cf65b41d7e09a211446a2085763c21fab6a5bdbd06f0f53d40140"
+  "profile_hash": "0097dd89ac4169cb06269e98df1f5789bcf0dac8b1030f56491ef43254957283"
 }
