@@ -7,7 +7,7 @@
     periodos.csv          periodo, tipo
 """
 import csv
-from decimal import Decimal
+from decimal import Decimal, InvalidOperation
 from pathlib import Path
 
 from .schemas import Account, Company, FxRate, GroupConfig, LOCAL_PER_USD, USD_PER_LOCAL
@@ -29,10 +29,16 @@ def load_group_config(config_dir, ic_tolerance_usd="1.00") -> GroupConfig:
     rates = {}
     for r in _rows(d / "tasas.csv"):
         cur = r["moneda"].strip().upper()
-        if r.get("usd_por_unidad_local"):
-            fx = FxRate(r["periodo"], cur, Decimal(r["usd_por_unidad_local"]), USD_PER_LOCAL)
-        else:
-            fx = FxRate(r["periodo"], cur, Decimal(r["local_por_usd"]), LOCAL_PER_USD)
+        u, lo = (r.get("usd_por_unidad_local") or "").strip(), (r.get("local_por_usd") or "").strip()
+        try:
+            if u:
+                fx = FxRate(r["periodo"], cur, Decimal(u), USD_PER_LOCAL)
+            elif lo:
+                fx = FxRate(r["periodo"], cur, Decimal(lo), LOCAL_PER_USD)
+            else:
+                continue                      # tasa vacia = tasa faltante: los registros se bloquean, no se asume nada
+        except InvalidOperation:
+            continue                          # tasa no numerica = tasa faltante
         rates[(fx.period, cur)] = fx
     catalog = {}
     for r in _rows(d / "catalogo_cuentas.csv"):

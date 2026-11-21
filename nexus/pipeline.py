@@ -43,6 +43,18 @@ def run(input_dir, config_dir=None, ic_tolerance_usd="1.00", profiles_dir=None) 
                                     f"La carga de {rep.company_id} ({rep.file}) quedo en REVISION y no aporta "
                                     f"registros: " + "; ".join(rep.reasons), [], None, rep.company_id,
                                     suggestion="Corregir el archivo o actualizar y aprobar el perfil"))
+    by_hash = {}
+    for c in cfg.companies.values():
+        h = hashes.get(c.file)
+        if h:
+            by_hash.setdefault(h, []).append(c)
+    for h, cs in by_hash.items():
+        if len(cs) > 1:
+            findings.append(Finding(f"F-ARC-{cs[0].company_id}", "ARC-01", WARN,
+                                    "Los archivos " + " y ".join(c.file for c in cs) + " son identicos (mismo "
+                                    f"SHA-256 {h[:16]}...): posible reenvio del mismo archivo bajo otro nombre.",
+                                    [], None, cs[0].company_id, h[:16], "archivos distintos",
+                                    "Confirmar cual es el archivo correcto de cada empresa"))
     findings += validation.validate(records, cfg)
     periods = consolidation.consolidate(records, adjustments, matches, findings, cfg)
     run_id = dt.datetime.now().strftime("run-%Y%m%d-%H%M%S")
