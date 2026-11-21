@@ -75,12 +75,14 @@ def test_el_boton_restablecer_vuelve_a_datos_base_y_vacia_el_registro(app):
     assert CO.leer(log) and any(m.label == "Resueltos" and m.value == "1" for m in app.metric)
     app.button(key="restablecer_btn").click().run()
     assert not app.exception, app.exception
-    assert app.radio(key="escenario").value == BASE
     assert CO.leer(log) == []
-    assert not [e for e in app.error if "errores sembrados" in e.value]               # sin banner de demostracion
-    franja = " ".join(m.value for m in app.markdown if "nx-fig-v" in m.value)
-    assert "1,985,000.00" in franja                                                   # vuelve la cifra base
+    assert not [m for m in app.markdown if '<div class="nx-fig-v' in m.value]                     # nada de cifras: todo en blanco
+    assert "Sin datos cargados" in " ".join(m.value for m in app.markdown)
     assert hashes() == antes                                                          # ningun archivo fuente cambio
+    app.button(key="ejemplo_base").click().run()                                       # y se puede volver a los datos base
+    assert app.radio(key="escenario").value == BASE
+    assert not [e for e in app.error if "errores sembrados" in e.value]               # sin banner de demostracion
+    assert "1,985,000.00" in " ".join(m.value for m in app.markdown if "nx-fig-v" in m.value)
     app.radio(key="escenario").set_value(DEMO_ESC).run()                              # y la demo arranca limpia
     assert app.radio(key="nav").value == "Inicio"                                     # Restablecer tambien vuelve al inicio
     app.radio(key="nav").set_value("Hallazgos").run()

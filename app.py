@@ -206,10 +206,18 @@ def _restablecer():
     st.session_state["modo_claro"] = claro
     st.session_state["escenario"] = ESCENARIOS[0]
     st.session_state["ver"] = 0
+    st.session_state["en_blanco"] = True                           # la pantalla queda sin ningun dato
 
 
 def seguridad_manifiestos():
     return panel_seguridad.seguridad.manifiesto_path("x").parent
+
+
+def _usar_ejemplo(esc: str):
+    """Sale del estado en blanco cargando uno de los datos de ejemplo del repositorio."""
+    st.session_state["en_blanco"] = False
+    st.session_state["escenario"] = esc
+    st.session_state["ver"] = st.session_state.get("ver", 0) + 1
 
 
 def _quitar_carga():
@@ -227,6 +235,7 @@ def _leer_carpetas():
     st.session_state["carga_problemas"] = r["problemas"]
     if r["ok"]:
         st.session_state["carga"] = r
+        st.session_state["en_blanco"] = False
         st.session_state["carga_abierta"] = False
         st.session_state["ver"] = st.session_state.get("ver", 0) + 1
 
@@ -239,9 +248,14 @@ def _elegir_carpeta():
 
 
 _c_esc, _c_rst, _c_car = st.columns([4.2, 1.1, 1.9], vertical_alignment="bottom")
+_en_blanco = st.session_state.get("en_blanco", False)
 with _c_esc:
-    escenario = st.radio("Escenario", ESCENARIOS, key="escenario", horizontal=True,
-                         help="Ambos se leen en solo lectura. El segundo tiene 7 errores sembrados a propósito.")
+    if _en_blanco:
+        escenario = ESCENARIOS[0]
+        st.markdown("**Escenario:** sin datos cargados")
+    else:
+        escenario = st.radio("Escenario", ESCENARIOS, key="escenario", horizontal=True,
+                             help="Ambos se leen en solo lectura. El segundo tiene 7 errores sembrados a propósito.")
 with _c_rst:
     st.button("Restablecer", key="restablecer_btn", on_click=_restablecer,
               help="Borra todo lo que el programa guardó (decisiones, cargas, manifiestos y copias de trabajo) y vuelve "
@@ -297,6 +311,20 @@ _t = TOKENS[MODE]
 html("<style>:root{" + "".join(f"--{k}:{v};" for k, v in _t.items())
      + '--display:"Inter Display","Inter Tight","Segoe UI Black","Arial Black","Helvetica Neue",Arial,sans-serif;}'
      + CSS + "</style>")
+
+if _en_blanco and not st.session_state.get("carga"):
+    st.write("")
+    html('<div class="nx-title">Sin datos cargados</div>'
+         '<div class="nx-lede">El programa quedó en blanco: no hay cifras, gráficas, decisiones ni archivos leídos. '
+         'Elige de dónde leer los presupuestos.</div>')
+    _e1, _e2, _ = st.columns([1.6, 2.2, 3])
+    _e1.button("Usar datos base", key="ejemplo_base", on_click=_usar_ejemplo, args=(ESCENARIOS[0],),
+               icon=":material/dataset:")
+    _e2.button("Usar datos con errores (demostración)", key="ejemplo_demo", on_click=_usar_ejemplo,
+               args=(ESCENARIOS[1],), icon=":material/science:")
+    st.caption("O pulsa «Cargar presupuestos» para leer tus propias carpetas. Los archivos de ejemplo siguen en el "
+               "repositorio; Restablecer no borra ningún archivo.")
+    st.stop()
 
 with st.sidebar:
     period_box = st.container()

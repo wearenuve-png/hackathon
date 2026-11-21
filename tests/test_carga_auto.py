@@ -128,7 +128,10 @@ def test_cargar_carpetas_llena_la_pantalla_y_restablecer_vuelve_al_ejemplo(tmp_p
         assert "falló" not in textos(at)
     at.button(key="restablecer_btn").click().run()
     assert not at.exception and not any("Mostrando tus presupuestos" in i.value for i in at.info)
-    assert "1,985,000.00" in " ".join(m.value for m in at.markdown if "nx-fig-v" in m.value)   # vuelve el ejemplo
+    assert not [m for m in at.markdown if '<div class="nx-fig-v' in m.value] and not at.dataframe       # todo en blanco
+    assert "Sin datos cargados" in textos(at) and len(at.radio) == 0
+    at.button(key="ejemplo_base").click().run()                                       # los datos de ejemplo siguen ahi
+    assert "1,985,000.00" in " ".join(m.value for m in at.markdown if "nx-fig-v" in m.value)
     assert (hashes(a), hashes(b)) == antes
 
 
@@ -141,3 +144,19 @@ def test_carpeta_incompleta_muestra_aviso_amable(tmp_path):
     assert not at.exception
     assert any("Falta la configuración del grupo" in w.value for w in at.warning)
     assert not any("Mostrando tus presupuestos" in i.value for i in at.info)
+
+
+def test_restablecer_deja_todo_en_blanco_y_se_puede_cargar_de_nuevo(tmp_path):
+    a, b = reparto(tmp_path)
+    at = nuevo()
+    assert [m for m in at.markdown if '<div class="nx-fig-v' in m.value]                           # hay datos al abrir
+    at.button(key="restablecer_btn").click().run()
+    assert not at.exception, at.exception
+    assert not [m for m in at.markdown if '<div class="nx-fig-v' in m.value]
+    assert not at.dataframe and not at.metric and not at.get("download_button")        # sin tablas, metricas ni paquete
+    assert [x.key for x in at.button if x.key in ("ejemplo_base", "ejemplo_demo", "carga_btn", "restablecer_btn")] == [
+        "restablecer_btn", "carga_btn", "ejemplo_base", "ejemplo_demo"]
+    at.button(key="carga_btn").click().run()                                           # cargar carpetas sale del blanco
+    at.text_area(key="carga_rutas").set_value(f"{a}\n{b}").run()
+    at.button(key="carga_leer").click().run()
+    assert "355,294.95" in " ".join(m.value for m in at.markdown if "nx-fig-v" in m.value)

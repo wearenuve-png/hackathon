@@ -57,9 +57,10 @@ ambos se leen en solo lectura. En «Alertas y errores» cada hallazgo con correc
   ellos. Deben estar los presupuestos y la configuración del grupo (`empresas.csv`, `tasas.csv`, `catalogo_cuentas.csv`,
   `equivalencias.csv`, `periodos.csv`); si falta algo, NEXUS dice qué y no adivina. Con varias carpetas trabaja sobre
   copias en `data/output/carga_auto/`; los originales no se tocan. Ejemplo: `data/demo/` (de Mateo).
-- **Restablecer**: borra todo lo que el programa guardó (decisiones aprobadas, manifiestos de huellas, copias de
-  trabajo, carga elegida y estado de la pantalla) y vuelve a «Datos base». **No** borra presupuestos, datos de ejemplo
-  ni evidencias exportadas.
+- **Restablecer**: deja el programa **en blanco**: borra lo que guardó (decisiones aprobadas, manifiestos de huellas,
+  copias de trabajo, carga elegida y estado de la pantalla) y no muestra ninguna cifra, gráfica ni tabla hasta que
+  elijas «Usar datos base», «Usar datos con errores (demostración)» o «Cargar presupuestos». **No** borra presupuestos,
+  datos de ejemplo del repositorio ni evidencias exportadas.
 
 ## Asistente NEXUS (prototipo, opcional)
 
