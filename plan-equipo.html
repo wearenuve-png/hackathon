@@ -1,0 +1,296 @@
+<meta name="claude:viewport-fit-sides" content="cover">
+<title>Build & Pitch — Plan de Equipo</title>
+<style>
+  /* Layout: one scrolling page, pill nav, alternating light/dark "panel" bands like a build log */
+  :root{
+    --bg:#f7f5f0; --panel:#ffffff; --panel-2:#efece4; --fg:#1c1b19; --muted:#6b675f;
+    --accent:#d97a34; --accent-2:#1f7a70; --border:#ddd7cb;
+    --mono:'JetBrains Mono',ui-monospace,monospace;
+    --display:'Sora',system-ui,sans-serif;
+    --body:'Work Sans',system-ui,sans-serif;
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#15171b; --panel:#1c1f25; --panel-2:#20242b; --fg:#ece9e2; --muted:#9a968c;
+      --accent:#e8923f; --accent-2:#35a79c; --border:#2c3038;
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#15171b; --panel:#1c1f25; --panel-2:#20242b; --fg:#ece9e2; --muted:#9a968c;
+    --accent:#e8923f; --accent-2:#35a79c; --border:#2c3038;
+    color-scheme: dark;
+  }
+  *{box-sizing:border-box}
+  body{background:var(--bg);color:var(--fg);font-family:var(--body);line-height:1.5;
+    padding-left:max(16px, env(safe-area-inset-left,0px)); padding-right:max(16px, env(safe-area-inset-right,0px));}
+  h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0}
+  a{color:var(--accent-2)}
+  .wrap{max-width:860px;margin:0 auto;padding-block:28px 80px}
+  .hero{padding-block:10px 6px}
+  .eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:10px;display:block}
+  h1{font-size:clamp(28px,6vw,42px);font-weight:700;letter-spacing:-0.01em}
+  .sub{color:var(--muted);margin-top:10px;font-size:15px;max-width:60ch}
+  .team-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+  .chip{font-family:var(--mono);font-size:13px;padding:5px 11px;border:1px solid var(--border);border-radius:999px;background:var(--panel)}
+  .chip.me{border-color:var(--accent);color:var(--accent)}
+  nav.pills{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;display:flex;gap:6px;overflow-x:auto;
+    background:var(--bg);padding-block:14px;margin-top:10px;border-bottom:1px solid var(--border)}
+  nav.pills a{font-family:var(--mono);font-size:12px;white-space:nowrap;color:var(--muted);text-decoration:none;
+    padding:6px 12px;border-radius:999px;border:1px solid var(--border);background:var(--panel)}
+  nav.pills a:hover{color:var(--fg);border-color:var(--accent)}
+  section{padding-block:40px;border-bottom:1px solid var(--border)}
+  section:last-child{border-bottom:none}
+  .tag{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+  h2{font-size:clamp(20px,4vw,26px);margin-top:6px;margin-bottom:18px}
+  .grid4{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px}
+  .card{background:var(--panel);border:1px solid var(--border);border-radius:14px;padding:16px}
+  .card h3{font-size:16px}
+  .card .role{font-family:var(--mono);font-size:12px;color:var(--accent);margin-top:6px;display:block}
+  .card p{font-size:13px;color:var(--muted);margin:8px 0 0}
+  .qcard{background:var(--panel);border:1px solid var(--border);border-radius:14px;padding:18px;margin-bottom:14px}
+  .qcard h3{font-size:17px;display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+  .qcard ol{margin:12px 0 0;padding-left:20px;font-size:14px}
+  .qcard li{margin-bottom:8px}
+  button.copy{font-family:var(--mono);font-size:12px;border:1px solid var(--border);background:var(--panel-2);
+    color:var(--fg);border-radius:8px;padding:6px 10px;cursor:pointer}
+  button.copy:hover{border-color:var(--accent)}
+  button.copy.copied{color:var(--accent-2);border-color:var(--accent-2)}
+  .timeline{display:flex;flex-direction:column;gap:0}
+  .tl-item{display:grid;grid-template-columns:90px 1fr;gap:14px;padding-block:12px;border-top:1px dashed var(--border)}
+  .tl-item:first-child{border-top:none}
+  .tl-time{font-family:var(--mono);font-size:13px;color:var(--accent);white-space:nowrap}
+  .tl-title{font-weight:600;font-size:14.5px}
+  .tl-desc{font-size:13px;color:var(--muted);margin-top:2px}
+  .note{background:var(--panel-2);border:1px solid var(--border);border-left:3px solid var(--accent);
+    border-radius:0 10px 10px 0;padding:12px 14px;font-size:13px;color:var(--muted);margin-top:14px}
+  ul.checklist{list-style:none;padding:0;margin:0;display:grid;gap:8px}
+  ul.checklist li{display:flex;gap:10px;align-items:flex-start;font-size:14px;background:var(--panel);
+    border:1px solid var(--border);border-radius:10px;padding:10px 12px}
+  ul.checklist li::before{content:"☐";color:var(--accent);flex-shrink:0;font-size:15px;line-height:1.3}
+  .pitch-step{display:grid;grid-template-columns:34px 1fr;gap:14px;padding-block:14px;border-top:1px dashed var(--border)}
+  .pitch-step:first-child{border-top:none}
+  .pnum{font-family:var(--mono);color:var(--accent);font-weight:700}
+  .pitch-step h3{font-size:15.5px}
+  .pitch-step p{font-size:13px;color:var(--muted);margin:4px 0 0}
+  .stack{display:flex;flex-wrap:wrap;align-items:center;gap:10px;font-family:var(--mono);font-size:13px;margin-top:6px}
+  .stack span.item{background:var(--panel);border:1px solid var(--border);border-radius:8px;padding:8px 12px}
+  .stack span.arrow{color:var(--muted)}
+  table.alt{width:100%;border-collapse:collapse;margin-top:14px;font-size:13px}
+  table.alt th,table.alt td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--border)}
+  table.alt th{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
+  .pending{background:var(--panel);border:1px dashed var(--accent-2);border-radius:14px;padding:18px}
+  .pending .tag{color:var(--accent-2)}
+  .pending p{font-size:14px;margin-top:10px}
+  .pending ul{font-size:13.5px;color:var(--muted);margin-top:10px;padding-left:20px}
+  footer{font-family:var(--mono);font-size:11.5px;color:var(--muted);text-align:center;padding-top:30px}
+  @media (max-width:520px){ .tl-item{grid-template-columns:70px 1fr} }
+</style>
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700&family=Work+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+
+<div class="wrap">
+
+  <div class="hero">
+    <span class="eyebrow">Open2 · Build &amp; Pitch · UVG, Guatemala</span>
+    <h1>Plan del equipo — 21 de noviembre</h1>
+    <p class="sub">Un día, un reto, un MVP: desarrollar apps, webs u otras soluciones tecnológicas a problemas reales de Guatemala, con mentores de los patrocinadores apoyando en vivo. Esta página junta los 4 planes (equipo, cronograma, pitch, stack) para revisarlos juntos antes del evento.</p>
+    <div class="team-row">
+      <span class="chip">Santiago</span>
+      <span class="chip">David</span>
+      <span class="chip">Sergio</span>
+      <span class="chip">Mateo</span>
+    </div>
+  </div>
+
+  <nav class="pills">
+    <a href="#equipo">Equipo</a>
+    <a href="#preevento">Pre-evento</a>
+    <a href="#cronograma">Cronograma</a>
+    <a href="#checklist">Checklist</a>
+    <a href="#pitch">Pitch</a>
+    <a href="#stack">Stack</a>
+    <a href="#pendientes">Pendientes</a>
+  </nav>
+
+  <section id="equipo">
+    <span class="tag">01 — Equipo</span>
+    <h2>Roles confirmados</h2>
+    <div class="grid4">
+      <div class="card">
+        <h3>Mateo</h3>
+        <span class="role">Team Leader</span>
+        <p>Decide el rumbo cuando hay desacuerdo, mantiene al equipo enfocado en el problema real, y es el candidato natural para dar el pitch final.</p>
+      </div>
+      <div class="card">
+        <h3>Sergio</h3>
+        <span class="role">Project Manager</span>
+        <p>Controla tiempo y alcance: qué SÍ y qué NO entra al MVP, corre los checkpoints cada 2h, avisa si algo se atrasa.</p>
+      </div>
+      <div class="card">
+        <h3>Santiago</h3>
+        <span class="role">Development Manager</span>
+        <p>Define stack y arquitectura, reparte tareas de código con David, resuelve bloqueos técnicos o decide cuándo pedir ayuda a un mentor.</p>
+      </div>
+      <div class="card">
+        <h3>David</h3>
+        <span class="role">Developer</span>
+        <p>Construye el producto — frontend, backend, o ambos según cómo se repartan Santiago y él el código.</p>
+      </div>
+    </div>
+    <div class="note">
+      <strong>Sobre desarrollo:</strong> con David como único "Developer" explícito, Santiago (Dev Manager) seguramente también programa — lo normal es que dividan frontend/backend entre los dos apenas se sepa el reto.
+      <br><br>
+      <strong>Feedback directo del organizador (Oscar):</strong> los jueces no califican diseño/UX — lo que importa es que la solución <strong>funcione</strong> y que el pitch la <strong>venda bien</strong>.
+      <br><br>
+      <strong>No perder tiempo en:</strong> login/registro de usuario real — eso se agrega después si sobra tiempo. Usar un usuario de prueba fijo o simular el login.
+    </div>
+  </section>
+
+  <section id="preevento">
+    <span class="tag">02 — Antes del 21 de noviembre</span>
+    <h2>Checklist pre-evento</h2>
+    <div class="grid4" style="grid-template-columns:repeat(auto-fit,minmax(230px,1fr))">
+      <div class="card">
+        <h3 style="margin-bottom:10px">Organización</h3>
+        <ul class="checklist" style="gap:6px">
+          <li style="opacity:.55;text-decoration:line-through">Confirmar los 4 integrantes</li>
+          <li style="opacity:.55;text-decoration:line-through">Identificar habilidades de cada uno</li>
+          <li style="opacity:.55;text-decoration:line-through">Asignar roles y responsabilidades</li>
+          <li>Horarios de reuniones previas</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3 style="margin-bottom:10px">Proyecto</h3>
+        <ul class="checklist" style="gap:6px">
+          <li>Definir posibles ideas (comodín)</li>
+          <li>Identificar problema real de Guatemala</li>
+          <li style="opacity:.55;text-decoration:line-through">Elegir tecnologías (ver Stack)</li>
+          <li>Definir qué construir (depende del reto)</li>
+          <li style="opacity:.55;text-decoration:line-through">Investigar criterios de evaluación</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3 style="margin-bottom:10px">Preparación técnica</h3>
+        <ul class="checklist" style="gap:6px">
+          <li>Familiarizarse con GitHub y herramientas de IA</li>
+          <li>Preparar computadoras y cuentas (Node, Git, Supabase)</li>
+          <li>Practicar trabajo en equipo (mini-ensayo)</li>
+          <li>Definir estrategia: funcionar &gt; verse bonito</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3 style="margin-bottom:10px">Día del evento</h3>
+        <ul class="checklist" style="gap:6px">
+          <li>DPI de cada integrante</li>
+          <li>Laptops y cargadores</li>
+          <li>Datos móviles por si falla el wifi</li>
+          <li>Agua y snacks</li>
+          <li>Registro hecho en Open2App</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="cronograma">
+    <span class="tag">03 — Plan del día</span>
+    <h2>Cronograma (plantilla — horario real aún no publicado)</h2>
+    <div class="timeline">
+      <div class="tl-item"><div class="tl-time">08:00</div><div><div class="tl-title">Llegada / registro</div><div class="tl-desc">Check-in, gafete, desayuno, wifi</div></div></div>
+      <div class="tl-item"><div class="tl-time">08:30</div><div><div class="tl-title">Kickoff</div><div class="tl-desc">Anuncian el reto — todos toman nota</div></div></div>
+      <div class="tl-item"><div class="tl-time">09:00</div><div><div class="tl-title">Definir idea</div><div class="tl-desc">Una idea, un usuario, alcance del MVP, roles</div></div></div>
+      <div class="tl-item"><div class="tl-time">09:30–13:30</div><div><div class="tl-title">Build — parte 1</div><div class="tl-desc">Setup de stack, features core, primer deploy</div></div></div>
+      <div class="tl-item"><div class="tl-time">13:30</div><div><div class="tl-title">Almuerzo</div><div class="tl-desc">Comida incluida por Open2</div></div></div>
+      <div class="tl-item"><div class="tl-time">14:00–16:30</div><div><div class="tl-title">Build — parte 2</div><div class="tl-desc">Conectar todo, pulir, probar flujo completo</div></div></div>
+      <div class="tl-item"><div class="tl-time">16:30</div><div><div class="tl-title">Preparar pitch</div><div class="tl-desc">Slides, demo, guion — ver sección Pitch</div></div></div>
+      <div class="tl-item"><div class="tl-time">17:15</div><div><div class="tl-title">Ensayar pitch</div><div class="tl-desc">2+ corridas con cronómetro, grabar video backup</div></div></div>
+      <div class="tl-item"><div class="tl-time">18:00</div><div><div class="tl-title">Pitch</div><div class="tl-desc">Presentación final en el escenario</div></div></div>
+      <div class="tl-item"><div class="tl-time">—</div><div><div class="tl-title">Cierre</div><div class="tl-desc">Networking y celebración</div></div></div>
+    </div>
+    <div class="note">Open2 confirmó que <strong>el horario exacto sale con el registro</strong> en Open2App — ajustar estas horas en cuanto lo publiquen.</div>
+  </section>
+
+  <section id="checklist">
+    <span class="tag">04 — Antes del pitch</span>
+    <h2>Checklist de último momento</h2>
+    <ul class="checklist">
+      <li>Demo corre sin errores de principio a fin</li>
+      <li>Deploy en URL pública (no depender de localhost)</li>
+      <li>Datos de prueba cargados — que no se vea vacío</li>
+      <li>Video de respaldo grabado por si falla el internet</li>
+      <li>Guion del pitch lleno, con tiempos y quién habla</li>
+      <li>Ensayado al menos 2 veces completo</li>
+      <li>Registro hecho en Open2App antes del evento</li>
+      <li>Cargadores y baterías extra</li>
+    </ul>
+  </section>
+
+  <section id="pitch">
+    <span class="tag">05 — Pitch (3–5 min)</span>
+    <h2>Estructura del pitch</h2>
+    <div class="pitch-step"><span class="pnum">01</span><div><h3>Problema</h3><p>¿Qué duele, a quién, y por qué importa ahora? (~30-45s)</p></div></div>
+    <div class="pitch-step"><span class="pnum">02</span><div><h3>Solución</h3><p>Qué construimos, en una frase clara. (~30-45s)</p></div></div>
+    <div class="pitch-step"><span class="pnum">03</span><div><h3>Demo</h3><p>Mostrarlo funcionando — la parte más importante. (~90-120s)</p></div></div>
+    <div class="pitch-step"><span class="pnum">04</span><div><h3>Por qué nosotros</h3><p>Qué nos hace el equipo correcto para esto. (~20-30s)</p></div></div>
+    <div class="pitch-step"><span class="pnum">05</span><div><h3>Próximos pasos</h3><p>Qué seguiría con más tiempo/recursos. (~20-30s)</p></div></div>
+    <div class="note">Guion completo con espacios para llenar en <strong>PITCH.md</strong>.</div>
+  </section>
+
+  <section id="stack">
+    <span class="tag">06 — Stack técnico</span>
+    <h2>Rápido de armar en pocas horas</h2>
+    <div class="stack">
+      <span class="item">Next.js</span><span class="arrow">+</span>
+      <span class="item">Supabase</span><span class="arrow">+</span>
+      <span class="item">Vercel</span><span class="arrow">+</span>
+      <span class="item">Tailwind</span>
+    </div>
+    <p class="sub" style="margin-top:14px">Un solo lenguaje de punta a punta, deploy en minutos, y Supabase (patrocinador confirmado) da base de datos + auth + storage sin montar servidores.</p>
+    <table class="alt">
+      <tr><th>Si el reto es sobre…</th><th>Considerar</th></tr>
+      <tr><td>Landing / producto simple</td><td>Next.js + Vercel solo</td></tr>
+      <tr><td>IA / chat / agentes</td><td>Next.js + Supabase + API de un LLM</td></tr>
+      <tr><td>Muy poco tiempo</td><td>Lovable / v0 / Bolt + Supabase</td></tr>
+      <tr><td>Automatización / flujos</td><td>Next.js + Supabase + n8n/Make o funciones serverless</td></tr>
+    </table>
+  </section>
+
+  <section id="pendientes">
+    <span class="tag">07 — Ideas en espera</span>
+    <h2>Pendientes para decidir en equipo</h2>
+    <div class="pending">
+      <span class="tag">Idea de proyecto</span>
+      <h3 style="margin-top:8px">Visualizador de agentes de IA ("AI Town")</h3>
+      <p>Mundo simulado tipo videojuego 2D donde cada personaje es un agente con su propia rutina (oficina, fiesta, dormir), visible en tiempo real desde un panel. Inspirado en "Generative Agents" (Stanford) y el proyecto open-source AI Town.</p>
+      <ul>
+        <li>Mapa 2D (Phaser.js / PixiJS) con lugares y personajes</li>
+        <li>Cada agente decide su actividad vía LLM o reglas + horario</li>
+        <li>Memoria simple en Supabase para dar continuidad</li>
+        <li>Loop de tiempo (tick) que avanza el mundo</li>
+        <li>Panel lateral tipo feed con lo que hace cada agente</li>
+      </ul>
+      <p style="color:var(--muted)">Factible como versión simplificada en 6-8h; la versión "completa" (memoria larga, personalidades ricas) es de semanas, no de un día. Se deja como pendiente hasta saber el reto real del kickoff.</p>
+    </div>
+  </section>
+
+  <footer>Build &amp; Pitch · Open2 · 21.11.2026 · UVG, Guatemala</footer>
+</div>
+
+<script>
+  document.querySelectorAll('button.copy').forEach(btn=>{
+    btn.addEventListener('click', async ()=>{
+      const list = document.getElementById(btn.dataset.copy);
+      const text = Array.from(list.querySelectorAll('li')).map((li,i)=>`${i+1}. ${li.textContent}`).join('\n');
+      try{
+        await navigator.clipboard.writeText(text);
+      }catch(e){
+        const range = document.createRange(); range.selectNode(list);
+        const sel = window.getSelection(); sel.removeAllRanges(); sel.addRange(range);
+      }
+      const original = btn.textContent;
+      btn.textContent = 'Copiado ✓'; btn.classList.add('copied');
+      setTimeout(()=>{ btn.textContent = original; btn.classList.remove('copied'); }, 1800);
+    });
+  });
+</script>

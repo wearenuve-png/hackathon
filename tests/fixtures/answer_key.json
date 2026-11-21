@@ -1,0 +1,683 @@
+{
+  "SINTETICO": true,
+  "nota": "Clave calculada con Decimal desde la especificacion del generador, independiente del motor.",
+  "seed": 2026,
+  "convencion_tasa": "usd_por_unidad_local; importe_usd = importe_local x tasa",
+  "tolerancia_intercompania_usd": "1.00",
+  "redondeo": "Decimal sin redondear internamente; se presenta a 2 decimales ROUND_HALF_UP",
+  "reglas_de_inclusion": {
+    "entran": [
+      "atypical",
+      "ic_discrepancy",
+      "ok",
+      "possible_duplicate"
+    ],
+    "no_entran": [
+      "excluded_duplicate",
+      "pending_mapping",
+      "blocked",
+      "total"
+    ]
+  },
+  "conteo_registros_por_estado": {
+    "ok": 324,
+    "excluded_duplicate": 1,
+    "total": 6,
+    "blocked": 2,
+    "ic_discrepancy": 4,
+    "atypical": 1,
+    "pending_mapping": 1,
+    "possible_duplicate": 2
+  },
+  "errores_sembrados": [
+    {
+      "id": 1,
+      "tipo": "moneda_invalida",
+      "explicacion": "Moneda 'Q' (simbolo, no codigo ISO). No se infiere: registro bloqueado, fuera del consolidado.",
+      "ubicaciones": [
+        {
+          "company_id": "EMP002",
+          "file": "distribuidora_central_gt.csv",
+          "sheet": null,
+          "row": 28,
+          "period": "2026-11",
+          "account_local": "Planilla",
+          "amount_local": "220000",
+          "currency_written": "Q"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "tipo": "total_no_cuadra",
+      "explicacion": "'Total revenue' != suma de sus partidas (diferencia 5,000 USD). El total no se acepta; se usan las partidas.",
+      "ubicaciones": [
+        {
+          "company_id": "EMP004",
+          "file": "ferrex_el_salvador.xlsx",
+          "sheet": "Income Statement",
+          "row": 24,
+          "period": "2026-11",
+          "account_local": "Total revenue",
+          "amount_local": "493000",
+          "currency_written": "USD"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "tipo": "duplicado_confirmado",
+      "explicacion": "Factura FAC-A-0457 dos veces (40,000 GTQ = 5,000 USD). Se excluye la segunda mediante ajuste registrado y reversible.",
+      "ubicaciones": [
+        {
+          "company_id": "EMP001",
+          "file": "aceros_ferrex_gt.xlsx",
+          "sheet": "Presupuesto",
+          "row": 3,
+          "period": "2026-10",
+          "account_local": "Ventas de varilla y alambre",
+          "amount_local": "40000",
+          "currency_written": "GTQ"
+        },
+        {
+          "company_id": "EMP001",
+          "file": "aceros_ferrex_gt.xlsx",
+          "sheet": "Presupuesto",
+          "row": 4,
+          "period": "2026-10",
+          "account_local": "Ventas de varilla y alambre",
+          "amount_local": "40000",
+          "currency_written": "GTQ"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "tipo": "posible_duplicado",
+      "explicacion": "Mismo importe, fecha y contraparte, sin ID. Solo se marca; ambos registros siguen en el consolidado.",
+      "ubicaciones": [
+        {
+          "company_id": "EMP005",
+          "file": "transportes_ferrex_hn.csv",
+          "sheet": null,
+          "row": 23,
+          "period": "2026-11",
+          "account_local": "Combustible y lubricantes",
+          "amount_local": "12500",
+          "currency_written": "HNL"
+        },
+        {
+          "company_id": "EMP005",
+          "file": "transportes_ferrex_hn.csv",
+          "sheet": null,
+          "row": 24,
+          "period": "2026-11",
+          "account_local": "Combustible y lubricantes",
+          "amount_local": "12500",
+          "currency_written": "HNL"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "tipo": "cuenta_sin_mapear",
+      "explicacion": "Cuenta local sin equivalencia en el catalogo. Queda pendiente de mapeo, fuera del consolidado.",
+      "ubicaciones": [
+        {
+          "company_id": "EMP003",
+          "file": "ferrex_honduras.xlsx",
+          "sheet": "Presupuesto HN",
+          "row": 13,
+          "period": "2026-10",
+          "account_local": "Gastos de mercadeo y publicidad",
+          "amount_local": "120000",
+          "currency_written": "HNL"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "tipo": "diferencia_intercompania",
+      "explicacion": "EMP002 registra 160,000 GTQ = 20,000 USD; EMP003 registra 450,000 HNL = 18,000 USD. Discrepancia 2,000 USD; no se elimina (venta y saldo).",
+      "ubicaciones": [
+        {
+          "company_id": "EMP002",
+          "file": "distribuidora_central_gt.csv",
+          "sheet": null,
+          "row": 35,
+          "period": "2026-11",
+          "account_local": "Ventas netas",
+          "amount_local": "160000",
+          "currency_written": "GTQ"
+        },
+        {
+          "company_id": "EMP002",
+          "file": "distribuidora_central_gt.csv",
+          "sheet": null,
+          "row": 45,
+          "period": "2026-11",
+          "account_local": "Cuentas por cobrar",
+          "amount_local": "160000",
+          "currency_written": "GTQ"
+        },
+        {
+          "company_id": "EMP003",
+          "file": "ferrex_honduras.xlsx",
+          "sheet": "Presupuesto HN",
+          "row": 35,
+          "period": "2026-11",
+          "account_local": "Costo de ventas",
+          "amount_local": "450000",
+          "currency_written": "HNL"
+        },
+        {
+          "company_id": "EMP003",
+          "file": "ferrex_honduras.xlsx",
+          "sheet": "Presupuesto HN",
+          "row": 45,
+          "period": "2026-11",
+          "account_local": "Proveedores",
+          "amount_local": "450000",
+          "currency_written": "HNL"
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "tipo": "importe_atipico",
+      "explicacion": "Arrendamientos 96,000 marcado USD; en oct y nov fue 96,000 GTQ = 12,000 USD. Razon 8 = 1/0.125: posible GTQ marcado como USD. Alerta 'revisar'; la cifra NO se modifica.",
+      "ubicaciones": [
+        {
+          "company_id": "EMP002",
+          "file": "distribuidora_central_gt.csv",
+          "sheet": null,
+          "row": 51,
+          "period": "2026-12",
+          "account_local": "Arrendamientos",
+          "amount_local": "96000",
+          "currency_written": "USD"
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "tipo": "signo_invertido",
+      "explicacion": "Depreciacion negativa (-300,000 HNL) en cuenta de gasto. Registro bloqueado hasta correccion.",
+      "ubicaciones": [
+        {
+          "company_id": "EMP005",
+          "file": "transportes_ferrex_hn.csv",
+          "sheet": null,
+          "row": 7,
+          "period": "2026-10",
+          "account_local": "Depreciación de vehículos",
+          "amount_local": "-300000",
+          "currency_written": "HNL"
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "tipo": "mes_faltante",
+      "explicacion": "EMP006 no trae 2026-11. El consolidado de 2026-11 queda marcado como incompleto.",
+      "ubicaciones": [
+        {
+          "company_id": "EMP006",
+          "file": "ferrex_importaciones_pa.json",
+          "period": "2026-11"
+        }
+      ]
+    }
+  ],
+  "eliminaciones_esperadas": [
+    {
+      "period": "2026-10",
+      "reference": "AF-IC-2610",
+      "tipo": "operacion",
+      "seller": "EMP001",
+      "buyer": "EMP002",
+      "seller_account": "4000",
+      "buyer_account": "5000",
+      "seller_usd": "50000.00",
+      "buyer_usd": "50000.00",
+      "seller_rows": [
+        13
+      ],
+      "buyer_rows": [
+        13
+      ],
+      "eliminated_usd": "50000.00"
+    },
+    {
+      "period": "2026-10",
+      "reference": "AF-IC-2610",
+      "tipo": "saldo",
+      "seller": "EMP001",
+      "buyer": "EMP002",
+      "seller_account": "1100",
+      "buyer_account": "2000",
+      "seller_usd": "50000.00",
+      "buyer_usd": "50000.00",
+      "seller_rows": [
+        23
+      ],
+      "buyer_rows": [
+        24
+      ],
+      "eliminated_usd": "50000.00"
+    },
+    {
+      "period": "2026-10",
+      "reference": "DC-IC-2610-HN",
+      "tipo": "operacion",
+      "seller": "EMP002",
+      "buyer": "EMP003",
+      "seller_account": "4000",
+      "buyer_account": "5000",
+      "seller_usd": "15000.00",
+      "buyer_usd": "15000.00",
+      "seller_rows": [
+        11
+      ],
+      "buyer_rows": [
+        14
+      ],
+      "eliminated_usd": "15000.00"
+    },
+    {
+      "period": "2026-10",
+      "reference": "DC-IC-2610-HN",
+      "tipo": "saldo",
+      "seller": "EMP002",
+      "buyer": "EMP003",
+      "seller_account": "1100",
+      "buyer_account": "2000",
+      "seller_usd": "15000.00",
+      "buyer_usd": "15000.00",
+      "seller_rows": [
+        22
+      ],
+      "buyer_rows": [
+        25
+      ],
+      "eliminated_usd": "15000.00"
+    },
+    {
+      "period": "2026-10",
+      "reference": "DC-IC-2610-SV",
+      "tipo": "operacion",
+      "seller": "EMP002",
+      "buyer": "EMP004",
+      "seller_account": "4000",
+      "buyer_account": "5000",
+      "seller_usd": "10000.00",
+      "buyer_usd": "10000.00",
+      "seller_rows": [
+        12
+      ],
+      "buyer_rows": [
+        12
+      ],
+      "eliminated_usd": "10000.00"
+    },
+    {
+      "period": "2026-10",
+      "reference": "DC-IC-2610-SV",
+      "tipo": "saldo",
+      "seller": "EMP002",
+      "buyer": "EMP004",
+      "seller_account": "1100",
+      "buyer_account": "2000",
+      "seller_usd": "10000.00",
+      "buyer_usd": "10000.00",
+      "seller_rows": [
+        23
+      ],
+      "buyer_rows": [
+        10
+      ],
+      "eliminated_usd": "10000.00"
+    },
+    {
+      "period": "2026-10",
+      "reference": "TF-IC-2610",
+      "tipo": "operacion",
+      "seller": "EMP005",
+      "buyer": "EMP003",
+      "seller_account": "4100",
+      "buyer_account": "6200",
+      "seller_usd": "10000.00",
+      "buyer_usd": "10000.00",
+      "seller_rows": [
+        10
+      ],
+      "buyer_rows": [
+        15
+      ],
+      "eliminated_usd": "10000.00"
+    },
+    {
+      "period": "2026-10",
+      "reference": "FI-IC-2610",
+      "tipo": "operacion",
+      "seller": "EMP006",
+      "buyer": "EMP003",
+      "seller_account": "4000",
+      "buyer_account": "5000",
+      "seller_usd": "8000.00",
+      "buyer_usd": "8000.00",
+      "seller_rows": [
+        9
+      ],
+      "buyer_rows": [
+        16
+      ],
+      "eliminated_usd": "8000.00"
+    },
+    {
+      "period": "2026-11",
+      "reference": "AF-IC-2611",
+      "tipo": "operacion",
+      "seller": "EMP001",
+      "buyer": "EMP002",
+      "seller_account": "4000",
+      "buyer_account": "5000",
+      "seller_usd": "55000.00",
+      "buyer_usd": "55000.00",
+      "seller_rows": [
+        34
+      ],
+      "buyer_rows": [
+        36
+      ],
+      "eliminated_usd": "55000.00"
+    },
+    {
+      "period": "2026-11",
+      "reference": "AF-IC-2611",
+      "tipo": "saldo",
+      "seller": "EMP001",
+      "buyer": "EMP002",
+      "seller_account": "1100",
+      "buyer_account": "2000",
+      "seller_usd": "55000.00",
+      "buyer_usd": "55000.00",
+      "seller_rows": [
+        44
+      ],
+      "buyer_rows": [
+        46
+      ],
+      "eliminated_usd": "55000.00"
+    },
+    {
+      "period": "2026-11",
+      "reference": "TF-IC-2611",
+      "tipo": "operacion",
+      "seller": "EMP005",
+      "buyer": "EMP003",
+      "seller_account": "4100",
+      "buyer_account": "6200",
+      "seller_usd": "10000.00",
+      "buyer_usd": "10000.00",
+      "seller_rows": [
+        29
+      ],
+      "buyer_rows": [
+        36
+      ],
+      "eliminated_usd": "10000.00"
+    },
+    {
+      "period": "2026-12",
+      "reference": "AF-IC-2612",
+      "tipo": "operacion",
+      "seller": "EMP001",
+      "buyer": "EMP002",
+      "seller_account": "4000",
+      "buyer_account": "5000",
+      "seller_usd": "54600.00",
+      "buyer_usd": "54600.00",
+      "seller_rows": [
+        55
+      ],
+      "buyer_rows": [
+        57
+      ],
+      "eliminated_usd": "54600.00"
+    },
+    {
+      "period": "2026-12",
+      "reference": "AF-IC-2612",
+      "tipo": "saldo",
+      "seller": "EMP001",
+      "buyer": "EMP002",
+      "seller_account": "1100",
+      "buyer_account": "2000",
+      "seller_usd": "54600.00",
+      "buyer_usd": "54600.00",
+      "seller_rows": [
+        65
+      ],
+      "buyer_rows": [
+        66
+      ],
+      "eliminated_usd": "54600.00"
+    },
+    {
+      "period": "2026-12",
+      "reference": "TF-IC-2612",
+      "tipo": "operacion",
+      "seller": "EMP005",
+      "buyer": "EMP003",
+      "seller_account": "4100",
+      "buyer_account": "6200",
+      "seller_usd": "10920.00",
+      "buyer_usd": "10920.00",
+      "seller_rows": [
+        46
+      ],
+      "buyer_rows": [
+        55
+      ],
+      "eliminated_usd": "10920.00"
+    }
+  ],
+  "discrepancias_esperadas": [
+    {
+      "period": "2026-11",
+      "reference": "DC-IC-2611-HN",
+      "tipo": "operacion",
+      "seller": "EMP002",
+      "buyer": "EMP003",
+      "seller_account": "4000",
+      "buyer_account": "5000",
+      "seller_usd": "20000.00",
+      "buyer_usd": "18000.00",
+      "seller_rows": [
+        35
+      ],
+      "buyer_rows": [
+        35
+      ],
+      "difference_usd": "2000.00"
+    },
+    {
+      "period": "2026-11",
+      "reference": "DC-IC-2611-HN",
+      "tipo": "saldo",
+      "seller": "EMP002",
+      "buyer": "EMP003",
+      "seller_account": "1100",
+      "buyer_account": "2000",
+      "seller_usd": "20000.00",
+      "buyer_usd": "18000.00",
+      "seller_rows": [
+        45
+      ],
+      "buyer_rows": [
+        45
+      ],
+      "difference_usd": "2000.00"
+    }
+  ],
+  "consolidado_esperado_usd": {
+    "2026-10": {
+      "por_cuenta": {
+        "1000": "419250.00",
+        "1100": "556500.00",
+        "1200": "1202500.00",
+        "1500": "1795000.00",
+        "2000": "581500.00",
+        "2100": "59250.00",
+        "2500": "1035000.00",
+        "3000": "1382500.00",
+        "3100": "915000.00",
+        "4000": "1865000.00",
+        "4100": "120000.00",
+        "5000": "1143750.00",
+        "6000": "212000.00",
+        "6100": "76500.00",
+        "6200": "22375.00",
+        "6300": "64750.00",
+        "6400": "32325.00",
+        "7000": "19425.00",
+        "8000": "54750.00"
+      },
+      "resumen": {
+        "ingresos": "1985000.00",
+        "costo_ventas": "1143750.00",
+        "gastos_operativos": "407950.00",
+        "ebit": "433300.00",
+        "gastos_financieros": "19425.00",
+        "impuestos": "54750.00",
+        "utilidad_neta": "359125.00",
+        "activo_total": "3973250.00",
+        "pasivo_total": "1675750.00",
+        "patrimonio": "2297500.00",
+        "activo_menos_pasivo_y_patrimonio": "0.00"
+      },
+      "incompleto": false,
+      "empresas_faltantes": []
+    },
+    "2026-11": {
+      "por_cuenta": {
+        "1000": "307515.00",
+        "1100": "444865.00",
+        "1200": "858860.00",
+        "1500": "1652355.00",
+        "2000": "441670.00",
+        "2100": "45235.00",
+        "2500": "819530.00",
+        "3000": "1182500.00",
+        "3100": "774660.00",
+        "4000": "1413620.00",
+        "4100": "115720.00",
+        "5000": "865740.00",
+        "6000": "147845.00",
+        "6100": "61500.00",
+        "6200": "23125.00",
+        "6300": "56385.00",
+        "6400": "39325.00",
+        "7000": "15545.00",
+        "8000": "41065.00"
+      },
+      "resumen": {
+        "ingresos": "1529340.00",
+        "costo_ventas": "865740.00",
+        "gastos_operativos": "328180.00",
+        "ebit": "335420.00",
+        "gastos_financieros": "15545.00",
+        "impuestos": "41065.00",
+        "utilidad_neta": "278810.00",
+        "activo_total": "3263595.00",
+        "pasivo_total": "1306435.00",
+        "patrimonio": "1957160.00",
+        "activo_menos_pasivo_y_patrimonio": "0.00"
+      },
+      "incompleto": true,
+      "empresas_faltantes": [
+        "EMP006"
+      ]
+    },
+    "2026-12": {
+      "por_cuenta": {
+        "1000": "448830.00",
+        "1100": "591158.00",
+        "1200": "1274722.00",
+        "1500": "1948176.00",
+        "2000": "610814.00",
+        "2100": "61942.00",
+        "2500": "1098544.00",
+        "3000": "1421000.00",
+        "3100": "1070586.00",
+        "4000": "1936110.00",
+        "4100": "132636.00",
+        "5000": "1226094.00",
+        "6000": "224528.00",
+        "6100": "161900.00",
+        "6200": "23600.00",
+        "6300": "70212.00",
+        "6400": "45810.00",
+        "7000": "20334.00",
+        "8000": "56810.00"
+      },
+      "resumen": {
+        "ingresos": "2068746.00",
+        "costo_ventas": "1226094.00",
+        "gastos_operativos": "526050.00",
+        "ebit": "316602.00",
+        "gastos_financieros": "20334.00",
+        "impuestos": "56810.00",
+        "utilidad_neta": "239458.00",
+        "activo_total": "4262886.00",
+        "pasivo_total": "1771300.00",
+        "patrimonio": "2491586.00",
+        "activo_menos_pasivo_y_patrimonio": "0.00"
+      },
+      "incompleto": false,
+      "empresas_faltantes": []
+    }
+  },
+  "suma_ingenua_sin_eliminar_usd": {
+    "2026-10": {
+      "ingresos": "2078000.00",
+      "costo_ventas": "1226750.00",
+      "gastos_operativos": "417950.00",
+      "ebit": "433300.00",
+      "gastos_financieros": "19425.00",
+      "impuestos": "54750.00",
+      "utilidad_neta": "359125.00",
+      "activo_total": "4048250.00",
+      "pasivo_total": "1750750.00",
+      "patrimonio": "2297500.00",
+      "activo_menos_pasivo_y_patrimonio": "0.00"
+    },
+    "2026-11": {
+      "ingresos": "1594340.00",
+      "costo_ventas": "920740.00",
+      "gastos_operativos": "338180.00",
+      "ebit": "335420.00",
+      "gastos_financieros": "15545.00",
+      "impuestos": "41065.00",
+      "utilidad_neta": "278810.00",
+      "activo_total": "3318595.00",
+      "pasivo_total": "1361435.00",
+      "patrimonio": "1957160.00",
+      "activo_menos_pasivo_y_patrimonio": "0.00"
+    },
+    "2026-12": {
+      "ingresos": "2134266.00",
+      "costo_ventas": "1280694.00",
+      "gastos_operativos": "536970.00",
+      "ebit": "316602.00",
+      "gastos_financieros": "20334.00",
+      "impuestos": "56810.00",
+      "utilidad_neta": "239458.00",
+      "activo_total": "4317486.00",
+      "pasivo_total": "1825900.00",
+      "patrimonio": "2491586.00",
+      "activo_menos_pasivo_y_patrimonio": "0.00"
+    }
+  }
+}
