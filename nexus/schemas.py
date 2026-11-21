@@ -179,6 +179,21 @@ class ExcludedItem:
 
 
 @dataclass
+class ImpactRange:
+    """Efecto en utilidad neta de un registro que quedo fuera. No modifica ninguna cifra."""
+    record_id: str
+    company_id: str
+    period: str
+    account_local: Optional[str]
+    utility_excluded: Decimal                 # tal como esta el consolidado (el registro no cuenta)
+    utility_as_is: Optional[Decimal]          # si se incluyera tal como viene (None = no calculable)
+    utility_corrected: Optional[Decimal]      # si se corrigiera segun la hipotesis de 'note'
+    utility_low: Decimal
+    utility_high: Decimal
+    note: str
+
+
+@dataclass
 class PeriodResult:
     period: str
     kind: str                                  # real / presupuesto
@@ -191,6 +206,8 @@ class PeriodResult:
     missing_companies: List[str]
     provisional: bool
     provisional_reasons: List[str]
+    impact_ranges: List[ImpactRange] = field(default_factory=list)
+    utility_range: Optional[Tuple[Decimal, Decimal]] = None   # rango de utilidad neta si todo se resolviera
 
 
 @dataclass
