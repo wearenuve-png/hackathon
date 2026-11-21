@@ -34,7 +34,8 @@ def _sha(p: Path) -> str:
 
 def preparar(carpetas: List[str], base: Optional[Path] = None) -> dict:
     """{'ok', 'dir', 'origen', 'copiado', 'usados', 'sin_usar', 'problemas'}. Nunca lanza una excepcion tecnica."""
-    out = {"ok": False, "dir": None, "origen": [], "copiado": False, "usados": [], "sin_usar": [], "problemas": []}
+    out = {"ok": False, "dir": None, "origen": [], "copiado": False, "usados": [], "sin_usar": [], "problemas": [],
+           "perfiles": None}
     rutas = []
     for c in carpetas:
         c = (c or "").strip().strip('"').strip("'")
@@ -96,6 +97,10 @@ def preparar(carpetas: List[str], base: Optional[Path] = None) -> dict:
             out["problemas"].append("No se pudo preparar la carpeta de trabajo.")
             return out
         out["copiado"] = True
+    for r in rutas:                      # perfiles de lectura aprobados: una subcarpeta «perfiles» con archivos .json
+        if (r / "perfiles").is_dir() and any((r / "perfiles").glob("*.json")):
+            out["perfiles"] = str(r / "perfiles")
+            break
     try:
         load_group_config(destino)
     except Exception as e:  # noqa: BLE001 - se explica sin mostrar el error tecnico

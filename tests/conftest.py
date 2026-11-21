@@ -1,5 +1,6 @@
 """Fixtures comunes. Los valores esperados salen SIEMPRE de tests/fixtures/answer_key.json."""
 import json
+import os
 from pathlib import Path
 
 import pytest
@@ -15,6 +16,41 @@ def _registro_de_aprobaciones_aislado(tmp_path_factory, monkeypatch):
     monkeypatch.setenv("NEXUS_APROBACIONES", str(tmp_path_factory.mktemp("aprob") / "aprobaciones.jsonl"))
     monkeypatch.setenv("NEXUS_MANIFIESTOS", str(tmp_path_factory.mktemp("manif")))
     monkeypatch.setenv("NEXUS_CARGA", str(tmp_path_factory.mktemp("carga")))
+
+
+def carga_de(data_dir, perfiles=None) -> dict:
+    """Lo mismo que deja guardado el boton «Cargar presupuestos» tras leer una carpeta (para pruebas de la interfaz)."""
+    return {"ok": True, "dir": str(data_dir), "perfiles": str(perfiles) if perfiles else None,
+            "origen": [str(data_dir)], "copiado": False, "usados": [], "sin_usar": [], "problemas": []}
+
+
+DEMO_ERR = ROOT / "data" / "demo_errores"
+DEMO_ERR_PERF = DEMO_ERR / "perfiles"
+
+
+def cargar(at, data_dir, perfiles=None):
+    """Simula «Cargar presupuestos» con esa carpeta y vuelve a dibujar la app."""
+    at.session_state["carga"] = carga_de(data_dir, perfiles)
+    at.session_state["nav"] = "Inicio"
+    at.run()
+    assert not at.exception, at.exception
+    return at
+
+
+@pytest.fixture(autouse=True)
+def _la_app_arranca_con_la_carpeta_de_pruebas(monkeypatch):
+    """La app arranca EN BLANCO. Las pruebas de interfaz que necesitan datos simulan que la persona ya cargo la
+    carpeta de pruebas (data/synthetic + profiles); las que prueban el estado en blanco ponen NEXUS_TEST_SIN_CARGA."""
+    from streamlit.testing.v1 import AppTest
+    original = AppTest.from_file
+
+    def desde(cls, path, *a, **k):
+        at = original(path, *a, **k)
+        if str(path).endswith("app.py") and not os.environ.get("NEXUS_TEST_SIN_CARGA"):
+            at.session_state["carga"] = carga_de(DATA, ROOT / "profiles")
+        return at
+
+    monkeypatch.setattr(AppTest, "from_file", classmethod(desde))
 
 
 @pytest.fixture(autouse=True)

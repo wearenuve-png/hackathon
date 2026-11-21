@@ -108,8 +108,8 @@ def test_perfiles_muestran_estado_de_la_ultima_carga(at):
 
 
 def test_sin_carpeta_de_perfiles_usa_deteccion_automatica(at):
-    at.sidebar.text_input[1].set_value("").run()
-    assert not at.exception
+    from conftest import DATA, cargar
+    cargar(at, DATA, None)
     perf = next(f for f in frames(ir(at, "Perfiles e integridad")) if "Ultima carga" in f.columns)
     assert set(perf["Ultima carga"]) == {"Sin perfil (auto)"}
 

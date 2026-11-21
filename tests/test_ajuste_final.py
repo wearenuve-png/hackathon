@@ -1,4 +1,4 @@
-"""Ajuste final: restablecer la demostracion, nombres del selector, estimaciones y guion."""
+"""Restablecer (deja todo en blanco), estimaciones y guion."""
 import hashlib
 import os
 import subprocess
@@ -8,13 +8,11 @@ from pathlib import Path
 import pytest
 from streamlit.testing.v1 import AppTest
 
-from conftest import DATA, ROOT
+from conftest import DATA, DEMO_ERR, DEMO_ERR_PERF, ROOT, cargar
 from nexus.pipeline import run
 from nexus.ui import correcciones as CO
 
 DEMO, PERF = ROOT / "data" / "demo_errores", ROOT / "data" / "demo_errores" / "perfiles"
-BASE, DEMO_ESC = "Datos base", "Datos con errores (demostración)"
-NOTA = "ya incluyen los 9 errores del reto"
 
 
 def hashes():
@@ -64,10 +62,10 @@ def test_el_script_reset_demo_vacia_el_registro_y_verifica_los_hashes(tmp_path):
     assert r.returncode == 0 and CO.leer(log) == []
 
 
-def test_el_boton_restablecer_vuelve_a_datos_base_y_vacia_el_registro(app):
+def test_el_boton_restablecer_borra_todo_y_deja_la_pantalla_en_blanco(app):
     log = Path(os.environ["NEXUS_APROBACIONES"])
     assert any(b.key == "restablecer_btn" and b.label == "Restablecer" for b in app.button)
-    app.radio(key="escenario").set_value(DEMO_ESC).run()
+    cargar(app, DEMO_ERR, DEMO_ERR_PERF)
     app.radio(key="nav").set_value("Hallazgos").run()
     app.text_input(key="aprobador").set_value("Ana Prueba").run()
     antes = hashes()
@@ -76,41 +74,15 @@ def test_el_boton_restablecer_vuelve_a_datos_base_y_vacia_el_registro(app):
     app.button(key="restablecer_btn").click().run()
     assert not app.exception, app.exception
     assert CO.leer(log) == []
-    assert not [m for m in app.markdown if '<div class="nx-fig-v' in m.value]                     # nada de cifras: todo en blanco
+    assert not [m for m in app.markdown if '<div class="nx-fig-v' in m.value]         # nada de cifras: todo en blanco
+    assert not app.dataframe and not app.metric and len(app.radio) == 0 and not app.get("download_button")
     assert "Sin datos cargados" in " ".join(m.value for m in app.markdown)
     assert hashes() == antes                                                          # ningun archivo fuente cambio
-    app.button(key="ejemplo_base").click().run()                                       # y se puede volver a los datos base
-    assert app.radio(key="escenario").value == BASE
-    assert not [e for e in app.error if "errores sembrados" in e.value]               # sin banner de demostracion
-    assert "1,985,000.00" in " ".join(m.value for m in app.markdown if "nx-fig-v" in m.value)
-    app.radio(key="escenario").set_value(DEMO_ESC).run()                              # y la demo arranca limpia
-    assert app.radio(key="nav").value == "Inicio"                                     # Restablecer tambien vuelve al inicio
-    app.radio(key="nav").set_value("Hallazgos").run()
-    assert any(m.label == "Resueltos" and m.value == "0" for m in app.metric)
 
 
-def test_el_boton_restablecer_esta_arriba_junto_al_selector(app):
+def test_el_boton_restablecer_esta_arriba_y_no_en_la_barra_lateral(app):
     assert "restablecer_btn" not in [b.key for b in app.sidebar.button]
-    assert [r.key for r in app.main.radio][:1] == ["escenario"]
-
-
-# ================================================================== 2. nombres y aclaracion
-def test_el_selector_se_llama_datos_base_y_datos_con_errores(app):
-    r = app.radio(key="escenario")
-    assert list(r.options) == [BASE, DEMO_ESC] and r.value == BASE
-    for t in [m.value for m in app.markdown] + [c.value for c in app.caption]:
-        assert "Datos limpios" not in t
-
-
-@pytest.mark.parametrize("escenario", [BASE, DEMO_ESC])
-def test_el_resumen_aclara_que_los_datos_base_ya_traen_los_9_errores_del_reto(app, escenario):
-    app.radio(key="escenario").set_value(escenario).run()
-    notas = [c.value for c in app.caption if NOTA in c.value]
-    assert len(notas) == 1
-    if escenario == BASE:
-        assert "tests/fixtures/ANSWER_KEY.md" in notas[0] and "verás hallazgos aunque no hayas alterado nada" in notas[0]
-    else:
-        assert "suma 7 errores más" in notas[0] and "data/demo_errores/ANSWER_KEY.md" in notas[0]
+    assert "restablecer_btn" in [b.key for b in app.main.button]
 
 
 def test_los_9_errores_del_reto_son_9_en_la_clave():
@@ -141,7 +113,7 @@ def test_solo_las_estimaciones_llevan_la_etiqueta(props):
 
 
 def test_la_ficha_muestra_estimacion_para_el_monto_en_blanco_y_para_la_tasa(app):
-    app.radio(key="escenario").set_value(DEMO_ESC).run()
+    cargar(app, DEMO_ERR, DEMO_ERR_PERF)
     app.radio(key="nav").set_value("Hallazgos").run()
     adv = [w.value for w in app.warning]
     assert adv.count(FRASE + ".") == 1                                                # octubre: el monto en blanco
@@ -164,13 +136,14 @@ def test_el_guion_trae_el_recorrido_de_la_demo_en_la_interfaz():
     plano = " ".join(g.split())
     i = g.index("## Recorrido de demo en la interfaz")
     sec = " ".join(g[i:g.index("## Recorrido por temas")].split())
-    pasos = ("### Paso 1 · Datos base", "### Paso 2 · Cambio a datos con errores", "### Paso 3 · Un error de cada tipo",
-             "### Paso 4 · Aprobar una corrección con nombre", "### Paso 5 · Vuelta a datos base")
+    pasos = ("### Paso 1 · Pantalla en blanco", "### Paso 2 · Cargar la carpeta", "### Paso 3 · Errores identificados",
+             "### Paso 4 · El asistente los explica", "### Paso 5 · Restablecer")
     assert all(x in sec for x in pasos)
     assert [sec.index(x) for x in pasos] == sorted(sec.index(x) for x in pasos)          # el orden pedido
-    for frag in ("1,985,000.00", "359,125.00", "Trazabilidad", "Ingresos por ventas (cuenta 4000)", NOTA.replace("ya incluyen",
-                 "ya incluyen"), "DEMOSTRACIÓN", "ESTIMACIÓN: requiere aprobación humana", "Quién aprueba", "Aprobar corrección",
-                 "Restablecer", "scripts/reset_demo.py", "300,375.00", "355,325.00", "17 de 17"):
+    for frag in ("Sin datos cargados", "Cargar presupuestos", "Leer presupuestos", "355,294.95", "Hallazgos",
+                 "ESTIMACIÓN: requiere aprobación humana", "Quién aprueba", "Aprobar corrección",
+                 "Revisar los errores de esta carga", "Restablecer", "ARCHIVOS PRUEBA"):
         assert frag in sec, frag
-    for viejo in ("Alertas y exclusiones", "Resultados y balance", "Perfiles por empresa"):
-        assert viejo not in plano                                                       # nombres de pestanas del rediseno
+    for viejo in ("Alertas y exclusiones", "Resultados y balance", "Perfiles por empresa", "Datos base",
+                  "Datos con errores (demostración)"):
+        assert viejo not in sec                                                         # ya no hay escenarios

@@ -90,6 +90,24 @@ def _limites(c: dict) -> str:
     return "\n".join(lineas)
 
 
+def revision(c: dict) -> str:
+    """Revision completa de los errores de la carga, con plantillas: que es, donde, por que importa, causa y accion."""
+    h = c["hallazgos"]
+    if not h:
+        return f"En {c['periodo']} NEXUS no encontró errores ni hallazgos en los archivos cargados."
+    lineas = [f"NEXUS revisó los archivos y encontró **{len(h)} hallazgo(s)** en {c['periodo']}. Para cada uno: "
+              "qué pasó, dónde está, por qué importa, la causa probable y qué decide una persona.", ""]
+    for x in h:
+        donde = "; ".join(f"`{d['archivo']}`, hoja {d['hoja'] or '-'}, fila {d['fila']}" for d in x["donde"][:3]) or "-"
+        imp = f" Impacto: {x['impacto_usd']} USD." if x["impacto_usd"] else ""
+        lineas += [f"**{x['ficha']} · {x['tipo']} · {x['empresa'] or 'Grupo'}**",
+                   f"- Qué pasó: {x['que_paso']}", f"- Dónde: {donde}",
+                   f"- Por qué importa: {x['por_que_importa']}{imp}", f"- Causa probable: {x['causa_probable']}",
+                   f"- Qué decidir: {x['accion_recomendada']}", ""]
+    lineas.append("Fuente: pestaña *Hallazgos*. NEXUS no corrige solo: cada corrección la aprueba una persona.")
+    return "\n".join(lineas)
+
+
 RESPUESTAS = {"archivos": _archivos, "errores": _errores, "utilidad": _utilidad, "provisional": _provisional,
               "cifra": _cifra, "limites": _limites}
 

@@ -10,6 +10,9 @@ ETIQUETA_CONECTADO = ("Asistente NEXUS (prototipo) · impulsado por un modelo de
                       "de esta pantalla · modo conectado")
 ETIQUETA_LOCAL = ("Asistente NEXUS (prototipo) · modo local: sin modelo de lenguaje, respuestas con plantillas a partir "
                   "de los resultados de esta pantalla")
+PROMPT_REVISION = ("Revisa los hallazgos de esta carga. Para cada uno explica: qué error es, dónde está (archivo, hoja "
+                   "y fila), por qué ocurre (causa probable), cuánto afecta y qué debe decidir una persona. Cita la "
+                   "ficha de cada uno y ordénalos por impacto.")
 AVISO_FALLBACK = ("No pude consultar al modelo en este momento. Te muestro las preguntas sugeridas del modo local, "
                   "que no necesitan red.")
 
@@ -37,6 +40,10 @@ def render(res, period: str, escenario: str, demo: bool = False, props=None, not
         st.caption(ETIQUETA_LOCAL)
         st.info("El modo conectado está apagado (no hay llave configurada). Estas preguntas se responden en tu equipo, "
                 "sin red y sin modelo de lenguaje.")
+        if st.button("Revisar los errores de esta carga", key="asist_revisar", type="primary"):
+            st.session_state["asist_revision"] = local.revision(ctx)
+        if st.session_state.get("asist_revision"):
+            st.markdown(st.session_state["asist_revision"])
         _local(ctx)
         return
     st.caption(ETIQUETA_CONECTADO)
@@ -47,6 +54,8 @@ def render(res, period: str, escenario: str, demo: bool = False, props=None, not
         with st.chat_message(m["role"]):
             st.markdown(m["content"])
     q = st.chat_input("Pregunta sobre los resultados de esta pantalla")
+    if st.button("Revisar los errores de esta carga", key="asist_revisar", type="primary"):
+        q = PROMPT_REVISION
     if q:
         with st.chat_message("user"):
             st.markdown(q)
@@ -57,6 +66,8 @@ def render(res, period: str, escenario: str, demo: bool = False, props=None, not
             ans = None
         if ans is None:
             st.warning(AVISO_FALLBACK)
+            if q == PROMPT_REVISION:
+                st.markdown(local.revision(ctx))
             _local(ctx)
             return
         hist.append({"role": "user", "content": q})

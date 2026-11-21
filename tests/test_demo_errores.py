@@ -300,9 +300,9 @@ def ir(at, seccion):
 
 
 def a_demo(at):
-    at.radio(key="escenario").set_value("Datos con errores (demostración)").run()
-    assert not at.exception, at.exception
-    return at
+    """Carga la carpeta con los 16 errores sembrados, como lo haria «Cargar presupuestos»."""
+    from conftest import DEMO_ERR, DEMO_ERR_PERF, cargar
+    return cargar(at, DEMO_ERR, DEMO_ERR_PERF)
 
 
 def textos(at):
@@ -314,23 +314,24 @@ def metrica(at, nombre):
     return next(m.value for m in at.metric if m.label == nombre)
 
 
-def test_el_selector_de_escenario_muestra_el_banner_solo_en_la_demostracion(app):
-    assert not [e for e in app.error if "DEMOSTRACIÓN: datos de prueba con errores sembrados" in e.value]
+def test_no_queda_ninguna_marca_de_demostracion_en_la_interfaz(app):
     a_demo(app)
-    assert len([e for e in app.error if e.value == "DEMOSTRACIÓN: datos de prueba con errores sembrados"]) == 1
-    app.radio(key="escenario").set_value("Datos base").run()
-    assert not [e for e in app.error if "errores sembrados" in e.value]
+    for t in textos(app):
+        assert "DEMOSTRACIÓN" not in t and "Datos base" not in t and "errores sembrados" not in t
+    assert not [r for r in app.radio if r.key == "escenario"]
 
 
-@pytest.mark.parametrize("escenario", ["Datos base", "Datos con errores (demostración)"])
+@pytest.mark.parametrize("carpeta", ["synthetic", "demo_errores", "demo"])
 @pytest.mark.parametrize("periodo", ["2026-10", "2026-11", "2026-12"])
-def test_ninguna_pestana_falla_en_ningun_escenario(app, escenario, periodo):
-    app.radio(key="escenario").set_value(escenario).run()
+def test_ninguna_pestana_falla_con_ninguna_carpeta(app, carpeta, periodo):
+    from conftest import cargar
+    d = ROOT / "data" / carpeta
+    cargar(app, d, d / "perfiles" if (d / "perfiles").is_dir() else (ROOT / "profiles" if carpeta == "synthetic" else None))
     app.sidebar.radio[0].set_value(periodo).run()
     assert not app.exception, app.exception
     for t in textos(app):
         for palabra in FALLA:
-            assert palabra not in t, f"{escenario}/{periodo}: '{palabra}' en {t[:100]}"
+            assert palabra not in t, f"{carpeta}/{periodo}: '{palabra}' en {t[:100]}"
 
 
 def test_resumen_de_la_carga_y_explicar_todo_en_simple_en_la_interfaz(app):

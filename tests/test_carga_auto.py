@@ -92,8 +92,10 @@ def test_limpiar_todo_borra_lo_del_programa_y_no_toca_presupuestos(tmp_path):
     assert RS.limpiar_todo(log, man, trabajo) == {"eventos": 0, "manifiestos": 0, "copias": 0}      # idempotente
 
 
-# ---------------------------------------------------------------- interfaz
-def nuevo():
+# ---------------------------------------------------------------- interfaz (arranca en blanco)
+@pytest.fixture()
+def nuevo(monkeypatch):
+    monkeypatch.setenv("NEXUS_TEST_SIN_CARGA", "1")
     at = AppTest.from_file(APP, default_timeout=120).run()
     assert not at.exception, at.exception
     return at
@@ -103,60 +105,73 @@ def textos(at):
     return " ".join(x.value for x in list(at.markdown) + list(at.info) + list(at.warning) + list(at.caption))
 
 
-def test_el_boton_restablecer_ya_no_dice_demostracion_y_hay_boton_de_cargar():
-    at = nuevo()
-    assert [b.label for b in at.button if b.key == "restablecer_btn"] == ["Restablecer"]
-    assert any(b.key == "carga_btn" and b.label == "Cargar presupuestos" for b in at.button)
+def figuras(at):
+    return [m for m in at.markdown if '<div class="nx-fig-v' in m.value]
 
 
-def test_cargar_carpetas_llena_la_pantalla_y_restablecer_vuelve_al_ejemplo(tmp_path):
+def cargar_carpetas(at, rutas):
+    if not any(t.key == "carga_rutas" for t in at.text_area):
+        at.button(key="carga_btn").click().run()
+    at.text_area(key="carga_rutas").set_value(rutas).run()
+    at.button(key="carga_leer").click().run()
+    assert not at.exception, at.exception
+
+
+def test_sin_cargar_nada_no_se_ve_nada_y_no_existe_ningun_dato_de_demostracion(nuevo):
+    assert not figuras(nuevo) and not nuevo.dataframe and not nuevo.metric and not nuevo.get("download_button")
+    assert len(nuevo.radio) == 0 and "Sin datos cargados" in textos(nuevo)
+    assert [b.label for b in nuevo.button if b.key == "restablecer_btn"] == ["Restablecer"]
+    assert any(b.key == "carga_btn" and b.label == "Cargar presupuestos" for b in nuevo.button)
+    assert any(t.key == "carga_rutas" for t in nuevo.text_area)                         # el panel de carga ya esta abierto
+    todo = textos(nuevo)
+    for palabra in ("Datos base", "demostración", "DEMOSTRACIÓN", "Usar datos", "errores sembrados", "sintétic"):
+        assert palabra not in todo, palabra
+    assert not [b for b in nuevo.button if b.key in ("ejemplo_base", "ejemplo_demo")]
+
+
+def test_cargar_carpetas_llena_la_pantalla_y_restablecer_la_deja_en_blanco(nuevo, tmp_path):
     a, b = reparto(tmp_path)
     antes = (hashes(a), hashes(b))
-    at = nuevo()
-    at.button(key="carga_btn").click().run()
-    at.text_area(key="carga_rutas").set_value(f"{a}\n{b}").run()
-    at.button(key="carga_leer").click().run()
-    assert not at.exception, at.exception
-    assert any("Mostrando tus presupuestos de" in i.value for i in at.info)
-    franja = " ".join(m.value for m in at.markdown if "nx-fig-v" in m.value)
+    cargar_carpetas(nuevo, f"{a}\n{b}")
+    assert any("Mostrando tus presupuestos de" in i.value for i in nuevo.info)
+    franja = " ".join(m.value for m in nuevo.markdown if "nx-fig-v" in m.value)
     assert "Utilidad neta" in franja and "355,294.95" in franja
-    assert "Los datos base ya incluyen" not in textos(at) and "NEXUS no conoce sus errores" in textos(at)
+    assert "no conoce sus errores" in textos(nuevo)
     for sec in ("Estados financieros", "Alertas y errores", "Hallazgos", "Intercompañía", "Trazabilidad", "Indicadores",
                 "Variaciones", "Simulador", "Perfiles e integridad", "Ayuda", "Asistente"):
-        at.radio(key="nav").set_value(sec).run()
-        assert not at.exception, (sec, at.exception)
-        assert "falló" not in textos(at)
-    at.button(key="restablecer_btn").click().run()
-    assert not at.exception and not any("Mostrando tus presupuestos" in i.value for i in at.info)
-    assert not [m for m in at.markdown if '<div class="nx-fig-v' in m.value] and not at.dataframe       # todo en blanco
-    assert "Sin datos cargados" in textos(at) and len(at.radio) == 0
-    at.button(key="ejemplo_base").click().run()                                       # los datos de ejemplo siguen ahi
-    assert "1,985,000.00" in " ".join(m.value for m in at.markdown if "nx-fig-v" in m.value)
-    assert (hashes(a), hashes(b)) == antes
+        nuevo.radio(key="nav").set_value(sec).run()
+        assert not nuevo.exception, (sec, nuevo.exception)
+        assert "falló" not in textos(nuevo)
+    nuevo.button(key="restablecer_btn").click().run()
+    assert not nuevo.exception and not any("Mostrando tus presupuestos" in i.value for i in nuevo.info)
+    assert not figuras(nuevo) and not nuevo.dataframe and len(nuevo.radio) == 0 and "Sin datos cargados" in textos(nuevo)
+    assert (hashes(a), hashes(b)) == antes                                             # tus archivos siguen intactos
 
 
-def test_carpeta_incompleta_muestra_aviso_amable(tmp_path):
-    a, _ = reparto(tmp_path)
-    at = nuevo()
-    at.button(key="carga_btn").click().run()
-    at.text_area(key="carga_rutas").set_value(str(a)).run()
-    at.button(key="carga_leer").click().run()
-    assert not at.exception
-    assert any("Falta la configuración del grupo" in w.value for w in at.warning)
-    assert not any("Mostrando tus presupuestos" in i.value for i in at.info)
-
-
-def test_restablecer_deja_todo_en_blanco_y_se_puede_cargar_de_nuevo(tmp_path):
+def test_los_errores_de_los_archivos_cargados_se_identifican_y_se_explican(nuevo, tmp_path):
     a, b = reparto(tmp_path)
-    at = nuevo()
-    assert [m for m in at.markdown if '<div class="nx-fig-v' in m.value]                           # hay datos al abrir
-    at.button(key="restablecer_btn").click().run()
-    assert not at.exception, at.exception
-    assert not [m for m in at.markdown if '<div class="nx-fig-v' in m.value]
-    assert not at.dataframe and not at.metric and not at.get("download_button")        # sin tablas, metricas ni paquete
-    assert [x.key for x in at.button if x.key in ("ejemplo_base", "ejemplo_demo", "carga_btn", "restablecer_btn")] == [
-        "restablecer_btn", "carga_btn", "ejemplo_base", "ejemplo_demo"]
-    at.button(key="carga_btn").click().run()                                           # cargar carpetas sale del blanco
-    at.text_area(key="carga_rutas").set_value(f"{a}\n{b}").run()
-    at.button(key="carga_leer").click().run()
-    assert "355,294.95" in " ".join(m.value for m in at.markdown if "nx-fig-v" in m.value)
+    cargar_carpetas(nuevo, f"{a}\n{b}")
+    nuevo.radio(key="nav").set_value("Hallazgos").run()
+    fichas = [e.label for e in nuevo.expander if e.label.startswith("FCH-")]
+    assert fichas                                                                      # el motor detecto errores en la carga
+    nuevo.radio(key="nav").set_value("Asistente").run()
+    nuevo.button(key="asist_revisar").click().run()                                    # modo local: sin llave, plantillas
+    texto = " ".join(m.value for m in nuevo.markdown)
+    assert "Qué pasó:" in texto and "Dónde:" in texto and "Causa probable:" in texto and "Qué decidir:" in texto
+    assert all(f.split(" ")[0] in texto for f in fichas[:3])                           # cita las fichas
+    assert not nuevo.exception
+
+
+def test_carpeta_incompleta_muestra_aviso_amable_y_sigue_en_blanco(nuevo, tmp_path):
+    a, _ = reparto(tmp_path)
+    cargar_carpetas(nuevo, str(a))
+    assert any("Falta la configuración del grupo" in w.value for w in nuevo.warning)
+    assert not any("Mostrando tus presupuestos" in i.value for i in nuevo.info) and not figuras(nuevo)
+
+
+def test_una_carpeta_con_perfiles_los_usa(nuevo):
+    from conftest import DEMO_ERR
+    cargar_carpetas(nuevo, str(DEMO_ERR))
+    nuevo.radio(key="nav").set_value("Perfiles e integridad").run()
+    perf = next(d.value for d in nuevo.dataframe if "Ultima carga" in d.value.columns)
+    assert "Coincide con el perfil" in set(perf["Ultima carga"])

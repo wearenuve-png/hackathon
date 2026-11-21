@@ -6,67 +6,45 @@ Antes de empezar: `.venv/bin/streamlit run app.py`, período **2026-10** selecci
 proyector: `.venv/bin/python scripts/demo_respaldo.py` (corre todo sin interfaz, en menos de un segundo, imprime
 las mismas cifras y exporta la evidencia a `data/output/`).
 
-## Recorrido de demo en la interfaz (5 minutos): datos base → errores → aprobación → vuelta
+## Recorrido de demo en la interfaz (5 minutos): pantalla en blanco → cargar carpeta → errores explicados → restablecer
 
-**Antes de ensayar:** `.venv/bin/python scripts/reset_demo.py` (vacía el registro de aprobaciones y no toca ningún archivo
-fuente) y `.venv/bin/streamlit run app.py`. El selector **Escenario** está arriba de la pantalla; empieza en **Datos base**,
-período **2026-10**. Todo son datos sintéticos.
+La pantalla **arranca en blanco**: no hay datos de demostración dentro del programa. Todo lo que se ve sale de la
+carpeta que la persona elige. Carpeta sugerida: `ARCHIVOS PRUEBA` (los 12 archivos de `data/demo/`, de Mateo; su
+`LEEME_DEMO.md` trae los 10 errores escondidos y las utilidades esperadas).
 
-| Tiempo | Paso | Dónde |
+| Tiempo | Paso | Qué se muestra |
 |---|---|---|
-| 0:00 – 1:30 | 1. Datos base: cifra y trazabilidad | Inicio, Estados financieros, Trazabilidad |
-| 1:30 – 2:00 | 2. Cambio a datos con errores | Selector **Escenario** (arriba) |
-| 2:00 – 3:30 | 3. Un error de cada tipo | Alertas y errores → Hallazgos |
-| 3:30 – 4:30 | 4. Aprobar una corrección con tu nombre | Alertas y errores → Hallazgos |
-| 4:30 – 5:00 | 5. Vuelta a datos base | Botón **Restablecer** |
+| 0:00 – 0:30 | 1. Pantalla en blanco | «Sin datos cargados»; solo Restablecer y Cargar presupuestos |
+| 0:30 – 1:30 | 2. Cargar la carpeta | Cargar presupuestos → carpeta → Leer presupuestos; Resumen de la carga |
+| 1:30 – 3:30 | 3. Errores identificados | Hallazgos: una ficha por error (qué pasó, dónde, por qué importa, causa probable, qué decidir) |
+| 3:30 – 4:30 | 4. El asistente los explica | Asistente → «Revisar los errores de esta carga» |
+| 4:30 – 5:00 | 5. Restablecer | Todo vuelve a blanco |
 
-### Paso 1 · Datos base (1:30)
-**Mostrar:** encabezado de octubre: **Ingresos consolidados 1,985,000.00 USD** y **Utilidad neta 359,125.00**; en *Estados
-financieros*, la suma de las empresas (2,078,000.00) contra el consolidado; en *Inicio*, **Resumen de la carga**: «6 de 6»
-archivos leídos y, debajo, la línea que aclara que **los datos base ya incluyen los 9 errores del reto**. Luego
-*Trazabilidad* → «Ingresos por ventas (cuenta 4000)» → archivo, hoja y fila.
-**Decir:** «Esta es la carga de seis empresas en seis formatos. Cada cifra se abre hasta la fila del archivo. Ojo: estos datos
-base ya traen los 9 errores del reto, por eso hay hallazgos aunque no hayamos tocado nada. La cuenta 4000 son solo
-ingresos por ventas; el total incluye también servicios.»
+### Paso 1 · Pantalla en blanco (0:30)
+**Hacer:** abrir la app. **Decir:** «Aquí no hay nada precargado; NEXUS solo trabaja con los presupuestos que le demos.»
 
-### Paso 2 · Cambio a datos con errores (0:30)
-**Hacer:** en el selector de arriba, elegir **Datos con errores (demostración)**.
-**Decir:** «Ahora leo otra carpeta, también en solo lectura, con 7 errores más sembrados. Mira el banner: DEMOSTRACIÓN. Los
-ingresos bajan a 1,758,000 porque el archivo de Aceros Ferrex declara USD siendo una empresa en quetzales y NEXUS no lo
-procesa. En el resumen: 5 de 6 archivos, uno en rojo, y varias correcciones esperando decisión.»
+### Paso 2 · Cargar la carpeta (1:00)
+**Hacer:** pulsar **Cargar presupuestos**, elegir la carpeta (o escribir su ruta) y pulsar **Leer presupuestos**.
+**Mostrar:** en *Inicio*, **Resumen de la carga**: «6 de 6» archivos leídos, registros leídos y el estado de cada archivo
+con su huella SHA-256. Utilidad neta de octubre **355,294.95** USD (cifra del LEEME de Mateo). Los archivos se leen en
+solo lectura: no se modifican.
 
-### Paso 3 · Un error de cada tipo (1:30)
-En *Alertas y errores* → **Hallazgos**, abrir una ficha de cada tipo (qué pasó, dónde con el **valor leído**, por qué importa,
-qué hizo NEXUS, qué propone y qué debe decidir una persona):
-- **Aplicada automáticamente** (solo el duplicado exacto con el mismo ID): factura FAC-M-0902 de Ferrex México, excluida con
-  un ajuste reversible.
-- **Bloqueado con propuesta exacta**: «1O,000» (letra O) de Transportes Ferrex México en octubre → propuesta 10,000 MXN
-  (500 USD).
-- **ESTIMACIÓN: requiere aprobación humana**: el monto en blanco de Distribuidora Central → propuesta 41,000 GTQ (mediana del
-  rubro en los otros períodos). Decir que es una referencia, no un dato.
-- **Balance descuadrado** (período **2026-12**): asiento omitido de 8,000 USD en Ferrex Importaciones, con el diagnóstico de
-  balance (la primera candidata es el registro igual al desbalance). Y, en el mismo período, la **tasa 0.525** en vez de
-  0.0525: también una *ESTIMACIÓN* (decimal corrido); sus ~28 alertas de importe atípico están dentro de su ficha como
-  consecuencias.
-**Decir:** «NEXUS solo aplica solo el duplicado exacto. Todo lo demás lo bloquea o lo marca y propone; las estimaciones lo
-dicen con todas las letras. Nunca atribuimos el error a una persona: la causa siempre es *probable*.»
+### Paso 3 · Errores identificados (2:00)
+**Mostrar:** sección **Hallazgos**. Cada ficha explica qué pasó, en qué archivo, hoja y fila está, por qué importa
+(USD y utilidad), la causa probable y qué debe decidir una persona. Recorrer dos o tres: un importe con letra O, una
+moneda mal escrita, un duplicado, una diferencia entre empresas que **no** se elimina. **ESTIMACIÓN: requiere
+aprobación humana** aparece solo donde NEXUS propone un valor estimado. Si hay corrección propuesta, escribir el
+nombre en **Quién aprueba** y pulsar **Aprobar corrección** (el archivo no cambia; la decisión queda registrada).
 
-### Paso 4 · Aprobar una corrección con nombre (1:00)
-**Hacer:** escribir tu nombre en **Quién aprueba**, abrir la ficha de «1O,000» en octubre y pulsar **Aprobar corrección**.
-**Mostrar:** la ficha pasa a **Resueltos** (quién, cuándo, valor leído → valor aprobado, motivo); en *Estados financieros* los
-gastos operativos de octubre suben 500 USD (355,325.00) y la utilidad neta baja a **300,375.00** (antes 300,875.00); en el lateral
-sigue «Archivos sin cambios: 17 de 17». Mencionar el registro `data/output/aprobaciones.jsonl` y, si hay tiempo, **Deshacer**.
-**Decir:** «Aprobar no modifica el archivo: se recalcula el consolidado con la corrección y queda el registro de auditoría con
-mi nombre. Sin nombre, el botón está desactivado.»
+### Paso 4 · El asistente los explica (1:00)
+**Mostrar:** sección **Asistente** → **Revisar los errores de esta carga**. Con llave de API configurada, un modelo de
+lenguaje redacta la explicación a partir de los resultados ya calculados; sin llave, se muestra la misma revisión con
+plantillas. **Decir con honestidad:** los errores los detecta el motor con reglas; el modelo solo los explica y no
+calcula, corrige ni aprueba.
 
-### Paso 5 · Vuelta a datos base (0:30)
-**Hacer:** pulsar **Restablecer** (o `scripts/reset_demo.py`).
-**Decir y mostrar:** «Vacía el registro de aprobaciones y vuelve a Datos base: el ingreso consolidado vuelve a 1,985,000 y los
-archivos fuente nunca cambiaron.»
-
-> Si algo sale mal en vivo: `scripts/demo_respaldo.py` corre el recorrido sin interfaz.
-
----
+### Paso 5 · Restablecer (0:30)
+**Hacer:** pulsar **Restablecer**. **Mostrar:** la pantalla queda en blanco; se borraron las decisiones y la carga. Los
+archivos originales siguen intactos.
 
 ## Recorrido por temas (guion original, 4:40 + 0:20 de cierre = 5:00)
 

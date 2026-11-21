@@ -141,29 +141,18 @@ def app():
     return at
 
 
-@pytest.mark.parametrize("escenario", ["Datos base", "Datos con errores (demostración)"])
-def test_la_demostracion_anterior_ya_no_esta_en_la_interfaz(app, escenario):
-    app.radio(key="escenario").set_value(escenario).run()
-    assert not app.exception
+def test_la_demostracion_anterior_ya_no_esta_en_la_interfaz(app):
     assert not [b for b in app.selectbox if b.key == "demo_caso" or b.label == "Demostración de errores"]
     assert not [e for e in app.error if "datos alterados en una copia temporal" in e.value]
     assert not [m for m in app.markdown if "Demostración de errores" in m.value]
     assert not [b for b in app.button if b.key == "demo_volver"]
 
 
-def test_el_unico_selector_de_escenario_esta_arriba_y_a_la_vista(app):
-    esc = [r for r in app.radio if r.key == "escenario"]
-    assert len(esc) == 1 and esc[0].label == "Escenario" and list(esc[0].options) == [
-        "Datos base", "Datos con errores (demostración)"]
-    assert "escenario" not in [r.key for r in app.sidebar.radio]                      # no esta escondido en la barra lateral
-    assert all(r.key != "escenario" for t in app.tabs for r in getattr(t, "radio", []))  # ni dentro de una pestana
-    assert [r.key for r in app.main.radio][:1] == ["escenario"]                         # es lo primero de la pantalla
-
-
 def test_el_diagnostico_de_balance_de_la_demostracion_anterior_se_ve_en_el_escenario_nuevo(app):
     """Los casos de 8,000 (omitido / duplicado) y 4,000 (signo) ahora viven en data/demo_errores: el asiento omitido
     descuadra el balance de EMP006 en 2026-12 y la ficha lista como primera candidata el registro igual al desbalance."""
-    app.radio(key="escenario").set_value("Datos con errores (demostración)").run()
+    from conftest import DEMO_ERR, DEMO_ERR_PERF, cargar
+    cargar(app, DEMO_ERR, DEMO_ERR_PERF)
     app.sidebar.radio[0].set_value("2026-12").run()
     app.radio(key="nav").set_value("Hallazgos").run()
     tx = " ".join(m.value for m in app.markdown)

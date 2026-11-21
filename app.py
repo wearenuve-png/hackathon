@@ -4,7 +4,7 @@ La interfaz NO calcula cifras del consolidado: solo ordena y muestra lo que devu
 (nexus.pipeline.run). Las secciones se eligen en el menu horizontal de arriba (key "nav") y el modo
 claro/oscuro con el boton de luna/sol de la barra lateral (key "tema").
 Hallazgos (con fichas y aprobacion humana), Indicadores, Variaciones, Simulador, Ayuda, Asistente y Seguridad e
-integridad viven en nexus/ui/ y asistente/. El escenario (datos base o demostracion con errores) se elige arriba.
+integridad viven en nexus/ui/ y asistente/. La pantalla arranca en blanco y solo muestra lo que la persona carga desde sus carpetas.
 
 Ejecutar:  streamlit run app.py
 """
@@ -191,42 +191,29 @@ def afecta(xs):
                       for y in sorted(xs, key=lambda y: y.statement != "ER"))
 
 
-# ------------------------------------------------------------------ escenario (arriba, siempre visible)
-ESCENARIOS = ["Datos base", "Datos con errores (demostración)"]
-
-
+# ------------------------------------------------------------------ datos: solo lo que la persona carga
 def _restablecer():
-    """Borra todo lo que el programa guarda por su cuenta (decisiones, manifiestos, copias de trabajo, cargas y estado
-    de la pantalla) y vuelve al inicio. No toca ningun archivo fuente ni los datos de ejemplo."""
+    """Borra todo lo que el programa guarda por su cuenta (decisiones, manifiestos, copias de trabajo, la carga elegida
+    y el estado de la pantalla). La pantalla queda en blanco. No toca ningun archivo de presupuesto."""
     restablecer_ui.limpiar_todo(correcciones.log_por_defecto(), seguridad_manifiestos())
     claro = st.session_state.get("modo_claro", False)               # el tema es una preferencia, no un dato
     for k in list(st.session_state.keys()):
         del st.session_state[k]
     st.cache_resource.clear()
     st.session_state["modo_claro"] = claro
-    st.session_state["escenario"] = ESCENARIOS[0]
     st.session_state["ver"] = 0
-    st.session_state["en_blanco"] = True                           # la pantalla queda sin ningun dato
 
 
 def seguridad_manifiestos():
     return panel_seguridad.seguridad.manifiesto_path("x").parent
 
 
-def _usar_ejemplo(esc: str):
-    """Sale del estado en blanco cargando uno de los datos de ejemplo del repositorio."""
-    st.session_state["en_blanco"] = False
-    st.session_state["escenario"] = esc
-    st.session_state["ver"] = st.session_state.get("ver", 0) + 1
-
-
-def _quitar_carga():
-    st.session_state.pop("carga", None)
+def _volver_a_leer():
     st.session_state["ver"] = st.session_state.get("ver", 0) + 1
 
 
 def _alternar_carga():
-    st.session_state["carga_abierta"] = not st.session_state.get("carga_abierta", False)
+    st.session_state["carga_abierta"] = not st.session_state.get("carga_abierta", True)
 
 
 def _leer_carpetas():
@@ -234,8 +221,9 @@ def _leer_carpetas():
     r = carga_auto.preparar(st.session_state.get("carga_rutas", "").splitlines())
     st.session_state["carga_problemas"] = r["problemas"]
     if r["ok"]:
+        for k in ("carga_abierta", "nav", "asist_hist", "asist_revision"):
+            st.session_state.pop(k, None)
         st.session_state["carga"] = r
-        st.session_state["en_blanco"] = False
         st.session_state["carga_abierta"] = False
         st.session_state["ver"] = st.session_state.get("ver", 0) + 1
 
@@ -247,23 +235,21 @@ def _elegir_carpeta():
         st.session_state["carga_rutas"] = (actual + "\n" if actual else "") + ruta
 
 
-_c_esc, _c_rst, _c_car = st.columns([4.2, 1.1, 1.9], vertical_alignment="bottom")
-_en_blanco = st.session_state.get("en_blanco", False)
-with _c_esc:
-    if _en_blanco:
-        escenario = ESCENARIOS[0]
-        st.markdown("**Escenario:** sin datos cargados")
-    else:
-        escenario = st.radio("Escenario", ESCENARIOS, key="escenario", horizontal=True,
-                             help="Ambos se leen en solo lectura. El segundo tiene 7 errores sembrados a propósito.")
+_carga = st.session_state.get("carga")
+_c_tit, _c_rst, _c_car = st.columns([4.2, 1.1, 1.9], vertical_alignment="bottom")
+with _c_tit:
+    if _carga:
+        st.info("Mostrando tus presupuestos de: " + "; ".join(_carga["origen"]) +
+                (f". No se usaron: {', '.join(_carga['sin_usar'])}." if _carga["sin_usar"] else ""),
+                icon=":material/folder_open:")
 with _c_rst:
     st.button("Restablecer", key="restablecer_btn", on_click=_restablecer,
-              help="Borra todo lo que el programa guardó (decisiones, cargas, manifiestos y copias de trabajo) y vuelve "
-                   "a «Datos base». No modifica ni borra ningún archivo de presupuesto.")
+              help="Borra todo lo que el programa guardó (decisiones, carga, manifiestos y copias de trabajo) y deja "
+                   "la pantalla en blanco. No modifica ni borra ningún archivo de presupuesto.")
 with _c_car:
     st.button("Cargar presupuestos", key="carga_btn", on_click=_alternar_carga, icon=":material/folder_open:",
               help="Lee automáticamente los presupuestos de una o varias carpetas y llena toda la pantalla con ellos.")
-if st.session_state.get("carga_abierta"):
+if st.session_state.get("carga_abierta", not _carga):
     with st.container(border=True):
         st.markdown("**Cargar presupuestos desde carpetas** (solo lectura: tus archivos no se modifican)")
         st.caption("Una carpeta por línea. Deben estar los presupuestos de las empresas y la configuración del grupo "
@@ -276,14 +262,6 @@ if st.session_state.get("carga_abierta"):
         _b2.button("Leer presupuestos", key="carga_leer", type="primary", on_click=_leer_carpetas)
         for _p in st.session_state.get("carga_problemas", []):
             st.warning(_p)
-_carga = st.session_state.get("carga")
-if _carga:
-    _cc, _cb = st.columns([5, 1.3], vertical_alignment="center")
-    _cc.info("Mostrando tus presupuestos de: " + "; ".join(_carga["origen"]) +
-             (f". No se usaron: {', '.join(_carga['sin_usar'])}." if _carga["sin_usar"] else ""),
-             icon=":material/folder_open:")
-    _cb.button("Volver a los datos de ejemplo", key="carga_quitar", on_click=_quitar_carga)
-demo = escenario == ESCENARIOS[1] and not _carga
 
 # ------------------------------------------------------------------ barra lateral
 if "modo_claro" not in st.session_state:
@@ -312,37 +290,22 @@ html("<style>:root{" + "".join(f"--{k}:{v};" for k, v in _t.items())
      + '--display:"Inter Display","Inter Tight","Segoe UI Black","Arial Black","Helvetica Neue",Arial,sans-serif;}'
      + CSS + "</style>")
 
-if _en_blanco and not st.session_state.get("carga"):
+if not _carga:
     st.write("")
     html('<div class="nx-title">Sin datos cargados</div>'
-         '<div class="nx-lede">El programa quedó en blanco: no hay cifras, gráficas, decisiones ni archivos leídos. '
-         'Elige de dónde leer los presupuestos.</div>')
-    _e1, _e2, _ = st.columns([1.6, 2.2, 3])
-    _e1.button("Usar datos base", key="ejemplo_base", on_click=_usar_ejemplo, args=(ESCENARIOS[0],),
-               icon=":material/dataset:")
-    _e2.button("Usar datos con errores (demostración)", key="ejemplo_demo", on_click=_usar_ejemplo,
-               args=(ESCENARIOS[1],), icon=":material/science:")
-    st.caption("O pulsa «Cargar presupuestos» para leer tus propias carpetas. Los archivos de ejemplo siguen en el "
-               "repositorio; Restablecer no borra ningún archivo.")
+         '<div class="nx-lede">No hay cifras, gráficas ni archivos leídos. Pulsa «Cargar presupuestos», elige la '
+         'carpeta donde están los presupuestos y NEXUS los leerá, detectará los errores y explicará cada uno.</div>')
     st.stop()
 
 with st.sidebar:
     period_box = st.container()
     status_box = st.container()
-    with st.expander("Fuente de datos"):
-        data_dir = st.text_input("Carpeta de archivos", str(ROOT / "data" / ("demo_errores" if demo else "synthetic")),
-                                 key=f"data_dir_{int(demo)}")
-        profiles_dir = st.text_input("Carpeta de perfiles",
-                                     str(ROOT / "data" / "demo_errores" / "perfiles" if demo else ROOT / "profiles"),
-                                     key=f"profiles_dir_{int(demo)}")
-        if "ver" not in st.session_state:
-            st.session_state.ver = 0
-        if st.button("Volver a ejecutar"):
-            st.session_state.ver += 1
+    if "ver" not in st.session_state:
+        st.session_state.ver = 0
+    st.button("Volver a leer las carpetas", key="volver_a_leer", on_click=_volver_a_leer)
 
 LOG = correcciones.log_por_defecto()
-if _carga:                                                          # carpetas elegidas por la persona
-    data_dir, profiles_dir = _carga["dir"], ""
+data_dir, profiles_dir = _carga["dir"], _carga.get("perfiles") or ""
 _aprobadas = correcciones.aprobaciones(LOG, str(data_dir))
 try:
     res = (load_corregido(data_dir, profiles_dir, st.session_state.ver,
@@ -356,7 +319,6 @@ cfg = res.config
 _dirs = [d for d in (data_dir, profiles_dir) if d]
 _ver = verify_hashes(res.input_hashes, _dirs)
 n_hash_ok = sum(1 for v in _ver.values() if v["status"] == "OK")
-synthetic = "synthetic" in Path(data_dir).parts
 
 with period_box:
     period = st.radio("Período", list(res.periods), format_func=lambda p: f"{p} ({res.periods[p].kind})")
@@ -366,8 +328,6 @@ with status_box:
         html(f'<div class="nx-ok">{n_hash_ok}/{len(_ver)} archivos íntegros</div>')
     else:
         st.error("Archivos modificados. Vuelve a ejecutar.")
-    if synthetic:
-        st.caption("Datos sintéticos")
 with st.sidebar:
     extras.render_descarga(res, period, data_dir)
 st.sidebar.markdown('<div class="nx-crew">Hecho por Cuz Cuz Crew</div>', unsafe_allow_html=True)
@@ -387,8 +347,6 @@ findings = sorted([f for f in res.findings if f.period in (None, period)],
 currencies = sorted({c.currency for c in cfg.companies.values()})
 
 # ------------------------------------------------------------------ menu horizontal + encabezado
-if demo:
-    st.error("DEMOSTRACIÓN: datos de prueba con errores sembrados", icon=":material/science:")
 section = st.radio("Sección", SECTIONS, key="nav", horizontal=True, label_visibility="collapsed",
                    format_func=lambda x: NAV_LABEL.get(x, x), width="stretch")
 head, badge_col = st.columns([5, 1.1], vertical_alignment="center")
@@ -418,7 +376,7 @@ props_abiertas = correcciones.proponer(res)
 # ------------------------------------------------------------------ Inicio (resumen del mes)
 if section == "Inicio":
     heading("Resumen de la carga")
-    resumen_carga.render(res, props_abiertas, demo=demo, nota=resumen_carga.NOTA_CARGA if _carga else None)
+    resumen_carga.render(res, props_abiertas, nota=resumen_carga.NOTA_CARGA)
     explicar.render(res, period, props_abiertas)
     st.write("")
     left, right = st.columns([3, 2], gap="large")
@@ -721,5 +679,4 @@ if section == "Perfiles e integridad":
 # ------------------------------------------------------------------ Asistente (prototipo, opcional)
 if section == "Asistente":
     from asistente import tab as tab_asistente
-    tab_asistente.render(res, period, "Tus carpetas" if _carga else escenario, demo, props_abiertas,
-                         nota=resumen_carga.NOTA_CARGA if _carga else None)
+    tab_asistente.render(res, period, "Tus carpetas", False, props_abiertas, nota=resumen_carga.NOTA_CARGA)

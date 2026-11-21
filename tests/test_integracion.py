@@ -12,7 +12,7 @@ APP = str(ROOT / "app.py")
 PERIODOS = sorted(KEY["consolidado_esperado_usd"])
 SECCIONES = ["Inicio", "Estados financieros", "Alertas y errores", "Hallazgos", "Intercompañía", "Trazabilidad",
              "Indicadores", "Variaciones", "Simulador", "Perfiles e integridad", "Ayuda", "Asistente"]
-ESCENARIOS = ["Datos base", "Datos con errores (demostración)"]
+CARPETAS = {"synthetic": ROOT / "profiles", "demo_errores": ROOT / "data" / "demo_errores" / "perfiles", "demo": None}
 FALLA = ("falló", "No se pudo", "no define render", "Traceback", "Exception", "Próximamente")
 
 
@@ -55,10 +55,11 @@ def en_periodo(at, periodo):
 
 
 # ================================================================== recorre todas las secciones
-@pytest.mark.parametrize("escenario", ESCENARIOS)
+@pytest.mark.parametrize("carpeta", list(CARPETAS))
 @pytest.mark.parametrize("periodo", PERIODOS)
-def test_ninguna_seccion_muestra_errores_en_ningun_periodo_ni_escenario(app, periodo, escenario):
-    app.radio(key="escenario").set_value(escenario).run()
+def test_ninguna_seccion_muestra_errores_en_ningun_periodo_ni_carpeta(app, periodo, carpeta):
+    from conftest import cargar
+    cargar(app, ROOT / "data" / carpeta, CARPETAS[carpeta])
     at = en_periodo(app, periodo)
     nav = at.radio(key="nav")
     assert len(nav.options) == len(SECCIONES) and len(at.tabs) == 0
@@ -66,7 +67,7 @@ def test_ninguna_seccion_muestra_errores_en_ningun_periodo_ni_escenario(app, per
         ir(at, sec)
         for t in textos(at):
             for palabra in FALLA:
-                assert palabra not in t, f"{escenario} {periodo} {sec}: aparece '{palabra}' en: {t[:120]}"
+                assert palabra not in t, f"{carpeta} {periodo} {sec}: aparece '{palabra}' en: {t[:120]}"
 
 
 @pytest.mark.parametrize("periodo", PERIODOS)

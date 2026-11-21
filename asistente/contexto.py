@@ -24,8 +24,8 @@ PESTANAS = {
     "Perfiles e integridad": "Cómo se lee cada archivo, versión y aprobación del perfil, y el SHA-256 de cada archivo.",
     "Ayuda": "Glosario, preguntas frecuentes y lo que NEXUS no puede detectar.",
 }
-NOTA_BASE = "Los datos base ya incluyen los 9 errores del reto."
-NOTA_DEMO = "Esta demostración parte de los datos base (que ya incluyen los 9 errores del reto) y suma 7 errores más."
+NOTA_CARGA = ("Estos datos vienen de las carpetas que la persona eligió; los errores los detectó el motor al leer "
+              "esos archivos.")
 
 
 def _m(d) -> str:
@@ -45,7 +45,7 @@ def construir_contexto(res, period: str, escenario: str, demo: bool = False, pro
               "utilidad_neta", "activo_total", "pasivo_total", "patrimonio")
     ctx = {
         "escenario": escenario, "periodo": period, "tipo_periodo": pr.kind,
-        "nota_escenario": nota if nota is not None else (NOTA_DEMO if demo else NOTA_BASE),
+        "nota_escenario": nota if nota is not None else NOTA_CARGA,
         "estado_periodo": {"provisional": pr.provisional, "razones": list(pr.provisional_reasons),
                            "rango_utilidad_neta_usd": [_m(pr.utility_range[0]), _m(pr.utility_range[1])]
                            if pr.utility_range else None,
