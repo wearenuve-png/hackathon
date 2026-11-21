@@ -34,6 +34,21 @@ GLOSARIO = [
      "Resume cuantos registros del periodo estan limpios (entran al consolidado) frente a bloqueados o pendientes. "
      "ALTA: periodo definitivo y al menos 99 % limpio; MEDIA: al menos 95 % limpio y sin empresas faltantes; "
      "BAJA: en cualquier otro caso. Es una regla simple, no una probabilidad."),
+    ("Ficha de hallazgo",
+     "Cada hallazgo bloqueado o marcado tiene una ficha: que paso, donde (archivo, hoja y fila), por que importa "
+     "(impacto en USD y en la utilidad), la causa PROBABLE y la accion humana recomendada. La causa siempre es una "
+     "hipotesis y nunca se atribuye a una persona; NEXUS no corrige ni convierte nada por su cuenta."),
+    ("Diagnóstico de balance descuadrado",
+     "Cuando activo no es igual a pasivo + patrimonio por una diferencia D, NEXUS busca en orden causas candidatas: "
+     "un registro con importe igual a D, un registro cuyo importe x 2 es D (signo invertido), un duplicado por D, "
+     "registros bloqueados o pendientes que suman D, o una diferencia de tasa. Si ninguna coincide, dice 'causa no "
+     "identificada' y muestra los registros mas cercanos. Son coincidencias numericas, no pruebas."),
+    ("Tasa sospechosa",
+     "Una tasa de cambio que cambia mas de un umbral (15 % por defecto, configurable) frente al mes anterior, por "
+     "ejemplo 0.05 que pasa a 0.5. Se marca con su impacto en USD y se pide confirmacion; no se bloquea ni se corrige."),
+    ("Posible reenvío",
+     "El mismo archivo (mismo SHA-256) o los mismos IDs de transaccion ya cargados en una ejecucion anterior. Solo "
+     "advierte, con la fecha de la ejecucion previa; requiere activar el historial."),
     ("SIMULACIÓN",
      "El simulador recalcula en memoria el consolidado y los indicadores con una tasa distinta (-10 % a +10 %). "
      "No cambia datos, tasas ni archivos."),

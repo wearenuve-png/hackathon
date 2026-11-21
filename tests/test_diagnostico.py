@@ -195,3 +195,23 @@ def test_la_pestana_hallazgos_muestra_contador_y_fichas():
     assert not at.exception
     texto = " ".join(m.value for m in at.markdown)
     assert "Probable alias de GTQ" in texto and "aprobación humana" in texto
+
+
+# ================================================================== documentacion de la fase 5
+def test_la_documentacion_refleja_las_reglas_nuevas_y_las_limitaciones_que_cambian():
+    doc = (ROOT / "docs" / "VERIFICACION.md").read_text(encoding="utf-8")
+    for t in ("TAS-01", "REE-01", "REE-02", "Cambios en las limitaciones", "| L14 |", "| L15 |", "pestaña **Hallazgos**"):
+        assert t in doc, t
+    for n in ("| 12 |", "| 13 |", "| 14 |"):
+        assert n in doc
+    guion = (ROOT / "docs" / "GUION_DEMO.md").read_text(encoding="utf-8")
+    assert "Pestaña Hallazgos" in guion and "Ficha de balance descuadrado" in guion
+    assert "el balance cuadra, así que esta ficha no aparece en la demo" in " ".join(guion.split())   # sin prometer de mas
+
+
+def test_la_ayuda_explica_fichas_balance_tasa_y_reenvio():
+    from nexus.ui.tab_ayuda import GLOSARIO
+    terminos = {t for t, _ in GLOSARIO}
+    assert {"Ficha de hallazgo", "Diagnóstico de balance descuadrado", "Tasa sospechosa", "Posible reenvío"} <= terminos
+    texto = " ".join(d for _, d in GLOSARIO)
+    assert "nunca se atribuye a una persona" in texto and "coincidencias numericas" in texto
