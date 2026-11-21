@@ -170,12 +170,12 @@ BASE = {
 #   cuenta vendedor, cuenta comprador, genera saldo CxC/CxP)
 IC_OPS = [
     ("2026-10", "AF-IC-2610", "EMP001", "EMP002", 400_000, 400_000, "4000", "5000", True),
-    ("2026-10", "DC-IC-2610-HN", "EMP002", "EMP003", 120_000, 375_000, "4000", "5000", True),
+    ("2026-10", "DC-IC-2610-MX", "EMP002", "EMP003", 120_000, 375_000, "4000", "5000", True),
     ("2026-10", "DC-IC-2610-SV", "EMP002", "EMP004", 80_000, 10_000, "4000", "5000", True),
     ("2026-10", "TF-IC-2610", "EMP005", "EMP003", 250_000, 250_000, "4100", "6200", False),
     ("2026-10", "FI-IC-2610", "EMP006", "EMP003", 8_000, 200_000, "4000", "5000", False),
     ("2026-11", "AF-IC-2611", "EMP001", "EMP002", 440_000, 440_000, "4000", "5000", True),
-    ("2026-11", "DC-IC-2611-HN", "EMP002", "EMP003", 160_000, 450_000, "4000", "5000", True),  # error 6
+    ("2026-11", "DC-IC-2611-MX", "EMP002", "EMP003", 160_000, 450_000, "4000", "5000", True),  # error 6
     ("2026-11", "TF-IC-2611", "EMP005", "EMP003", 250_000, 250_000, "4100", "6200", False),
     ("2026-12", "AF-IC-2612", "EMP001", "EMP002", 420_000, 420_000, "4000", "5000", True),
     ("2026-12", "TF-IC-2612", "EMP005", "EMP003", 260_000, 260_000, "4100", "6200", False),
@@ -268,11 +268,11 @@ def build_lines(rnd):
                 L.append(line(cid, p, "UNMAPPED", S(cid, 120_000), local=UNMAPPED_NAME, status="pending_mapping",
                               error=5))                                                  # error 5
             for o in ics_sell:
-                st, err = ("ic_discrepancy", 6) if o[1] == "DC-IC-2611-HN" else ("ok", None)
+                st, err = ("ic_discrepancy", 6) if o[1] == "DC-IC-2611-MX" else ("ok", None)
                 L.append(line(cid, p, o[6], S(cid, o[4]), cp_text=ALIAS_USED[(cid, o[3])], cp_id=o[3], txn=o[1],
                               desc=f"Venta intercompania {o[1]}", date=date, status=st, error=err))
             for o in ics_buy:
-                st, err = ("ic_discrepancy", 6) if o[1] == "DC-IC-2611-HN" else ("ok", None)
+                st, err = ("ic_discrepancy", 6) if o[1] == "DC-IC-2611-MX" else ("ok", None)
                 L.append(line(cid, p, o[7], S(cid, o[5]), cp_text=ALIAS_USED[(cid, o[2])], cp_id=o[2], txn=o[1],
                               desc=f"Compra intercompania {o[1]}", date=date, status=st, error=err))
             # totales
@@ -291,11 +291,11 @@ def build_lines(rnd):
             bg = [line(cid, p, k, amounts[k], date=date) for k in ("1000", "1100", "1200", "1500", "2000",
                                                                    "2100", "2500", "3000") if k in amounts]
             for o in [o for o in ics_sell if o[8]]:
-                st, err = ("ic_discrepancy", 6) if o[1] == "DC-IC-2611-HN" else ("ok", None)
+                st, err = ("ic_discrepancy", 6) if o[1] == "DC-IC-2611-MX" else ("ok", None)
                 bg.append(line(cid, p, "1100", S(cid, o[4]), cp_text=ALIAS_USED[(cid, o[3])], cp_id=o[3], txn=o[1],
                                desc=f"Saldo por cobrar intercompania {o[1]}", date=date, status=st, error=err))
             for o in [o for o in ics_buy if o[8]]:
-                st, err = ("ic_discrepancy", 6) if o[1] == "DC-IC-2611-HN" else ("ok", None)
+                st, err = ("ic_discrepancy", 6) if o[1] == "DC-IC-2611-MX" else ("ok", None)
                 bg.append(line(cid, p, "2000", S(cid, o[5]), cp_text=ALIAS_USED[(cid, o[2])], cp_id=o[2], txn=o[1],
                                desc=f"Saldo por pagar intercompania {o[1]}", date=date, status=st, error=err))
             act = sum(x["amount"] for x in bg if x["code"][0] == "1")
