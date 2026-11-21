@@ -33,7 +33,7 @@ def at():
 
 
 def test_arranca_sin_errores_y_con_las_cuatro_pantallas(at):
-    assert [t.label for t in at.tabs] == ["Resultados y balance", "Alertas y exclusiones", "Trazabilidad",
+    assert [t.label for t in at.tabs] == ["Resultados y balance", "Alertas y exclusiones", "Hallazgos", "Trazabilidad",
                                           "Perfiles por empresa", "Indicadores", "Variaciones", "Simulador", "Ayuda"]
     assert list(at.sidebar.radio[0].options) == ["2026-10 (real)", "2026-11 (real)", "2026-12 (presupuesto)"]
 
@@ -67,7 +67,7 @@ def test_noviembre_muestra_la_discrepancia_intercompania(at):
 def test_trazabilidad_llega_a_archivo_hoja_y_fila(at):
     at.selectbox[0].select("4000 - Ingresos por ventas").run()
     assert not at.exception
-    t = next(f for f in frames(at) if "Archivo" in f.columns and "Fila" in f.columns)
+    t = next(f for f in frames(at) if "Archivo" in f.columns and "Fila" in f.columns and "Tasa" in f.columns)
     assert len(t) > 0 and (t["Archivo"] != "").all() and (t["Fila"] > 0).all()
     assert set(t.columns) >= {"Hoja", "Importe original", "Moneda", "Tasa", "Importe USD"}
     assert t["Archivo"].str.endswith((".xlsx", ".csv", ".json")).all()

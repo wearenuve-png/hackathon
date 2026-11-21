@@ -10,7 +10,7 @@ import streamlit as st
 from ..audit import build_audit_package
 from ..confidence import ALTA, MEDIA, confidence
 from ..variance import view
-from . import tab_ayuda, tab_indicadores, tab_simulador, tab_variaciones
+from . import tab_ayuda, tab_hallazgos, tab_indicadores, tab_simulador, tab_variaciones
 
 
 def render_confianza(res, period) -> None:
@@ -41,7 +41,10 @@ def render_header(res, period, data_dir, profiles_dir) -> None:
     render_descarga(res, period, data_dir)
 
 
-def render_extra_tabs(res, period, data_dir, profiles_dir, tab_ind, tab_var, tab_sim, tab_help) -> None:
+def render_extra_tabs(res, period, data_dir, profiles_dir, tab_ind, tab_var, tab_sim, tab_help, tab_hall=None) -> None:
+    if tab_hall is not None:
+        with tab_hall:
+            tab_hallazgos.render(res, period)
     with tab_ind:
         tab_indicadores.render(res, period)
     with tab_var:
