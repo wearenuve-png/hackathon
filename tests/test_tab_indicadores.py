@@ -52,7 +52,10 @@ def test_etiqueta_supuesto_y_provisional_visibles():
     at = app()
     assert any("SUPUESTO" in w.value for w in at.warning)
     assert any("PROVISIONAL" in e.value for e in at.error)
-    assert [m.label for m in at.metric] == ["ROIC (periodo)", "ROCE (periodo)", "EVA (periodo, USD)"]
+    assert [m.label for m in at.metric] == ["ROIC (mensual)", "ROCE (mensual)", "EVA (mensual, USD)"]
+    assert all(not m.delta for m in at.metric)                                    # nada anualizado en la vista principal
+    pie = [c.value for c in at.caption if "Anualizados" in c.value]
+    assert len(pie) == 1 and "no son representativos por ser datos sinteticos" in pie[0]
 
 
 @pytest.mark.parametrize("periodo", list(KEY["consolidado_esperado_usd"]))

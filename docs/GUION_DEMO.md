@@ -66,8 +66,10 @@ El balance cuadra.»
 **Mostrar:** período 2026-11, tabla de intercompañía.
 **Decir:** «Distribuidora Central dice haber vendido 20,000 dólares a Ferrex México; México dice haber
 comprado 18,000. NEXUS no elimina a ciegas: abre una discrepancia de **2,000 dólares** para revisión y marca
-el período como provisional. Aparecen dos filas porque la discrepancia afecta tanto la operación (la venta)
-como el saldo (cuenta por cobrar y por pagar).»
+el período como provisional. Es una sola diferencia: afecta tanto la operación (la venta) como el saldo (cuenta por
+cobrar y por pagar), y no se elimina ninguna de las dos.»
+*(En la tabla de la interfaz la misma discrepancia puede verse en dos filas, una por la operación y otra por el
+saldo; en el script de respaldo se muestra una sola vez.)*
 **Cifras:** 20,000 vs 18,000 = 2,000 USD, referencia DC-IC-2611-MX.
 
 ### 6. De una cifra a su registro: Ingresos por ventas (cuenta 4000) (0:30)

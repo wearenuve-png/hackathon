@@ -100,14 +100,18 @@ def run_demo(datos, perfiles, salida, out=print) -> dict:
     k["eliminaciones_conciliadas"] = sum(1 for x in res.matches if x.period == PERIODO and x.status == "RECONCILED")
 
     paso(5, "La discrepancia intercompania que NO se elimina", out)
-    out("Aparecen dos filas porque la discrepancia afecta tanto la operacion (la venta) como el saldo (cuenta por "
-        "cobrar y por pagar).")
     k["discrepancias"] = []
+    unidas = {}
     for x in [x for x in res.matches if x.status == "DISCREPANCY"]:
-        out(f"  {x.period} {x.seller_id} -> {x.buyer_id} ref {x.reference} ({'saldo' if x.statement == 'BG' else 'operacion'}): "
-            f"{x.seller_id} {m(x.seller_usd)} vs {x.buyer_id} {m(x.buyer_usd)} USD = diferencia {m(x.difference_usd)} "
-            f"USD. No se elimina; se abre para revision.")
         k["discrepancias"].append({"reference": x.reference, "period": x.period, "difference": x.difference_usd})
+        unidas.setdefault((x.period, x.seller_id, x.buyer_id, x.reference), []).append(x)
+    for (per, vend, comp, ref), xs in unidas.items():
+        x = xs[0]
+        afecta = " y ".join("la operacion (la venta)" if y.statement == "ER" else
+                            "el saldo (cuenta por cobrar y por pagar)" for y in sorted(xs, key=lambda y: y.statement != "ER"))
+        out(f"  {per} {vend} -> {comp} ref {ref}: {vend} {m(x.seller_usd)} vs {comp} {m(x.buyer_usd)} USD = "
+            f"diferencia {m(x.difference_usd)} USD. No se elimina; se abre para revision.")
+        out(f"  Se muestra una sola vez: la misma diferencia afecta {afecta}.")
 
     paso(6, "De una cifra a su registro original: Ingresos por ventas (cuenta 4000) -> archivo, hoja y fila", out)
     t = trace(PERIODO, "4000", res)
