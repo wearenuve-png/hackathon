@@ -85,3 +85,11 @@ def test_sin_carpeta_de_perfiles_usa_deteccion_automatica(at):
     assert not at.exception
     perf = next(f for f in frames(at) if "Ultima carga" in f.columns)
     assert set(perf["Ultima carga"]) == {"Sin perfil (auto)"}
+
+
+def test_muestra_la_fuente_y_la_integridad_de_los_archivos(at):
+    assert any("Fuente: carpeta del servidor" in e.value for e in at.success)
+    integ = next(f for f in frames(at) if "SHA-256 registrado" in f.columns)
+    assert len(integ) >= 6 + 5 and set(integ["Estado"]) == {"OK"}               # empresas + tablas + perfiles
+    assert all(len(h) == 64 for h in integ["SHA-256 registrado"])
+    assert not at.sidebar.get("file_uploader")                                   # sin subida manual

@@ -12,6 +12,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import pandas as pd
 import streamlit as st
 
+from nexus.audit import verify_hashes
 from nexus.consolidation import trace
 from nexus.pipeline import run
 
@@ -35,7 +36,7 @@ def load(data_dir: str, profiles_dir: str, version: int):
 with st.sidebar:
     st.title("NEXUS")
     st.caption("Motor de consolidacion financiera multiempresa. Datos SINTETICOS (Grupo Ferrex).")
-    data_dir = st.text_input("Carpeta de datos", str(ROOT / "data" / "synthetic"))
+    data_dir = st.text_input("Carpeta del servidor con los archivos (solo lectura)", str(ROOT / "data" / "synthetic"))
     profiles_dir = st.text_input("Carpeta de perfiles (vacio = deteccion automatica)", str(ROOT / "profiles"))
     if "ver" not in st.session_state:
         st.session_state.ver = 0
@@ -48,9 +49,8 @@ with st.sidebar:
         st.stop()
     period = st.radio("Periodo", list(res.periods), format_func=lambda p: f"{p} ({res.periods[p].kind})")
     st.caption(f"Ejecucion {res.run_id} | reglas {res.config.rules_version}")
-    with st.expander("Huellas de los archivos de entrada"):
-        for f, h in res.input_hashes.items():
-            st.text(f"{f}\n  {h[:16]}...")
+    st.success("Fuente: carpeta del servidor")
+    st.caption("NEXUS lee los archivos en solo lectura, sin subida manual y sin conexion a internet.")
 
 pr = res.periods[period]
 cfg = res.config
@@ -80,6 +80,8 @@ else:
 
 tab_res, tab_alert, tab_trace, tab_prof = st.tabs(
     ["Resultados y balance", "Alertas y exclusiones", "Trazabilidad", "Perfiles por empresa"])
+_dirs = [d for d in (data_dir, profiles_dir) if d]
+_ver = verify_hashes(res.input_hashes, _dirs)
 
 # ------------------------------------------------------------------ a/b) estados financieros
 with tab_res:
@@ -209,6 +211,13 @@ with tab_prof:
     for r in res.load_reports.values():
         for note in r.notes:
             st.warning(f"{r.company_id}: {note}")
+    st.subheader("Integridad de los archivos leidos (SHA-256)")
+    st.caption(f"Fuente: carpeta del servidor, solo lectura: {data_dir}. El hash se registro al leer y se vuelve a "
+               f"calcular ahora.")
+    st.dataframe(pd.DataFrame([{"Archivo": f, "Estado": v["status"], "SHA-256 registrado": v["registered"]}
+                               for f, v in _ver.items()]), width="stretch", hide_index=True)
+    if any(v["status"] != "OK" for v in _ver.values()):
+        st.error("Algun archivo cambio o falta desde que se leyo. Vuelve a ejecutar el motor.")
     if not cfg.profiles:
         st.info("No hay perfiles cargados: el motor uso deteccion automatica de formatos.")
     pend = [c for c, p in cfg.profiles.items() if p.approval_status != "APPROVED"]

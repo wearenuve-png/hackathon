@@ -63,7 +63,7 @@ def main():
         for x in disc:
             print(f"   ! {x.status} {x.seller_id}->{x.buyer_id} ref {x.reference} ({x.statement}): "
                   f"{m(x.seller_usd).strip()} vs {m(x.buyer_usd).strip()} USD, diferencia {m(x.difference_usd).strip()}")
-    print(f"\nEvidencia exportada en: {audit.write_run(r, a.salida)}")
+    print(f"\nEvidencia exportada en: {audit.write_run(r, a.salida, source_dir=a.datos)}")
 
 
 if __name__ == "__main__":
