@@ -26,7 +26,7 @@ from nexus.audit import verify_hashes
 from nexus.consolidation import trace
 from nexus.pipeline import run
 from nexus.schemas import BLOCK, BLOCKED, EXCLUDED_DUPLICATE, INFO, PENDING_MAPPING, WARN
-from nexus.ui import correcciones, explicar, extras, resumen_carga, tab_ayuda, tab_hallazgos, tab_simulador
+from nexus.ui import correcciones, explicar, extras, panel_seguridad, resumen_carga, tab_ayuda, tab_hallazgos, tab_simulador
 
 ROOT = Path(__file__).resolve().parent
 st.set_page_config(page_title="NEXUS | Consolidación", layout="wide", initial_sidebar_state="expanded")
@@ -593,6 +593,8 @@ with tab_prof:
                                for f, v in _ver.items()]), width="stretch", hide_index=True)
     if n_hash_ok != len(_ver):
         st.error("Algún archivo cambió o falta desde que se leyó. Vuelve a ejecutar el motor.")
+
+    panel_seguridad.render(res, data_dir, st.session_state.ver, n_hash_ok, len(_ver))
 
     for cid, p in cfg.profiles.items():
         with st.expander(f"Perfil de {cid} (versión {p.profile_version})"):

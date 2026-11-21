@@ -29,6 +29,7 @@ from ..profiles import apply_profiles, load_profiles
 from ..schemas import (BLOCK, BLOCKED, EXCLUDED_DUPLICATE, OK, USD_PER_LOCAL, WARN, Adjustment, Finding, FxRate,
                        Record)
 from ..text import norm, parse_amount
+from . import seguridad
 
 ROOT = Path(__file__).resolve().parent.parent.parent
 def log_por_defecto() -> Path:
@@ -251,9 +252,10 @@ def proponer(res) -> List[Propuesta]:
 def registrar(log_path, evento: dict) -> dict:
     p = Path(log_path)
     p.parent.mkdir(parents=True, exist_ok=True)
-    ev = {"ts": dt.datetime.now().isoformat(timespec="seconds"), **evento}
+    ev = seguridad.encadenar(p, {"ts": dt.datetime.now().isoformat(timespec="seconds"), **evento})
     with open(p, "a", encoding="utf-8") as f:
         f.write(json.dumps(ev, ensure_ascii=False, default=str) + "\n")
+    seguridad.registrar_cabeza(p)
     return ev
 
 
@@ -298,6 +300,7 @@ def restablecer(log_path) -> int:
     p = Path(log_path)
     p.parent.mkdir(parents=True, exist_ok=True)
     p.write_text("", encoding="utf-8")
+    seguridad.quitar_cabeza(p)
     return n
 
 

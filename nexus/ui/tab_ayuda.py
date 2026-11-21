@@ -65,7 +65,32 @@ FAQ = [
      "es un modelo de lenguaje que solo explica resultados ya calculados: no calcula, no corrige y no aprueba."),
     ("¿Se modifican mis archivos?",
      "No. Se leen en solo lectura; el SHA-256 de cada archivo se registra al leer y se vuelve a comprobar."),
+    ("¿Cómo sé que nadie cambió un archivo o la bitácora de aprobaciones?",
+     "En «Perfiles e integridad» → «Seguridad e integridad»: las huellas de los archivos se comparan con el manifiesto "
+     "firmado de la ejecución anterior y la bitácora es una cadena de hashes. Detecta alteraciones; no es una defensa "
+     "contra intrusos (la tabla «Qué protege / Qué NO protege» lo dice claro)."),
 ]
+
+ETIQUETA_FAQ = "Preguntas frecuentes · respuestas predefinidas"
+
+
+def _faq() -> None:
+    """Mini chat de burbujas SIN campo de texto y sin modelo: cada boton agrega la pregunta y su respuesta fija."""
+    st.caption(ETIQUETA_FAQ)
+    hist = st.session_state.setdefault("faq_hist", [])
+    cols = st.columns(2)
+    for i, (q, _) in enumerate(FAQ):
+        if cols[i % 2].button(q, key=f"faq_{i}", use_container_width=True):
+            hist.append(i)
+    for i in hist:
+        with st.chat_message("user"):
+            st.markdown(FAQ[i][0])
+        with st.chat_message("assistant", avatar="ℹ️"):
+            st.caption("Sistema · respuesta predefinida")
+            st.markdown(FAQ[i][1])
+    if hist and st.button("Limpiar", key="faq_limpiar"):
+        st.session_state["faq_hist"] = []
+        st.rerun()
 
 
 def render() -> None:
@@ -76,9 +101,7 @@ def render() -> None:
         with st.expander(termino):
             st.markdown(texto)
     st.markdown("### Preguntas frecuentes")
-    for q, a in FAQ:
-        with st.expander(q):
-            st.markdown(a)
+    _faq()
     st.markdown("### Qué NO puede detectar NEXUS")
     st.caption("No prometemos detectar todo error. Estas son las limitaciones conocidas (detalle en "
                "docs/VERIFICACION.md).")
