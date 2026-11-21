@@ -130,3 +130,45 @@ def test_el_script_corre_solo_en_menos_de_un_minuto_y_exporta_evidencia(tmp_path
         assert cifra in r.stdout, cifra
     runs = list(Path(tmp_path).glob("run-*"))
     assert len(runs) == 1 and (runs[0] / "run.json").exists() and (runs[0] / "records.csv").exists()
+
+
+# ---------------------------------------------------------------- ajustes de redaccion del guion
+def test_indicadores_en_el_cuerpo_son_solo_mensuales(demo):
+    _, txt, _ = demo
+    cuerpo = txt.split("PASO 7:")[1].split("PASO 8:")[0]
+    lineas = [ln for ln in cuerpo.splitlines() if ln.startswith(("ROIC", "ROCE", "EVA"))]
+    assert len(lineas) == 3 and all("del mes" in ln for ln in lineas)
+    assert not any("anualiz" in ln for ln in lineas)                         # nada anualizado en el cuerpo
+    pie = [ln for ln in cuerpo.splitlines() if "anualizado" in ln]
+    assert len(pie) == 1 and pie[0].startswith("(*) Nota al pie") and "no son representativos" in pie[0]
+
+
+def test_paso_6_aclara_por_que_difiere_del_total_de_ingresos(demo):
+    k, txt, _ = demo
+    p6 = txt.split("PASO 6:")[1].split("PASO 7:")[0]
+    assert "Ingresos por ventas (cuenta 4000)" in p6
+    cuenta = fmt(KEY["consolidado_esperado_usd"]["2026-10"]["por_cuenta"]["4000"])
+    total = fmt(KEY["consolidado_esperado_usd"]["2026-10"]["resumen"]["ingresos"])
+    otra = fmt(KEY["consolidado_esperado_usd"]["2026-10"]["por_cuenta"]["4100"])
+    nota = next(ln for ln in p6.splitlines() if ln.startswith("Nota:"))
+    assert cuenta in nota and total in nota and "otras cuentas de ingresos" in nota and otra in nota
+    assert D(total.replace(",", "")) - D(cuenta.replace(",", "")) == D(otra.replace(",", ""))   # 1,985,000 = 1,865,000 + 120,000
+
+
+def test_paso_5_explica_por_que_hay_dos_filas(demo):
+    _, txt, _ = demo
+    p5 = txt.split("PASO 5:")[1].split("PASO 6:")[0]
+    assert "dos filas" in p5 and "operacion (la venta)" in p5 and "saldo (cuenta por cobrar y por pagar)" in p5
+    assert sum(1 for ln in p5.splitlines() if "DC-IC-2611-HN" in ln) == len(KEY["discrepancias_esperadas"]) == 2
+
+
+def test_el_guion_refleja_los_ajustes():
+    g = (ROOT / "docs" / "GUION_DEMO.md").read_text(encoding="utf-8")
+    paso7 = g.split("### 7.")[1].split("### 8.")[0]
+    cuerpo7 = paso7.split("*Nota al pie")[0]
+    assert "anualiz" not in cuerpo7 and "mensuales" in cuerpo7
+    assert "no\nson representativas por ser datos sintéticos" in paso7
+    paso6 = g.split("### 6.")[1].split("### 7.")[0]
+    assert "Ingresos por ventas (cuenta 4000)" in paso6 and "1,985,000" in paso6 and "4100" in paso6
+    paso5 = g.split("### 5.")[1].split("### 6.")[0]
+    assert "dos filas" in paso5 and "cuenta por cobrar y por pagar" in paso5

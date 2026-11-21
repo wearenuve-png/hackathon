@@ -65,25 +65,30 @@ El balance cuadra.»
 ### 5. La discrepancia que no se elimina (0:30)
 **Mostrar:** período 2026-11, tabla de intercompañía.
 **Decir:** «Distribuidora Central dice haber vendido 20,000 dólares a Ferrex Honduras; Honduras dice haber
-comprado 18,000. NEXUS no elimina a ciegas: abre una discrepancia de **2,000 dólares** para revisión, en la
-venta y en el saldo, y marca el período como provisional.»
+comprado 18,000. NEXUS no elimina a ciegas: abre una discrepancia de **2,000 dólares** para revisión y marca
+el período como provisional. Aparecen dos filas porque la discrepancia afecta tanto la operación (la venta)
+como el saldo (cuenta por cobrar y por pagar).»
 **Cifras:** 20,000 vs 18,000 = 2,000 USD, referencia DC-IC-2611-HN.
 
-### 6. De una cifra a su registro (0:30)
+### 6. De una cifra a su registro: Ingresos por ventas (cuenta 4000) (0:30)
 **Mostrar:** pestaña *Trazabilidad*, elegir «4000 - Ingresos por ventas».
 **Decir:** «Elijo una cifra y veo de dónde sale: archivo, hoja y fila, el importe original, la moneda, la tasa del
 mes y los dólares. Aquí, Ferrex Honduras, hoja “Presupuesto HN”, fila 5: 9,000,000 lempiras por 0.04 son
 360,000 dólares. Y abajo, los ajustes: cada eliminación intercompañía con su regla y su motivo.»
+**Aclarar (una frase):** «Esta cifra es solo la cuenta 4000, ingresos por ventas. El total de ingresos del
+consolidado, 1,985,000 dólares, incluye otras cuentas de ingresos, como los ingresos por servicios (cuenta 4100) de
+Transportes Ferrex, 120,000 dólares.»
 **Cifras:** cuenta 4000: 1,948,000 antes de eliminar, 1,865,000 después (11 registros, 4 ajustes).
 
 ### 7. Indicadores (0:40)
 **Mostrar:** pestaña de indicadores (o paso 7 del script de respaldo).
 **Decir:** «ROIC, ROCE y EVA salen de las cifras consolidadas, con la fórmula y las entradas a la vista. Son
-**mensuales**, y también se muestran anualizados. El WACC de 8%, la tasa de impuesto de 25% y la definición de
-capital son **supuestos nuestros**, marcados como tales, no datos del reto; además el validador bloquea un WACC
-escrito como 8 en vez de 0.08. Con datos sintéticos, octubre da ROIC de 11.16% del mes, ROCE de 13.00% y EVA de
-305,553 dólares del mes.»
+**mensuales**. El WACC de 8%, la tasa de impuesto de 25% y la definición de capital son **supuestos nuestros**,
+marcados como tales, no datos del reto; además el validador bloquea un WACC escrito como 8 en vez de 0.08. Con
+datos sintéticos, octubre da ROIC de 11.16% del mes, ROCE de 13.00% y EVA de 305,553 dólares del mes.»
 **Cifras:** NOPAT 324,975; capital invertido 2,913,250; ROIC 11.16%; ROCE 13.00%; EVA 305,553.33 (mensual).
+*Nota al pie (solo si preguntan):* la interfaz y el script también pueden mostrar cifras anualizadas, pero **no
+son representativas por ser datos sintéticos**; no se presentan en la demo.
 
 ### 8. Una variación explicada (0:30) — PENDIENTE
 No construido. Si no se integra, decir en este punto: «La comparación entre períodos con explicación basada en
