@@ -1,0 +1,49 @@
+{
+  "company_id": "EMP005",
+  "company_name": "Transportes Ferrex S. de R.L.",
+  "country": "Honduras",
+  "functional_currency": "HNL",
+  "source": {
+    "type": "csv",
+    "file": "transportes_ferrex_hn.csv"
+  },
+  "columns": {
+    "period": "fecha",
+    "account": "cuenta",
+    "amount": "monto",
+    "currency": "moneda",
+    "counterparty": "cia_relacionada",
+    "transaction_id": "num_doc"
+  },
+  "accounts": {
+    "Alquiler de predio": "6100",
+    "Caja": "1000",
+    "Capital": "3000",
+    "Combustible y lubricantes": "6300",
+    "Cuentas por cobrar": "1100",
+    "Cuentas por pagar": "2000",
+    "Depreciación de vehículos": "6400",
+    "Impuesto sobre la renta": "8000",
+    "Impuestos por pagar": "2100",
+    "Ingresos por servicios de transporte": "4100",
+    "Intereses": "7000",
+    "Mantenimiento de flota": "6300",
+    "Préstamo vehicular": "2500",
+    "Salarios de pilotos": "6000",
+    "Utilidades acumuladas": "3100",
+    "Vehículos neto": "1500"
+  },
+  "sheets": [],
+  "sign_convention": "signed_amount",
+  "currency_mode": "column",
+  "currency_key": "moneda",
+  "counterparty_aliases": [
+    "Transportes Ferrex"
+  ],
+  "schema_version": 1,
+  "profile_version": 1,
+  "approval_status": "PENDING",
+  "approved_by": null,
+  "approved_at": null,
+  "profile_hash": "101d1aad705cf65b41d7e09a211446a2085763c21fab6a5bdbd06f0f53d40140"
+}

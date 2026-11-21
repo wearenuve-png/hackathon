@@ -32,3 +32,22 @@ def find(records, loc):
             and r.source_row == loc["row"]]
     assert len(hits) == 1, f"No se encontro exactamente un registro en {loc}"
     return hits[0]
+
+
+@pytest.fixture()
+def built_profiles(cfg, tmp_path):
+    """Perfiles generados a una carpeta temporal con la misma logica de scripts/build_profiles.py."""
+    import csv
+    from nexus import ingestion
+    from nexus.profiles import build_profile, save_profile
+    names = {}
+    with open(DATA / "equivalencias.csv", encoding="utf-8-sig", newline="") as f:
+        for r in csv.DictReader(f):
+            names.setdefault(r["company_id"], {})[r["cuenta_local"]] = r["account_code"]
+    types = {".xlsx": "xlsx", ".csv": "csv", ".json": "json"}
+    for c in cfg.companies.values():
+        p = DATA / c.file
+        tables = ingestion.READERS[p.suffix.lower()](p)
+        save_profile(build_profile(c, tables, names[c.company_id], types[p.suffix.lower()],
+                                   approved_by="Tester"), tmp_path)
+    return tmp_path

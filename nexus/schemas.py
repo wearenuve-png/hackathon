@@ -60,6 +60,8 @@ class Record:
     flags: List[str] = field(default_factory=list)
     ic_match_id: Optional[str] = None
     adjustment_ids: List[str] = field(default_factory=list)
+    debit: Optional[Decimal] = None              # solo si la fuente trae debito/credito
+    credit: Optional[Decimal] = None
 
     def block(self, status: str, reason: str) -> None:
         """El primer estado no-OK manda; los motivos se acumulan."""
@@ -94,6 +96,56 @@ class Account:
     cls: str                      # ingreso, costo, gasto_operativo, ..., activo, pasivo, patrimonio, total
     current: Optional[bool] = None
     total_of: List[str] = field(default_factory=list)
+    nature: Optional[str] = None  # "D" (deudora) / "C" (acreedora); por defecto segun la clase
+
+
+SUPPORTED_PROFILE_SCHEMA = 1
+SOURCE_TYPES = {"xlsx", "csv", "json"}
+SIGN_SIGNED = "signed_amount"
+SIGN_DEBIT_CREDIT = "debit_credit"
+CURRENCY_MODES = {"column", "file_key", "company_config"}
+
+
+@dataclass
+class SourceSpec:
+    type: str                      # xlsx / csv / json
+    file: str
+
+
+@dataclass
+class CompanyProfile:
+    """Como interpretar la fuente de UNA empresa. Se valida, se versiona y registra quien lo aprobo."""
+    company_id: str
+    company_name: str
+    country: str
+    functional_currency: str
+    source: SourceSpec
+    columns: Dict[str, str]                        # campo canonico -> encabezado exacto en la fuente
+    accounts: Dict[str, str]                       # cuenta local -> codigo del catalogo comun
+    sheets: List[str] = field(default_factory=list)  # hojas/secciones que deben existir
+    sign_convention: str = SIGN_SIGNED
+    currency_mode: str = "company_config"
+    currency_key: Optional[str] = None             # encabezado (column) o clave (file_key)
+    counterparty_aliases: List[str] = field(default_factory=list)
+    schema_version: int = SUPPORTED_PROFILE_SCHEMA
+    profile_version: int = 1
+    approval_status: str = "PENDING"               # APPROVED / PENDING
+    approved_by: Optional[str] = None
+    approved_at: Optional[str] = None
+    profile_hash: str = ""
+
+
+@dataclass
+class LoadReport:
+    """Resultado de la ultima carga de una empresa frente a su perfil."""
+    company_id: str
+    file: str
+    status: str                                    # MATCHED / REVIEW / AUTO (sin perfiles)
+    profile_version: Optional[int] = None
+    approval_status: Optional[str] = None
+    reasons: List[str] = field(default_factory=list)
+    notes: List[str] = field(default_factory=list)
+    n_records: int = 0
 
 
 @dataclass
@@ -106,6 +158,7 @@ class GroupConfig:
     base_currency: str = "USD"
     ic_tolerance_usd: Decimal = Decimal("1.00")
     rules_version: str = "nexus-rules-0.1"
+    profiles: Dict[str, "CompanyProfile"] = field(default_factory=dict)
 
 
 @dataclass
@@ -220,3 +273,4 @@ class RunResult:
     findings: List[Finding]
     periods: Dict[str, PeriodResult]
     input_hashes: Dict[str, str]
+    load_reports: Dict[str, "LoadReport"] = field(default_factory=dict)
