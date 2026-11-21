@@ -79,6 +79,20 @@ repositorio: `data/demo` o `data/demo_ampliado`. El selector «Elegir carpeta…
 (`brew install cloudflared`). En modo público la app **no** acepta carpetas arbitrarias de la computadora: solo las del
 proyecto (`data/demo`, `data/demo_ampliado`) o archivos subidos desde el navegador. Úsalo solo con datos sintéticos.
 
+## Publicar en Vercel (versión estática en el navegador)
+
+Vercel no puede ejecutar un servidor de Streamlit, así que `vercel/` contiene FinaCore como **sitio estático** que
+corre dentro del navegador con [stlite](https://github.com/whitphx/stlite) (Streamlit sobre WebAssembly): el
+navegador descarga Python y ejecuta `app.py` y el motor localmente; los archivos del usuario no salen de su navegador.
+
+1. En Vercel: proyecto → **Settings → General → Root Directory = `vercel`** (sin comando de compilación).
+2. Despliega la rama `feat/integracion` (o fusiónala en `main`). La primera carga tarda 20–40 s (baja Python y pandas).
+3. En «Cargar presupuestos» escribe `data/demo` o `data/demo_ampliado`, o sube los archivos.
+
+Después de **cualquier cambio en `app.py`, `nexus/`, `asistente/`, `config/` o los datos de demo** hay que regenerar
+`vercel/` con `python scripts/build_vercel.py` (una prueba falla si está desactualizado). En esta versión el Asistente
+conectado (llave de API) no está disponible; sí el modo local.
+
 ## Cargar tus propios presupuestos y Restablecer
 
 - **Cargar presupuestos** (arriba, junto a Restablecer): escribe o elige una o varias carpetas (una por línea; en macOS
