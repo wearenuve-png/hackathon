@@ -26,7 +26,7 @@ from nexus.audit import verify_hashes
 from nexus.consolidation import trace
 from nexus.pipeline import run
 from nexus.schemas import BLOCK, BLOCKED, EXCLUDED_DUPLICATE, INFO, PENDING_MAPPING, WARN
-from nexus.ui import correcciones, explicar, extras, resumen_carga, tab_ayuda, tab_demo_error, tab_hallazgos, tab_simulador
+from nexus.ui import correcciones, explicar, extras, resumen_carga, tab_ayuda, tab_hallazgos, tab_simulador
 
 ROOT = Path(__file__).resolve().parent
 st.set_page_config(page_title="NEXUS | Consolidación", layout="wide", initial_sidebar_state="expanded")
@@ -163,13 +163,15 @@ def optional_tab(module: str, title: str, what: str, res, period: str) -> None:
             st.error(f"La pestaña {title} falló: {e}")
 
 
+# ------------------------------------------------------------------ escenario (arriba, siempre visible)
+ESCENARIOS = ["Datos limpios", "Datos con errores (demostración)"]
+escenario = st.radio("Escenario", ESCENARIOS, key="escenario", horizontal=True,
+                     help="Ambos se leen en solo lectura. El segundo tiene 7 errores sembrados a propósito.")
+demo = escenario == ESCENARIOS[1]
+
 # ------------------------------------------------------------------ barra lateral
 with st.sidebar:
     html('<div class="nx-word">NEXUS</div><div class="nx-word-sub">Muchas empresas.<br>Un solo número.</div>')
-    ESCENARIOS = ["Datos limpios", "Datos con errores (demostración)"]
-    escenario = st.selectbox("Escenario", ESCENARIOS, key="escenario",
-                             help="Ambos se leen en solo lectura. El segundo tiene 7 errores sembrados.")
-    demo = escenario == ESCENARIOS[1]
     period_box = st.container()
     status_box = st.container()
     with st.expander("Configuración de la fuente"):
@@ -469,8 +471,6 @@ with tab_alert:
     st.divider()
     tab_hallazgos.render(res, period, tab_hallazgos.Contexto(LOG, str(data_dir), lambda: st.session_state.update(
         ver=st.session_state.ver + 1)))
-    st.divider()
-    tab_demo_error.render(res, period, data_dir, profiles_dir)
 
 # ------------------------------------------------------------------ Intercompañía
 with tab_ic:

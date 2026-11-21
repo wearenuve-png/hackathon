@@ -133,7 +133,7 @@ def test_si_la_demostracion_no_puede_prepararse_no_deja_carpetas(tmp_path):
     assert tmp_demo() == antes
 
 
-# ================================================================== interfaz
+# ================================================================== la interfaz ya no tiene esta demostracion
 @pytest.fixture()
 def app():
     at = AppTest.from_file(str(ROOT / "app.py"), default_timeout=120).run()
@@ -141,43 +141,30 @@ def app():
     return at
 
 
-def banner(at):
-    return [e for e in at.error if e.value == "DEMOSTRACIÓN: datos alterados en una copia temporal"]
+@pytest.mark.parametrize("escenario", ["Datos limpios", "Datos con errores (demostración)"])
+def test_la_demostracion_anterior_ya_no_esta_en_la_interfaz(app, escenario):
+    app.radio(key="escenario").set_value(escenario).run()
+    assert not app.exception
+    assert not [b for b in app.selectbox if b.key == "demo_caso" or b.label == "Demostración de errores"]
+    assert not [e for e in app.error if "datos alterados en una copia temporal" in e.value]
+    assert not [m for m in app.markdown if "Demostración de errores" in m.value]
+    assert not [b for b in app.button if b.key == "demo_volver"]
 
 
-def test_por_defecto_son_datos_reales_sin_banner(app):
-    assert app.selectbox(key="demo_caso").value == "Datos reales" and banner(app) == []
-    assert any("Estás viendo los datos reales" in c.value for c in app.caption)
-    assert not any(b.key == "demo_volver" for b in app.button)
+def test_el_unico_selector_de_escenario_esta_arriba_y_a_la_vista(app):
+    esc = [r for r in app.radio if r.key == "escenario"]
+    assert len(esc) == 1 and esc[0].label == "Escenario" and list(esc[0].options) == [
+        "Datos limpios", "Datos con errores (demostración)"]
+    assert "escenario" not in [r.key for r in app.sidebar.radio]                      # no esta escondido en la barra lateral
+    assert all(r.key != "escenario" for t in app.tabs for r in getattr(t, "radio", []))  # ni dentro de una pestana
+    assert [r.key for r in app.main.radio][:1] == ["escenario"]                         # es lo primero de la pantalla
 
 
-@pytest.mark.parametrize("nombre,causa,dif", [("borrar", "registro con importe igual al desbalance", "-8,000.00"),
-                                               ("signo", "signo invertido", "-8,000.00"),
-                                               ("duplicar", "duplicado por el importe del desbalance", "8,000.00")])
-def test_la_interfaz_muestra_el_caso_con_banner_balance_y_ficha(app, nombre, causa, dif):
-    antes, tmps = hashes(), tmp_demo()
-    et = DE.etiquetas()
-    app.selectbox(key="demo_caso").select(et[nombre]).run()
-    assert not app.exception, app.exception
-    assert len(banner(app)) == 1                                               # etiqueta clara y visible
-    assert any(b.key == "demo_volver" for b in app.button)
-    assert any("Balance descuadrado: Activo − (Pasivo + Patrimonio) = " + dif in e.value for e in app.error)
-    exito = [s.value for s in app.success if s.value.startswith("Causa esperada de este caso")]
-    assert len(exito) == 1 and causa in exito[0] and "Detectada como candidata" in exito[0]
+def test_el_diagnostico_de_balance_de_la_demostracion_anterior_se_ve_en_el_escenario_nuevo(app):
+    """Los casos de 8,000 (omitido / duplicado) y 4,000 (signo) ahora viven en data/demo_errores: el asiento omitido
+    descuadra el balance de EMP006 en 2026-12 y la ficha lista como primera candidata el registro igual al desbalance."""
+    app.radio(key="escenario").set_value("Datos con errores (demostración)").run()
+    app.sidebar.radio[0].set_value("2026-12").run()
     tx = " ".join(m.value for m in app.markdown)
-    assert "Causa probable." in tx and "Acción humana recomendada." in tx and "Causas candidatas del desbalance" in tx
-    for t in [e.value for e in app.error] + [m.value for m in app.markdown]:
-        assert "falló" not in t
-    assert hashes() == antes                                                   # originales intactos
-    app.button(key="demo_volver").click().run()                                # volver a los datos reales
-    assert app.selectbox(key="demo_caso").value == "Datos reales" and banner(app) == []
-    assert tmp_demo() == tmps                                                  # la copia temporal se borro
-    assert hashes() == antes
-
-
-def test_el_resto_de_la_app_sigue_con_los_datos_reales_durante_la_demo(app):
-    app.selectbox(key="demo_caso").select(DE.etiquetas()["borrar"]).run()
-    assert any("Activo - (Pasivo + Patrimonio) = 0.00 USD" in s.value for s in app.success)   # Estados financieros real
-    franja = " ".join(m.value for m in app.markdown if "nx-fig-v" in m.value)
-    assert "1,985,000.00" in franja
-    app.button(key="demo_volver").click().run()
+    assert "Balance descuadrado" in " ".join(e.label for e in app.expander if e.label.startswith("FCH-"))
+    assert "Causas candidatas del desbalance" in tx and "cuyo importe es igual al desbalance (8,000.00 USD)" in tx

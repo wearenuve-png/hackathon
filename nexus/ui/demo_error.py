@@ -1,5 +1,8 @@
-"""Demostracion de errores: altera una COPIA temporal de los datos, corre el pipeline en la copia y muestra el
-balance descuadrado con su ficha de diagnostico. Nunca escribe en los archivos originales ni en la carpeta de datos.
+"""Logica de la primera demostracion de errores (3 casos sobre una COPIA temporal). Ya NO se muestra en la interfaz:
+la reemplaza el escenario 'Datos con errores (demostracion)' (data/demo_errores). Se conserva porque sus pruebas
+verifican el diagnostico de balance con los casos de 8,000 y 4,000 USD (borrar, invertir el signo, duplicar).
+
+Altera una COPIA temporal de los datos y corre el pipeline en la copia. Nunca escribe en los originales.
 
 Casos (parametros en config/demo_error.json):
   borrar    un asiento de 8,000 USD: se agrega solo uno de sus dos lados (el otro 'se borro')

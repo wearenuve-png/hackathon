@@ -294,7 +294,7 @@ def app():
 
 
 def a_demo(at):
-    at.sidebar.selectbox(key="escenario").select("Datos con errores (demostración)").run()
+    at.radio(key="escenario").set_value("Datos con errores (demostración)").run()
     assert not at.exception, at.exception
     return at
 
@@ -312,14 +312,14 @@ def test_el_selector_de_escenario_muestra_el_banner_solo_en_la_demostracion(app)
     assert not [e for e in app.error if "DEMOSTRACIÓN: datos de prueba con errores sembrados" in e.value]
     a_demo(app)
     assert len([e for e in app.error if e.value == "DEMOSTRACIÓN: datos de prueba con errores sembrados"]) == 1
-    app.sidebar.selectbox(key="escenario").select("Datos limpios").run()
+    app.radio(key="escenario").set_value("Datos limpios").run()
     assert not [e for e in app.error if "errores sembrados" in e.value]
 
 
 @pytest.mark.parametrize("escenario", ["Datos limpios", "Datos con errores (demostración)"])
 @pytest.mark.parametrize("periodo", ["2026-10", "2026-11", "2026-12"])
 def test_ninguna_pestana_falla_en_ningun_escenario(app, escenario, periodo):
-    app.sidebar.selectbox(key="escenario").select(escenario).run()
+    app.radio(key="escenario").set_value(escenario).run()
     app.sidebar.radio[0].set_value(periodo).run()
     assert not app.exception, app.exception
     for t in textos(app):
