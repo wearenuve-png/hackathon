@@ -68,7 +68,7 @@ El balance cuadra.»
 comprado 18,000. NEXUS no elimina a ciegas: abre una discrepancia de **2,000 dólares** para revisión y marca
 el período como provisional. Aparecen dos filas porque la discrepancia afecta tanto la operación (la venta)
 como el saldo (cuenta por cobrar y por pagar).»
-**Cifras:** 20,000 vs 18,000 = 2,000 USD, referencia DC-IC-2611-HN.
+**Cifras:** 20,000 vs 18,000 = 2,000 USD, referencia DC-IC-2611-MX.
 
 ### 6. De una cifra a su registro: Ingresos por ventas (cuenta 4000) (0:30)
 **Mostrar:** pestaña *Trazabilidad*, elegir «4000 - Ingresos por ventas».

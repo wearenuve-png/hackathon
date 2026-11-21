@@ -27,8 +27,8 @@ Generado por `data/synthetic/generate.py`. No editar a mano.
 |---|---|---|---|---|---|
 | 2026-10 | AF-IC-2610 | operacion | EMP001 -> EMP002 | 4000 / 5000 | 50000.00 |
 | 2026-10 | AF-IC-2610 | saldo | EMP001 -> EMP002 | 1100 / 2000 | 50000.00 |
-| 2026-10 | DC-IC-2610-HN | operacion | EMP002 -> EMP003 | 4000 / 5000 | 15000.00 |
-| 2026-10 | DC-IC-2610-HN | saldo | EMP002 -> EMP003 | 1100 / 2000 | 15000.00 |
+| 2026-10 | DC-IC-2610-MX | operacion | EMP002 -> EMP003 | 4000 / 5000 | 15000.00 |
+| 2026-10 | DC-IC-2610-MX | saldo | EMP002 -> EMP003 | 1100 / 2000 | 15000.00 |
 | 2026-10 | DC-IC-2610-SV | operacion | EMP002 -> EMP004 | 4000 / 5000 | 10000.00 |
 | 2026-10 | DC-IC-2610-SV | saldo | EMP002 -> EMP004 | 1100 / 2000 | 10000.00 |
 | 2026-10 | TF-IC-2610 | operacion | EMP005 -> EMP003 | 4100 / 6200 | 10000.00 |
@@ -42,8 +42,8 @@ Generado por `data/synthetic/generate.py`. No editar a mano.
 
 ## Discrepancias (no se eliminan)
 
-- 2026-11 DC-IC-2611-HN (operacion): EMP002 20000.00 vs EMP003 18000.00 -> diferencia 2000.00 USD
-- 2026-11 DC-IC-2611-HN (saldo): EMP002 20000.00 vs EMP003 18000.00 -> diferencia 2000.00 USD
+- 2026-11 DC-IC-2611-MX (operacion): EMP002 20000.00 vs EMP003 18000.00 -> diferencia 2000.00 USD
+- 2026-11 DC-IC-2611-MX (saldo): EMP002 20000.00 vs EMP003 18000.00 -> diferencia 2000.00 USD
 
 ## Consolidado esperado (USD)
 

@@ -159,7 +159,7 @@ def test_paso_5_explica_por_que_hay_dos_filas(demo):
     _, txt, _ = demo
     p5 = txt.split("PASO 5:")[1].split("PASO 6:")[0]
     assert "dos filas" in p5 and "operacion (la venta)" in p5 and "saldo (cuenta por cobrar y por pagar)" in p5
-    assert sum(1 for ln in p5.splitlines() if "DC-IC-2611-HN" in ln) == len(KEY["discrepancias_esperadas"]) == 2
+    assert sum(1 for ln in p5.splitlines() if "DC-IC-2611-MX" in ln) == len(KEY["discrepancias_esperadas"]) == 2
 
 
 def test_el_guion_refleja_los_ajustes():

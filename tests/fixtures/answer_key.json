@@ -268,7 +268,7 @@
     },
     {
       "period": "2026-10",
-      "reference": "DC-IC-2610-HN",
+      "reference": "DC-IC-2610-MX",
       "tipo": "operacion",
       "seller": "EMP002",
       "buyer": "EMP003",
@@ -286,7 +286,7 @@
     },
     {
       "period": "2026-10",
-      "reference": "DC-IC-2610-HN",
+      "reference": "DC-IC-2610-MX",
       "tipo": "saldo",
       "seller": "EMP002",
       "buyer": "EMP003",
@@ -486,7 +486,7 @@
   "discrepancias_esperadas": [
     {
       "period": "2026-11",
-      "reference": "DC-IC-2611-HN",
+      "reference": "DC-IC-2611-MX",
       "tipo": "operacion",
       "seller": "EMP002",
       "buyer": "EMP003",
@@ -504,7 +504,7 @@
     },
     {
       "period": "2026-11",
-      "reference": "DC-IC-2611-HN",
+      "reference": "DC-IC-2611-MX",
       "tipo": "saldo",
       "seller": "EMP002",
       "buyer": "EMP003",
