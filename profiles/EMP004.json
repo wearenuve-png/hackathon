@@ -1,0 +1,56 @@
+{
+  "company_id": "EMP004",
+  "company_name": "Ferrex El Salvador S.A. de C.V.",
+  "country": "El Salvador",
+  "functional_currency": "USD",
+  "source": {
+    "type": "xlsx",
+    "file": "ferrex_el_salvador.xlsx"
+  },
+  "columns": {
+    "period": "Period",
+    "account": "Account",
+    "amount": "Amount",
+    "currency": "Currency",
+    "counterparty": "Counterparty",
+    "transaction_id": "Invoice ID"
+  },
+  "accounts": {
+    "Accounts payable": "2000",
+    "Accounts receivable": "1100",
+    "Bank loans": "2500",
+    "Cash": "1000",
+    "Cost of goods sold": "5000",
+    "Depreciation": "6400",
+    "Freight": "6200",
+    "Income tax": "8000",
+    "Interest expense": "7000",
+    "Inventory": "1200",
+    "Other operating expenses": "6300",
+    "PP&E, net": "1500",
+    "Payroll": "6000",
+    "Rent": "6100",
+    "Retained earnings": "3100",
+    "Share capital": "3000",
+    "Store sales - building materials": "4000",
+    "Store sales - hardware": "4000",
+    "Taxes payable": "2100",
+    "Total revenue": "TOT_ING"
+  },
+  "sheets": [
+    "Income Statement",
+    "Balance Sheet"
+  ],
+  "sign_convention": "signed_amount",
+  "currency_mode": "column",
+  "currency_key": "Currency",
+  "counterparty_aliases": [
+    "Ferrex El Salvador"
+  ],
+  "schema_version": 1,
+  "profile_version": 1,
+  "approval_status": "PENDING",
+  "approved_by": null,
+  "approved_at": null,
+  "profile_hash": "7f86e9a735d892f38d18d2c8b0fb97cda89f86ec585765abcf455eef61620306"
+}

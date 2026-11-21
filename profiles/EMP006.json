@@ -1,0 +1,51 @@
+{
+  "company_id": "EMP006",
+  "company_name": "Ferrex Importaciones S.A.",
+  "country": "Panama",
+  "functional_currency": "USD",
+  "source": {
+    "type": "json",
+    "file": "ferrex_importaciones_pa.json"
+  },
+  "columns": {
+    "period": "period",
+    "account": "account",
+    "amount": "amount",
+    "counterparty": "counterparty",
+    "transaction_id": "transaction_id"
+  },
+  "accounts": {
+    "Cash and equivalents": "1000",
+    "Common stock": "3000",
+    "Cost of sales": "5000",
+    "Depreciation": "6400",
+    "Fixed assets": "1500",
+    "Income tax": "8000",
+    "Interest": "7000",
+    "Inventory": "1200",
+    "Long-term debt": "2500",
+    "Net revenue": "4000",
+    "Office rent": "6100",
+    "Other expenses": "6300",
+    "Retained earnings": "3100",
+    "Salaries": "6000",
+    "Tax payable": "2100",
+    "Trade payables": "2000",
+    "Trade receivables": "1100"
+  },
+  "sheets": [
+    "entries"
+  ],
+  "sign_convention": "signed_amount",
+  "currency_mode": "file_key",
+  "currency_key": "reporting_currency",
+  "counterparty_aliases": [
+    "Ferrex Importaciones"
+  ],
+  "schema_version": 1,
+  "profile_version": 1,
+  "approval_status": "PENDING",
+  "approved_by": null,
+  "approved_at": null,
+  "profile_hash": "e9c0458f69b877652d45967ffcc05bd4788c0562f58bd8046851740e76dc6bab"
+}

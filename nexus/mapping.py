@@ -54,3 +54,14 @@ def map_counterparty(text: str, cfg: GroupConfig) -> Optional[str]:
         if t in {norm(c.company_id), norm(c.name)} | {norm(a) for a in c.aliases}:
             return c.company_id
     return None
+
+
+FILE_CURRENCY_KEYS = {"currency", "moneda", "reporting currency", "moneda de reporte", "divisa"}
+
+
+def file_currency_key(meta):
+    """Clave de nivel archivo que declara la moneda (p. ej. JSON con reporting_currency), o None."""
+    for k, v in (meta or {}).items():
+        if norm(k) in FILE_CURRENCY_KEYS and v not in (None, ""):
+            return k
+    return None
