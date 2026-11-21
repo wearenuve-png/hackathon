@@ -80,9 +80,9 @@ else:
     st.metric("Utilidad neta", m(pr.summary["utilidad_neta"]))
 extras.render_header(res, period, data_dir, profiles_dir)
 
-tab_res, tab_alert, tab_trace, tab_prof, tab_ind, tab_var, tab_sim, tab_help = st.tabs(
-    ["Resultados y balance", "Alertas y exclusiones", "Trazabilidad", "Perfiles por empresa", "Indicadores",
-     "Variaciones", "Simulador", "Ayuda"])
+tab_res, tab_alert, tab_hall, tab_trace, tab_prof, tab_ind, tab_var, tab_sim, tab_help = st.tabs(
+    ["Resultados y balance", "Alertas y exclusiones", "Hallazgos", "Trazabilidad", "Perfiles por empresa",
+     "Indicadores", "Variaciones", "Simulador", "Ayuda"])
 _dirs = [d for d in (data_dir, profiles_dir) if d]
 _ver = verify_hashes(res.input_hashes, _dirs)
 
@@ -150,11 +150,17 @@ with tab_alert:
     bad = [x for x in ms if x.status != "RECONCILED"]
     st.caption(f"{len(ok)} operaciones conciliadas y eliminadas, {len(bad)} abiertas (no se eliminan).")
     if bad:
-        st.dataframe(pd.DataFrame([{"Estado": x.status, "Vendedor": x.seller_id, "Comprador": x.buyer_id,
-                                    "Referencia": x.reference, "Tipo": "Operacion" if x.statement == "ER" else "Saldo",
-                                    "USD vendedor": m(x.seller_usd), "USD comprador": m(x.buyer_usd),
-                                    "Diferencia": m(x.difference_usd)} for x in bad]),
+        _g = {}
+        for x in bad:
+            _g.setdefault((x.seller_id, x.buyer_id, x.reference), []).append(x)
+        st.dataframe(pd.DataFrame([{"Estado": v[0].status, "Vendedor": k[0], "Comprador": k[1], "Referencia": k[2],
+                                    "Afecta": " y ".join("operacion (venta)" if y.statement == "ER" else "saldo (CxC y CxP)"
+                                                         for y in sorted(v, key=lambda y: y.statement != "ER")),
+                                    "USD vendedor": m(v[0].seller_usd), "USD comprador": m(v[0].buyer_usd),
+                                    "Diferencia": m(v[0].difference_usd)} for k, v in _g.items()]),
                      width="stretch", hide_index=True)
+        st.caption("Cada discrepancia se muestra una sola vez: la misma diferencia afecta la operacion (la venta) y el "
+                   "saldo (cuenta por cobrar y por pagar). No se elimina ninguna de las dos.")
     with st.expander("Ver las eliminaciones conciliadas"):
         st.dataframe(pd.DataFrame([{"Vendedor": x.seller_id, "Comprador": x.buyer_id, "Referencia": x.reference,
                                     "Tipo": "Operacion" if x.statement == "ER" else "Saldo",
@@ -239,4 +245,4 @@ with tab_prof:
             st.caption(f"Signo: {p.sign_convention} | moneda: {p.currency_mode}"
                        f"{' (' + p.currency_key + ')' if p.currency_key else ''} | hojas: "
                        f"{', '.join(p.sheets) or '-'} | hash {p.profile_hash[:12]}...")
-extras.render_extra_tabs(res, period, data_dir, profiles_dir, tab_ind, tab_var, tab_sim, tab_help)
+extras.render_extra_tabs(res, period, data_dir, profiles_dir, tab_ind, tab_var, tab_sim, tab_help, tab_hall)

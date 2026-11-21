@@ -10,15 +10,18 @@ LIMITACIONES = [
     ("L3", "La hipotesis de moneda no es una certeza",
      "NEXUS propone que otra moneda explicaria el historial y muestra el impacto; dos monedas pueden encajar. "
      "Nunca corrige solo: una persona confirma."),
-    ("L4", "Duplicados con datos distintos o en otra carga",
-     "Solo se detectan duplicados por mismo ID (confirmado), por mismo importe, fecha y contraparte (posible), por "
-     "mismo ID en dos empresas y por archivos identicos (mismo SHA-256) dentro de una misma carga. Un duplicado con "
-     "otro ID o importe, o el reenvio de un archivo en otra ejecucion, no se detecta."),
+    ("L4", "Duplicados con datos distintos o sin historial activado",
+     "Se detectan duplicados por mismo ID (confirmado), por mismo importe, fecha y contraparte (posible), por mismo "
+     "ID en dos empresas y por archivos identicos (mismo SHA-256) dentro de una carga. El reenvio ENTRE ejecuciones "
+     "(mismo archivo o mismos IDs en una ejecucion anterior guardada) solo se advierte si se activa el historial "
+     "(run(history_dir=...) o --historial); la interfaz no lo activa por defecto. Un duplicado con otro ID, otro "
+     "importe o sin contraparte no se detecta."),
     ("L5", "Cuenta mapeada pero equivocada",
      "Solo se detecta la cuenta SIN equivalencia. Una equivalencia aprobada que apunta a la cuenta equivocada pasa."),
-    ("L6", "Tipo de cambio incorrecto pero mayor que cero",
-     "Se bloquea la tasa faltante, vacia, en 0 o no numerica. Una tasa mal escrita (0.5 en vez de 0.05) no se "
-     "detecta: no hay validacion de rango de tasas."),
+    ("L6", "Tasa mal escrita sin salto detectable",
+     "Se bloquea la tasa faltante, vacia, en 0 o no numerica, y se marca como sospechosa la que cambia mas del umbral "
+     "(15 %) frente al mes anterior. No se detecta la PRIMERA tasa de una moneda (sin historial), ni una tasa mal "
+     "escrita que cambie menos que el umbral, ni una deriva gradual."),
     ("L7", "Errores que se compensan",
      "Un importe equivocado que deja totales y balance cuadrados, o dos errores que se cancelan, no se detecta."),
     ("L8", "Balance solo por empresa completa",
@@ -38,4 +41,11 @@ LIMITACIONES = [
     ("L13", "Integridad antes de leer",
      "El SHA-256 prueba que un archivo no cambio DESPUES de leerlo. No detecta que alguien lo haya alterado antes, "
      "ni controla accesos o identidades."),
+    ("L14", "Alias de moneda no soportado",
+     "Un codigo como «Q» se reconoce como probable alias de GTQ en la ficha de diagnostico, pero los perfiles hoy no "
+     "admiten alias de moneda: el registro queda bloqueado y la via es corregir el archivo de origen."),
+    ("L15", "El diagnostico de balance es una heuristica",
+     "Las causas candidatas de un balance descuadrado (registro igual a D, importe x 2, duplicado, registros fuera de "
+     "balance, diferencia de tasa) son coincidencias numericas, no pruebas: pueden ser casuales o faltar la real. Se "
+     "calcula por empresa y periodo."),
 ]

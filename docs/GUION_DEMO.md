@@ -67,8 +67,8 @@ El balance cuadra.»
 comprado 18,000. NEXUS no elimina a ciegas: abre una discrepancia de **2,000 dólares** para revisión y marca
 el período como provisional. Es una sola diferencia: afecta tanto la operación (la venta) como el saldo (cuenta por
 cobrar y por pagar), y no se elimina ninguna de las dos.»
-*(En la tabla de la interfaz la misma discrepancia puede verse en dos filas, una por la operación y otra por el
-saldo; en el script de respaldo se muestra una sola vez.)*
+*(La interfaz y el script de respaldo muestran la discrepancia una sola vez, con una nota de que afecta la operación
+y el saldo.)*
 **Cifras:** 20,000 vs 18,000 = 2,000 USD, referencia DC-IC-2611-MX.
 
 ### 6. De una cifra a su registro: Ingresos por ventas (cuenta 4000) (0:30)
@@ -108,6 +108,14 @@ marcado provisional en lugar de esconderse. Corre dentro del servidor, sin inter
 sintéticos. Lo que sigue es la hoja de ruta.»
 
 ## Extras opcionales de la interfaz (si sobra tiempo)
+- **Pestaña Hallazgos**: una ficha por hallazgo con *qué pasó, dónde (archivo, hoja, fila), por qué importa (USD y
+  utilidad), causa probable y acción humana*, con contador por tipo y ordenada por impacto. Buen complemento del
+  paso 3: abrir la ficha de la depreciación (signo invertido) y la de la moneda «Q» (*probable alias de GTQ, pero
+  requiere aprobación humana; NEXUS no la convierte sola*).
+- **Ficha de balance descuadrado**: lista causas candidatas en orden (registro igual al desbalance, importe × 2,
+  duplicado, registros fuera de balance, diferencia de tasa) o «causa no identificada». **Con los datos sintéticos el
+  balance cuadra, así que esta ficha no aparece en la demo**; se verifica en `tests/test_diagnostico.py`. Decirlo así
+  si preguntan, y presentarlo como diagnóstico por coincidencias numéricas, no como certeza.
 - **Nivel de confianza del período** (arriba): registros limpios vs. bloqueados o pendientes y por qué es PROVISIONAL.
 - **Descargar paquete de auditoría**: zip con el consolidado, ajustes, alertas, discrepancias, perfiles y hashes SHA-256.
 - **Simulador**: mueve la tasa de MXN o GTQ entre −10 % y +10 % y ve el efecto en el consolidado y los indicadores,
@@ -140,6 +148,9 @@ Decirlo como plan, sin fechas ni promesas:
 | ¿Qué tan confiables son ROIC, ROCE y EVA? | Las fórmulas son estándar y se calculan con las cifras consolidadas, pero WACC, impuesto y definición de capital son supuestos nuestros, visibles y editables. Son mensuales; no son una valoración. |
 | ¿Cómo manejan los duplicados? | Mismo ID de factura: se excluye automáticamente con un ajuste registrado y reversible. Sin ID (mismo importe, fecha y contraparte): solo se marca, y una persona decide. |
 | ¿Es seguro? ¿Dónde corre? | Dentro del servidor de la empresa, sin internet. Lee los archivos en solo lectura, registra su SHA-256 y no los modifica; hay pruebas que bloquean la red y verifican que los hashes no cambian. No tiene inicio de sesión ni control de accesos todavía. |
+| ¿Qué hace NEXUS si el balance no cuadra? | Alerta y una ficha con causas **candidatas** en orden (un registro igual a la diferencia, un importe × 2 por signo invertido, un duplicado, registros fuera del balance o una diferencia de tasa) o «causa no identificada» con los registros más cercanos. Son coincidencias numéricas, no pruebas, y se calculan por empresa y período. Con los datos de la demo el balance cuadra; se probó con casos armados a mano. |
+| ¿Y si una tasa de cambio se escribe mal? | Si cambia más de un umbral (15 %, configurable) frente al mes anterior se marca como sospechosa, con su impacto en USD, y se pide confirmación; no se bloquea ni se corrige. No se detecta la primera tasa de una moneda (sin historial) ni un cambio menor al umbral. |
+| ¿Y si me reenvían el mismo archivo? | Dentro de una carga se advierte por hash idéntico o ID repetido. Entre ejecuciones, solo si se activa el historial (`--historial`); la interfaz no lo activa por defecto. Solo advierte: no excluye nada. |
 | ¿Por qué no usaron un chatbot? | Porque un número que nadie puede auditar no sirve. Los cálculos son código determinista; no hay IA que calcule ni altere importes. |
 
 ## Qué NO decir
