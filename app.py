@@ -118,7 +118,6 @@ NAV_LABEL = {"Inicio": ":material/home: Inicio", "Estados financieros": ":materi
              "Indicadores": ":material/monitoring: Indicadores", "Variaciones": ":material/query_stats: Variaciones",
              "Simulador": ":material/tune: Simulador", "Perfiles e integridad": ":material/verified_user: Integridad",
              "Ayuda": ":material/help: Ayuda"}
-SECTION_TITLE = {"Inicio": "Resumen del mes"}
 SEV_LABEL = {BLOCK: "Bloquea el cierre", WARN: "Revisar", INFO: "Nota"}
 SEV_ORDER = {BLOCK: 0, WARN: 1, INFO: 2}
 STATUS_LABEL = {BLOCKED: "Bloqueado", PENDING_MAPPING: "Cuenta sin confirmar", EXCLUDED_DUPLICATE: "Duplicado excluido"}
@@ -183,12 +182,12 @@ html("<style>:root{" + "".join(f"--{k}:{v};" for k, v in _t.items())
 with st.sidebar:
     period_box = st.container()
     status_box = st.container()
-    with st.expander("Configuración de la fuente"):
-        data_dir = st.text_input("Carpeta del servidor con los archivos (solo lectura)", str(ROOT / "data" / "synthetic"))
-        profiles_dir = st.text_input("Carpeta de perfiles (vacío = detección automática)", str(ROOT / "profiles"))
+    with st.expander("Fuente de datos"):
+        data_dir = st.text_input("Carpeta de archivos", str(ROOT / "data" / "synthetic"))
+        profiles_dir = st.text_input("Carpeta de perfiles", str(ROOT / "profiles"))
         if "ver" not in st.session_state:
             st.session_state.ver = 0
-        if st.button("Volver a ejecutar el motor"):
+        if st.button("Volver a ejecutar"):
             st.session_state.ver += 1
 
 try:
@@ -208,12 +207,11 @@ with period_box:
 with status_box:
     st.success("Fuente: carpeta del servidor (solo lectura)", icon=":material/folder_open:")
     if n_hash_ok == len(_ver):
-        html(f'<div class="nx-ok">Archivos sin cambios: {n_hash_ok} de {len(_ver)} (SHA-256)</div>')
+        html(f'<div class="nx-ok">{n_hash_ok}/{len(_ver)} archivos íntegros</div>')
     else:
-        st.error(f"{pl(len(_ver) - n_hash_ok, 'archivo cambió', 'archivos cambiaron')} o falta desde que se leyó. "
-                 f"Vuelve a ejecutar el motor.")
-    st.caption(("Datos de prueba (sintéticos). " if synthetic else "") +
-               f"Ejecución {res.run_id}, reglas {cfg.rules_version}. Sin subida manual y sin internet.")
+        st.error("Archivos modificados. Vuelve a ejecutar.")
+    if synthetic:
+        st.caption("Datos sintéticos")
 with st.sidebar:
     extras.render_descarga(res, period, data_dir)
 st.sidebar.markdown('<div class="nx-crew">Hecho por Cuz Cuz Crew</div>', unsafe_allow_html=True)
@@ -233,7 +231,6 @@ dups = [e for e in pr.excluded if e.status == EXCLUDED_DUPLICATE]
 findings = sorted([f for f in res.findings if f.period in (None, period)],
                   key=lambda f: (SEV_ORDER.get(f.severity, 9), f.company_id or "", f.rule_id))
 currencies = sorted({c.currency for c in cfg.companies.values()})
-cur_txt = ", ".join(currencies[:-1]) + f" y {currencies[-1]}" if len(currencies) > 1 else "".join(currencies)
 
 # ------------------------------------------------------------------ menu horizontal + encabezado
 section = st.radio("Sección", SECTIONS, key="nav", horizontal=True, label_visibility="collapsed",
@@ -241,8 +238,8 @@ section = st.radio("Sección", SECTIONS, key="nav", horizontal=True, label_visib
 head, badge_col = st.columns([5, 1.1], vertical_alignment="center")
 with head:
     html(f'<div class="nx-title">Consolidado de {escape(month(period))}</div>'
-         f'<div class="nx-lede">{escape(KIND.get(pr.kind, pr.kind).capitalize())}. '
-         f'{len(cfg.companies)} empresas en {escape(cur_txt)}, todo convertido a dólares con la tasa del mes.</div>')
+         f'<div class="nx-lede">{escape(KIND.get(pr.kind, pr.kind).capitalize())}, {len(cfg.companies)} empresas, '
+         f'{len(currencies)} monedas, en USD</div>')
 with badge_col.container(key="nx_badge"):
     if pr.provisional:
         st.error("PROVISIONAL", icon=":material/schedule:")
@@ -251,22 +248,14 @@ with badge_col.container(key="nx_badge"):
 
 elim_ing = s["ingresos"] - n["ingresos"]
 figures([
-    ("Ingresos consolidados (USD)", m(s["ingresos"]),
-     f"Las empresas reportaron {m(n['ingresos'])}; se quitaron {m(-elim_ing)} de ventas entre ellas.", ""),
+    ("Ingresos (USD)", m(s["ingresos"]), f"Eliminado {m(elim_ing)}", ""),
     ("Utilidad neta (USD)", m(s["utilidad_neta"]),
-     f"Puede quedar entre {m(pr.utility_range[0])} y {m(pr.utility_range[1])} al resolver lo pendiente."
-     if pr.utility_range else "Nada pendiente la cambia.", ""),
-    ("Registros bloqueados", len(unresolved),
-     ("No entran al consolidado hasta corregirse." if unresolved else "Todo lo cargado es válido.")
-     + (f" Aparte, {pl(len(dups), 'duplicado se excluyó', 'duplicados se excluyeron')} con ajuste." if dups else ""),
+     f"Rango {m(pr.utility_range[0])} a {m(pr.utility_range[1])}" if pr.utility_range else "Sin pendientes", ""),
+    ("Registros bloqueados", len(unresolved), "Fuera del consolidado" if unresolved else "Sin bloqueos",
      "red" if unresolved else ""),
-    ("Diferencias entre empresas", len(ic_groups),
-     f"{pl(len(ic_groups), 'operación no cuadra', 'operaciones no cuadran')} y no se eliminan; "
-     f"{len(ic_ok)} sí cuadran." if ic_open else f"Las {len(ic_ok)} operaciones entre empresas cuadran.",
-     "amber" if ic_open else ""),
+    ("Diferencias entre empresas", len(ic_groups), f"{len(ic_ok)} conciliadas", "amber" if ic_open else ""),
 ])
 
-html(f'<div class="nx-section">{escape(SECTION_TITLE.get(section, section))}</div>')
 
 # ------------------------------------------------------------------ Inicio (resumen del mes)
 if section == "Inicio":
@@ -310,10 +299,8 @@ if section == "Inicio":
             st.altair_chart(bars, use_container_width=True)
             ok_tot = (sum(gross.values(), Decimal(0)) == n["ingresos"]
                       and sum(gross.values(), Decimal(0)) + sum(elim.values(), Decimal(0)) == s["ingresos"])
-            st.caption("Cada empresa tiene su color (un tono por país). La parte clara de cada barra es lo que le vendió a otra empresa "
-                       "del grupo: se resta para no contar la misma venta dos veces. "
-                       + ("Los totales cuadran con el estado de resultados." if ok_tot else
-                          "Ojo: este desglose no cuadra con el estado de resultados."))
+            st.caption("Parte clara: ventas entre empresas, eliminadas. "
+                       + ("Cuadra con el estado de resultados." if ok_tot else "No cuadra con el estado de resultados."))
         else:
             st.info("No hay ingresos consolidados en este período.")
 
@@ -330,15 +317,15 @@ if section == "Inicio":
             n_ic = sum(1 for k in ic_groups if cid in (k[0], k[1]))
             red, amber = [], []
             if rep is not None and rep.status == "REVIEW":
-                red.append("el archivo no coincide con su perfil")
+                red.append("archivo no coincide con su perfil")
             if cid in pr.missing_companies:
-                red.append("no mandó datos de este período")
+                red.append("sin datos del período")
             if n_out:
                 red.append(pl(n_out, "registro bloqueado", "registros bloqueados"))
             if n_block and not n_out:
                 red.append(pl(n_block, "alerta que bloquea", "alertas que bloquean"))
             if n_ic:
-                amber.append(pl(n_ic, "venta entre empresas no cuadra", "ventas entre empresas no cuadran"))
+                amber.append(pl(n_ic, "diferencia entre empresas", "diferencias entre empresas"))
             if n_warn:
                 amber.append(pl(n_warn, "advertencia", "advertencias"))
             if n_dup:
@@ -346,40 +333,37 @@ if section == "Inicio":
             if prof is not None and prof.approval_status != "APPROVED":
                 amber.append("perfil sin aprobar")
             tone = "red" if red else ("amber" if amber else "green")
-            why = ", ".join(red + amber) or "sin observaciones"
+            why = ", ".join(red + amber)
             label = {"red": "Bloqueada", "amber": "Revisar", "green": "Lista"}[tone]
             rows.append(f'<div class="nx-row"><span class="nx-dot {tone}"></span><div>'
                         f'<div class="nx-row-t">{escape(c.name)}</div>'
-                        f'<div class="nx-row-s">{escape(cid)} en {escape(c.currency)}: {escape(why)}</div></div>'
+                        f'<div class="nx-row-s">{escape(cid)}, {escape(c.currency)}{": " + escape(why) if why else ""}'
+                        f'</div></div>'
                         f'<span class="nx-state {tone}">{label}</span></div>')
         html('<div class="nx-list">' + "".join(rows) + "</div>")
 
     st.write("")
     a, b = st.columns(2, gap="large")
     with a:
-        heading("Qué falta para cerrar el período")
+        heading("Pendientes")
         if pr.provisional:
             with st.container(border=True):
                 for why in pr.provisional_reasons:
                     st.markdown(f"- {why}")
                 if pr.utility_range:
                     lo, hi = pr.utility_range
-                    st.markdown(f"**Rango posible de utilidad neta si se resolviera lo pendiente:** {m(lo)} a "
-                                f"{m(hi)} USD")
-                st.caption("El rango es solo informativo: no cambia ninguna cifra y no recalcula impuestos.")
+                    st.markdown(f"**Rango posible de utilidad neta:** {m(lo)} a {m(hi)} USD")
         else:
-            st.success("Período completo: todo lo cargado entró al consolidado y no hay alertas pendientes.")
+            st.success("Sin pendientes.")
     with b:
-        heading("Para atender primero")
-        top = [f for f in findings if f.severity in (BLOCK, WARN)][:4]
+        heading("Prioridades")
+        top = [f for f in findings if f.severity in (BLOCK, WARN)][:3]
         if top:
             with st.container(border=True):
                 for f in top:
-                    tip = f" Sugerencia: {f.suggestion}." if f.suggestion else ""
-                    st.markdown(f"**{f.company_id or 'Grupo'}** ({SEV_LABEL.get(f.severity, f.severity).lower()}): "
-                                f"{f.message}{tip}")
+                    st.markdown(f"- **{f.company_id or 'Grupo'}**: {f.message}")
         else:
-            st.caption("No hay nada urgente en este período.")
+            st.caption("Sin prioridades.")
     st.write("")
     heading("Nivel de confianza")
     extras.render_confianza(res, period)
@@ -397,8 +381,7 @@ if section == "Estados financieros":
                                     "Eliminaciones": m(s[k] - n[k], True), "Consolidado": m(s[k])}
                                    for lbl, k in rows]),
                      width="stretch", hide_index=True)
-        st.caption("Suma de empresas: lo que reportó cada una, sumado tal cual. La utilidad no cambia al eliminar, "
-                   "porque lo que sale de ingresos también sale de costos.")
+        st.caption("La utilidad no cambia al eliminar.")
     with bg:
         heading("Balance general (USD)")
         brow = [("Activo total", "activo_total"), ("Pasivo total", "pasivo_total"), ("Patrimonio", "patrimonio")]
@@ -418,19 +401,17 @@ if section == "Alertas y errores":
     by_sev = defaultdict(int)
     for f in findings:
         by_sev[f.severity] += 1
-    st.markdown(f"En este período hay **{pl(by_sev[BLOCK], 'alerta que bloquea', 'alertas que bloquean')} el "
-                f"cierre**, {pl(by_sev[WARN], 'advertencia', 'advertencias')} para revisar y "
-                f"{pl(by_sev[INFO], 'nota', 'notas')}.")
+    st.markdown(f"**{by_sev[BLOCK]}** bloquean el cierre, **{by_sev[WARN]}** por revisar, "
+                f"**{by_sev[INFO]}** {'nota' if by_sev[INFO] == 1 else 'notas'}")
     if findings:
         st.dataframe(pd.DataFrame([{"Tipo": SEV_LABEL.get(f.severity, f.severity), "Empresa": f.company_id or "Grupo",
-                                    "Qué pasó": f.message, "Qué hacer": f.suggestion,
-                                    "Impacto estimado": f.impact or "", "Regla": f.rule_id}
+                                    "Qué pasó": f.message, "Qué hacer": f.suggestion, "Regla": f.rule_id}
                                    for f in findings]),
                      width="stretch", hide_index=True)
     else:
         st.info("Sin alertas en este período.")
 
-    heading("Registros que quedaron fuera del consolidado")
+    heading("Fuera del consolidado")
     if pr.excluded:
         st.dataframe(pd.DataFrame([{"Empresa": e.company_id, "Estado": STATUS_LABEL.get(e.status, e.status),
                                     "Motivo": "; ".join(e.reasons), "Importe original": m(e.amount_original),
@@ -438,13 +419,13 @@ if section == "Alertas y errores":
                                     "Registro": e.record_id, "Código": e.status} for e in pr.excluded]),
                      width="stretch", hide_index=True)
         tot = ", ".join(f"{STATUS_LABEL.get(k, k).lower()} {m(v)} USD" for k, v in pr.excluded_usd_by_status.items())
-        st.caption(f"Nada se excluye en silencio. Total fuera: {tot or 'sin importes convertibles'}."
+        st.caption(f"Total: {tot or 'sin importes convertibles'}."
                    + (f" {pl(pr.excluded_not_convertible, 'registro no se pudo', 'registros no se pudieron')} "
                       f"convertir (n/c)." if pr.excluded_not_convertible else ""))
     else:
         st.info("Todo lo cargado entró al consolidado.")
 
-    heading("Cuánto movería la utilidad lo que quedó fuera")
+    heading("Impacto en la utilidad")
     if pr.impact_ranges:
         st.dataframe(pd.DataFrame([{"Registro": i.record_id, "Empresa": i.company_id, "Excluido": m(i.utility_excluded),
                                     "Si entra como viene": m(i.utility_as_is, True),
@@ -452,17 +433,16 @@ if section == "Alertas y errores":
                                    for i in pr.impact_ranges]),
                      width="stretch", hide_index=True)
     else:
-        st.caption("Ningún registro bloqueado o pendiente afecta la utilidad en este período.")
+        st.caption("Sin impacto en la utilidad.")
 
 # ------------------------------------------------------------------ Intercompañía
 if section == "Intercompañía":
     figures([
-        ("Operaciones que cuadran", len(ic_ok), "Se eliminan para no contar dos veces la misma venta.", ""),
-        ("Operaciones que no cuadran", len(ic_groups), "Quedan abiertas: no se elimina nada hasta conciliar.",
-         "amber" if ic_open else ""),
-        ("Tolerancia (USD)", m(cfg.ic_tolerance_usd), "Diferencia máxima para dar una operación por conciliada.", ""),
+        ("Conciliadas", len(ic_ok), "Eliminadas", ""),
+        ("Sin conciliar", len(ic_groups), "No se eliminan", "amber" if ic_open else ""),
+        ("Tolerancia (USD)", m(cfg.ic_tolerance_usd), "Diferencia máxima", ""),
     ])
-    heading("Operaciones que no cuadran")
+    heading("Sin conciliar")
     if ic_open:
         st.dataframe(pd.DataFrame([{"Vendedor": k[0], "Comprador": k[1], "Referencia": k[2],
                                     "Afecta": " y ".join("operacion (venta)" if y.statement == "ER"
@@ -472,11 +452,10 @@ if section == "Intercompañía":
                                     "Diferencia": m(v[0].difference_usd), "Estado": v[0].status}
                                    for k, v in ic_groups.items()]),
                      width="stretch", hide_index=True)
-        st.caption("Cada discrepancia se muestra una sola vez: la misma diferencia afecta la operación (la "
-                   "venta) y el saldo (cuenta por cobrar y por pagar). No se elimina ninguna de las dos.")
+        st.caption("Cada discrepancia aparece una sola vez, aunque afecte venta y saldo.")
     else:
-        st.success("Todas las operaciones entre empresas de este período cuadran.")
-    with st.expander(f"Ver las {len(ic_ok)} operaciones eliminadas"):
+        st.success("Todo concilia.")
+    with st.expander(f"Eliminadas ({len(ic_ok)})"):
         st.dataframe(pd.DataFrame([{"Vendedor": x.seller_id, "Comprador": x.buyer_id, "Referencia": x.reference,
                                     "Tipo": "Operación" if x.statement == "ER" else "Saldo",
                                     "USD vendedor": m(x.seller_usd), "USD comprador": m(x.buyer_usd)} for x in ic_ok]),
@@ -484,7 +463,6 @@ if section == "Intercompañía":
 
 # ------------------------------------------------------------------ Trazabilidad
 if section == "Trazabilidad":
-    st.markdown("Elige una cifra del consolidado y mira de qué filas de qué archivos sale.")
     groups = {"Ingresos": "ingreso", "Costo de ventas": "costo", "Gastos operativos": "gasto_operativo",
               "Gastos financieros": "gasto_financiero", "Impuestos": "impuesto", "Activo": "activo",
               "Pasivo": "pasivo", "Patrimonio": "patrimonio"}
@@ -495,9 +473,9 @@ if section == "Trazabilidad":
     tr_gross = sum((t["gross_usd"] for t in traces), Decimal(0))
     tr_final = sum((t["amount_usd"] for t in traces), Decimal(0))
     figures([
-        ("Suma de los registros (USD)", m(tr_gross), "Lo que reportaron las empresas.", ""),
-        ("Eliminaciones (USD)", m(tr_final - tr_gross, True), "Ventas entre empresas que cuadraron.", ""),
-        ("Cifra en el consolidado (USD)", m(tr_final), "Lo que aparece en los estados financieros.", ""),
+        ("Reportado (USD)", m(tr_gross), "Suma de registros", ""),
+        ("Eliminaciones (USD)", m(tr_final - tr_gross, True), "Entre empresas", ""),
+        ("Consolidado (USD)", m(tr_final), "En estados financieros", ""),
     ])
     recs = [{"Cuenta": t["account_code"], "Empresa": x["company_id"], "Archivo": x["file"],
              "Hoja": x["sheet"] or "-", "Fila": x["row"], "Cuenta local": x["account_local"],
@@ -510,11 +488,11 @@ if section == "Trazabilidad":
     st.dataframe(pd.DataFrame(recs), width="stretch", hide_index=True)
     adjs = [{"Ajuste": a["adjustment_id"], "Tipo": a["kind"], "USD": m(a["amount_usd"], True), "Regla": a["rule"],
              "Motivo": a["reason"]} for t in traces for a in t["adjustments"]]
-    heading(f"Ajustes aplicados ({len(adjs)})")
+    heading(f"Ajustes ({len(adjs)})")
     if adjs:
         st.dataframe(pd.DataFrame(adjs), width="stretch", hide_index=True)
     else:
-        st.caption("Esta cifra no tiene ajustes.")
+        st.caption("Sin ajustes.")
 
 # ------------------------------------------------------------------ secciones de otros integrantes
 if section == "Hallazgos":
@@ -532,7 +510,7 @@ if section == "Ayuda":
 
 # ------------------------------------------------------------------ Perfiles e integridad
 if section == "Perfiles e integridad":
-    heading("Cómo se lee el archivo de cada empresa")
+    heading("Perfiles por empresa")
     prof_rows = []
     for cid, c in cfg.companies.items():
         rep, p = res.load_reports.get(cid), cfg.profiles.get(cid)
@@ -549,27 +527,25 @@ if section == "Perfiles e integridad":
         for note in r.notes:
             st.warning(f"{r.company_id}: {note}")
     if not cfg.profiles:
-        st.info("No hay perfiles cargados: el motor detectó los formatos automáticamente.")
+        st.info("Sin perfiles: detección automática.")
     pend = [c for c, p in cfg.profiles.items() if p.approval_status != "APPROVED"]
     if pend:
-        st.warning("Perfiles pendientes de aprobación: " + ", ".join(pend) +
-                   ". Se usan, pero nadie ha firmado la equivalencia de cuentas.")
+        st.warning("Perfiles sin aprobar: " + ", ".join(pend))
 
-    heading("Integridad de los archivos leídos (SHA-256)")
-    st.caption(f"Carpeta del servidor, solo lectura: {data_dir}. La huella se tomó al leer cada archivo y se vuelve a "
-               f"calcular ahora; si alguien lo cambió, aparece aquí.")
+    heading("Integridad (SHA-256)")
+    st.caption(f"{data_dir} (solo lectura). Ejecución {res.run_id}, reglas {cfg.rules_version}.")
     st.dataframe(pd.DataFrame([{"Archivo": f, "Estado": v["status"], "SHA-256 registrado": v["registered"]}
                                for f, v in _ver.items()]), width="stretch", hide_index=True)
     if n_hash_ok != len(_ver):
-        st.error("Algún archivo cambió o falta desde que se leyó. Vuelve a ejecutar el motor.")
+        st.error("Archivos modificados. Vuelve a ejecutar.")
 
     for cid, p in cfg.profiles.items():
-        with st.expander(f"Perfil de {cid} (versión {p.profile_version})"):
+        with st.expander(f"Perfil {cid} v{p.profile_version}"):
             c1, c2 = st.columns(2)
-            c1.markdown("**Columnas que espera en el archivo**")
+            c1.markdown("**Columnas**")
             c1.dataframe(pd.DataFrame([{"Campo NEXUS": k, "Encabezado en la fuente": v} for k, v in p.columns.items()]),
                          width="stretch", hide_index=True)
-            c2.markdown("**Equivalencia de cuentas**")
+            c2.markdown("**Cuentas**")
             c2.dataframe(pd.DataFrame([{"Cuenta local": k, "Codigo": v} for k, v in p.accounts.items()]),
                          width="stretch", hide_index=True)
             st.caption(f"Signo: {p.sign_convention} | moneda: {p.currency_mode}"
